@@ -1,10 +1,10 @@
-# 🛡️ Craftsman Superpowers for GitHub Copilot
+# 🐙 Humanpowers for GitHub Copilot
 
-Ushbu papka **GitHub Copilot Chat va Copilot Workspace** uchun maxsus tayyorlangan.
+This directory configures **GitHub Copilot (CLI, Chat & Workspace)** with the Humanpowers protocol.
 
-## Tarkibi:
-- `.github/copilot-instructions.md` — GitHub Copilot uchun rasmiy yo'riqnoma
-- `skills/` — Superpowers metodologiyasidagi barcha mahoratlar
+## Contents:
+- `.github/copilot-instructions.md` — Official custom instructions recognized by GitHub Copilot.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-`.github` papkasini loyihangizga joylashtiring. GitHub Copilot ushbu yo'riqnomani avtomatik o'qiydi va chala yoki sinovdan o'tmagan kodlarni taklif qilmaydi.
+## How to Use:
+Commit `.github/copilot-instructions.md` to your repository. GitHub Copilot will automatically read the instructions and apply the Humanpowers quality standard.

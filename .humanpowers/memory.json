@@ -1,16 +1,16 @@
 {
   "version": "1.0.0",
   "project": "Humanpowers Active Workspace",
-  "lastUpdated": "2026-10-12T15:03:00Z",
+  "lastUpdated": "2026-10-12T15:30:00Z",
   "userPreferences": [
     {
       "key": "code_style",
-      "rule": "Har doim toza, modulli, tushunarli izohlangan va ishlab chiqarish darajasidagi kod bo'lishi shart.",
+      "rule": "Always deliver clean, modular, production-grade, and fully documented code.",
       "category": "engineering"
     },
     {
       "key": "communication",
-      "rule": "Foydalanuvchiga 'buni to'g'irla' dedirmaslik, 100% tayyor natija topshirish.",
+      "rule": "Never ask the user to babysit or fix errors; deliver 100% verified results.",
       "category": "workflow"
     }
   ],
@@ -18,21 +18,33 @@
     {
       "id": "SCAR-001",
       "blunder": "Lazy TODO comments or unfinished placeholders left in code.",
-      "preventiveAction": "Hech qachon // TODO qoldirmaslik, barcha logikani to'liq oxirigacha yozish."
+      "preventiveAction": "Never leave // TODO stubs. Implement all logic completely."
     },
     {
       "id": "SCAR-002",
-      "blunder": "Blind sycophancy (foydalanuvchi xato yoki xavfli yo'l so'rasa ko'r-ko'rona rozi bo'lish).",
-      "preventiveAction": "Xushmuomala bilan xavfni tushuntirish va xavfsiz to'g'ri yechimni taqdim etish."
+      "blunder": "Blind sycophancy (agreeing blindly with dangerous or flawed patterns).",
+      "preventiveAction": "Politely explain the risk and provide the secure, correct architecture."
     },
     {
       "id": "SCAR-003",
-      "blunder": "Hallucinated dependencies (mavjud bo'lmagan kutubxonalarni to'qib chiqarish).",
-      "preventiveAction": "Faqatgina rasmiy, barqaror va tekshirilgan paketlarni chaqirish."
+      "blunder": "Hallucinated dependencies (referencing non-existent packages).",
+      "preventiveAction": "Rely strictly on official, verified, and battle-tested packages."
     }
   ],
   "domainKnowledge": {
     "framework": "Humanpowers Autonomous Protocol",
-    "supportedAgents": ["Antigravity", "Claude Code", "Cursor", "Copilot", "Windsurf", "Hermes", "Codex", "Pie", "OpenCode", "OpenClaw", "Python"]
+    "supportedAgents": [
+      "Antigravity",
+      "Claude Code",
+      "Cursor",
+      "Copilot",
+      "Windsurf",
+      "Hermes",
+      "Codex",
+      "Pie",
+      "OpenCode",
+      "OpenClaw",
+      "Universal Python"
+    ]
   }
 }

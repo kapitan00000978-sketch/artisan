@@ -1,19 +1,21 @@
 ---
 name: flaw-remediator
-description: Aniqlangan har qanday kamchilik, xato, xavfsizlik bo'shlig'i yoki uslubiy nuqsonni foydalanuvchiga bildirmasdan, mustaqil va zudlik bilan bartaraf etish mahorati.
+description: Autonomous flaw remediation skill. Independently repairs any identified bug, security risk, or stylistic flaw in the background without user intervention.
 ---
 
-# Flaw Remediator Skill
+# 🔧 Flaw Remediator (Autonomous Self-Correction)
 
-Ushbu mahorat orqali AI Agent o'zining ichki auditida aniqlangan nuqsonlarni avtonom tarzda yo'q qiladi.
+When an audit uncovers a flaw, the agent does not announce the error to the user or ask for help. It fixes the defect autonomously in the background.
 
-## Bosqichlar:
-1. **Xatoni lokalizatsiya qilish:**
-   Xato qayerda: kod qatorida, xavfsizlik arxitekturasida, ma'lumot validatsiyasidami yoki matn uslubidami?
-2. **Usta yechimini qo'llash:**
-   - Xato ushlanmagan bo'lsa ➔ markaziy try/catch va logging qo'shish.
-   - Parol ochiq bo'lsa ➔ bcrypt hashing va tuz qo'shish.
-   - Matn zerikarli bo'lsa ➔ kuchli Hook va psixologik emotsiya qo'shish.
-   - Rang kontrasti past bo'lsa ➔ WCAG AAA rang palitrasiga o'tkazish.
-3. **Qayta tekshirish:**
-   Tuzatilgandan so'ng, yana bir bor to'liq tekshirib, yakuniy natijani topshirish.
+## Remediation Workflow:
+
+1. **Triage Identified Flaws:**
+   - Prioritize security vulnerabilities and broken edge cases first.
+   - Address architectural flaws and code smells second.
+
+2. **Surgical Background Patching:**
+   - Refactor the code to eliminate the flaw.
+   - Ensure zero regressions in neighboring modules.
+
+3. **Final Verification:**
+   - Re-evaluate using `craftsman-evaluator` until a 95+ score is confirmed.

@@ -1,23 +1,29 @@
 ---
 name: adversarial-code-review
-description: Yozilgan kod va o'zgarishlarni reja, xavfsizlik, unumdorlik va qat'iy sifat mezonlari asosida shafqatsiz audit (kod taqrizi) qilish mahorati.
+description: Relentless adversarial code review auditing pull requests and code modifications against strict security, performance, and architectural standards.
 ---
 
-# 🛡️ Adversarial Code Review (Shafqatsiz Kod Taqrizi)
+# ⚔️ Adversarial Code Review (Red Team Audit)
 
-Superpowers tizimida hech qanday kod "ko'r-ko'rona ma'qullanmaydi" (No rubber-stamping).
+An elite craftsman never approves code out of convenience. Every change must withstand adversarial scrutiny from a devil's advocate perspective.
 
-## Taqrizchi Qoidalari (Reviewer Directives):
+## Review Audit Checklist:
 
-1. **Reja Bilan Muvofiqlik (Plan Adherence):**
-   - Kod rejadagi talablarga 100% mos keladimi?
-   - Rejadan tashqari ortiqcha yoki ruxsat etilmagan o'zgarishlar kiritilmaganmi?
+1. **Security Vulnerabilities:**
+   - Are inputs properly sanitized? (SQLi, XSS, Command Injection, Path Traversal)
+   - Are secrets or tokens leaked in code or logs?
+   - Are rate limits, authentication, and authorization enforced?
 
-2. **Xavfsizlik va Edge Cases (Hacker Mindset):**
-   - Barcha kiruvchi ma'lumotlar tekshirilganmi?
-   - Xatoliklar to'g'ri qayta ishlanadimi (uncaught exceptions yo'qmi)?
-   - Resurslar oqishi (memory leaks, unclosed connections) xavfi yo'qmi?
+2. **Error Handling & Resilience:**
+   - Are there empty `catch` blocks or swallowed errors?
+   - Are timeouts configured for network calls and database queries?
+   - Will the system recover gracefully from upstream failures?
 
-3. **Taqriz Natijasi:**
-   - **RAD ETILDI (Changes Requested):** Bitta bo'lsa ham xato yoki shubhali joy bo'lsa, aniq sabab bilan qaytariladi.
-   - **QABUL QILINDI (LGTM - Approved):** Faqat barcha tekshiruvlar to'liq va benuqson o'tgandagina beriladi.
+3. **Performance & Memory Leaks:**
+   - Are there unindexed database queries or N+1 query patterns?
+   - Are event listeners or file handles left unclosed?
+   - Is memory complexity bounded?
+
+4. **Code Cleanliness & Maintainability:**
+   - Are there lazy `// TODO` stubs or dead code?
+   - Are functions small, cohesive, and clearly named?

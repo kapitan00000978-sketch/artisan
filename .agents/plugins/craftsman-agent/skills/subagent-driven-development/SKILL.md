@@ -1,25 +1,21 @@
 ---
 name: subagent-driven-development
-description: Murakkab rejalarni mustaqil subagentlar zanjiriga topshirish, ularning har bir natijasini alohida nazoratdan o'tkazish va birlashtirish mahorati.
+description: Deconstructs complex architectures into independent tasks delegated to autonomous subagent workers, reviewing and merging each output.
 ---
 
-# 🤖 Subagent-Driven Development (Avtonom Subagentlar Quvuri)
+# 🤖 Subagent-Driven Development
 
-Katta vazifalar yagona kontekstda bajarilganda agentlar charchaydi yoki tafsilotlarni unuta boshlaydi. Superpowers bu muammoni **Subagentlar Zanjiri** orqali hal qiladi.
+When tackling large codebases or complex multi-file features, divide and conquer by delegating bounded sub-tasks to isolated subagents while maintaining strict quality gates.
 
-## Ishlash Tartibi:
+## Execution Rules:
 
-1. **Rejani Bo'lib Berish:**
-   - Har bir subagentga faqat `writing-plans` orqali tuzilgan bitta aniq mikrotapshiriq beriladi.
-   - Har bir subagentga o'z vazifasining kutilayotgan natijasi va qabul qilish testi yetkaziladi.
+1. **Context Isolation:**
+   - Provide each subagent with only the necessary files, interfaces, and specific acceptance criteria.
+   - Prevent context pollution and token exhaustion.
 
-2. **Har Qadamda Nazorat Gate'i (Review Gate):**
-   - Subagent vazifani bajarib, testdan o'tkazgach, natija darhol qabul qilinmaydi.
-   - Bosh nazoratchi (Critic) o'zgarishlarni tekshiradi:
-     * *Faqat belgilangan fayllar o'zgardimi?*
-     * *Boshqa narsalar buzilmadimi?*
-     * *Testlar yashilmi?*
+2. **Adversarial Output Verification:**
+   - Do not trust subagent output blindly.
+   - Inspect diffs against interface specifications and run automated checks.
 
-3. **Keyingi Qadamga O'tish:**
-   - Faqat tekshiruvdan o'tgan qadam qabul qilinadi va keyingi subagent navbatdagi vazifani boshlaydi.
-   - Bu butun tizimning barqaror va xatosiz yig'ilishini ta'minlaydi.
+3. **Atomic Merging:**
+   - Integrate each subagent's validated contribution incrementally into the main branch.

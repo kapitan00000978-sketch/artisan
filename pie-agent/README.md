@@ -1,11 +1,11 @@
-# 🛡️ Craftsman Superpowers for Pie Coding Agent
+# 🥧 Humanpowers for Pi / Pie Coding Agent
 
-Ushbu papka **Pi / Pie Coding Agent CLI** (`earendil-works/pi` va `c4pt0r/pie` Rust runtime) uchun maxsus tayyorlangan.
+This directory configures the **Pi / Pie Coding Agent (Rust-based)** with the Humanpowers protocol.
 
-## Tarkibi:
-- `PIE.md` — Pie agenti uchun yo'riqnoma
-- `.pie/config.json` — Konfiguratsiya fayli
-- `skills/` — 10 ta Superpowers mahoratlari
+## Contents:
+- `PIE.md` — Project instructions for Pi agent.
+- `.pie/config.json` — Agent policy configuration.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-Pie CLI ni ishga tushirganingizda ushbu qoidalar agentning ichki terminal muhitida avtomatik ishlaydi.
+## How to Use:
+Launch Pi inside this workspace or copy `PIE.md` and `.pie/` to your target directory.

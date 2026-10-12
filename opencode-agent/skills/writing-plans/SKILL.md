@@ -1,26 +1,23 @@
 ---
 name: writing-plans
-description: Tasdiqlangan spetsifikatsiyani mikrotapshiriqlarga bo'lingan, ketma-ket bajariladigan va tekshiruv mezoniga ega bo'lgan mukammal amalga oshirish rejasiga (Implementation Plan) aylantirish mahorati.
+description: Converts approved specifications into actionable, sequential micro-tasks with clear verification criteria (Implementation Plan).
 ---
 
-# 📝 Writing Granular Plans (Amalga Oshirish Rejasi)
+# 📋 Implementation Planning
 
-Superpowers metodologiyasiga ko'ra, har bir reja shunchalik aniq va tushunarli bo'lishi kerakki, uni hatto kontekstdan bexabar bo'lgan yangi subagent ham 100% to'g'ri bajara olsin.
+An unorganized agent produces chaotic, buggy code. The Humanpowers planning discipline transforms specifications into verifiable, bite-sized micro-tasks.
 
-## Reja Talablari (Plan Specifications):
+## Planning Structure:
 
-1. **Kichik va Mustaqil Qadamlar (Atomic Steps):**
-   Har bir qadam 5-15 daqiqada bajariladigan bitta aniq o'zgarishdan iborat bo'lishi kerak (masalan: bitta model yaratish, bitta funksiya testini yozish).
+1. **Phase Breakdown:**
+   Divide the project into logical milestones (e.g., Phase 1: Core Domain, Phase 2: API & Storage, Phase 3: Validation & Tests).
 
-2. **Har bir qadam uchun 3 ta majburiy band:**
-   - **Fayllar:** Qaysi fayllar o'zgaradi yoki yaratiladi (`[file_path]`).
-   - **Harakat:** Aniq nima qilinadi (aniq funksiya yoki parametr nomlari bilan).
-   - **Tekshirish (Verification):** Bu qadam to'g'ri bajarilganini qanday isbotlaymiz? (qaysi test yoki terminal buyrug'i bilan).
+2. **Atomic Micro-Tasks:**
+   Each task must:
+   - Touch a specific, bounded set of files.
+   - Specify the exact classes, functions, or configurations to create or modify.
+   - Have a deterministic **Verification Step** (command or test to prove it works).
 
-3. **Reja namunasi:**
-   ```markdown
-   ### 1-Vazifa: Foydalanuvchi modeli va parollarni shifrlash
-   - **Fayllar:** `src/models/user.js`, `tests/user.test.js`
-   - **Harakat:** Bcrypt bilan shifrlash metodini yozish.
-   - **Test:** `npm test tests/user.test.js` (Failing test yozib, so'ngra ishlatish).
-   ```
+3. **Risk Mitigation & Rollback Strategy:**
+   - Identify brittle integration points.
+   - Ensure backward compatibility and non-breaking migrations.

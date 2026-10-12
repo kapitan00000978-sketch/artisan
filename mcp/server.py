@@ -54,37 +54,37 @@ def handle_inspect_code(args):
     flaws = []
 
     if re.search(r"//\s*TODO|#\s*TODO", code):
-        flaws.append("Chala qoldirilgan '// TODO' aniqlandi. Logikani to'liq yozing.")
+        flaws.append("Unfinished '// TODO' stub detected. Complete all logic end-to-end.")
     if re.search(r"catch\s*\([^\)]*\)\s*\{\s*\}", code):
-        flaws.append("Bo'sh catch bloki (xatolik yashirilgan). Xatoni log qiling.")
+        flaws.append("Empty catch block (exception swallowed). Properly log or rethrow the error.")
     if re.search(r"(sk-[a-zA-Z0-9]{20,})", code):
-        flaws.append("Hardcoded maxfiy API kalit aniqlandi. .env dan foydalaning.")
+        flaws.append("Hardcoded secret or API key detected. Use environment variables.")
 
     if flaws:
         return {
             "status": "REJECTED",
             "score": 60,
             "flaws": flaws,
-            "verdict": "Kamchiliklar mavjud. Foydalanuvchiga berishdan oldin o'zingiz to'g'irlang!"
+            "verdict": "Defects identified. Autonomously remediate all flaws before presenting to the user!"
         }
     return {
         "status": "CERTIFIED",
         "score": 98,
         "flaws": [],
-        "verdict": "Barcha Humanpowers mezonlariga to'liq mos keldi. 100% Production-Ready!"
+        "verdict": "Satisfies all Humanpowers quality standards. 100% Production-Ready!"
     }
 
 def handle_get_persona(args):
     prof = args.get("profession", "software_architect").lower()
     return {
         "profession": prof,
-        "pledge": "Hech qachon xom, xatolari tekshirilmagan narsani bermayman.",
-        "mindset": "O'z sohasining oliy toifali ustasi kabi mas'uliyat bilan yondashish.",
+        "pledge": "I will never deliver unverified or brittle work. I stand behind every artifact.",
+        "mindset": "Embody the professional responsibility of a veteran domain master.",
         "criteria": [
-            "Xatoliklarni to'liq ushlash",
-            "Xavfsizlik va DoS himoyasi",
-            "Toza arxitektura va modullilik",
-            "Foydalanuvchi asabini tejash (Zero Babysitting)"
+            "Comprehensive error and edge-case handling",
+            "Security hardening and defense in depth",
+            "Clean architecture and modularity",
+            "Zero Babysitting (100% finished output)"
         ]
     }
 
@@ -96,7 +96,7 @@ def handle_recall_memory(args):
                 return json.load(f)
         except Exception:
             pass
-    return {"status": "Memory active, no recorded failures."}
+    return {"status": "Memory active, zero recorded failures."}
 
 def main():
     # Process single JSON-RPC call or loop for MCP stdio
@@ -110,31 +110,52 @@ def main():
             msg_id = req.get("id")
 
             if method == "tools/list":
-                res = {"jsonrpc": "2.0", "id": msg_id, "result": {"tools": TOOLS}}
+                res = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {"tools": TOOLS}
+                }
             elif method == "tools/call":
                 params = req.get("params", {})
-                name = params.get("name")
+                tool_name = params.get("name")
                 args = params.get("arguments", {})
 
-                if name == "humanpowers_inspect_code":
+                if tool_name == "humanpowers_inspect_code":
                     output = handle_inspect_code(args)
-                elif name == "humanpowers_get_persona":
+                elif tool_name == "humanpowers_get_persona":
                     output = handle_get_persona(args)
-                elif name == "humanpowers_recall_memory":
+                elif tool_name == "humanpowers_recall_memory":
                     output = handle_recall_memory(args)
                 else:
-                    output = {"error": f"Unknown tool: {name}"}
+                    output = {"error": f"Unknown tool: {tool_name}"}
 
-                res = {"jsonrpc": "2.0", "id": msg_id, "result": {"content": [{"type": "text", "text": json.dumps(output, ensure_ascii=False)}]}}
+                res = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {
+                        "content": [
+                            {"type": "text", "text": json.dumps(output, indent=2)}
+                        ]
+                    }
+                }
             else:
-                res = {"jsonrpc": "2.0", "id": msg_id, "result": {}}
+                res = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {}
+                }
 
-            sys.stdout.write(json.dumps(res, ensure_ascii=False) + "\n")
-            sys.stdout.flush()
+            print(json.dumps(res), flush=True)
         except Exception as e:
-            err_res = {"jsonrpc": "2.0", "error": {"code": -32603, "message": str(e)}}
-            sys.stdout.write(json.dumps(err_res) + "\n")
-            sys.stdout.flush()
+            err_res = {
+                "jsonrpc": "2.0",
+                "id": None,
+                "error": {"code": -32603, "message": str(e)}
+            }
+            print(json.dumps(err_res), flush=True)
 
 if __name__ == "__main__":
-    main()
+    if len(sys.argv) > 1 and sys.argv[1] == "--test":
+        print(json.dumps(handle_inspect_code({"code": "// TODO: fix later"}), indent=2))
+    else:
+        main()

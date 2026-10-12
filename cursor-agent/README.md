@@ -1,11 +1,11 @@
-# 🛡️ Craftsman Superpowers for Cursor IDE
+# ⚡ Humanpowers for Cursor AI Code Editor
 
-Ushbu papka **Cursor IDE (AI Code Editor)** uchun maxsus tayyorlangan.
+This directory configures **Cursor AI (IDE)** with the Humanpowers autonomous craftsmanship protocol.
 
-## Tarkibi:
-- `.cursorrules` — Cursor AI uchun qisqa va qat'iy buyruqlar
-- `.cursor/rules/` — Cursor 0.40+ versiyasidagi rasmiy `.mdc` formatidagi qoidalar
-- `skills/` — Superpowers metodologiyasidagi barcha mahoratlar
+## Contents:
+- `.cursorrules` — Global concise directives for Cursor AI.
+- `.cursor/rules/01-craftsman.mdc` — Cursor 0.40+ rule specification.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-Ushbu papkani Cursor IDE da oching yoki `.cursorrules` va `.cursor` papkasini o'z loyihangizga ko'chiring. Cursor AI avtomatik tarzda Qat'iy TDD va Zero Babysitting qoidalariga amal qiladi.
+## How to Use:
+Open this workspace in Cursor or copy `.cursorrules` and `.cursor/rules/` into your repository. Cursor AI will enforce zero babysitting and deliver 100% production-ready code.

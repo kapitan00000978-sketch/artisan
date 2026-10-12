@@ -1,12 +1,21 @@
 ---
 name: humanpowers-memory
-description: AI Agentning loyihaviy doimiy xotirasini (.humanpowers/memory.json) o'qish, foydalanuvchi didini eslab qolish va o'tmishdagi xatolarni takrorlamaslik mahorati.
+description: Project memory retrieval skill. Reads .humanpowers/memory.json to recall user preferences, project conventions, and recorded scar tissue to avoid repeating mistakes.
 ---
 
-# 🧠 Humanpowers Memory Skill
+# 🧠 Humanpowers Project Memory & Scar Tissue
 
-Ushbu mahorat AI agentga har bir seans boshida loyihaning xotirasini tekshirish va yangi xulosalarni eslab qolishga yordam beradi.
+Humanpowers maintains persistent awareness across sessions by consulting `.humanpowers/memory.json`.
 
-## Qachon ishlatiladi:
-1. **Seans boshida:** `.humanpowers/memory.json` va `.humanpowers/memory.md` fayllarini o'qib, foydalanuvchining shaxsiy talablari va o'tmishdagi tuzatishlar (Scar Tissue) bilan tanishib chiqing.
-2. **Foydalanuvchi tuzatish berganda:** Agar foydalanuvchi "Menga bunday uslub yoqmaydi, bunday qil" desa, darhol ushbu yangi qoidani `.humanpowers/memory.json` ga yozib qo'ying, toki kelgusida bu xato hech qachon qaytarilmasin.
+## Core Memory Directives:
+
+1. **User Preferences (Conventions & Style):**
+   - Always adhere to team-specific styling, framework choices, and design patterns.
+
+2. **Scar Tissue Ledger (Vaccines Against Anti-Patterns):**
+   - **SCAR-001:** Lazy `// TODO` stubs or placeholders are banned.
+   - **SCAR-002:** Blind sycophancy is banned. Respectfully offer the correct, safe alternative when asked for risky patterns.
+   - **SCAR-003:** Hallucinated packages are banned. Only use verified, official packages.
+
+3. **Continuous Updating:**
+   - When the user expresses a strong architectural preference or corrects a nuance, log it into the memory ledger for future turns.

@@ -1,17 +1,13 @@
-# 🛡️ Humanpowers for Python (LangChain, AutoGen, CrewAI)
+# 🐍 Humanpowers Universal Python Agent SDK
 
-Python asosidagi agentlar uchun Humanpowers kutubxonasi.
+This directory provides the universal Python implementation of Humanpowers, compatible with **LangChain, AutoGen, CrewAI**, or standalone Python scripts.
 
-## Ishga tushirish:
+## Contents:
+- `craftsman/` — Python package providing `CraftsmanAgent` with built-in reflection loops.
+- `example.py` — Runnable demonstration script.
+- `skills/` — Humanpowers skills suite.
+
+## How to Run:
 ```bash
 python example.py
-```
-
-## Foydalanish:
-```python
-from craftsman import CraftsmanAgent
-
-agent = CraftsmanAgent(persona="software_architect", min_passing_score=95)
-result = agent.execute("Vazifa matni...")
-print(result["final_output"])
 ```

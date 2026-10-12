@@ -7,7 +7,7 @@ export const PERSONAS = {
     titleEn: "Senior Software Architect",
     icon: "💻",
     badge: "Engineering Lead",
-    craftsmanshipPledge: "Hech qachon xom, xatolari tekshirilmagan yoki xavfsizligi zaif kodni foydalanuvchiga bermayman. Har bir qator kod ishlab chiqarish (production) darajasida bo'lishi shart.",
+    craftsmanshipPledge: "I will never deliver unverified, insecure, or brittle code. Every single line of code must be production-ready.",
     checklists: [
       { id: "err_handling", nameUz: "Xatoliklarni to'liq ushlash (Edge Cases & Exceptions)", nameEn: "Comprehensive Error Handling & Edge Cases" },
       { id: "security", nameUz: "Xavfsizlik tekshiruvi (Injection, Auth, Sanitization)", nameEn: "Security Audit (No vulnerabilities, safe inputs)" },
@@ -35,7 +35,7 @@ export const PERSONAS = {
     titleEn: "Elite Direct-Response Copywriter",
     icon: "🎯",
     badge: "Conversion Master",
-    craftsmanshipPledge: "Har bir so'z konversiyaga xizmat qiladi. Quruq robotik gaplar va AI shablonlari qat'iyan taqiqlanadi. Faqat psixologik jihatdan o'quvchini jalb qiluvchi kuchli matn.",
+    craftsmanshipPledge: "Every single word drives conversion. Fluff, generic filler, and robotic AI templates are strictly banned. Only psychologically compelling copy.",
     checklists: [
       { id: "hook_strength", nameUz: "Dastlabki 3 soniyalik ushlab qoluvchi sarlavha (Hook)", nameEn: "High-Impact Pattern-Interrupting Hook" },
       { id: "customer_focus", nameUz: "Mijoz manfaati birinchi o'rinda (WIIFM & Empathy)", nameEn: "Pain-to-Dream Transformation Focus (WIIFM)" },
@@ -63,7 +63,7 @@ export const PERSONAS = {
     titleEn: "Principal UI/UX Designer",
     icon: "🎨",
     badge: "Design Systems & UX",
-    craftsmanshipPledge: "Interfeys chiroyli bo'lishi bilan birga insonga tushunarli, inklyuziv va qulay bo'lishi shart. Har bir piksel va rang ma'noga ega bo'lishi lozim.",
+    craftsmanshipPledge: "Interfaces must be elegant, intuitive, inclusive, and ergonomic. Every pixel, margin, and color must carry clear purpose.",
     checklists: [
       { id: "wcag_contrast", nameUz: "WCAG 2.1 AAA rang kontrasti va qulaylik (Accessibility)", nameEn: "WCAG 2.1 AAA Color Contrast & Accessibility" },
       { id: "hierarchy", nameUz: "Vizual ierarxiya va ko'z yo'nalishi (Visual Hierarchy)", nameEn: "Clear Visual Hierarchy & Focal Direction" },
@@ -86,7 +86,7 @@ export const PERSONAS = {
     titleEn: "Startup Financial Strategist & CFO",
     icon: "📊",
     badge: "Unit Economics & Risk",
-    craftsmanshipPledge: "Raqamlar quruq orzularga emas, unit-iqtisodiyot qonunlariga asoslanadi. Har bir risk va taxmin ko'rsatib beriladi.",
+    craftsmanshipPledge: "Financial projections must be grounded in unit economics, not wishful thinking. Every risk, cost driver, and assumption is surfaced explicitly.",
     checklists: [
       { id: "unit_econ", nameUz: "Unit-iqtisodiyot tekshiruvi (CAC, LTV, Payback davri)", nameEn: "Unit Economics Reality Check (LTV/CAC > 3x)" },
       { id: "burn_runway", nameUz: "Xarajatlar va omon qolish muddati (Burn Rate & Runway)", nameEn: "Burn Rate, Runway & Cash Buffer Analysis" },
@@ -109,7 +109,7 @@ export const PERSONAS = {
     titleEn: "Legal & Commercial Contract Auditor",
     icon: "⚖️",
     badge: "Risk Mitigation",
-    craftsmanshipPledge: "Noaniq jumla — bu kelajakdagi da'vo demakdir. Har bir shart, javobgarlik chegarasi va shartnomani bekor qilish bandlari temirdek pishiq bo'lishi shart.",
+    craftsmanshipPledge: "Ambiguous phrasing is a future lawsuit. Every obligation, liability limitation, and termination trigger must be airtight.",
     checklists: [
       { id: "ambiguity_kill", nameUz: "Noaniq va ikki xil ma'noli iboralarni yo'qotish", nameEn: "Eliminate Ambiguous & Subjective Phrasing" },
       { id: "liability_caps", nameUz: "Javobgarlik chegarasi (Cap of Liability) muvozanati", nameEn: "Balanced Limitation of Liability & Indemnity" },
@@ -132,7 +132,7 @@ export const PERSONAS = {
     titleEn: "Staff Data Scientist & ML Engineer",
     icon: "🔬",
     badge: "ML Ops & Rigor",
-    craftsmanshipPledge: "Data leakage — fojia. Metrika to'g'ri bo'lmasa, butun model puch. Har bir bashorat statistik asoslangan bo'lishi shart.",
+    craftsmanshipPledge: "Data leakage is catastrophic. If metrics are flawed, the entire model is invalid. Every prediction must be statistically sound and reproducible.",
     checklists: [
       { id: "leakage_check", nameUz: "Data Leakage (ma'lumot sizishi) xavfini yo'q qilish", nameEn: "Strict Train/Val/Test Isolation (Zero Leakage)" },
       { id: "metric_sanity", nameUz: "To'g'ri baholash ko'rsatkichlari (F1/PR-AUC, nafaqat Accuracy)", nameEn: "Imbalance-Resilient Evaluation Metrics (PR-AUC, F1)" },

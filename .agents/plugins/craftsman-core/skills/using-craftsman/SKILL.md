@@ -1,23 +1,24 @@
 ---
 name: using-craftsman
-description: Seans boshida va har qanday vazifada birinchi bo'lib ishga tushadigan boshqaruv mahorati. Agent hech qachon shoshilmasdan, avval to'g'ri mahorat va rejalashtirishni ishga tushirishini kafolatlaydi.
+description: The primary meta-skill invoked at the start of any task or session. Ensures the agent never rushes into writing code without first selecting the right workflow, domain persona, and execution plan.
 ---
 
-# 🛡️ Using Craftsman (Asosiy Boshqaruv Qoidasi)
+# 🛡️ Using Craftsman & Humanpowers Meta-Skill
 
-Superpowers metodologiyasining eng muhim qoidasi: **Agent hech qachon to'g'ridan-to'g'ri kod yozishga shoshilmaydi.**
+The cardinal rule of the Humanpowers framework: **The agent never rushes blindly into writing raw code.**
 
-## Qat'iy Qoidalar (Ironclad Rules):
+## Ironclad Directives:
 
-1. **Har doim mahoratni tekshiring (Check Skills First):**
-   Har qanday foydalanuvchi so'rovini olganingizda, darhol yozishga tushmang. Vazifaga qarab mos mahoratni tanlang:
-   - Yangi funksiya yoki loyiha bo'lsa ➔ `brainstorming` va `writing-plans`.
-   - Xato yoki nosozlikni tuzatish bo'lsa ➔ `systematic-debugging`.
-   - Kod yozish bosqichi bo'lsa ➔ `test-driven-development`.
-   - Tekshirish va qabul qilish bo'lsa ➔ `adversarial-code-review` va `craftsman-evaluator`.
+1. **Always Check and Select Appropriate Skills First:**
+   When receiving any user prompt or task, pause and activate the dedicated workflow skill:
+   - Creating a new feature or project ➔ `brainstorming` and `writing-plans`.
+   - Fixing a bug, regression, or failure ➔ `systematic-debugging`.
+   - Implementation phase ➔ `test-driven-development`.
+   - Verification and sign-off ➔ `adversarial-code-review` and `craftsman-evaluator`.
+   - Complex multi-step task ➔ `subagent-driven-development`.
 
-2. **Inson ko'rsatmasi ustuvorligi (User Instruction Precedence):**
-   Foydalanuvchi qoidalari (`AGENTS.md`) modelning standart xatti-harakatlaridan har doim ustun turadi.
+2. **User Directives Take Absolute Precedence:**
+   Workspace instructions (`AGENTS.md`, `.cursorrules`, etc.) permanently override default model tendencies.
 
-3. **Shoshqaloqlikka chek qo'yish (Anti-Impatience):**
-   "X ni tuzat" yoki "Y ni yarat" degan topshiriqda o'ylamasdan kodga o'tish taqiqlanadi. Avval sababni va arxitekturani aniqlang.
+3. **Anti-Impatience (Zero Guesswork):**
+   When asked to "fix X" or "build Y", never jump into speculative code changes. Always diagnose the root cause and align on architectural design first.

@@ -1,28 +1,22 @@
 ---
 name: test-driven-development
-description: Qat'iy Test-Driven Development (TDD) sikli: avval qizil (failing) test yozish, so'ngra minimal kod yozib testni yashil (passing) qilish va oxirida refaktoring qilish.
+description: Strict Test-Driven Development (TDD) cycle: write a failing test first (Red), write minimal implementation to make it pass (Green), then refactor to perfection.
 ---
 
-# 🔴🟢🔵 Test-Driven Development (TDD Protocol)
+# 🧪 Strict Test-Driven Development (TDD)
 
-Superpowers tizimining oltin qoidasi: **Muvaffaqiyatsiz (qizil) test yozilmagunicha, bitta ham qator ishlab chiqarish kodi yozilmaydi.**
+In the Humanpowers protocol, untested code is incomplete code. We adhere strictly to the Red-Green-Refactor discipline.
 
-## TDD Uchburchagi (Red -> Green -> Refactor):
+## TDD Lifecycle:
 
-1. **1-QADAM: QIZIL (RED) — Test yozish va xatolikni ko'rish:**
-   - Kutilayotgan xatti-harakat uchun test yozing.
-   - Testni ishga tushiring va uning aynan kutilgan sabab bilan yiqilishini (fail) o'z ko'zingiz bilan tasdiqlang.
-   - *Agar test darhol o'tib ketsa — demak test noto'g'ri yozilgan yoki sinov o'rinsiz!*
+1. **🔴 Red Phase (Failing Test First):**
+   - Write a unit or integration test that precisely tests the intended behavior or edge case.
+   - Run the test suite and confirm the test **fails for the expected reason** (not due to syntax or import issues).
 
-2. **2-QADAM: YASHIL (GREEN) — Minimal ishlaydigan kod:**
-   - Testni o'tkazish uchun zarur bo'lgan eng sodda va to'g'ri kodni yozing.
-   - Ortiqcha keraksiz arxitekturani qo'shmang, faqat testni o'tkazing.
-   - Testni qayta ishga tushiring: barcha testlar yashil (pass) bo'lishi shart.
+2. **🟢 Green Phase (Minimal Passing Implementation):**
+   - Write the cleanest, most direct code necessary to make the failing test pass.
+   - Avoid over-engineering during this step. Run the test and confirm it passes.
 
-3. **3-QADAM: REFAKTORING (REFACTOR) — Tozalash:**
-   - Kodni tartibga soling, takrorlanishlarni (DRY) yo'qoting, o'zgaruvchi nomlarini chiroyli qiling.
-   - Testlar yana yashil ekanligiga ishonch hosil qiling.
-
-## Qat'iy Taqiqlangan:
-- Test yozmasdan turib kod berish.
-- Testni keyinga surish ("keyinroq test qo'shib qo'yamiz" degan gap Usta uchun taqiqlangan).
+3. **🔵 Refactor Phase (Craftsmanship & Polish):**
+   - Clean up architecture, eliminate duplication, optimize performance, and improve variable naming.
+   - Re-run all tests to guarantee zero regressions.

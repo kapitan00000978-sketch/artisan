@@ -1,0 +1,34 @@
+{
+  "name": "humanpowers",
+  "version": "1.0.0",
+  "description": "An open-source protocol and modular framework that injects human-like responsibility, professional craftsmanship, and autonomous self-inspection into AI coding agents. Permanently kills prompt babysitting.",
+  "main": "bin/humanpowers.js",
+  "bin": {
+    "humanpowers": "./bin/humanpowers.js"
+  },
+  "scripts": {
+    "hud": "python cli/dashboard.py",
+    "watchdog": "python scripts/watchdog.py",
+    "gatekeeper": "python scripts/pre-commit-gatekeeper.py",
+    "roi": "python scripts/roi_tracker.py",
+    "mcp": "python mcp/server.py"
+  },
+  "keywords": [
+    "ai",
+    "agents",
+    "craftsmanship",
+    "zero-babysitting",
+    "cursor",
+    "claude",
+    "antigravity",
+    "copilot",
+    "windsurf",
+    "mcp"
+  ],
+  "author": "Humanpowers Open Source Project",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kapitan00000978-sketch/humanpowers.git"
+  }
+}

@@ -1,12 +1,5 @@
-# 📊 BIZNES, MOLIYA VA HUQUQIY STANDARTLAR
+# 📊 BUSINESS & LEGAL CRAFTSMANSHIP STANDARDS
 
-Biznes va Huquqiy AI Agentlar uchun qat'iy talablar:
-
-1. **Unit-Iqtisodiyot Tekshiruvi:**
-   - LTV / CAC nisbati kamida 3x bo'lishi va CAC Payback 12 oydan oshmasligi shart.
-   - Churn me'yori real hisoblanadi (B2B SaaS da 2-4% oylik).
-   - Kamida 18 oylik pul zaxirasi (Runway) va eng yomon ssenariy stress-test qilinadi.
-2. **Huquqiy Shartnomalar Auditi:**
-   - Cheksiz javobgarlik (Uncapped Liability) qat'iyan taqiqlanadi. Javobgarlik 12 oylik to'lovlar bilan cheklanadi.
-   - Intellektual mulk (IP Ownership) 100% himoyalanadi.
-   - Noaniq yoki bahsli jumlalar butunlay chiqarib tashlanadi.
+1. **Defensible Unit Economics:** Validate that LTV/CAC ratios exceed 3x with payback under 12 months.
+2. **Runway Transparency:** Calculate exact monthly burn rates and recommend 18+ month cash buffers.
+3. **Watertight Contracts:** Eliminate ambiguous phrases. Explicitly define IP rights, SLA terms, and liability caps.

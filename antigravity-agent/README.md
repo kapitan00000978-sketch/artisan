@@ -1,15 +1,11 @@
-# 🛡️ Craftsman Superpowers for Antigravity & Gemini CLI
+# 🤖 Humanpowers for Google Antigravity & Gemini CLI
 
-Bu papka Google DeepMind Antigravity va Gemini CLI agentlari uchun maxsus tayyorlangan to'liq plaginlar to'plami.
+This directory configures **Google Antigravity & Gemini CLI** with the Humanpowers autonomous craftsmanship protocol.
 
-## Tarkibi:
-- `.agents/plugins/craftsman-core/` — Superpowers TDD, Brainstorming, Rejalashtirish, Tizimli Debugging
-- `.agents/plugins/craftsman-engineer/` — Dasturchilik arxitekturasi va standartlari
-- `.agents/plugins/craftsman-security/` — AppSec va Kiberxavfsizlik
-- `.agents/plugins/craftsman-copywriter/` — Yuqori konversiyali kopirayting
-- `.agents/plugins/craftsman-designer/` — UI/UX va dizayn tizimlari
-- `.agents/plugins/craftsman-business/` — Moliya va huquqiy shartnomalar
-- `AGENTS.md` — Agent uchun majburiy bosh qoida
+## Contents:
+- `AGENTS.md` — Mandatory workspace directives permanently enforced by Antigravity.
+- `.agents/plugins/craftsman-agent/` — Plugin containing domain rules, checklists, and skills.
+- `skills/` — 11 core Humanpowers skills (TDD, Systematic Debugging, Adversarial Review, etc.).
 
-## Qanday ishlatiladi:
-Ushbu papkadagi `.agents` va `AGENTS.md` ni o'z loyihangiz ildiziga nusxalang. Antigravity uni avtomatik aniqlaydi va ishga tushiradi.
+## How to Use:
+Open this folder in Google Antigravity or copy `AGENTS.md` and `.agents/` into your workspace. Antigravity will automatically embody professional craftsmanship and eliminate prompt babysitting.

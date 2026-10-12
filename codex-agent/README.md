@@ -1,11 +1,11 @@
-# 🛡️ Craftsman Superpowers for Codex CLI
+# 💻 Humanpowers for OpenAI Codex CLI
 
-Ushbu papka **OpenAI Codex CLI** va Codex asosidagi dasturiy agentlar uchun mo'ljallangan.
+This directory configures **OpenAI Codex CLI** with the Humanpowers autonomous protocol.
 
-## Tarkibi:
-- `CODEX.md` — Codex uchun asosiy boshqaruv qoidalari
-- `.codex/config.json` — Konfiguratsiya fayli
-- `skills/` — 10 ta Superpowers mahoratlari
+## Contents:
+- `CODEX.md` — Instructions and quality directives for OpenAI Codex.
+- `.codex/config.json` — Configuration file specifying strictness thresholds.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-Ushbu papkani Codex CLI bilan ishga tushirayotgan loyihangizga qo'shing. Codex avtomatik ravishda `CODEX.md` qoidalariga bo'ysunadi.
+## How to Use:
+Place `CODEX.md` in your project root or configure your Codex environment using `.codex/config.json`.

@@ -31,12 +31,12 @@ def render_dashboard():
             with open(metrics_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 hours = round(data.get("timeSavedMinutes", 0) / 60, 1)
-                print(f" 📊 STATISTIKA: {data.get('totalTasksCompleted')} ta topshiriq | {hours} soat tejaldi | {data.get('flawsAutoRemediated')} ta xato tuzatildi")
+                print(f" 📊 METRICS: {data.get('totalTasksCompleted')} tasks | {hours} hrs saved | {data.get('flawsAutoRemediated')} flaws remediated")
         except Exception:
             pass
     print("-" * 70)
 
-    print(" 📂 AGENT MATRITSASI:")
+    print(" 📂 SUPPORTED AGENT ECOSYSTEM:")
     agents = [
         "1. Antigravity & Gemini CLI", "2. Claude Code CLI", "3. Cursor AI Editor",
         "4. GitHub Copilot", "5. Windsurf Cascade", "6. Nous Hermes Agent",
@@ -51,17 +51,41 @@ def render_dashboard():
 
     print("=" * 70)
     print(" 🛠️  QUICK ACTIONS:")
-    print("  [1] Pre-Commit Gatekeeper Tekshiruvi")
-    print("  [2] Real-Vaqt Watchdog Skaneri")
-    print("  [3] Yangi Kasb Yaratish (Persona Forge)")
-    print("  [4] Doimiy Xotirani Ko'rish (Memory Ledger)")
-    print("  [5] Tejalgan Vaqt (ROI) Hisoboti")
-    print("  [0] Chiqish")
+    print("  [1] Run Pre-Commit Gatekeeper Audit")
+    print("  [2] Run Live Watchdog Scanner")
+    print("  [3] Create Domain Persona (Persona Forge)")
+    print("  [4] Inspect Persistent Memory Ledger")
+    print("  [5] View ROI & Time-Saved Report")
+    print("  [0] Exit")
     print("=" * 70)
 
 def main():
-    render_dashboard()
-    print("\n✅ Humanpowers tizimi faol holatda. Barcha agentlar usta intizomida ishlamoqda.")
+    while True:
+        render_dashboard()
+        choice = input("\n👉 Select an action [0-5]: ").strip()
+        if choice == "1":
+            os.system("python scripts/pre-commit-gatekeeper.py")
+            input("\nPress Enter to return...")
+        elif choice == "2":
+            os.system("python scripts/watchdog.py")
+            input("\nPress Enter to return...")
+        elif choice == "3":
+            name = input("Enter new profession title (e.g. 'Cloud Security Architect'): ").strip()
+            if name:
+                os.system(f'python cli/persona_forge.py --create "{name}"')
+            input("\nPress Enter to return...")
+        elif choice == "4":
+            mem_path = os.path.join(".humanpowers", "memory.json")
+            if os.path.exists(mem_path):
+                with open(mem_path, "r", encoding="utf-8") as f:
+                    print(json.dumps(json.load(f), indent=2))
+            input("\nPress Enter to return...")
+        elif choice == "5":
+            os.system("python scripts/roi_tracker.py")
+            input("\nPress Enter to return...")
+        elif choice == "0":
+            print("\nExiting Humanpowers Control Center. Happy Crafting!\n")
+            break
 
 if __name__ == "__main__":
     main()

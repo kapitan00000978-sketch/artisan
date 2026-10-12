@@ -1,11 +1,11 @@
-# 🛡️ Craftsman Superpowers for OpenClaw
+# 🦅 Humanpowers for OpenClaw Autonomous Agent
 
-Ushbu papka **OpenClaw (Open-source Autonomous Agent & Multi-Channel Platform)** uchun maxsus tayyorlangan.
+This directory configures the **OpenClaw Autonomous Agent Platform** with the Humanpowers protocol.
 
-## Tarkibi:
-- `OPENCLAW.md` — OpenClaw uchun yo'riqnoma
-- `.openclaw/agent_manifest.json` — Agent manifesti
-- `skills/` — 10 ta Superpowers mahoratlari
+## Contents:
+- `OPENCLAW.md` — OpenClaw agent guidelines.
+- `.openclaw/agent_manifest.json` — Manifest defining active craftsmanship skills.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-OpenClaw platformangizga ushbu manifestni yuklang. OpenClaw har qanday kanaldan (Telegram, Discord, Web) kelgan so'rovlarni avtomatik ravishda tekshirib, xatosiz topshiradi.
+## How to Use:
+Register `agent_manifest.json` with your OpenClaw runner or place `OPENCLAW.md` in the project root.

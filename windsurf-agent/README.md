@@ -1,10 +1,10 @@
-# 🛡️ Craftsman Superpowers for Windsurf (Cascade)
+# 🌊 Humanpowers for Windsurf IDE (Cascade AI)
 
-Ushbu papka **Windsurf IDE va Cascade AI agenti** uchun maxsus tayyorlangan.
+This directory configures **Windsurf IDE (Cascade AI)** with the Humanpowers autonomous protocol.
 
-## Tarkibi:
-- `.windsurfrules` — Cascade agentining xatti-harakatlarini boshqaruvchi qoidalar
-- `skills/` — Superpowers metodologiyasidagi barcha mahoratlar
+## Contents:
+- `.windsurfrules` — Root instructions parsed by Cascade AI on every prompt.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-Ushbu papkani Windsurf da oching yoki `.windsurfrules` ni o'z loyihangizga ko'chiring. Cascade agenti har doim reja tuzib, TDD va avtonom tekshiruv bilan ishlaydi.
+## How to Use:
+Open this workspace in Windsurf or copy `.windsurfrules` to your project root. Cascade will immediately apply senior craftsmanship and autonomous flaw remediation.

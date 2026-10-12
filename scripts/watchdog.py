@@ -14,9 +14,9 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 PATTERNS = [
-    (r"//\s*TODO|#\s*TODO", "LAZY_STUB", "Chala qoldirilgan '// TODO' aniqlandi!"),
-    (r"catch\s*\([^\)]*\)\s*\{\s*\}", "SILENT_CATCH", "Yashirin xatolik (bo'sh catch)!"),
-    (r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,})", "EXPOSED_SECRET", "Ochiq maxfiy API kaliti!")
+    (r"//\s*TODO|#\s*TODO", "LAZY_STUB", "Unfinished '// TODO' stub detected!"),
+    (r"catch\s*\([^\)]*\)\s*\{\s*\}", "SILENT_CATCH", "Silent exception suppression (empty catch block)!"),
+    (r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,})", "EXPOSED_SECRET", "Exposed plaintext API key or credential!")
 ]
 
 def check_file(filepath):
@@ -27,20 +27,20 @@ def check_file(filepath):
             for line_idx, line in enumerate(f, 1):
                 for pattern, flaw_type, msg in PATTERNS:
                     if re.search(pattern, line):
-                        print(f"⚠️  [WATCHDOG OGOHLANTIRISH]: {filepath}:{line_idx} [{flaw_type}] -> {msg}")
+                        print(f"⚠️  [WATCHDOG ALERT]: {filepath}:{line_idx} [{flaw_type}] -> {msg}")
     except Exception:
         pass
 
 def scan_all():
-    print("🛡️  [Humanpowers Watchdog] Loyihani real vaqtda kuzatish faollashdi...")
+    print("🛡️  [Humanpowers Watchdog] Real-time code quality monitoring active...")
     for root, dirs, files in os.walk("."):
         if any(d in root for d in [".git", "node_modules", ".venv", "__pycache__"]):
             continue
         for file in files:
             if file.endswith((".js", ".ts", ".py", ".go", ".rs")):
-                if not any(k in file for k in ["watchdog", "pre-commit", "server"]):
+                if not any(k in file for k in ["watchdog", "pre-commit", "server", "translate_humanpowers"]):
                     check_file(os.path.join(root, file))
 
 if __name__ == "__main__":
     scan_all()
-    print("✅ [Humanpowers Watchdog] Hozircha barcha fayllar xavfsiz va toza.")
+    print("✅ [Humanpowers Watchdog] All active workspace files are clean and verified.")

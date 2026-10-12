@@ -1,12 +1,10 @@
-# 🛡️ Craftsman Superpowers for Claude Code (Anthropic)
+# 🧠 Humanpowers for Anthropic Claude Code
 
-Ushbu papka Anthropic kompaniyasining **Claude Code CLI** va Claude AI agentlari uchun maxsus tayyorlangan.
+This directory configures **Anthropic Claude Code CLI** with the Humanpowers autonomous craftsmanship protocol.
 
-## Tarkibi:
-- `CLAUDE.md` — Claude Code seansi boshlanishi bilan o'qiladigan asosiy boshqaruv qoidalari
-- `skills/` — 10 ta modular SKILL.md kataloglari (`using-craftsman`, `brainstorming`, `writing-plans`, `test-driven-development`, `systematic-debugging`, `adversarial-code-review`, va h.k.)
+## Contents:
+- `CLAUDE.md` — Root instructions loaded automatically by Claude Code in every session.
+- `skills/` — Humanpowers skills for TDD, debugging, and self-correction.
 
-## Qanday ishlatiladi:
-1. Ushbu papkani o'z loyihangizga qo'ying.
-2. Terminalda `claude` buyrug'ini ishga tushiring.
-3. Claude Code avtomatik tarzda `CLAUDE.md` va `skills/` ni yuklaydi va usta intizomi bilan ishlaydi.
+## How to Use:
+Run Claude Code within this directory, or copy `CLAUDE.md` into your project root. Claude Code will immediately adopt senior professional work ethic and pre-delivery self-inspection.

@@ -1,27 +1,26 @@
 ---
 name: systematic-debugging
-description: Har qanday xatolik, bug yoki nosozlikni taxminiy (patch-and-pray) tuzatmasdan, 4 bosqichli ilmiy ildiz sababni aniqlash va tekshirish metodologiyasi.
+description: Scientific 4-step root cause analysis methodology for debugging. Eliminates guess-and-check (patch-and-pray) habits.
 ---
 
-# 🔍 Systematic Debugging (Tizimli Nosozliklarni Qidirish)
+# 🔍 Systematic Debugging (Scientific Root Cause Analysis)
 
-Superpowers metodologiyasiga ko'ra: **Hech qachon "balki mana bu ish berar" deb ko'r-ko'rona kodni o'zgartirmang.**
+Amateur AI models guess randomly and apply blind patches that break other components. Humanpowers enforces a rigorous 4-step scientific debugging process.
 
-## 4 Bosqichli Ilmiy Sikl:
+## 4-Step Debugging Protocol:
 
-### 1. Qayta Takrorlash (Reproduce):
-- Xatoni barqaror va minimal ssenariy bilan qayta takrorlaydigan test yoki buyruq yozing.
-- Xato xabari (Stack trace) va loglarni to'liq o'qing. Taxmin qilmang, faktlarga tayanib ishlang.
+1. **Step 1: Reproduce Deterministically:**
+   - Create a minimal reproduction script or automated test that triggers the bug 100% of the time.
+   - Never attempt to fix a bug you cannot reliably reproduce.
 
-### 2. Izolyatsiya Qilish (Isolate):
-- Muammo qaysi aniq qatlamda: tarmoqdami, ma'lumotlar bazasidami, serializatsiyadami yoki mantiqiy shartdami?
-- Loglar qo'shish yoki bisection orqali muammo manzilini toraytiring.
+2. **Step 2: Trace the Defect to the Exact Root Cause:**
+   - Inspect stack traces, inspect memory states, and read logs.
+   - Find the single logical error or flawed assumption that causes the failure.
 
-### 3. Gipoteza Va Tekshiruv (Hypothesize & Validate):
-- "Muammo X sababli yuz bermoqda, chunki Y sodir bo'lyapti" degan aniq farazni tuzing.
-- Farazni tasdiqlaydigan bitta maqsadli tekshiruv o'tkazing.
+3. **Step 3: Surgical Remediation:**
+   - Implement the minimal, robust fix that addresses the root cause directly without touching unrelated code.
+   - Add defensive checks to prevent recurrence.
 
-### 4. Ildiz Sababni Bartaraf Etish (Root-Cause Fix & Guard):
-- Faqatgina alomatni (symptom) emas, muammoning asl ildizini tuzating.
-- Xuddi shu xato kelajakda yana qaytmasligi uchun **Regression Test** qo'shing.
-- Barcha mavjud testlar muvaffaqiyatli o'tganini tekshiring.
+4. **Step 4: Regression Verification:**
+   - Run the reproduction test to prove the fix works.
+   - Run the full project test suite to verify no regressions were introduced.

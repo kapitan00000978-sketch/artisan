@@ -1,5 +1,6 @@
 {
   "name": "craftsman-designer",
   "version": "1.0.0",
-  "description": "UI/UX dizayner va Frontend dizayn AI agentlari uchun maxsus plagin: WCAG AAA kontrasti, 8px grid tizimi, qulay barmoq maydonlari va to'liq interaktiv holatlar."
+  "description": "UI/UX design systems, WCAG 2.1 AAA accessibility, and design token guidelines.",
+  "author": "Humanpowers Open Source Project"
 }

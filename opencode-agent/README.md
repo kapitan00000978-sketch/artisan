@@ -1,11 +1,11 @@
-# 🛡️ Craftsman Superpowers for OpenCode
+# 🖥️ Humanpowers for OpenCode Terminal Agent
 
-Ushbu papka ochiq kodli **OpenCode Terminal TUI Agent** uchun maxsus tayyorlangan.
+This directory configures **OpenCode Terminal TUI Agent** with the Humanpowers protocol.
 
-## Tarkibi:
-- `OPENCODE.md` — OpenCode uchun yo'riqnoma
-- `.opencode/agent.json` — OpenCode sozlamalari
-- `skills/` — 10 ta Superpowers mahoratlari
+## Contents:
+- `OPENCODE.md` — Terminal agent instructions and quality guidelines.
+- `.opencode/agent.json` — OpenCode configuration manifest.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-OpenCode ni ishga tushirishdan oldin ushbu fayllarni loyihangizda saqlang. OpenCode `plan` va `build` rejimlarida avtomatik ravishda ushbu intizomga amal qiladi.
+## How to Use:
+Run OpenCode in this directory. The agent will read `OPENCODE.md` and enforce human-like responsibility.

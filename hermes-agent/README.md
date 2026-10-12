@@ -1,11 +1,11 @@
-# 🛡️ Craftsman Superpowers for Hermes Agent (Nous Research)
+# 🏛️ Humanpowers for Nous Research Hermes Agent
 
-Ushbu papka **Nous Research Hermes Agent OS** va Hermes modellariga asoslangan avtonom agentlar uchun tayyorlangan.
+This directory configures the **Nous Research Hermes Agent OS** with the Humanpowers protocol.
 
-## Tarkibi:
-- `HERMES.md` — Hermes agenti uchun bosh direktiva
-- `system_prompt.txt` — Hermes system promptiga kiritiladigan usta matni
-- `skills/` — 10 ta to'liq Superpowers mahoratlari
+## Contents:
+- `HERMES.md` — Hermes agent configuration and prompt guidelines.
+- `system_prompt.txt` — System prompt for OpenHermes / Nous-Hermes local LLMs.
+- `skills/` — Humanpowers skills suite.
 
-## Qanday ishlatiladi:
-Hermes agentingiz konfiguratsiyasiga `system_prompt.txt` ni biriktiring va `skills/` papkasini agentning tools/skills yo'liga joylashtiring.
+## How to Use:
+Pass `system_prompt.txt` to your Hermes inference runner or load `HERMES.md` into Hermes Agent OS.

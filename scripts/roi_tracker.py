@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """
 Humanpowers ROI & Time-Saved Tracker
-Calculates and displays the exact time and frustration saved by Humanpowers protocol.
+Calculates and displays the exact time and engineering cycles saved by Humanpowers protocol.
 """
 
 import sys
@@ -29,16 +29,16 @@ def display_metrics():
     hours_saved = round(data.get("timeSavedMinutes", 0) / 60, 1)
 
     print("\n" + "=" * 65)
-    print(" 🛡️  HUMANPOWERS — TEJALGAN VAQT VA SIFAT HISOBOTI (ROI REPORT)")
+    print(" 🛡️  HUMANPOWERS — TIME SAVED & QUALITY AUDIT (ROI REPORT)")
     print("=" * 65)
-    print(f" • Bajarilgan topshiriqlar soni       : {data.get('totalTasksCompleted')} ta")
-    print(f" • Avtomatik bartaraf etilgan xatolar : {data.get('flawsAutoRemediated')} ta")
-    print(f" • Orqadan poylash (babysitting) yo'q : {data.get('micromanagementPreventedCount')} marta asab tejaldi")
-    print(f" • Tejalgan umumiy sof vaqt           : {hours_saved} soat ({data.get('timeSavedMinutes')} daqiqa)")
-    print(f" • O'rtacha professional sifat bahosi : {data.get('averageQualityScore')}/100 ball")
+    print(f" • Total Completed Tasks               : {data.get('totalTasksCompleted')}")
+    print(f" • Flaws Autonomously Remediated       : {data.get('flawsAutoRemediated')}")
+    print(f" • Babysitting Loops Prevented         : {data.get('micromanagementPreventedCount')} cycles")
+    print(f" • Total Engineering Hours Saved       : {hours_saved} hours ({data.get('timeSavedMinutes')} mins)")
+    print(f" • Average Professional Quality Score  : {data.get('averageQualityScore')}/100 pts")
     print("=" * 65)
-    print(" 💡 XULOSA: Humanpowers sizni 50+ marta 'buni to'g'irla' deb")
-    print("    qayta prompt yozishdan va asab buzilishidan qutqardi.")
+    print(" 💡 SUMMARY: Humanpowers eliminated iterative prompt micromanagement,")
+    print("    delivering zero-babysitting, production-ready output autonomously.")
     print("=" * 65 + "\n")
 
 if __name__ == "__main__":

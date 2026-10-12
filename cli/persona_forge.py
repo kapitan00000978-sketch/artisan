@@ -15,7 +15,7 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 def create_persona(title, domain="general"):
-    print(f"🛡️ [Persona Forge] Yangi kasb yaratilmoqda: '{title}'...")
+    print(f"🛡️ [Persona Forge] Generating new professional persona: '{title}'...")
 
     persona_id = title.lower().replace(" ", "_").replace("-", "_")
 
@@ -23,13 +23,13 @@ def create_persona(title, domain="general"):
         "id": persona_id,
         "title": title,
         "domain": domain,
-        "pledge": f"Hech qachon xom, tekshirilmagan yoki mas'uliyatsiz yechimni foydalanuvchiga bermayman. {title} sifatida 100% professional darajada javob beraman.",
+        "pledge": f"I will never deliver unverified, incomplete, or irresponsible output. As a veteran {title}, I stand behind every artifact with 100% production-ready quality.",
         "checklists": [
-            f"1. {title} sohasidagi qat'iy standartlar va qonun-qoidalarga to'liq muvofiqlik.",
-            f"2. Barcha yashirin risklar va nozik jihatlarni oldindan aniqlash.",
-            f"3. Tushunarli, aniq va ortiqcha 'suv'siz amaliy ko'rsatmalar.",
-            f"4. Sanoatning ilg'or tajribalari (Best Practices) asosida tuzilganlik.",
-            f"5. Yakuniy tekshiruv va 100% tayyor mahsulot sifatida topshirish."
+            f"1. Strict compliance with {title} industry benchmarks and regulatory standards.",
+            f"2. Pre-emptive identification of hidden downside risks and edge cases.",
+            f"3. Clear, concise, and actionable instructions with zero cognitive fluff.",
+            f"4. Built on battle-tested industry best practices.",
+            f"5. Autonomous pre-delivery verification satisfying zero-babysitting criteria."
         ]
     }
 
@@ -44,24 +44,28 @@ def create_persona(title, domain="general"):
     rule_path = os.path.join(".agents", "plugins", "craftsman-agent", "rules", "02-professions-directory.md")
     if os.path.exists(rule_path):
         with open(rule_path, "a", encoding="utf-8") as f:
-            f.write(f"\n\n---\n\n### 🎭 {title} (Persona Forge orqali qo'shildi)\n")
-            f.write(f"* **Qasamyod:** \"{template['pledge']}\"\n")
-            f.write("* **Tekshiruv mezonlari:**\n")
+            f.write(f"\n\n---\n\n### 🎭 {title} (Registered via Persona Forge)\n")
+            f.write(f"* **Pledge:** \"{template['pledge']}\"\n")
+            f.write("* **Checklist:**\n")
             for ch in template["checklists"]:
                 f.write(f"  - [ ] {ch}\n")
 
-    print(f"✅ [MUVAFFAQIN]: '{title}' kasbi muvaffaqiyatli yaratildi va ro'yxatga olindi!")
-    print(f"   Fayl: {file_path}")
-    print(f"   Qasamyod: \"{template['pledge']}\"")
+    print(f"✅ [SUCCESS]: '{title}' persona successfully registered!")
+    print(f"   Saved to: {file_path}")
+    print(f"   Pledge: \"{template['pledge']}\"")
     return template
 
 if __name__ == "__main__":
     parser = argparse.ArgumentParser(description="Humanpowers Persona Forge")
-    parser.add_argument("--create", help="Kasb nomi (masalan: 'Soliq Maslahatchisi')")
+    parser.add_argument("--create", help="Profession title (e.g. 'Tax Strategist')")
+    parser.add_argument("--domain", default="general", help="Domain category")
     args = parser.parse_args()
 
     if args.create:
-        create_persona(args.create)
+        create_persona(args.create, args.domain)
     else:
-        # Default demo create
-        create_persona("Kripto va Blokcheyn Auditori", "security")
+        title = input("Enter profession title (e.g. 'Tax Strategist'): ").strip()
+        if title:
+            create_persona(title)
+        else:
+            parser.print_help()

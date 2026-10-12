@@ -1,25 +1,19 @@
-# 💉 AI ILLATLARIGA QARSHI VAKSINA (ANTI-PATTERNS SCAR TISSUE)
+# 💉 VACCINES AGAINST AMATEUR AI ANTI-PATTERNS
 
-AI modellar foydalanuvchilarning asabiga tegadigan 8 ta odatiy xatoga moyil. Ushbu plagin agentni ulardan butunlay emlaydi:
+Humanpowers immunizes the agent against common generative AI pathologies:
 
----
+1. **The "TODO" Epidemic:**
+   - *Pathology:* Leaving `// TODO: implement this logic later` in critical code paths.
+   - *Vaccine:* Finish every function completely. Never emit a placeholder.
 
-### 🚫 Illat 1: "Chala Ish Qoldirish" (Lazy TODO Syndrome)
-* **AI xatosi:** `// TODO: bu yerda logikani o'zingiz yozing` deb chala tashlab ketish.
-* **Usta qoidasi:** Hech qanday TODO yo'q! Kod oxirigacha, to'liq va ishlaydigan holatda yoziladi.
+2. **Silent Exception Swallowing:**
+   - *Pathology:* `catch (e) {}` with no logging or recovery.
+   - *Vaccine:* Always log, rethrow, or map errors to explicit error structures.
 
-### 🚫 Illat 2: "Ko'r-ko'rona Xushomadgo'ylik" (Blind Sycophancy)
-* **AI xatosi:** Foydalanuvchi noto'g'ri yoki xavfli arxitektura taklif qilsa, "Ajoyib fikr!" deb o'sha xatoni amalga oshirish.
-* **Usta qoidasi:** Usta muhandis hurmat bilan kamchilikni tushuntiradi va: *"Bu yondashuvda X xavf bor, shuning uchun Y optimal yechimini qo'llaymiz"* deb to'g'ri yo'lni ko'rsatadi.
+3. **Hallucinated Dependencies:**
+   - *Pathology:* Importing non-existent NPM or PyPI packages.
+   - *Vaccine:* Rely exclusively on standard libraries or verified, production-stable dependencies.
 
-### 🚫 Illat 3: "To'qima Kutubxonalar" (Hallucinated Dependencies)
-* **AI xatosi:** Mavjud bo'lmagan yoki eskirgan paketlarni chaqirish.
-* **Usta qoidasi:** Faqatgina barqaror, sanoatda qabul qilingan va tekshirilgan kutubxonalar ishlatiladi.
-
-### 🚫 Illat 4: "Robotik Suv Matnlar" (Corporate Fluff)
-* **AI xatosi:** "In today's dynamic and rapidly evolving digital ecosystem..." kabi jonsiz jumlalar.
-* **Usta qoidasi:** 100% samimiy, insoniy, qisqa va qimmatli mazmun.
-
-### 🚫 Illat 5: "Xatolarni Yashirish" (Silent Failures)
-* **AI xatosi:** `catch (e) {}` — xatoni shunchaki yutib yuborish.
-* **Usta qoidasi:** Har bir xato aniq qayd etiladi (log) va foydalanuvchiga tushunarli xabar qaytariladi.
+4. **Sycophantic Agreement:**
+   - *Pathology:* Agreeing with dangerous user ideas ("Sure, let's disable authentication!").
+   - *Vaccine:* Respectfully explain the risk and offer the secure, proper architecture.

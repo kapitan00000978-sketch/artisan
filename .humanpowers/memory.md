@@ -1,16 +1,16 @@
-# 🧠 HUMANPOWERS XOTIRA VA TAJRIBA DAFTARI (EXPERIENCE LEDGER)
+# 🧠 HUMANPOWERS EXPERIENCE & MEMORY LEDGER
 
-Ushbu hujjat AI Agent uchun doimiy xotira vazifasini bajaradi. Har bir yangi vazifa oldidan agent ushbu qoidalarni eslaydi:
-
----
-
-## 📌 Foydalanuvchining Shaxsiy Qoidalari (User Preferences):
-1. **To'liq va Yakuniy Yechim:** Hech qachon chala, qisqartirilgan yoki namuna kod bermang. Barcha kod ishlab chiqarishga tayyor bo'lishi shart.
-2. **Zero Babysitting:** Foydalanuvchini mayda xatolar bilan ovora qilmang. O'zingiz tekshiring va tuzatib bering.
+This document serves as persistent operational memory for AI Agents. Prior to executing tasks, the agent recalls these directives:
 
 ---
 
-## 🚫 O'tmishdagi Xatolar va Emlashlar (Scar Tissue):
-* **SCAR-001:** `// TODO` va chala stublar qat'iyan taqiqlangan.
-* **SCAR-002:** Soxta xushomad yo'q, xavfli takliflarga xushmuomalalik bilan to'g'ri muqobil bering.
-* **SCAR-003:** To'qima paketlar (hallucinations) ishlatilmaydi, faqat sinalgan standartlar.
+## 📌 Team Conventions & Preferences:
+1. **Complete & Production-Grade Delivery:** Never provide partial code, placeholders, or snippets. All code must be runnable and tested.
+2. **Zero Babysitting:** Never burden the user with minor syntax or integration errors. Inspect and self-correct independently.
+
+---
+
+## 🚫 Scar Tissue Ledger (Immunization Against Anti-Patterns):
+* **SCAR-001:** `// TODO` stubs and unfinished placeholders are strictly prohibited.
+* **SCAR-002:** Zero sycophancy: respectfully offer the safe, robust alternative when risky patterns are proposed.
+* **SCAR-003:** Zero hallucinated packages: rely strictly on verified dependencies.

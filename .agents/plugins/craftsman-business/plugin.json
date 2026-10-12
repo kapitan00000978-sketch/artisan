@@ -1,5 +1,6 @@
 {
   "name": "craftsman-business",
   "version": "1.0.0",
-  "description": "Startap moliyachisi, tahlilchi va huquqshunos AI agentlar uchun maxsus plagin: LTV/CAC, real Churn, runway tahlili, shartnoma auditi va javobgarlik chegarasi."
+  "description": "Startup unit economics, financial runway modeling, and legal agreement auditing.",
+  "author": "Humanpowers Open Source Project"
 }

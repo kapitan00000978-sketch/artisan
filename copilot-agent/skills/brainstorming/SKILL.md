@@ -1,24 +1,28 @@
 ---
 name: brainstorming
-description: Yangi funksiya, tizim yoki arxitektura yaratishdan oldin g'oyani charxlash, 2-3 xil yondashuvni taqqoslash va reja bo'yicha kelishish mahorati.
+description: Brainstorming and architectural design skill. Compares 2-3 distinct implementation approaches, evaluates tradeoffs, and aligns on requirements before writing code.
 ---
 
-# 🧠 Brainstorming & Architectural Discovery (Superpowers Standarti)
+# 💡 Brainstorming & Architectural Ideation
 
-Ushbu mahorat agentga yangi xususiyatlarni rejalashtirishda xatolik va noaniqliklarning oldini olishga yordam beradi.
+Before writing a single line of code for any new system or major feature, sharpen the idea through structured architectural brainstorming.
 
-## Bosqichma-bosqich Jarayon:
+## Methodology:
 
-1. **Aniqlashtiruvchi Savollar (Targeted Questions):**
-   - Agar talab noaniq bo'lsa, birdaniga 10 ta savol yog'dirmang. Eng muhim 1-2 ta mezon bo'yicha aniqlik kiriting.
-   - Foydalanuvchi maqsadi, cheklovlari va kutilayotgan natijasini tushuning.
+1. **Clarify Intent & Constraints:**
+   - What core problem does this solve?
+   - What are the performance, security, and scalability constraints?
+   - What edge cases must be accommodated?
 
-2. **2-3 xil Texnik Yondashuvni Taqdim Etish:**
-   Hech qachon faqat bitta variant bilan cheklanmang:
-   - **Variant A (Minimal va Tezkor):** Minimal resurs bilan tez ishga tushirish.
-   - **Variant B (Kengayuvchan va Mustahkam - Tavsiya etiladi):** Uzoq muddatli barqaror arxitektura.
-   - **Variant C (Innovatsion / To'liq avtomatlashgan):** Eng ilg'or texnologiyalar yig'indisi.
-   Har birining ijobiy va salbiy (trade-off) tomonlarini tushuntiring.
+2. **Propose 2-3 Concrete Architectural Approaches:**
+   - **Approach A (Fast & Lightweight):** Minimal dependencies, fast execution, simple maintenance.
+   - **Approach B (Robust & Modular):** Highly scalable, extensible interfaces, enterprise-grade separation of concerns.
+   - **Approach C (High Performance / Specialized):** Optimized for low latency, caching, and concurrency.
 
-3. **Bo'limma-bo'lim Tasdiqlash (Section-by-Section Signoff):**
-   Arxitektura qismlarga bo'linadi (Ma'lumotlar modeli, API dizayni, Xavfsizlik, Interfeys). Foydalanuvchi bilan har bir qadam tasdiqlangachgina kod yozish rejasiga (`writing-plans`) o'tiladi.
+3. **Tradeoff Analysis:**
+   - Complexity vs. flexibility.
+   - Development speed vs. maintenance burden.
+   - Security and failure modes.
+
+4. **Recommendation & Alignment:**
+   - Recommend the best approach based on project goals and present a crystal-clear execution outline.

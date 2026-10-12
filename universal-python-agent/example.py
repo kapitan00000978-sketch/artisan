@@ -9,9 +9,9 @@ def main():
 
     result = agent.execute("Create a secure user authentication module with JWT rotation")
     print("\n[HUMANPOWERS VERIFIED RESULT]:")
-    print(f"Holati: {result['status']}")
-    print(f"Sifat ko'rsatkichi: {result['score']}/100")
-    print(f"Avtomatik tuzatilgan xatolar: {result['flaws_fixed']} ta")
+    print(f"Status: {result['status']}")
+    print(f"Quality Score: {result['score']}/100")
+    print(f"Autonomously Remediated Flaws: {result['flaws_fixed']}")
 
 if __name__ == "__main__":
     main()
