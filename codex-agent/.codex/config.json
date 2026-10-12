@@ -1,0 +1,7 @@
+{
+  "agent": "codex",
+  "methodology": "craftsman-superpowers",
+  "rules": ["../CODEX.md"],
+  "enforce_tdd": true,
+  "zero_babysitting": true
+}

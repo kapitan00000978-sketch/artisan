@@ -1,0 +1,13 @@
+{
+  "name": "opencode-craftsman",
+  "instructions": "OPENCODE.md",
+  "skills": "skills",
+  "modes": {
+    "plan": {
+      "require_signoff": true
+    },
+    "build": {
+      "enforce_tdd": true
+    }
+  }
+}

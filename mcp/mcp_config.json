@@ -1,0 +1,8 @@
+{
+  "mcpServers": {
+    "humanpowers": {
+      "command": "python",
+      "args": ["./mcp/server.py"]
+    }
+  }
+}

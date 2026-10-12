@@ -1,0 +1,38 @@
+{
+  "version": "1.0.0",
+  "project": "Humanpowers Active Workspace",
+  "lastUpdated": "2026-10-12T15:03:00Z",
+  "userPreferences": [
+    {
+      "key": "code_style",
+      "rule": "Har doim toza, modulli, tushunarli izohlangan va ishlab chiqarish darajasidagi kod bo'lishi shart.",
+      "category": "engineering"
+    },
+    {
+      "key": "communication",
+      "rule": "Foydalanuvchiga 'buni to'g'irla' dedirmaslik, 100% tayyor natija topshirish.",
+      "category": "workflow"
+    }
+  ],
+  "scarTissue": [
+    {
+      "id": "SCAR-001",
+      "blunder": "Lazy TODO comments or unfinished placeholders left in code.",
+      "preventiveAction": "Hech qachon // TODO qoldirmaslik, barcha logikani to'liq oxirigacha yozish."
+    },
+    {
+      "id": "SCAR-002",
+      "blunder": "Blind sycophancy (foydalanuvchi xato yoki xavfli yo'l so'rasa ko'r-ko'rona rozi bo'lish).",
+      "preventiveAction": "Xushmuomala bilan xavfni tushuntirish va xavfsiz to'g'ri yechimni taqdim etish."
+    },
+    {
+      "id": "SCAR-003",
+      "blunder": "Hallucinated dependencies (mavjud bo'lmagan kutubxonalarni to'qib chiqarish).",
+      "preventiveAction": "Faqatgina rasmiy, barqaror va tekshirilgan paketlarni chaqirish."
+    }
+  ],
+  "domainKnowledge": {
+    "framework": "Humanpowers Autonomous Protocol",
+    "supportedAgents": ["Antigravity", "Claude Code", "Cursor", "Copilot", "Windsurf", "Hermes", "Codex", "Pie", "OpenCode", "OpenClaw", "Python"]
+  }
+}

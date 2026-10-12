@@ -1,0 +1,28 @@
+name: Humanpowers Quality & Security Gate
+
+on:
+  push:
+    branches: [ main, master, develop ]
+  pull_request:
+    branches: [ main, master, develop ]
+
+jobs:
+  humanpowers-audit:
+    runs-on: ubuntu-latest
+    name: Humanpowers Autonomous Code Inspection
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+
+      - name: Run Humanpowers Pre-Commit Gatekeeper
+        run: |
+          python scripts/pre-commit-gatekeeper.py
+
+      - name: Generate Humanpowers Quality Certificate
+        run: |
+          python scripts/roi_tracker.py
