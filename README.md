@@ -1,16 +1,20 @@
+<p align="center">
+  <img src="./assets/humanpowers-banner.jpg" alt="Humanpowers Banner" width="100%" />
+</p>
+
 # 🛡️ Humanpowers: AI Agent Kasbiy Xulq-Atvor & Mas'uliyat Tizimi
 
 > **Humanpowers** — AI agentlarga insoniy mas'uliyat, kasbiy vijdon va "Zero Babysitting" (orqadan poylashni yo'qotish) falsafasini beruvchi to'liq ekotizim.
 
 ---
 
-## ⚡ Asosiy Imkoniyatlar:
+## 🎯 Asosiy Imkoniyatlar:
 
 1. **🧠 Doimiy Xotira & Scar Tissue (`.humanpowers/memory.json`):**
    Agent loyihadagi xatolar va foydalanuvchi didini doimiy eslab qoladi. Bir xil xato 0% takrorlanadi.
 2. **🔌 Model Context Protocol (MCP) Server (`mcp/server.py`):**
    Cursor, Claude, Antigravity va boshqa agentlar uchun rasmiy MCP server. Agentlar sifat nazorati vositalarini to'g'ridan-to'g'ri chaqira oladi.
-3. **🚀 GitHub Actions CI/CD Quality Gate (`.github/workflows/humanpowers-gate.yml`):**
+3. **🚀 GitHub Actions CI/CD Quality Gate (`ci/humanpowers-gate.yml`):**
    GitHub'dagi har bir Pull Request va Push'ni avtomatik tekshirib, sifat muhri bosuvchi avtonom quvur.
 4. **👁️ Real-Vaqt Watchdog Qo'riqchisi (`scripts/watchdog.py`):**
    Kodni yozayotganingizda chala `// TODO`, ochiq API kalitlar yoki yashirin xatolarni shu zahotiyoq aniqlaydi.
