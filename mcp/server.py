@@ -196,34 +196,46 @@ def handle_inspect_code(args):
     code = args.get("code", "")
     flaws = []
 
-    if re.search(r"//\s*TODO|#\s*TODO", code):
-        flaws.append("Unfinished '// TODO' stub detected. Complete all logic end-to-end.")
-    if re.search(r"catch\s*\([^\)]*\)\s*\{\s*\}", code):
-        flaws.append("Empty catch block (exception swallowed). Properly log or rethrow the error.")
-    if re.search(r"except\s*:\s*pass|except\s+Exception\s*:\s*pass", code):
-        flaws.append("Silent Python exception suppression ('except: pass'). Log or handle the failure.")
-    if re.search(r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,})", code):
-        flaws.append("Hardcoded secret or API key detected. Store credentials in environment variables.")
-    if re.search(r"f[\"'].*SELECT\s+.*\{|f[\"'].*INSERT\s+.*\{", code, re.IGNORECASE):
+    # 1. Unfinished stubs (case-insensitive FIXME, TODO, XXX, HACK)
+    if re.search(r"(?i)(?://|#|/\*)\s*(?:todo|fixme|xxx|hack|bug|stub)", code):
+        flaws.append("Unfinished stub detected (TODO/FIXME/XXX). Complete all logic end-to-end.")
+
+    # 2. Silent exception suppression
+    if re.search(r"catch\s*\([^\)]*\)\s*\{\s*\}|except\s*:\s*pass|except\s+Exception\s*:\s*pass", code):
+        flaws.append("Silent exception suppression (empty catch block or bare except: pass). Log or rethrow errors.")
+
+    # 3. Hardcoded passwords & credentials (e.g. password='hunter2')
+    if re.search(r"""(?i)(?:password|passwd|pwd|secret|api_key|apikey|access_token|auth_token|client_secret)\s*[:=]\s*["'][^"'\s]{4,}["']""", code):
+        flaws.append("Security risk: Plaintext password or secret credential detected! Use environment variables.")
+
+    # 4. API keys & tokens (Anthropic sk-ant-..., OpenAI sk-..., GitHub, AWS, private keys)
+    if re.search(r"""(?:sk-ant-[a-zA-Z0-9_\-]{20,}|sk-[a-zA-Z0-9_\-]{20,}|gh[pousr]_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|xox[baprs]-[0-9a-zA-Z]{10,}|sk_live_[0-9a-zA-Z]{24}|-----BEGIN [A-Z ]*PRIVATE KEY-----)""", code):
+        flaws.append("Security risk: Plaintext API key or private key detected! Use environment variables.")
+
+    # 5. Potential SQL Injection via string interpolation
+    if re.search(r"f[\"'].*(?:SELECT|INSERT|UPDATE|DELETE)\s+.*\{", code, re.IGNORECASE):
         flaws.append("Potential SQL injection via raw string interpolation. Use parameterized queries.")
+
+    # 6. Dangerous dynamic execution
     if re.search(r"\beval\s*\(|\bexec\s*\(", code):
         flaws.append("Dangerous dynamic execution ('eval/exec') detected. Replace with safe structured parsing.")
 
     if flaws:
         return {
             "status": "REJECTED",
-            "score": max(40, 100 - len(flaws) * 15),
+            "score": max(20, 100 - len(flaws) * 25),
             "flaws": flaws,
             "auditor": "Gabriel 'The Sentinel' Frost (Red Team Lead)",
-            "verdict": "Defects identified. Autonomously remediate all flaws before presenting to the user!"
+            "verdict": "Security/Quality defects identified. Autonomously remediate all flaws before presenting to the user!"
         }
     return {
         "status": "CERTIFIED",
         "score": 98,
         "flaws": [],
         "auditor": "Marcus 'The Vanguard' Sterling (Engineering Lead)",
-        "verdict": "Satisfies all Humanpowers quality standards. 100% Production-Ready!"
+        "verdict": "Satisfies all Artisan quality standards. 100% Production-Ready!"
     }
+
 
 def handle_get_persona(args):
     prof = args.get("profession", "software_architect").lower().replace(" ", "_").replace("-", "_")

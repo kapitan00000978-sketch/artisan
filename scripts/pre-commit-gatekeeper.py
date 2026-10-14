@@ -15,8 +15,9 @@ if sys.platform == "win32":
 PATTERNS = [
     (r"(?i)(?://|#)\s*(?:todo|fixme|xxx|hack)", "LAZY_STUB", "Unfinished stub detected (TODO/FIXME/XXX). Complete all logic end-to-end."),
     (r"catch\s*\([^\)]*\)\s*\{\s*\}|except\s*:\s*pass", "SILENT_CATCH", "Silent exception suppression (empty catch block or bare except: pass). Log or rethrow errors."),
-    (r"(?i)(?:password|passwd|pwd|secret|api_key|token|auth_token)\s*[:=]\s*[\"'][^\"'\s]{4,}[\"']|(?:sk-[a-zA-Z0-9]{20,}|gh[pousr]_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)", "EXPOSED_SECRET", "Security risk: Plaintext API key, hardcoded password, or credential detected! Use environment variables.")
+    (r"(?i)(?:password|passwd|pwd|secret|api_key|token|auth_token)\s*[:=]\s*[\"'][^\"'\s]{4,}[\"']|(?:sk-ant-[a-zA-Z0-9_\-]{20,}|sk-[a-zA-Z0-9_\-]{20,}|gh[pousr]_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)", "EXPOSED_SECRET", "Security risk: Plaintext API key, hardcoded password, or credential detected! Use environment variables.")
 ]
+
 
 
 

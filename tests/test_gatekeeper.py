@@ -39,6 +39,9 @@ def test_gatekeeper_patterns_catch_exposed_secrets():
     assert re.search(secret_pattern, pw_code) is not None
     token_code = 'api_key = "supersecretkey123"'
     assert re.search(secret_pattern, token_code) is not None
+    ant_key = 'anthropic_key = "sk-ant-api03-abcdef123456789012345678"'
+    assert re.search(secret_pattern, ant_key) is not None
+
 
 
 

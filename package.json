@@ -3,10 +3,8 @@
   "version": "1.0.0",
   "description": "An open-source protocol and modular framework that injects craftsmanship, senior work ethic, and automated quality gates into AI coding agents.",
   "main": "bin/artisan.js",
-  "bin": {
-    "artisan": "./bin/artisan.js",
-    "humanpowers": "./bin/humanpowers.js"
-  },
+  "bin": "./bin/artisan.js",
+
 
   "scripts": {
     "hud": "python cli/dashboard.py",

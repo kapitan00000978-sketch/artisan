@@ -41,3 +41,18 @@ def test_mcp_initialize_schema():
     expected_protocol = "2024-11-05"
     assert expected_protocol == "2024-11-05"
 
+def test_mcp_inspect_code_catches_secrets_and_fixme():
+    # Test the exact edge case: hardcoded password, FIXME, and Anthropic API key
+    dangerous_code = """
+    # FIXME: implement this later
+    password = "hunter2"
+    anthropic_key = "sk-ant-api03-abcdef123456789012345678"
+    """
+    res = server.handle_inspect_code({"code": dangerous_code})
+    assert res["status"] == "REJECTED"
+    assert len(res["flaws"]) >= 2
+    flaw_text = " ".join(res["flaws"])
+    assert "stub" in flaw_text.lower() or "todo" in flaw_text.lower() or "fixme" in flaw_text.lower()
+    assert "secret" in flaw_text.lower() or "password" in flaw_text.lower() or "key" in flaw_text.lower()
+
+
