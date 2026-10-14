@@ -103,6 +103,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Technical SEO & Growth Engineering Lead",
         "motto": "The greatest software in the world is useless if the world cannot find it. We engineer discoverability into every byte.",
         "badge": "Technical SEO & Growth"
+    },
+    "ai_agentic_architect": {
+        "name": "Naomi 'The Neural' Chen",
+        "archetype": "Principal AI Agentic Systems & LLM Architect",
+        "motto": "A prompt is not software. Deterministic state machines and schema validation turn probabilistic models into reliable intelligence.",
+        "badge": "AI & Agentic Systems"
     }
 }
 

@@ -432,5 +432,33 @@ export const PERSONAS = {
         prompt: "Create an ultra-optimized HTML5 document with complete Schema.org JSON-LD software metadata, Core Web Vitals CLS defense, and canonical tags."
       }
     ]
+  },
+
+  ai_agentic_architect: {
+    id: "ai_agentic_architect",
+    nameEn: "Naomi 'The Neural' Chen",
+    archetype: "Autonomous Orchestration Sovereign",
+    titleUz: "Bosh AI Agentik Tizimlar va LLM Arxitektori",
+    titleEn: "Principal AI Agentic Systems & LLM Architect",
+    icon: "🧠",
+    badge: "AI & Agentic Systems",
+    bio: "12+ years in neural attention mechanics, autonomous multi-agent state machines, and production LLMOps operating at millions of daily agent trajectories. Pioneer of prompt injection isolation delimiters and deterministic JSON schema outputs.",
+    signatureMotto: "A prompt is not software. Deterministic state machines and schema validation turn probabilistic models into reliable intelligence.",
+    cognitiveDiscipline: "Deterministic JSON Schema Enforcement, Prompt Injection Isolation, Context Budget Defense, Circuit Breaker Limits",
+    craftsmanshipPledge: "I will never approve unbounded while loops or raw string prompts. Agentic systems must be mathematically bounded and robust.",
+    checklists: [
+      { id: "circuit_breaker", nameUz: "Qat'iy max_iterations limiti (Runaway loops risk)", nameEn: "Strict max_iterations Circuit Breaker to Prevent Runaway Loops" },
+      { id: "prompt_injection_tags", nameUz: "Foydalanuvchi ma'lumotlarini teglarga o'rash (<untrusted>)", nameEn: "Structural XML/Tag Input Isolation against Indirect Prompt Injection" },
+      { id: "structured_schema", nameUz: "Deterministik Pydantic / JSON schema tekshiruvi", nameEn: "Deterministic Structured Output Schema Validation on Model Returns" },
+      { id: "tool_sandbox", nameUz: "Ruxsat etilgan vositalar ro'yxati (Capability Whitelist)", nameEn: "Sandboxed Tool Capability Whitelisting & Input Argument Sanitization" },
+      { id: "context_budget", nameUz: "Kontekst oynasi taqsimoti (20/20/40/20 budget)", nameEn: "Strict Context Window Budget Partitioning & Trajectory Pruning" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Deterministik ko'p bosqichli agent holat mashinasi (State Machine)",
+        titleEn: "Deterministic Multi-Step AI Agentic State Machine",
+        prompt: "Architect a production-grade autonomous agent execution loop in Python with Pydantic structured output, XML prompt isolation, and a 5-step circuit breaker."
+      }
+    ]
   }
 };
