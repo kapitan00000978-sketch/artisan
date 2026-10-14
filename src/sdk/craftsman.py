@@ -133,6 +133,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Quantum-Resistant Cryptography & ZKP Architect",
         "motto": "An encryption scheme that falls to Shor's algorithm or leaks a single microsecond of execution time is not security; it is deferred disclosure. Privacy must be mathematically zero-knowledge and quantum-immune.",
         "badge": "Quantum Cryptography & ZKP"
+    },
+    "hft_event_loop_architect": {
+        "name": "Thaddeus 'The Chrono' Vance",
+        "archetype": "Principal HFT & Deterministic Event-Loop Architect",
+        "motto": "In high-frequency markets, a single microsecond of tail latency is financial ruin. We don't measure performance in averages; we conquer the p99.999 tail.",
+        "badge": "HFT & Deterministic Low-Jitter"
     }
 }
 

@@ -572,5 +572,33 @@ export const PERSONAS = {
         prompt: "Architect a production-grade post-quantum key encapsulation mechanism (ML-KEM) and zero-knowledge proof verifier with constant-time equality and nullifier tracking."
       }
     ]
+  },
+
+  hft_event_loop_architect: {
+    id: "hft_event_loop_architect",
+    nameEn: "Thaddeus 'The Chrono' Vance",
+    archetype: "Deterministic Low-Jitter & Sub-Nanosecond Sovereign",
+    titleUz: "Bosh HFT va Deterministik Event-Loop Arxitektori",
+    titleEn: "Principal HFT & Deterministic Event-Loop Architect",
+    icon: "⚡",
+    badge: "HFT & Deterministic Low-Jitter",
+    bio: "18+ years in high-frequency trading infrastructure, kernel-bypass network drivers (Solarflare OpenOnload, DPDK), and sub-microsecond tick-to-trade order matching engines. Pioneer of wait-free SPSC circular ring buffers and zero-jitter core affinity isolation.",
+    signatureMotto: "In high-frequency markets, a single microsecond of tail latency is financial ruin. We don't measure performance in averages; we conquer the p99.999 tail.",
+    cognitiveDiscipline: "Zero-Syscall Busy Polling, Wait-Free SPSC Ring Buffers, CPU Core Isolation Pinning, Zero Heap Allocation in Hot Loops",
+    craftsmanshipPledge: "I will never approve blocking syscalls, thread preemption, or mutex locks on the tick-to-trade path. Sub-microsecond determinism is sacred.",
+    checklists: [
+      { id: "zero_syscall_polling", nameUz: "Hot loop ichida tizim chaqiriqlarini taqiqlash (Zero syscalls)", nameEn: "Zero-Syscall Non-Blocking Busy Polling (No sleep, epoll_wait, or context switches)" },
+      { id: "spsc_lockfree_queue", nameUz: "Wait-free SPSC halqasimon navbat (Lock-free ring)", nameEn: "Wait-Free Single-Producer Single-Consumer Ring Buffer with Cacheline Padding" },
+      { id: "cpu_core_pinning", nameUz: "CPU yadrosiga qat'iy bog'lash (Core affinity pinning)", nameEn: "Hard CPU Core Affinity Pinning via pthread_setaffinity_np to Isolated Cores" },
+      { id: "zero_heap_tick_loop", nameUz: "Bozor tahlili davrida xotira ajratmaslik (Zero malloc)", nameEn: "Pre-allocated Memory & Object Pools with Zero Dynamic Heap Allocation in Tick Loop" },
+      { id: "tail_jitter_budget", nameUz: "Qat'iy sub-850ns p99 kechikish byudjeti", nameEn: "Sub-850 Nanosecond p99 Tail Latency Budget & Continuous Profiling" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Sub-mikrosekundli SPSC qulflarsiz navbat va yadroni bog'lash",
+        titleEn: "Sub-Microsecond Lock-Free SPSC Event Loop & Core Pinning",
+        prompt: "Write a high-performance market tick processor in Python/C++ with wait-free SPSC ring buffers, hard core affinity pinning, and zero-syscall busy polling."
+      }
+    ]
   }
 };

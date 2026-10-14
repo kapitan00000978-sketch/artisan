@@ -32,7 +32,8 @@ COUNCIL_MEMBERS = [
     ("Valerie 'The Edge' Cross", "Principal Systems Performance Architect", "Mechanical Sympathy & Low-Latency Sovereign", "Software must respect the silicon beneath it. Every cache miss, lock contention, and redundant allocation is wasted energy and stolen time."),
     ("Soren 'The Conductor' Lindqvist", "Principal Distributed Consensus Architect", "Distributed Consensus & Protocol Sovereign", "A single unverified state transition is a fissure in reality. Consensus is not a majority opinion; it is mathematical certainty across untrusted space."),
     ("Nikolai 'The Core' Vance", "Principal Compiler & Type Systems Architect", "Compiler Engineer & Type-Theoretic Sovereign", "If it compiles, it must be sound. Dynamic type ambiguity and unhandled variant branches are not developer flexibility; they are delayed runtime explosions."),
-    ("Seraphina 'The Aegis' Sterling", "Principal Quantum-Resistant Cryptographer", "Quantum Aegis & Zero-Knowledge Sovereign", "An encryption scheme that falls to Shor's algorithm or leaks a single microsecond of execution time is not security; it is deferred disclosure. Privacy must be mathematically zero-knowledge and quantum-immune.")
+    ("Seraphina 'The Aegis' Sterling", "Principal Quantum-Resistant Cryptographer", "Quantum Aegis & Zero-Knowledge Sovereign", "An encryption scheme that falls to Shor's algorithm or leaks a single microsecond of execution time is not security; it is deferred disclosure. Privacy must be mathematically zero-knowledge and quantum-immune."),
+    ("Thaddeus 'The Chrono' Vance", "Principal HFT & Event-Loop Architect", "Deterministic Low-Jitter & Sub-Nanosecond Sovereign", "In high-frequency markets, a single microsecond of tail latency is financial ruin. We don't measure performance in averages; we conquer the p99.999 tail.")
 ]
 
 
