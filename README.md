@@ -10,7 +10,7 @@
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
 [![Council of Masters](https://img.shields.io/badge/council%20of%20masters-8%20titans-gold.svg)](#-the-council-of-masters-character-roster)
-[![Agents](https://img.shields.io/badge/supported%20agents-11-cyan.svg)](#-supported-ai-agent-ecosystems)
+[![Agents](https://img.shields.io/badge/supported%20agents-12%2B-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
 ---
@@ -108,6 +108,7 @@ Artisan provides tailored configuration modules across 11 agent environments:
 | 9 | 🖥️ [`opencode-agent/`](./opencode-agent/) | **OpenCode Terminal TUI Agent** | `OPENCODE.md`, `.opencode/agent.json`, `skills/` |
 | 10| 🦅 [`openclaw-agent/`](./openclaw-agent/) | **OpenClaw Autonomous Agent Platform** | `OPENCLAW.md`, `.openclaw/agent_manifest.json`, `skills/` |
 | 11| 🐍 [`universal-python-agent/`](./universal-python-agent/) | **Python, LangChain, AutoGen, CrewAI** | `craftsman/` SDK, `example.py`, `skills/` |
+| 12| 🛠️ [`cline-agent`](#) | **Cline, Roo Code, Kilo Code, Kimi Code** | `.clinerules`, `AGENTS.md`, `mcp/server.py` |
 
 ---
 

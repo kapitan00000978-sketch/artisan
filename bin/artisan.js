@@ -74,9 +74,10 @@ if (command === 'init' || command === 'install') {
   // 3. Claude Code plugin
   copyFileSafe('CLAUDE.md', 'CLAUDE.md');
 
-  // 4. Copilot & Windsurf
+  // 4. Copilot, Windsurf & Cline
   copyFileSafe('.github/copilot-instructions.md', '.github/copilot-instructions.md');
   copyFileSafe('.windsurfrules', '.windsurfrules');
+  copyFileSafe('.clinerules', '.clinerules');
 
   console.log(`\n==================================================================`);
   console.log(`  ✅ Artisan Protocol is now active!`);
