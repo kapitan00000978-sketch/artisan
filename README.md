@@ -39,25 +39,14 @@ Whenever an agent takes on a task, it embodies the designated Master from **The 
 
 ---
 
-## ⚡ Command-Driven On-Demand Activation (No Conversational Bloat)
+## ⚡ Autonomous 24/7 Background Plugin (Zero Commands Required)
 
-Humanpowers is **opt-in and command-driven**.
-- **Default Mode:** By default, your AI assistant stays light, fast, concise, and clean. It will never bombard you with unsolicited theatrical personas or long bureaucratic audit preambles.
-- **Command Mode:** When you need deep domain craftsmanship or strict quality inspection, simply prefix your message with any slash command in chat:
+Humanpowers is an **always-on, 24/7 autonomous background plugin**:
+- **Zero Commands Required:** The user does **not** need to type slash commands, remember hotkeys, or micromanage the agent.
+- **Silent 24/7 Execution:** The plugin seamlessly operates in the background on **every prompt, code generation, and file edit**.
+- **Autonomous Self-Inspection & Auto-Correction:** The agent automatically checks its own code for edge cases, security vulnerabilities, and incomplete stubs before presenting output.
+- **Zero Babysitting & Zero Bloat:** Always produces 100% production-ready results without annoying theatrical roleplay or conversational clutter.
 
-| Slash Command | Master Summoned | Domain & Responsibility |
-| :--- | :--- | :--- |
-| **`/council`** or **`/humanpowers`** | **The Full Council** | Tri-party adversarial review & production sign-off |
-| **`/marcus`** or **`/arch`** | **Marcus Sterling** | Software Architecture, SOLID, concurrency, zero tech debt |
-| **`/audit`** or **`/review`** | **Adversarial Red Team** | Deep code inspection, bug hunting, edge cases, regression |
-| **`/gabriel`** or **`/security`** | **Gabriel Frost** | Zero-trust offensive security audit, secret leaks, OWASP |
-| **`/elena`** or **`/design`** | **Elena Rostova** | UI/UX design systems, accessibility (WCAG 2.1 AAA), layout |
-| **`/diana`** or **`/copy`** | **Diana Drake** | Direct-response conversion copywriting & messaging |
-| **`/victor`** or **`/cfo`** | **Victor Montgomery** | Fractional CFO, unit economics, runway, burn rate |
-| **`/arthur`** or **`/legal`** | **Arthur Pendelton** | Commercial counsel, contract audit, liability containment |
-| **`/evelyn`** or **`/ml`** | **Dr. Evelyn Reed** | Staff Data Scientist, ML architecture, statistical rigor |
-| **`/gareth`** or **`/devops`** | **Gareth Drake** | DevOps & Cloud SRE, Docker, CI/CD, zero-downtime rollouts |
-| **`/gate`** | **Pre-Commit Gatekeeper** | Automated scan for unfinished stubs and exposed keys |
 
 ---
 
