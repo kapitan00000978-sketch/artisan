@@ -137,6 +137,17 @@ if (command === 'init' || command === 'install') {
     console.error(`[-] Watchdog script not found at ${scriptPath}`);
     process.exit(1);
   }
+} else if (command === 'fix' || command === 'repair') {
+  console.log(`🔧 [ARTISAN FIX] Auto-remediating code defects across repository...`);
+  const fixScript = path.join(packageRoot, 'scripts', 'remediator.py');
+  if (fs.existsSync(fixScript)) {
+    const extraArgs = args.slice(1);
+    const res = spawnSync('python', [fixScript, ...extraArgs], { stdio: 'inherit' });
+    process.exit(res.status || 0);
+  } else {
+    console.error(`[-] Remediator script not found at ${fixScript}`);
+    process.exit(1);
+  }
 } else if (command === 'status') {
   console.log(`🛡️ Artisan Protocol     : ACTIVE (v1.0.1)`);
   console.log(`Autonomous Mode        : Enforced (Zero Commands Required)`);
@@ -147,6 +158,7 @@ if (command === 'init' || command === 'install') {
   console.log(`  artisan init       # Install Artisan rules into current repository`);
   console.log(`  artisan hook       # Install Git pre-commit quality gate hook`);
   console.log(`  artisan audit      # Run quality & security audit (--staged for diff)`);
+  console.log(`  artisan fix        # Auto-remediate silent catches and stubs`);
   console.log(`  artisan doctor     # Check configuration and environment health`);
   console.log(`  artisan mcp        # Launch MCP JSON-RPC Server`);
   console.log(`  artisan watch      # Run continuous background watchdog sentinel`);

@@ -176,6 +176,53 @@ def run_gitleaks(target_dir: str = ".") -> List[Dict[str, Any]]:
     return []
 
 
+def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
+    """Performs deep Abstract Syntax Tree (AST) analysis on Python code."""
+    import ast
+    ast_findings: List[Dict[str, Any]] = []
+    try:
+        tree = ast.parse(code, filename=filename or "<input>")
+    except Exception:
+        return []
+
+    lines = code.splitlines()
+
+    for node in ast.walk(tree):
+        # 1. Detect dynamic eval/exec
+        if isinstance(node, ast.Call):
+            func = node.func
+            if isinstance(func, ast.Name) and func.id in ("eval", "exec"):
+                line_no = getattr(node, "lineno", 1)
+                line_content = lines[line_no - 1] if line_no <= len(lines) else ""
+                if IGNORE_MARKER not in line_content:
+                    ast_findings.append({
+                        "rule_id": "DANGEROUS_EVAL_EXEC",
+                        "category": "DANGEROUS",
+                        "file": filename,
+                        "line": line_no,
+                        "matched_text": f"{func.id}(...)",
+                        "message": f"Dangerous dynamic execution ('{func.id}') verified via AST analysis.",
+                        "deduction": 30
+                    })
+        # 2. Detect empty except blocks (bare except: pass or except Exception: pass)
+        elif isinstance(node, ast.ExceptHandler):
+            if len(node.body) == 1 and isinstance(node.body[0], ast.Pass):
+                line_no = getattr(node, "lineno", 1)
+                line_content = lines[line_no - 1] if line_no <= len(lines) else ""
+                if IGNORE_MARKER not in line_content:
+                    exc_name = "bare except" if node.type is None else "except"
+                    ast_findings.append({
+                        "rule_id": "STUB_BARE_EXCEPT",
+                        "category": "STUB",
+                        "file": filename,
+                        "line": line_no,
+                        "matched_text": f"except {exc_name}: pass",
+                        "message": f"Silent exception suppression ('except {exc_name}: pass') verified via AST.",
+                        "deduction": 25
+                    })
+    return ast_findings
+
+
 def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
     """
     Audits a string of source code against all Artisan rules.
@@ -223,6 +270,14 @@ def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
                 "message": "Silent exception suppression (except: pass). Log or handle errors.",
                 "deduction": 25
             })
+
+    # Deep AST analysis for Python code (eliminates regex blindspots)
+    if filename.endswith(".py") or ("def " in code and ("import " in code or "try:" in code)):
+        ast_results = scan_python_ast(code, filename=filename)
+        existing_keys = {(f["rule_id"], f["line"]) for f in findings}
+        for item in ast_results:
+            if (item["rule_id"], item["line"]) not in existing_keys:
+                findings.append(item)
 
     total_deduction = sum(f["deduction"] for f in findings)
     score = max(0, 100 - total_deduction)
@@ -286,7 +341,7 @@ def scan_project(base_dir: str = ".", staged_only: bool = False) -> Dict[str, An
     scanned_count = 0
 
     excluded_dirs = {".git", "node_modules", ".venv", "__pycache__", "tests"}
-    excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "server.py", "watchdog.py", "sync_artisan.py"}
+    excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "remediator.py", "server.py", "watchdog.py", "sync_artisan.py"}
     valid_extensions = (".js", ".ts", ".py", ".go", ".rs", ".java", ".cpp", ".cs")
 
     if staged_only:

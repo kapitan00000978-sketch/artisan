@@ -185,3 +185,43 @@ def test_git_hook_installer():
     spec.loader.exec_module(mod)
     assert mod.install_hook() is True
 
+def test_scan_python_ast_eval():
+    from detector import scan_python_ast
+    code = "def dangerous_function(param):\n    return eval(param)\n"
+    findings = scan_python_ast(code, filename="test.py")
+    assert len(findings) == 1
+    assert findings[0]["rule_id"] == "DANGEROUS_EVAL_EXEC"
+
+def test_scan_python_ast_bare_except():
+    from detector import scan_python_ast
+    code = "try:\n    perform_action()\nexcept:\n    pass\n"
+    findings = scan_python_ast(code, filename="test.py")
+    assert len(findings) == 1
+    assert findings[0]["rule_id"] == "STUB_BARE_EXCEPT"
+
+def test_remediator_python_bare_except():
+    import importlib.util
+    rem_script = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "remediator.py"))
+    spec = importlib.util.spec_from_file_location("remediator", rem_script)
+    rem = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rem)
+
+    flawed = "try:\n    run()\nexcept:\n    pass\n"
+    fixed, count = rem.remediate_python_code(flawed)
+    assert count == 1
+    assert "logging.warning" in fixed
+    assert "pass" not in fixed
+
+def test_remediator_js_empty_catch():
+    import importlib.util
+    rem_script = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "remediator.py"))
+    spec = importlib.util.spec_from_file_location("remediator", rem_script)
+    rem = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(rem)
+
+    flawed = "try { execute(); } catch (err) {}"
+    fixed, count = rem.remediate_js_code(flawed)
+    assert count == 1
+    assert "console.error" in fixed
+
+
