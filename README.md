@@ -4,13 +4,26 @@
 
 # 🛡️ Artisan: Autonomous AI Agent Craftsmanship & Quality Protocol
 
-> **About Artisan**: Open-source quality protocol for AI coding agents: role-based expert personas, a pre-commit and CI quality gate, an MCP server, and persistent project memory. Works with Claude Code, Cursor, Copilot, Windsurf, Antigravity and more.
+> **Artisan** is an open-source engineering discipline and quality protocol for AI coding assistants. It enforces deterministic pre-commit & CI gates against unfinished stubs and leaked secrets, injects role-based expert personas, maintains persistent project memory across sessions, and exposes standard Model Context Protocol (MCP) tooling for Claude Code, Cursor, Copilot, Windsurf, Antigravity, and other modern agents.
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
 [![Council of Masters](https://img.shields.io/badge/council%20of%20masters-8%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-11-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
+
+---
+
+## 📌 Loyiha Tasnifi (Project Description)
+
+**Artisan nima?**  
+Artisan — bu dasturchi va AI coding agentlari (Claude Code, Cursor, Copilot, Windsurf, Antigravity va boshqalar) o‘rtasidagi sifat ko‘prigi. Standart AI modellar tez va ko‘p kod yozadi, biroq ularda doimiy intizom yo‘q: kod ichida chala `TODO`lar, bo‘sh `except: pass` bloklari, xavfli `eval()` chaqiriqlari yoki tasodifan qoldirib ketilgan API kalitlar paydo bo‘ladi. 
+
+Artisan bu muammoni 4 ta ustun orqali hal qiladi:
+1. **🛡️ Mustaqil Pre-Commit & CI Filtrlari (`scripts/detector.py`):** Kod git repoga kiritilishidan oldin har bir faylni statik tahlil qiladi. Maxfiy kalitlar (`sk-...`, `ghp_...`, `AKIA...`), xavfli buyruqlar va chala stubs topilsa, commit qat'iy to‘xtatiladi.
+2. **🏛️ The Council of Masters (Senior Heuristics):** AI agentiga arxitektura, xavfsizlik, SRE, ML va UI/UX bo‘yicha 8 nafar Senior darajadagi mutaxassis tajribasi va mezonlarini kontekst sifatida yuklaydi.
+3. **🧠 Doimiy Loyiha Xotirasi (`.artisan/memory.json`):** Loyihaning arxitekturaviy qoidalari va o‘tmishdagi xatolarini saqlab qoladi, shunda AI agent bir xil xatoni qayta takrorlamaydi.
+4. **🔌 Model Context Protocol (MCP) Serveri (`mcp/server.py`):** Standart JSON-RPC 2.0 orqali AI muhitlariga kod tahlili va rollarni to‘g‘ridan-to‘g‘ri vosita (tool) sifatida taqdim etadi.
 
 ---
 
