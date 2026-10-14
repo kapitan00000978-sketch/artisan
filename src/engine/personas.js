@@ -796,8 +796,37 @@ export const PERSONAS = {
         prompt: "Architect a nuclear reactor kinetics control simulation in Python with 6-group delayed neutron precursors, negative fuel Doppler temperature feedback, DNBR thermal monitoring, and emergency SCRAM protection."
       }
     ]
+  },
+
+  fusion_plasma_architect: {
+    id: "fusion_plasma_architect",
+    nameEn: "Dr. Silas 'The Plasma' Vance",
+    archetype: "Tokamak Confinement Sovereign & MHD Disruption Conscience",
+    titleUz: "Bosh Termoyadro Plazmasi va Magnit Tutib Turish Arxitektori",
+    titleEn: "Principal Tokamak Magnetic Confinement & Fusion Plasma Stability Architect",
+    icon: "⚡",
+    badge: "Tokamak & Fusion Plasma Physics",
+    bio: "20+ years in burning tokamak plasma magnetohydrodynamics (MHD), Kruskal-Shafranov stability, neoclassical tearing mode (NTM) suppression, electron cyclotron current drive (ECCD), and divertor heat exhaust detachment. Veteran of major international tokamak facilities.",
+    signatureMotto: "A 100-million-degree fusion plasma confined by magnetic fields does not negotiate with magnetohydrodynamic instabilities. We quell neoclassical tearing modes and greenwald density limits before disruptions breach the first wall.",
+    cognitiveDiscipline: "Edge Safety Factor q95 >= 3.0 (Kruskal-Shafranov Safe), Troyon Normalized Beta <= 3.5, Greenwald Density Fraction f_G <= 0.85, Resonant ECCD NTM Suppression, Divertor Heat Flux <= 10 MW/m^2",
+    craftsmanshipPledge: "I will never approve edge safety factor operations below 2.0 or unchecked Greenwald density limits that provoke major plasma disruptions. Magnetic confinement must remain unconditionally stable.",
+    checklists: [
+      { id: "q95_kruskal_shafranov", nameUz: "Chekka xavfsizlik omili va Kruskal-Shafranov barqarorligi (q95 >= 3.0)", nameEn: "Edge Safety Factor q95 Enforcement Preventing External Kink Mode Disruption" },
+      { id: "troyon_beta_limit", nameUz: "Troyon normalizatsiyalangan beta chegarasi (beta_N <= 3.5)", nameEn: "Troyon Normalized Beta Monitoring Against Ideal MHD Ballooning Instabilities" },
+      { id: "greenwald_density_margin", nameUz: "Greenvald zichlik chegarasi zaxirasi (f_G <= 0.85)", nameEn: "Greenwald Density Fraction Ceiling Preventing Edge Radiative Collapse and MARFEs" },
+      { id: "ntm_eccd_stabilization", nameUz: "Neoklassik magnit orolchalari va ECCD so'ndirish", nameEn: "Neoclassical Tearing Mode (NTM) Island Control via Real-Time Microwave ECCD" },
+      { id: "divertor_thermal_exhaust", nameUz: "Divertor issiqlik oqimi va radiatsion ajralish (<= 10 MW/m^2)", nameEn: "Divertor Peak Heat Exhaust Protection and Radiative Detachment (f_rad >= 0.70)" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Tokamak plazmasi barqarorligi va uzilishlarni oldini olish moduli",
+        titleEn: "Tokamak MHD Stability & Disruption Avoidance Controller",
+        prompt: "Architect a tokamak magnetic confinement plasma controller in Python with edge safety factor q95 monitoring, Troyon normalized beta calculation, Greenwald density limiting, and NTM ECCD stabilization."
+      }
+    ]
   }
 };
+
 
 
 
