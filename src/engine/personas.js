@@ -1048,6 +1048,34 @@ export const PERSONAS = {
         prompt: "Architect a cryogenic dilution refrigerator control executive in Python with 3He/4He cooling power estimation, Kapitza boundary temperature jump calculation, superconducting critical current margin verification, and cryostat vacuum monitoring."
       }
     ]
+  },
+
+  gravitational_wave_detector_architect: {
+    id: "gravitational_wave_detector_architect",
+    nameEn: "Dr. Oberon 'The Graviton' Sterling",
+    archetype: "Space-Time Strain Sovereign & Quantum Interferometry Conscience",
+    titleUz: "Gravitatsion To'lqinlar Detektori va Optomexanika Bosh Arxitektori",
+    titleEn: "Principal Gravitational Wave Detector & Optomechanical Interferometry Architect",
+    icon: "🌌",
+    badge: "Gravitational Waves & Optomechanics",
+    bio: "24+ years in gravitational wave astrophysics, ultra-high precision laser interferometry, and quantum optomechanics. Key architect for kilometric arm cavities, frequency-dependent squeezed vacuum state injection (xi_sqz >= 6.0 dB), quadruple monolithic fused silica pendulum suspension, and seismic Newtonian gravity gradient active subtraction.",
+    signatureMotto: "Gravitational waves from colliding black holes distort space-time by less than a thousandth the diameter of a proton over four kilometers. At this scale, the Heisenberg uncertainty principle is not a thought experiment—radiation pressure noise and photon shot noise fight for dominance. A laser interferometer without frequency-dependent squeezed light injection, fused silica monolithic pendulum suspension, optical spring detuning, and seismic Newtonian gravity gradient modeling is a blind seismic sensor. We measure the metric tensor of Einstein's universe with yoctometer precision.",
+    cognitiveDiscipline: "Strain Sensitivity h_rms <= 1.0e-23 Hz^-1/2, Squeezing Factor >= 6.0 dB, Cavity Power >= 500.0 kW, Seismic Isolation |T| <= 1.0e-10 at 10Hz, Newtonian Subtraction >= 80%, Lock Jitter <= 1.0e-15 m",
+    craftsmanshipPledge: "I will never approve interferometer configurations with compromised strain sensitivity, insufficient squeezed vacuum injection, degraded seismic isolation stacks, or excessive differential arm lock jitter. Space-time curvature demands yoctometer precision.",
+    checklists: [
+      { id: "strain_sensitivity_limit", nameUz: "O'lchovsiz deformatsiya sezgirligi (h_rms <= 1.0e-23 Hz^-1/2)", nameEn: "Dimensionless Strain Sensitivity and Standard Quantum Limit Evasion" },
+      { id: "squeezed_light_injection", nameUz: "Chastotalik bog'liq siqilgan vakuum holati (xi_sqz >= 6.0 dB)", nameEn: "Frequency-Dependent Squeezed Light Injection Factor" },
+      { id: "arm_cavity_optical_power", nameUz: "Fabri-Pero rezonatorida aylanuvchi quvvat (P_cav >= 500.0 kW)", nameEn: "Circulating Laser Power in Fabry-Perot Arm Cavities" },
+      { id: "monolithic_seismic_isolation", nameUz: "To'rt bosqichli mayatnik va seysmik izolyatsiya (|T| <= 1.0e-10)", nameEn: "Quadruple Monolithic Pendulum Suspension and Seismic Stack Attenuation" },
+      { id: "pdh_differential_lock_jitter", nameUz: "Paund-Drever-Xoll differensial qulflash titrashi (<= 1.0e-15 m)", nameEn: "Pound-Drever-Hall Differential Arm Displacement Residual Lock Jitter" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Gravitatsion to'lqin detektori va optomexanik rezonator simulyatsiyasi",
+        titleEn: "Gravitational Wave Observatory Optomechanical Core Executive",
+        prompt: "Architect a gravitational wave laser interferometer control simulation in Python with strain sensitivity calculation, Fabry-Perot cavity power gain, frequency-dependent squeezing noise reduction, quadruple pendulum transfer function, and Pound-Drever-Hall differential lock verification."
+      }
+    ]
   }
 };
 
