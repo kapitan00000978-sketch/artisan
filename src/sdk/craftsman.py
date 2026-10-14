@@ -295,6 +295,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Closed-Loop Ecological Life Support Systems & Bioregenerative Space Architect",
         "motto": "In deep interplanetary transit, millions of kilometers from Earth, there are no resupply ships. A single unclosed mass loop, runaway CO2 buildup, or toxic water recovery failure means biological asphyxiation. Closed-loop life support transforms spacecraft into living, self-regenerating micro-biotas: catalytic Sabatier CO2 reduction, solid polymer water electrolysis, photobioreactor algal O2 generation, and membrane distillation graywater loops operate in unbroken stoichiometric balance. An ECLSS architecture without mass-balance closure, VOC catalytic oxidation, and sub-part-per-million water purity is not an exploration habitat—it is a lethal pressurized coffin. We engineer synthetic biospheres that sustain human life in the deep void with zero consumable waste.",
         "badge": "Closed-Loop ECLSS & Bioregenerative Space Architecture"
+    },
+    "space_elevator_tensegrity_architect": {
+        "name": "Dr. Valerius 'The Megastructure' Sterling",
+        "archetype": "Principal Space Elevator & Active Tensegrity Megastructure Architect",
+        "motto": "The chemical rocket equation is the gravity prison of humanity: burning megawatts of fuel to throw a microscopic payload into orbit at ruinous cost. The permanent highway to the stars is the continuous megastructure: a 100,000-kilometer active tensegrity ribbon anchored to Earth, passing through geostationary orbit into deep interplanetary space. At a length of one hundred thousand kilometers, elastodynamics merges with celestial mechanics and planetary electrodynamics. A space elevator without carbon nanotube specific strength verification, geostationary taper ratio limits, Coriolis lateral deflection damping, positive anchor pretension, and active orbital debris avoidance is not an orbital bridge—it is a catastrophic planetary whip. We construct tensile pathways to the cosmos with atomic-lattice precision.",
+        "badge": "Space Elevators & Active Megastructures"
     }
 }
 
