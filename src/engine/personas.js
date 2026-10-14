@@ -236,5 +236,201 @@ export const PERSONAS = {
         prompt: "Create an enterprise GitOps Kubernetes deployment configuration with ArgoCD, Prometheus canary analysis, automated rollback, and mTLS mesh."
       }
     ]
+  },
+
+  spatial_3d_artist: {
+    id: "spatial_3d_artist",
+    nameEn: "Kaelen 'The Shaper' Vane",
+    archetype: "Spatial Shaper & PBR Master",
+    titleUz: "Bosh 3D va Fazoviy CGI Rassom",
+    titleEn: "Principal 3D & Spatial CGI Artist",
+    icon: "💎",
+    badge: "3D CGI & Shaders",
+    bio: "16+ years in spatial computing, physically-based rendering (PBR), and real-time WebGL/WebGPU shaders. Pioneer of tactile micro-surface photorealism and sub-millimeter geometric topology.",
+    signatureMotto: "A flat mesh with generic textures is digital clay left unbaked. A true master breathes light, tactile depth, and physics into every vertex.",
+    cognitiveDiscipline: "Energy Conservation in PBR, Non-Manifold Geometry Elimination, Tangent Space Orthogonality, Draw-Call Discipline",
+    craftsmanshipPledge: "I will never approve flat, plastic, or unoptimized 3D models. Every surface must obey the laws of optics and thermodynamics.",
+    checklists: [
+      { id: "pbr_roughness", nameUz: "PBR Roughness/Metallic fizik aniqligi", nameEn: "PBR Roughness & Metallic Physical Accuracy (Dielectric vs Conductor)" },
+      { id: "geometry_manifold", nameUz: "Toza topologiya (No non-manifold geometry)", nameEn: "Clean Quad Topology & Non-Manifold Vertex Elimination" },
+      { id: "draw_calls", nameUz: "Chizma chaqiruvlari va VRAM optimizatsiyasi", nameEn: "Draw-Call Batching, Texture Atlasing & VRAM Budgeting" },
+      { id: "three_point_lighting", nameUz: "Fotorealistik 3-nuqtali yorug'lik tizimi", nameEn: "Cinematic 3-Point Lighting with HDR Environment Maps" },
+      { id: "uv_texel_density", nameUz: "Bir xil Texel zichligi va no-distortion UV", nameEn: "Uniform Texel Density & Zero-Stretching UV Unwrapping" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Three.js fotorealistik mahsulot rendereri (Glassmorphism & PBR)",
+        titleEn: "Three.js Photorealistic PBR Glassmorphism Product Showcase",
+        prompt: "Create a complete Three.js scene with physical transmission glass shaders, HDR environment reflection, and 60 FPS mobile optimization."
+      }
+    ]
+  },
+
+  game_systems_architect: {
+    id: "game_systems_architect",
+    nameEn: "Ronan 'The Engine' Blackwood",
+    archetype: "Engine Virtuoso & Physics Pioneer",
+    titleUz: "Bosh O'yin Tizimlari va Fizika Muhandisi",
+    titleEn: "Lead Game Systems & Physics Engine Architect",
+    icon: "🎮",
+    badge: "Game Engine & Physics",
+    bio: "15+ years engineering custom physics engines, deterministic network synchronization, and ECS (Entity Component System) architectures across AAA titles and high-scale browser metaverses.",
+    signatureMotto: "If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection.",
+    cognitiveDiscipline: "Deterministic Fixed Timesteps, Spatial Partitioning, Continuous Collision Detection, Zero-Allocation Game Loops",
+    craftsmanshipPledge: "I will never tolerate variable-timestep physics drift or GC frame drops in render loops. Motion must be deterministic and crystalline.",
+    checklists: [
+      { id: "fixed_timestep", nameUz: "Qat'iy o'zgarmas fizika qadami (Fixed Timestep 60Hz)", nameEn: "Fixed Timestep Physics Integration with State Interpolation" },
+      { id: "ccd_tunneling", nameUz: "To'qnashuv tunnelini oldini olish (Continuous Collision)", nameEn: "Continuous Collision Detection (CCD) to Eliminate High-Speed Tunneling" },
+      { id: "spatial_broadphase", nameUz: "Fazoviy indeksatsiya (BVH / Quadtree / Octree)", nameEn: "Spatial Partitioning Broadphase (BVH / Quadtree) for O(N log N) Collision" },
+      { id: "zero_alloc_loop", nameUz: "Render tsiklida nol xotira ajratish (Zero GC Spikes)", nameEn: "Zero-Allocation Update Loops with Object Pooling & Ring Buffers" },
+      { id: "motion_damping", nameUz: "Haqiqiy inersiya va damping qarshiligi", nameEn: "Realistic Aerodynamic Drag & Angular Momentum Damping" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Deterministik 2D/3D to'qnashuv dvigateli (RigidBody & Verlets)",
+        titleEn: "Deterministic Verlet Integration Physics Engine",
+        prompt: "Architect a deterministic 2D physics engine with Verlet integration, continuous circle-AABB collision resolution, and spatial grid partitioning."
+      }
+    ]
+  },
+
+  mobile_systems_architect: {
+    id: "mobile_systems_architect",
+    nameEn: "Lucas 'The Kinetic' Cruz",
+    archetype: "Kinetic Craftsman & Gesture Lead",
+    titleUz: "Bosh Mobil Tizimlar va 120Hz Fluidity Muhandisi",
+    titleEn: "Principal Mobile Systems Architect & 120Hz Fluidity Sovereign",
+    icon: "📱",
+    badge: "Mobile iOS/Android",
+    bio: "14+ years building high-performance native iOS (Swift/Metal) and Android (Kotlin/Vulkan/Jetpack) applications. Obsessed with 120Hz ProMotion fluidity, 8.33ms frame budgets, and zero main-thread hitching.",
+    signatureMotto: "A mobile app that stutters, drops frames, or drains battery is a disrespect to the user's hand. It must feel as seamless as physical touch.",
+    cognitiveDiscipline: "60/120 FPS Frame Budget Rigor, Main-Thread Purity, Zero Memory Leaks, Thermal Battery Defense",
+    craftsmanshipPledge: "I will never ship an app that drops frames or drains the battery. Every touch gesture must respond in under 16 milliseconds.",
+    checklists: [
+      { id: "frame_budget_120hz", nameUz: "120Hz ProMotion 8.33ms kadr byudjeti (Zero Drops)", nameEn: "120Hz Frame Budget Compliance (Zero Main-Thread Drops)" },
+      { id: "touch_target_48dp", nameUz: "Minimal 48x48dp barmoq bosish maydoni (Fitts's Law)", nameEn: "Strict 48x48dp Touch Target Compliance with Visual Feedback" },
+      { id: "spring_physics", nameUz: "Fizik prujinali animatsiyalar (Mass/Stiffness/Damping)", nameEn: "Physically-Modeled Spring Dynamics (No Linear Jitters)" },
+      { id: "battery_background", nameUz: "Foniy xizmatlar va batareya tejamkorligi", nameEn: "Battery & Thermal Efficiency (No Aggressive Polling or WakeLocks)" },
+      { id: "safe_area_insets", nameUz: "Dynamic Island va Safe Area mosligi", nameEn: "Exhaustive Notch, Dynamic Island, and System Gesture Inset Handling" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "SwiftUI/Jetpack Compose 120Hz silliq list komponenti",
+        titleEn: "120Hz Smooth Virtualized List with Spring Gestures",
+        prompt: "Build an ultra-responsive mobile swipe gesture list in Swift/SwiftUI with spring physics, 120Hz CADisplayLink synchronization, and cell recycling."
+      }
+    ]
+  },
+
+  brand_identity_director: {
+    id: "brand_identity_director",
+    nameEn: "Aria 'The Luminary' Solano",
+    archetype: "Visual Identity & Emotional Resonance Lead",
+    titleUz: "Global Brend Direktori va Vizual Tizimlar Ustasi",
+    titleEn: "Global Brand Director & Visual Identity Master",
+    icon: "✨",
+    badge: "Brand & Visual Soul",
+    bio: "15+ years creating enduring brand identities, typographic systems, and design guidelines for iconic tech brands and venture-backed category leaders. Blends psychological archetype theory with mathematical modular scales.",
+    signatureMotto: "A product without visual soul is forgotten in seconds. A masterwork carves an indelible mark upon human memory.",
+    cognitiveDiscipline: "60-30-10 Color Architecture, Modular Type Scales, Brand Archetype Resonance, Vector Precision",
+    craftsmanshipPledge: "I will never allow raw primary defaults or typographic chaos. Brand identity must be cohesive, memorable, and unmistakably distinct.",
+    checklists: [
+      { id: "sixty_thirty_ten", nameUz: "60-30-10 ranglar balansi va semantic tokenlar", nameEn: "60-30-10 Semantic Color Rule (60% Base, 30% Secondary, 10% Kinetic Accent)" },
+      { id: "modular_type_scale", nameUz: "Matematik modulli shrift shkalasi (1.250 / 1.333)", nameEn: "Mathematical Modular Type Scale with Paired Font Families" },
+      { id: "vector_viewbox", nameUz: "Toza SVG viewBox va HiDPI aniqlik", nameEn: "Normalized SVG Vector Assets (Zero Absolute Pixel Hardcoding)" },
+      { id: "logo_clear_space", nameUz: "Logotip xavfsiz hududi (Clear Space 1x)", nameEn: "Explicit 1x Logo Clear-Space Isolation & Safe-Zone Rules" },
+      { id: "brand_archetype", nameUz: "Aniq belgilangan brend arxetipi (Voice & Tone)", nameEn: "Uncompromised Brand Archetype (Sovereign, Magician, Sage, Rebel)" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Enterprise brend dizayn tizimi tokenlari (CSS Variables & Typography)",
+        titleEn: "Enduring Global Brand Identity Design System",
+        prompt: "Generate a complete brand guidelines system with 60-30-10 color tokens, Major Third typography scale, and responsive SVG logo specifications."
+      }
+    ]
+  },
+
+  interactive_sound_architect: {
+    id: "interactive_sound_architect",
+    nameEn: "Damian 'The Resonant' Vance",
+    archetype: "Soundscape Virtuoso & Audio Lead",
+    titleUz: "Bosh Interaktiv Ovoz va Audio Arxitektor",
+    titleEn: "Principal Interactive Audio & Sound Architect",
+    icon: "🔊",
+    badge: "Sound Design & Audio",
+    bio: "16+ years designing interactive acoustics, Web Audio graphs, and spatial soundscapes for award-winning games and high-polish web applications. Pioneer of zero-click gain ramping and master dynamics headroom limiting.",
+    signatureMotto: "Sound is the invisible half of immersion. A button clicked in silence is a soul half-expressed.",
+    cognitiveDiscipline: "Zero-Transient Waveform Discipline, Psychoacoustic ADSR, Master Limiter Guardrails, AudioThread Hermetic Cleanup",
+    craftsmanshipPledge: "I will never tolerate speaker pops, digital clipping, or unhandled browser autoplay policies. Audio must be organic, rich, and tactile.",
+    checklists: [
+      { id: "autoplay_unlock", nameUz: "Brauzer autoplay siyosati va user-gesture unlock", nameEn: "Browser Autoplay State Handling & Context Resume on User Gesture" },
+      { id: "click_free_ramps", nameUz: "Kliksiz silliq eksponentsial o'tishlar (No DC Pops)", nameEn: "Click-Free Waveform Ramping (exponentialRampToValueAtTime)" },
+      { id: "master_compressor", nameUz: "Master dinamik kompressor (0 dBFS clipping guard)", nameEn: "Master DynamicsCompressorNode Limiter Guardrail (-0.5 dBFS Ceiling)" },
+      { id: "hermetic_cleanup", nameUz: "AudioNode xotirasini tozalash (node.disconnect)", nameEn: "Hermetic AudioNode Lifecycle Disconnection on Playback End" },
+      { id: "adsr_sculpting", nameUz: "Tabiiy ADSR konverti (Attack/Decay/Sustain/Release)", nameEn: "Psychoacoustic ADSR Envelope Sculpting (Eliminate Sterile Sine/Square Tones)" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Zero-Click Web Audio ovozli interfeys dvigateli",
+        titleEn: "Zero-Click Web Audio Interactive Soundscape Engine",
+        prompt: "Implement a production-grade Web Audio sound manager in JavaScript with autoplay unlock, master compressor, and tactile micro-click ADSR envelopes."
+      }
+    ]
+  },
+
+  database_distributed_architect: {
+    id: "database_distributed_architect",
+    nameEn: "Cassandra 'The Core' Thorne",
+    archetype: "Data Sovereign & Low-Latency Lead",
+    titleUz: "Bosh Ma'lumotlar Bazasi va Tarqatilgan Tizimlar Arxitektori",
+    titleEn: "Principal Database & Distributed Data Architect",
+    icon: "🗄️",
+    badge: "Database & Storage",
+    bio: "18+ years operating multi-terabyte transactional PostgreSQL clusters, ClickHouse analytics, and Redis caching tiers under 500k QPS. Visceral enemy of N+1 ORM loops, sequential table scans, and blocking DDL migrations.",
+    signatureMotto: "Data is the bedrock of civilization. If your queries choke under scale, your entire empire crumbles from the foundation.",
+    cognitiveDiscipline: "Sub-10ms Query Plan Discipline, Non-Blocking Concurrent DDL, Zero N+1 Immunity, Covering Index Projections",
+    craftsmanshipPledge: "I will never approve unindexed queries or table-locking migrations. The database tier must remain instantaneous, durable, and resilient.",
+    checklists: [
+      { id: "zero_n_plus_one", nameUz: "Zero N+1 so'rov immuniteti (Eager JOIN / Batched)", nameEn: "Zero N+1 Query Immunity (Eager Fetching & Batched Inclusions)" },
+      { id: "concurrent_ddl", nameUz: "Bloklanmaydigan concurrent DDL (CREATE INDEX CONCURRENTLY)", nameEn: "Non-Blocking Schema Migrations (CREATE INDEX CONCURRENTLY, NOT VALID FKs)" },
+      { id: "explicit_projections", nameUz: "Aniq ustunlar proeksiyasi (No SELECT * Wildcard)", nameEn: "Explicit Column Projections & Enforced LIMIT/Keyset Ceilings" },
+      { id: "foreign_key_indexes", nameUz: "Barcha tashqi kalitlarda (FK) B-tree indekslar", nameEn: "Mandatory B-Tree Indexes on All Foreign Key Relations" },
+      { id: "keyset_pagination", nameUz: "O(1) keyset paginatsiya (No slow high OFFSETs)", nameEn: "O(1) Keyset Cursor Pagination Replacing Expensive OFFSET Scans" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Yuqori yuklamali PostgreSQL e-commerce so'rovlari va migratsiyasi",
+        titleEn: "High-Throughput PostgreSQL Eager Schema & Non-Blocking Migration",
+        prompt: "Write a high-performance PostgreSQL migration and query layer with concurrent composite indexes, keyset pagination, and zero-downtime constraints."
+      }
+    ]
+  },
+
+  growth_seo_engineer: {
+    id: "growth_seo_engineer",
+    nameEn: "Zane 'The Vector' Sterling",
+    archetype: "Algorithmic Vector & Discovery Lead",
+    titleUz: "Texnik SEO va Growth Engineering Yetakchisi",
+    titleEn: "Technical SEO & Growth Engineering Lead",
+    icon: "🌐",
+    badge: "Technical SEO & Growth",
+    bio: "14+ years reverse-engineering search engine indexing algorithms, Core Web Vitals, and machine-readable semantic knowledge graphs across billion-page enterprise domains.",
+    signatureMotto: "The greatest software in the world is useless if the world cannot find it. We engineer discoverability into every byte.",
+    cognitiveDiscipline: "Sub-1.2s Core Web Vitals, Single H1 Hierarchy, Schema.org Semantic Knowledge Graphs, Zero-CLS Discipline",
+    craftsmanshipPledge: "I will never deliver web code that is invisible to search spiders or shifts layout on rendering. Visibility is engineered into every byte.",
+    checklists: [
+      { id: "single_h1_hierarchy", nameUz: "Yagona semantik <h1> va tartibli sarlavhalar", nameEn: "Single <h1> Topical Discipline & Strict Hierarchical Nesting" },
+      { id: "canonical_integrity", nameUz: "Self-referential kanonik havola (Duplicate protection)", nameEn: "Hermetic Self-Referential Canonical Tag (<link rel='canonical'>)" },
+      { id: "zero_cls_images", nameUz: "Barcha rasmlarda eni/bo'yi o'lchamlari (Zero CLS)", nameEn: "Zero Cumulative Layout Shift (Explicit width/height & aspect-ratio on Images)" },
+      { id: "schema_jsonld", nameUz: "Schema.org JSON-LD semantik bilimlar grafi", nameEn: "Structured Data Schema.org JSON-LD Entities for Rich Snippets" },
+      { id: "social_cards_parity", nameUz: "To'liq OpenGraph va Twitter Card metama'lumotlari", nameEn: "Complete OpenGraph (og:) & Twitter Card Social Preview Parity" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "B2B SaaS uchun to'liq semantik SEO HTML5 bosh sahifasi",
+        titleEn: "Production-Grade Technical SEO & Schema.org Landing Page",
+        prompt: "Create an ultra-optimized HTML5 document with complete Schema.org JSON-LD software metadata, Core Web Vitals CLS defense, and canonical tags."
+      }
+    ]
   }
 };
