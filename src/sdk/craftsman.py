@@ -151,6 +151,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal ASIC, FPGA & Hardware Chip Architect",
         "motto": "In silicon, an inferred latch or unhandled clock domain crossing costs $15 million in mask re-spins and nine months of delay. RTL must be provably synchronous and glitch-free.",
         "badge": "ASIC, FPGA & Hardware Architecture"
+    },
+    "embedded_firmware_architect": {
+        "name": "Morpheus 'The Kernel' Vance",
+        "archetype": "Principal Embedded Firmware & Bare-Metal Architect",
+        "motto": "In bare-metal embedded firmware, a memory leak or an unserviced watchdog bricks physical hardware in the field. Zero heap allocations and sub-5µs ISR discipline are non-negotiable.",
+        "badge": "Embedded Firmware & Bare-Metal"
     }
 }
 
