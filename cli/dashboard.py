@@ -20,8 +20,11 @@ COUNCIL_MEMBERS = [
     ("Arthur 'The Ironclad' Pendelton", "Senior Commercial Counsel", "Commercial Safeguard & Contractual Litigator", "An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin."),
     ("Dr. Evelyn 'The Oracle' Reed", "Staff Data Scientist & ML Lead", "Empirical Scientist & ML Ops Gatekeeper", "If your validation data leaks into your training set, your model is simply cheating itself into a production disaster."),
     ("Gabriel 'The Sentinel' Frost", "Principal Cybersecurity Auditor", "Zero-Trust Inquisitor & Threat Modeling Specialist", "There are two types of systems: those that enforce zero trust, and those that are already compromised without knowing it."),
-    ("Gareth 'The Unbreakable' Drake", "DevOps & Cloud SRE Architect", "Chaos Engineering Commander & Zero-Downtime Guardian", "Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken.")
+    ("Gareth 'The Unbreakable' Drake", "DevOps & Cloud SRE Architect", "Chaos Engineering Commander & Zero-Downtime Guardian", "Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken."),
+    ("Kaelen 'The Shaper' Vane", "Principal 3D & Spatial CGI Artist", "Spatial Shaper & PBR Master", "A flat mesh with generic textures is digital clay left unbaked. A true master breathes light, tactile depth, and physics into every vertex."),
+    ("Ronan 'The Engine' Blackwood", "Lead Game Systems Architect", "Engine Virtuoso & Physics Pioneer", "If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection.")
 ]
+
 
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')

@@ -61,8 +61,21 @@ COUNCIL_MEMBERS = {
         "archetype": "Chaos Engineering Commander & Zero-Downtime Guardian",
         "motto": "Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken.",
         "badge": "Cloud SRE Lead"
+    },
+    "spatial_3d_artist": {
+        "name": "Kaelen 'The Shaper' Vane",
+        "archetype": "Principal 3D & Spatial CGI Artist",
+        "motto": "A flat mesh with generic textures is digital clay left unbaked. A true master breathes light, tactile depth, and physics into every vertex.",
+        "badge": "3D CGI & Shaders"
+    },
+    "game_systems_architect": {
+        "name": "Ronan 'The Engine' Blackwood",
+        "archetype": "Lead Game Systems & Physics Architect",
+        "motto": "If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection.",
+        "badge": "Game Engine & Physics"
     }
 }
+
 
 class CraftsmanAgent:
     def __init__(

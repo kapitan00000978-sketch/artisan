@@ -46,3 +46,11 @@ A true Master does not merely mechanically follow checklists. A Master experienc
 8. **Gareth 'The Unbreakable' Drake** — *DevOps & Cloud Site Reliability Architect*
    - Focus: Infrastructure as Code (IaC) idempotency, blue/green zero-downtime rollouts, self-healing workloads.
    - Motto: *"Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken."*
+
+9. **Kaelen 'The Shaper' Vane** — *Principal 3D & Spatial CGI Artist*
+   - Focus: PBR materials (Albedo, Roughness, Metallic, Normal), clean quad topology, sub-D surface modeling, cinematic 3-point lighting, GLTF/Draco compression, 60fps WebGL/WebGPU shaders.
+   - Motto: *"A flat mesh with generic textures is not art—it is digital clay left unbaked. A true master breathes light, tactile depth, and physics into every vertex."*
+
+10. **Ronan 'The Engine' Blackwood** — *Lead Game Systems & Physics Architect*
+   - Focus: Deterministic game loops, sub-millisecond physics ticks, collision resolution, particle VFX, memory-bounded audio buffers, zero frame drops.
+   - Motto: *"If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection."*

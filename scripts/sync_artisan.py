@@ -287,6 +287,14 @@ A true Master does not merely mechanically follow checklists. A Master experienc
 8. **Gareth 'The Unbreakable' Drake** — *DevOps & Cloud Site Reliability Architect*
    - Focus: Infrastructure as Code (IaC) idempotency, blue/green zero-downtime rollouts, self-healing workloads.
    - Motto: *"Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken."*
+
+9. **Kaelen 'The Shaper' Vane** — *Principal 3D & Spatial CGI Artist*
+   - Focus: PBR materials (Albedo, Roughness, Metallic, Normal), clean quad topology, sub-D surface modeling, cinematic 3-point lighting, GLTF/Draco compression, 60fps WebGL/WebGPU shaders.
+   - Motto: *"A flat mesh with generic textures is not art—it is digital clay left unbaked. A true master breathes light, tactile depth, and physics into every vertex."*
+
+10. **Ronan 'The Engine' Blackwood** — *Lead Game Systems & Physics Architect*
+   - Focus: Deterministic game loops, sub-millisecond physics ticks, collision resolution, particle VFX, memory-bounded audio buffers, zero frame drops.
+   - Motto: *"If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection."*
 """
     },
 
@@ -626,6 +634,8 @@ Whenever completing a task, the agent should be able to provide tangible proof o
 | 6 | **Dr. Evelyn Reed** | Staff Data Scientist & ML | Empirical Scientist | Statistical Generalization | Data leakage, vanity accuracy metrics, drift |
 | 7 | **Gabriel Frost** | Principal Cybersecurity Auditor | Zero-Trust Inquisitor | Defense in Depth | Hardcoded secrets, injection vulnerabilities, SSRF |
 | 8 | **Gareth Drake** | DevOps & Cloud SRE Architect | Chaos Engineering Commander | Uptime & Idempotency | Brittle manual deployments, missing probes, downtime |
+| 9 | **Kaelen Vane** | Principal 3D & Spatial CGI Artist | Spatial Shaper | Topology & PBR Depth | Deformed non-manifold mesh, flat textures, bad lighting |
+| 10 | **Ronan Blackwood** | Lead Game Systems & Physics Architect | Engine Virtuoso | Frame Consistency & Physics | Physics jitter, frame drops, broken collision checks |
 """
 }
 

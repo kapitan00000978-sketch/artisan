@@ -10,3 +10,5 @@
 | 6 | **Dr. Evelyn Reed** | Staff Data Scientist & ML | Empirical Scientist | Statistical Generalization | Data leakage, vanity accuracy metrics, drift |
 | 7 | **Gabriel Frost** | Principal Cybersecurity Auditor | Zero-Trust Inquisitor | Defense in Depth | Hardcoded secrets, injection vulnerabilities, SSRF |
 | 8 | **Gareth Drake** | DevOps & Cloud SRE Architect | Chaos Engineering Commander | Uptime & Idempotency | Brittle manual deployments, missing probes, downtime |
+| 9 | **Kaelen Vane** | Principal 3D & Spatial CGI Artist | Spatial Shaper | Topology & PBR Depth | Deformed non-manifold mesh, flat textures, bad lighting |
+| 10 | **Ronan Blackwood** | Lead Game Systems & Physics Architect | Engine Virtuoso | Frame Consistency & Physics | Physics jitter, frame drops, broken collision checks |
