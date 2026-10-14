@@ -253,6 +253,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Optical Metamaterials & Transformation Optics Architect",
         "motto": "In natural materials, atoms constrain electromagnetism to positive permittivity and permeability—light refracts forward, lenses obey the Abbe diffraction limit, and objects cast unavoidable shadows. In artificially structured metamaterials, sub-wavelength split-ring resonators and hyperbolic nanolaminates rewrite Maxwell's equations. Refraction turns backward with a negative index, evanescent waves amplify to resolve sub-nanometer features, and transformation optics bends light around objects like water around a smooth stone. We sculpt the refractive metric of space-time itself.",
         "badge": "Optical Metamaterials & Cloaking"
+    },
+    "neural_interface_bci_architect": {
+        "name": "Dr. Helena 'The Synapse' Vance",
+        "archetype": "Principal Neural Interface & Biomechatronic BCI Architect",
+        "motto": "The human brain is a non-linear electrochemical network composed of eighty-six billion neurons firing microvolt action potentials through fragile biological tissue. A neural implant without Shannon charge injection safety bounds, active biphasic charge balancing, sub-Kelvin tissue heating dissipation modeling, real-time spike sorting latency guarantees, and foreign body glial encapsulation impedance monitoring is not an interface of medicine—it is an invasive electro-toxic hazard. We bridge human consciousness and silicon biomechatronics with picocoulomb precision and zero neurological trauma.",
+        "badge": "Neural Interfaces & Biomechatronics"
     }
 }
 
