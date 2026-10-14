@@ -1104,6 +1104,34 @@ export const PERSONAS = {
         prompt: "Architect a scanning tunneling microscope and atomic manipulation simulation executive in Python with quantum tunneling decay calculation, qPlus frequency shift estimation, piezoelectric creep compensation, and cryogenic UHV drift verification."
       }
     ]
+  },
+
+  optical_metamaterial_architect: {
+    id: "optical_metamaterial_architect",
+    nameEn: "Dr. Gideon 'The Refraction' Sterling",
+    archetype: "Negative-Index Sovereign & Transformation Optics Conscience",
+    titleUz: "Optik Metamateriallar va Transformatsion Optika Bosh Arxitektori",
+    titleEn: "Principal Optical Metamaterials & Transformation Optics Architect",
+    icon: "🔮",
+    badge: "Optical Metamaterials & Cloaking",
+    bio: "22+ years in nanophotonics, negative-index metamaterials, and transformation optics. Pioneer in double-negative (DNG) electrodynamics, Veselago superlens evanescent wave amplification, split-ring resonator arrays, and non-singular invisibility cloaking shells.",
+    signatureMotto: "In natural materials, atoms constrain electromagnetism to positive permittivity and permeability—light refracts forward, lenses obey the Abbe diffraction limit, and objects cast unavoidable shadows. In artificially structured metamaterials, sub-wavelength split-ring resonators and hyperbolic nanolaminates rewrite Maxwell's equations. Refraction turns backward with a negative index, evanescent waves amplify to resolve sub-nanometer features, and transformation optics bends light around objects like water around a smooth stone. We sculpt the refractive metric of space-time itself.",
+    cognitiveDiscipline: "Figure of Merit FOM >= 15.0, Loss Tangent <= 0.05, Superlens Resolution <= 0.10 lambda, Scattering Ratio <= 0.05, SRR Coupling >= 85%, Transformation Det >= 0.10",
+    craftsmanshipPledge: "I will never approve metamaterial designs with excessive plasmonic absorption loss, coordinate metric singularities, unsuppressed scattering cross-sections, or Abbe diffraction violations. We command the electromagnetic metric with mathematical certainty.",
+    checklists: [
+      { id: "negative_index_fom", nameUz: "Manfiy sinish ko'rsatkichi va FOM ko'rsatkichi (FOM >= 15.0)", nameEn: "Double-Negative Refractive Index and Optical Figure of Merit" },
+      { id: "dielectric_loss_tangent", nameUz: "Omik yo'qotish tangensi va Joule qizishi (tan_delta <= 0.05)", nameEn: "Ohmic Loss Tangent Suppression and Plasmonic Heating Bound" },
+      { id: "superlens_subdiffraction", nameUz: "Veselago superlinza sub-diffraksiya ruxsati (Delta_x <= 0.10 lambda)", nameEn: "Evanescent Wave Amplification and Superlens Sub-Diffraction Resolution" },
+      { id: "cloaking_scattering_reduction", nameUz: "Transformatsion optika ko'rinmaslik va sochilish (sigma <= 0.05)", nameEn: "Transformation Optics Cloaking and Scattering Cross-Section Attenuation" },
+      { id: "srr_magnetic_coupling", nameUz: "Split-ring rezonator magnit bog'lanishi (eta_srr >= 85.0%)", nameEn: "Split-Ring Resonator LC Resonance and Artificial Magnetic Permeability" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Transformatsion optika ko'rinmaslik qobig'i va metamaterial simulyatsiyasi",
+        titleEn: "Transformation Optics Cloaking Shell & DNG Core Executive",
+        prompt: "Architect an optical metamaterial and transformation optics cloaking simulation in Python with complex refractive index calculation, optical Figure of Merit validation, Pendry cylindrical cloak tensor evaluation, and superlens sub-diffraction resolution verification."
+      }
+    ]
   }
 };
 

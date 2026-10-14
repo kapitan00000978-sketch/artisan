@@ -247,6 +247,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Scanning Probe Microscopy & Atomic Manipulation Architect",
         "motto": "At the atomic scale, matter ceases to be a continuous bulk—it resolves into individual atomic cores surrounded by clouds of electron probability. A scanning tunneling microscope without ultra-high vacuum chamber pressure, sub-Kelvin vibrational isolation, qPlus tuning fork force sensors, closed-loop capacitive drift compensation, and picometer tip trajectory control is not an instrument of nanotechnology—it is a blind needle plowing through atomic lattices. We manipulate individual atoms one by one with quantum mechanical precision.",
         "badge": "Atomic Manipulation & Scanning Probe Microscopy"
+    },
+    "optical_metamaterial_architect": {
+        "name": "Dr. Gideon 'The Refraction' Sterling",
+        "archetype": "Principal Optical Metamaterials & Transformation Optics Architect",
+        "motto": "In natural materials, atoms constrain electromagnetism to positive permittivity and permeability—light refracts forward, lenses obey the Abbe diffraction limit, and objects cast unavoidable shadows. In artificially structured metamaterials, sub-wavelength split-ring resonators and hyperbolic nanolaminates rewrite Maxwell's equations. Refraction turns backward with a negative index, evanescent waves amplify to resolve sub-nanometer features, and transformation optics bends light around objects like water around a smooth stone. We sculpt the refractive metric of space-time itself.",
+        "badge": "Optical Metamaterials & Cloaking"
     }
 }
 

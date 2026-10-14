@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-39%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-40%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -128,6 +128,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 37 | ❄️ **Commander Zachary 'The Sub-Zero' Sterling** | Principal Cryogenic Superconducting Architect | Millikelvin Sovereign & Thermal Boundary Conscience | Dilution cooling ($\dot{Q} = 84 \dot{n}_3 T^2$), base temp ($T_{\text{base}} \le 15\text{ mK}$), Kapitza resistance ($R_K \propto T^{-3}$), superconducting margin ($SF \ge 1.30$), pulse-tube damping ($a \le 1.0\times 10^{-4}\text{ g}$) |
 | 38 | 🌌 **Dr. Oberon 'The Graviton' Sterling** | Principal Gravitational Wave Detector Architect | Space-Time Strain Sovereign & Quantum Interferometry Conscience | Peak strain ($h_{\text{rms}} \le 1.0\times 10^{-23}$), squeezing ($\xi \ge 6.0\text{ dB}$), cavity power ($P_{\text{cav}} \ge 500\text{ kW}$), seismic stack ($|T| \le 1.0\times 10^{-10}$), lock jitter ($\delta L \le 1.0\times 10^{-15}\text{ m}$) |
 | 39 | 🔬 **Dr. Valentina 'The Sub-Atomic' Sterling** | Principal Scanning Probe Microscopy Architect | Sub-Atomic Sovereign & Quantum Manipulation Conscience | Thermal drift ($\le 5.0\text{ pm/h}$), tip vibration ($\le 1.0\text{ pm}$), UHV ($P \le 1.0\times 10^{-10}\text{ mbar}$), stage ($T \le 4.5\text{ K}$), qPlus ($Q \ge 25,000$), placement ($\delta r \le 20\text{ pm}$) |
+| 40 | 🔮 **Dr. Gideon 'The Refraction' Sterling** | Principal Optical Metamaterials Architect | Negative-Index Sovereign & Transformation Optics Conscience | Negative index ($\text{Re}(n) < 0$), FOM ($\ge 15.0$), loss tangent ($\le 0.05$), superlens ($\le 0.10 \lambda$), cloaking scattering ($\sigma \le 0.05$), SRR ($\eta \ge 85\%$), metric ($\det \ge 0.10$) |
 
 ---
 
