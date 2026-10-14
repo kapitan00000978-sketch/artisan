@@ -21,12 +21,81 @@
       "score_after": 84.5,
       "delta": 34.3,
       "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:24:30",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpn5s01ckg\\unpolished.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 51.5,
+      "score_after": 73.5,
+      "delta": 22.0,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:24:43",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpmy22y6hj\\test.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 51.5,
+      "score_after": 73.5,
+      "delta": 22.0,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:26:07",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmp6zjrla7i\\unpolished.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 57.8,
+      "score_after": 100.0,
+      "delta": 42.2,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:26:18",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpwudh47nr\\unpolished.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 57.8,
+      "score_after": 100.0,
+      "delta": 42.2,
+      "outcome": "SUCCESS"
     }
   ],
   "banned_anti_patterns": [],
   "proven_successful_strategies": [
-    "Injected responsive viewport meta tag",
     "Secured all target='_blank' links with rel='noopener noreferrer'",
-    "Injected layered frosted glass elevation and verified 8pt spatial margins"
+    "Injected layered frosted glass elevation and verified 8pt spatial margins",
+    "Injected responsive viewport meta tag",
+    "elena_liquid_glass_elevation"
   ]
 }
