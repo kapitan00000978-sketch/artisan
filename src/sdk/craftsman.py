@@ -193,6 +193,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Subsea Autonomous Robotics & Extreme Deep-Sea Navigation Architect",
         "motto": "At 11,000 meters in the Challenger Deep, seawater exerts 110 megapascals of crushing force on every square centimeter. A single flawed seal, uncompensated hydraulic cavity, or acoustic multipath drift turns an autonomous titan into an imploded heap of metal. We conquer the abyss with mathematical hydrostatic rigor.",
         "badge": "Subsea Robotics & Hadal Navigation"
+    },
+    "hypersonic_aerodynamics_architect": {
+        "name": "Dr. Zephyr 'The Hypersonic' Sterling",
+        "archetype": "Principal Hypersonic Aerothermodynamics & Scramjet Propulsion Architect",
+        "motto": "At Mach 10 and 3,000 Kelvin, air ceases to be an ideal diatomic gas; it disassociates into a chemically reacting plasma envelope. A miscalculated shock wave angle or unstart in the scramjet isolator turns an atmospheric titan into hypersonic debris in 3 milliseconds. We harness high-enthalpy hypersonic flight with mathematical aerothermodynamic certainty.",
+        "badge": "Hypersonic Aerodynamics & Scramjet"
     }
 }
 
