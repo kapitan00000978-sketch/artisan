@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-36%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-37%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -125,6 +125,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 34 | 🪐 **Dr. Aurelius 'The Orbital' Sterling** | Principal Astrodynamics & Interplanetary Architect | Celestial Mechanics Sovereign & Trajectory Determinism Conscience | Vis-viva transfer energy ($SF_{\Delta v} \ge 1.15$), Tisserand invariant flyby ($|\Delta T_p| \le 0.05$), periapsis clearance ($h \ge 300\text{ km}$), CR3BP Jacobi constant stationkeeping, SRP drift compensation ($\le 1.0\times 10^{-6}\text{ m/s}^2$) |
 | 35 | 💡 **Dr. Corvus 'The Photonic' Vance** | Principal Neuromorphic Photonic Architect | Optical Matrix Sovereign & Photonic Coherence Conscience | Clements MZI decomposition ($\|U^\dagger U - I\|_F \le 1.0\times 10^{-4}$), thermo-optic calibration ($|\delta \phi| \le 0.01\text{ rad}$), WDM crosstalk ($\le -25.0\text{ dB}$), sub-ps MAC, shot noise ($OSNR \ge 30\text{ dB}$) |
 | 36 | 🧠 **Dr. Thalia 'The Synapse' Sterling** | Principal Neuromorphic Spiking Silicon Architect | Spike-Timing Sovereign & Asynchronous Neuromorphic Conscience | LIF refractory dynamics ($\tau_{\text{ref}} \ge 1.0\text{ ms}$), STDP depression dominance ($A_-/A_+ \ge 1.05$), weight clipping ($[0.0, 1.0]$), AER NoC ($P_{\text{drop}} \le 1.0\times 10^{-6}$), sub-pJ SynOp ($E \le 1.0\text{ pJ}$) |
+| 37 | ❄️ **Commander Zachary 'The Sub-Zero' Sterling** | Principal Cryogenic Superconducting Architect | Millikelvin Sovereign & Thermal Boundary Conscience | Dilution cooling ($\dot{Q} = 84 \dot{n}_3 T^2$), base temp ($T_{\text{base}} \le 15\text{ mK}$), Kapitza resistance ($R_K \propto T^{-3}$), superconducting margin ($SF \ge 1.30$), pulse-tube damping ($a \le 1.0\times 10^{-4}\text{ g}$) |
 
 ---
 

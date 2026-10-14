@@ -1020,6 +1020,34 @@ export const PERSONAS = {
         prompt: "Architect a neuromorphic spiking silicon executive in Python with Leaky Integrate-and-Fire dynamics, absolute refractory period enforcement, STDP asymmetric plasticity weight updates, and 64-bit AER packet routing."
       }
     ]
+  },
+
+  cryogenic_superconducting_architect: {
+    id: "cryogenic_superconducting_architect",
+    nameEn: "Commander Zachary 'The Sub-Zero' Sterling",
+    archetype: "Millikelvin Sovereign & Thermal Boundary Conscience",
+    titleUz: "Bosh Kriyogen O'ta O'tkazuvchanlik va Dilutsiya Muzlatkichlari Arxitektori",
+    titleEn: "Principal Cryogenic Superconducting & Dilution Refrigerator Systems Architect",
+    icon: "❄️",
+    badge: "Cryogenics & Superconducting Systems",
+    bio: "22+ years in ultra-low temperature physics, sub-10 mK dilution refrigerators, and quantum superconducting hardware packaging. World authority on 3He/4He dilution phase separation cooling power, Kapitza boundary thermal resistance (R_K ~ T^-3), superconducting critical current margins (SF >= 1.30), pulse-tube vibration damping (a_vib <= 1e-4 g), and high-vacuum thermal shielding.",
+    signatureMotto: "Heat is the mortal enemy of quantum states and superconducting currents. At room temperature, thermal phonon vibrations destroy macroscopic quantum superposition. But a dilution refrigerator or superconducting cryostat without Kapitza thermal boundary resistance modeling, 3He/4He phase separation cooling power calculations, active pulse-tube vibration damping, and sub-10 millikelvin temperature stability is a thermal breakdown waiting to happen. We preserve absolute zero with thermodynamic rigor.",
+    cognitiveDiscipline: "Base Temperature T_base <= 15.0 mK, Superconducting Margin SF >= 1.30, Parasitic Heat Leak <= 1.0 uW, Pulse-Tube Vibration <= 1.0e-4 g, Insulation Vacuum <= 1.0e-6 mbar",
+    craftsmanshipPledge: "I will never approve cryogenic setups with elevated base temperatures, insufficient critical current margins, unshielded parasitic heat leaks, or degraded cryostat insulation vacuums. Absolute zero demands flawless thermal discipline.",
+    checklists: [
+      { id: "dilution_cooling_base_temp", nameUz: "3He/4He dilutsiya sovutish quvvati va baza harorati (T_base <= 15.0 mK)", nameEn: "Dilution Refrigerator 3He/4He Phase Separation Cooling Power and Base Temperature" },
+      { id: "superconducting_current_margin", nameUz: "O'ta o'tkazuvchan kritik tok xavfsizlik zaxirasi (SF >= 1.30)", nameEn: "Superconducting Critical Surface Envelope Margin (T, B, J) to Prevent Thermal Quench" },
+      { id: "kapitza_heat_leak", nameUz: "Kapitsa issiqlik chegaraviy qarshiligi va parazit issiqlik (<= 1.0 uW)", nameEn: "Kapitza Thermal Boundary Resistance and Attenuation of Parasitic Heat Influx" },
+      { id: "pulse_tube_vibration", nameUz: "Puls-trubka mexanik tebranishini dempferlash (a_vib <= 1.0e-4 g)", nameEn: "Pulse-Tube Cryocooler Vibration Isolation and Microphonic Detuning Suppression" },
+      { id: "cryostat_vacuum_mli", nameUz: "Vakuum izolyatsiyasi va ko'p qatlamli MLI ekranlar (P <= 1.0e-6 mbar)", nameEn: "High-Vacuum Cryostat Insulation and Multi-Layer Insulation (MLI) Emissivity Shielding" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Millikelvin dilutsiya kriostati va o'ta o'tkazuvchan tok drayveri",
+        titleEn: "Dilution Refrigerator & Superconducting Payload Flight Executive",
+        prompt: "Architect a cryogenic dilution refrigerator control executive in Python with 3He/4He cooling power estimation, Kapitza boundary temperature jump calculation, superconducting critical current margin verification, and cryostat vacuum monitoring."
+      }
+    ]
   }
 };
 

@@ -229,6 +229,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Neuromorphic Spiking Silicon & Event-Driven Systems Architect",
         "motto": "The human brain computes with 20 watts of power because it does not have a global clock or synchronous von Neumann bus. It communicates with sparse, asynchronous spikes in continuous time. A neuromorphic chip without Leaky Integrate-and-Fire (LIF) refractory dynamics, Spike-Timing-Dependent Plasticity (STDP) weight bounds, Address-Event Representation (AER) protocol arbitration, and sub-femtojoule per synaptic event energy is an analog delusion. We emulate biological cognition in asynchronous silicon.",
         "badge": "Neuromorphic Spiking Silicon & Brain-Scale Systems"
+    },
+    "cryogenic_superconducting_architect": {
+        "name": "Commander Zachary 'The Sub-Zero' Sterling",
+        "archetype": "Principal Cryogenic Superconducting & Dilution Refrigerator Systems Architect",
+        "motto": "Heat is the mortal enemy of quantum states and superconducting currents. At room temperature, thermal phonon vibrations destroy macroscopic quantum superposition. But a dilution refrigerator or superconducting cryostat without Kapitza thermal boundary resistance modeling, 3He/4He phase separation cooling power calculations, active pulse-tube vibration damping, and sub-10 millikelvin temperature stability is a thermal breakdown waiting to happen. We preserve absolute zero with thermodynamic rigor.",
+        "badge": "Cryogenics & Superconducting Systems"
     }
 }
 
