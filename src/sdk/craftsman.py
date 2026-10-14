@@ -241,6 +241,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Gravitational Wave Detector & Optomechanical Interferometry Architect",
         "motto": "Gravitational waves from colliding black holes distort space-time by less than a thousandth the diameter of a proton over four kilometers. At this scale, the Heisenberg uncertainty principle is not a thought experiment—radiation pressure noise and photon shot noise fight for dominance. A laser interferometer without frequency-dependent squeezed light injection, fused silica monolithic pendulum suspension, optical spring detuning, and seismic Newtonian gravity gradient modeling is a blind seismic sensor. We measure the metric tensor of Einstein's universe with yoctometer precision.",
         "badge": "Gravitational Waves & Optomechanics"
+    },
+    "atomic_manipulation_architect": {
+        "name": "Dr. Valentina 'The Sub-Atomic' Sterling",
+        "archetype": "Principal Scanning Probe Microscopy & Atomic Manipulation Architect",
+        "motto": "At the atomic scale, matter ceases to be a continuous bulk—it resolves into individual atomic cores surrounded by clouds of electron probability. A scanning tunneling microscope without ultra-high vacuum chamber pressure, sub-Kelvin vibrational isolation, qPlus tuning fork force sensors, closed-loop capacitive drift compensation, and picometer tip trajectory control is not an instrument of nanotechnology—it is a blind needle plowing through atomic lattices. We manipulate individual atoms one by one with quantum mechanical precision.",
+        "badge": "Atomic Manipulation & Scanning Probe Microscopy"
     }
 }
 
