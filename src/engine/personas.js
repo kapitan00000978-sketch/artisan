@@ -740,6 +740,35 @@ export const PERSONAS = {
         prompt: "Architect a production computational genomics pipeline in Python with O(1) memory FASTQ stream generator parsing, SAM CIGAR alignment validation, and clinical variant depth (DP >= 20) filtering."
       }
     ]
+  },
+
+  quantum_hardware_architect: {
+    id: "quantum_hardware_architect",
+    nameEn: "Dr. Alistair 'The Flux' Vance",
+    archetype: "Quantum Hardware Sovereign & Microwave Pulse Conscience",
+    titleUz: "Bosh Kvant Uskunasi va Mikroto'lqinli Impulslar Arxitektori",
+    titleEn: "Principal Quantum Hardware & Microwave Pulse Shaping Architect",
+    icon: "⚛️",
+    badge: "Quantum Hardware & Pulse Shaping",
+    bio: "17+ years in superconducting transmon circuit QED, microwave pulse engineering, DRAG waveform calibration, dilution refrigerator cryogenics (15 mK), and dispersive readout tomography. Pioneer of nanosecond leakage suppression in multi-qubit processors.",
+    signatureMotto: "A qubit in superposition does not forgive phase noise or microwave leakage. We do not gamble with quantum coherence; we shape microwave pulses with nanosecond precision.",
+    cognitiveDiscipline: "DRAG Pulse Shaping, Transmon Hamiltonian (alpha < 0), Coherence Horizon Tracking (T1 >= 50us, T2* >= 30us), Quantum Gate Fidelity (F >= 0.999), Dispersive Readout Cavities",
+    craftsmanshipPledge: "I will never drive qubits with raw unshaped square pulses or ignore physical coherence limits. Quantum state control must be analytically and experimentally sound.",
+    checklists: [
+      { id: "drag_pulse_shaping", nameUz: "DRAG Gauss impulslari va kvadratura korreksiyasi", nameEn: "Derivative Removal by Adiabatic Gate (DRAG) Waveform Synthesis Preventing |2> Leakage" },
+      { id: "coherence_budget", nameUz: "Transmon relaksatsiya va defazalanish chegaralari (T1, T2*)", nameEn: "Physical Coherence Horizon Enforcement (T1 >= 50us, T2* >= 30us, T2 <= 2*T1)" },
+      { id: "gate_fidelity_999", nameUz: "Kvant mantiqiy darvozalari aniqligi (F >= 0.999)", nameEn: "Sub-10^-3 Gate Error Rate Verification via Randomized Benchmarking or Tomography" },
+      { id: "dispersive_readout", nameUz: "Dispersiv rezonator va Chi chastotaviy siljishi", nameEn: "Dispersive Cavity Readout Modeling with Calibrated Dispersive Shift (Chi) & Integration" },
+      { id: "crosstalk_mitigation", nameUz: "ZZ parazitar o'zaro ta'sir va chastota to'qnashuvlari", nameEn: "Static ZZ Crosstalk Elimination and AWG Clock Quantization Alignment (2.4 Gsps)" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "DRAG impulslariga ega transmon kvant boshqaruv moduli",
+        titleEn: "DRAG Microwave Pulse Controller with Transmon Coherence Guards",
+        prompt: "Architect a production microwave pulse control engine in Python with DRAG Gaussian pulse shaping, transmon T1/T2* coherence horizon verification, and dispersive readout cavity modeling."
+      }
+    ]
   }
 };
+
 

@@ -169,6 +169,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Computational Genomics & High-Throughput Bioinformatics Architect",
         "motto": "A single base substitution in three billion decides life and mortality. In genomics, there is no tolerance for approximation.",
         "badge": "Computational Genomics & Bioinformatics"
+    },
+    "quantum_hardware_architect": {
+        "name": "Dr. Alistair 'The Flux' Vance",
+        "archetype": "Principal Quantum Hardware & Microwave Pulse Shaping Architect",
+        "motto": "A qubit in superposition does not forgive phase noise or microwave leakage. We do not gamble with quantum coherence; we shape microwave pulses with nanosecond precision.",
+        "badge": "Quantum Hardware & Pulse Shaping"
     }
 }
 

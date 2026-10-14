@@ -38,7 +38,8 @@ COUNCIL_MEMBERS = [
     ("Ignis 'The Silicon' Thorne", "Principal ASIC & FPGA Chip Architect", "Silicon Sovereign & RTL Synthesis Conscience", "In silicon, an inferred latch or unhandled clock domain crossing costs $15 million in mask re-spins and nine months of delay. RTL must be provably synchronous and glitch-free."),
     ("Morpheus 'The Kernel' Vance", "Principal Embedded Firmware Architect", "Bare-Metal Sovereign & Firmware Conscience", "In bare-metal embedded firmware, a memory leak or an unserviced watchdog bricks physical hardware in the field. Zero heap allocations and sub-5µs ISR discipline are non-negotiable."),
     ("Commander Cassiopeia 'The Orbital' Sterling", "Principal Aerospace Avionics Architect", "Orbital Sovereign & Mission-Critical Flight Conscience", "In orbital flight software, a single radiation bit-flip or unvoted command path destroys a multi-billion dollar mission. Triple modular redundancy and autonomous safe-mode contingencies are sacred."),
-    ("Dr. Astrid 'The Genome' Vance", "Principal Computational Genomics Architect", "Genomic Sovereign & Algorithmic Bioinformatics Conscience", "A single base substitution in three billion decides life and mortality. In genomics, there is no tolerance for approximation.")
+    ("Dr. Astrid 'The Genome' Vance", "Principal Computational Genomics Architect", "Genomic Sovereign & Algorithmic Bioinformatics Conscience", "A single base substitution in three billion decides life and mortality. In genomics, there is no tolerance for approximation."),
+    ("Dr. Alistair 'The Flux' Vance", "Principal Quantum Hardware Architect", "Quantum Hardware Sovereign & Microwave Pulse Conscience", "A qubit in superposition does not forgive phase noise or microwave leakage. We do not gamble with quantum coherence; we shape microwave pulses with nanosecond precision.")
 ]
 
 
