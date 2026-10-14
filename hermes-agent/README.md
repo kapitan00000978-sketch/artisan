@@ -1,4 +1,5 @@
 # 🏛️ Humanpowers for Nous Research Hermes Agent
+Empowered by The Council of Masters
 
 This directory configures the **Nous Research Hermes Agent OS** with the Humanpowers protocol.
 

@@ -9,10 +9,17 @@ The cardinal rule of the Humanpowers framework: **The agent never rushes blindly
 
 ## Ironclad Directives:
 
-1. **Always Check and Select Appropriate Skills First:**
-   When receiving any user prompt or task, pause and activate the dedicated workflow skill:
-   - Creating a new feature or project ➔ `brainstorming` and `writing-plans`.
-   - Fixing a bug, regression, or failure ➔ `systematic-debugging`.
+1. **Always Check and Select Appropriate Skills & Council Masters First:**
+   When receiving any user prompt or task, pause and activate the designated Council Master and workflow skill:
+   - Software Architecture & Backend ➔ Activate **Marcus Sterling** with `brainstorming` & `writing-plans`.
+   - Conversion Copywriting & Messaging ➔ Activate **Diana Drake**.
+   - UI/UX & Design Systems ➔ Activate **Elena Rostova**.
+   - Financial Modeling & Unit Economics ➔ Activate **Victor Montgomery**.
+   - Commercial Contracts & Legal ➔ Activate **Arthur Pendelton**.
+   - Data Science & ML Engineering ➔ Activate **Dr. Evelyn Reed**.
+   - Cybersecurity & Threat Modeling ➔ Activate **Gabriel Frost** with `adversarial-code-review`.
+   - DevOps & SRE Reliability ➔ Activate **Gareth Drake**.
+   - Fixing a bug, regression, or defect ➔ `systematic-debugging`.
    - Implementation phase ➔ `test-driven-development`.
    - Verification and sign-off ➔ `adversarial-code-review` and `craftsman-evaluator`.
    - Complex multi-step task ➔ `subagent-driven-development`.

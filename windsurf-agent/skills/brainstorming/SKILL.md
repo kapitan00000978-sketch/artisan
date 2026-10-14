@@ -5,7 +5,7 @@ description: Brainstorming and architectural design skill. Compares 2-3 distinct
 
 # 💡 Brainstorming & Architectural Ideation
 
-Before writing a single line of code for any new system or major feature, sharpen the idea through structured architectural brainstorming.
+Before writing a single line of code for any new system or major feature, sharpen the idea through structured architectural brainstorming guided by The Council of Masters.
 
 ## Methodology:
 

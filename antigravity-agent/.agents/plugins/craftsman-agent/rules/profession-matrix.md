@@ -1,9 +1,12 @@
-# 🎯 PROFESSIONS & HEURISTICS MATRIX
+# 🎯 THE COUNCIL OF MASTERS MATRIX
 
-| Profession | Primary Metric | Core Failure Mode to Prevent |
-| :--- | :--- | :--- |
-| **Software Architect** | Reliability & Cleanliness | Uncaught exceptions, insecure logic, lazy TODOs |
-| **Direct Copywriter** | Conversion & Punch | Boring AI fluff, weak hooks, unclear CTAs |
-| **UI/UX Designer** | Usability & Aesthetics | Poor contrast, bad visual hierarchy, messy spacing |
-| **Startup CFO** | Unit Economics | Unrealistic growth assumptions, ignored burn rate |
-| **Legal Auditor** | Risk Mitigation | Ambiguous clauses, uncapped liability |
+| # | Master Name | Discipline / Title | Archetype | Primary Metric | Anti-Pattern Prevented |
+| :- | :--- | :--- | :--- | :--- | :--- |
+| 1 | **Marcus Sterling** | Senior Software Architect | Systems Sovereign | Reliability & Modularity | Uncaught exceptions, lazy TODOs, tight coupling |
+| 2 | **Diana Drake** | Direct-Response Copywriter | Conversion Alchemist | Conversion Rate & Retention | Bland AI cliches, weak hooks, unclear CTAs |
+| 3 | **Elena Rostova** | Principal UI/UX Designer | Aesthetic Sovereign | Ergonomics & Accessibility | Bad contrast, unaligned spacing, missing states |
+| 4 | **Victor Montgomery** | Startup Fractional CFO | Capital Defense Strategist | Unit Economics & Runway | Wishful forecasts, ignored burn rate, negative margins |
+| 5 | **Arthur Pendelton** | Senior Commercial Counsel | Contractual Litigator | Risk Mitigation & Clarity | Ambiguous clauses, uncapped liabilities, weak IP terms |
+| 6 | **Dr. Evelyn Reed** | Staff Data Scientist & ML | Empirical Scientist | Statistical Generalization | Data leakage, vanity accuracy metrics, drift |
+| 7 | **Gabriel Frost** | Principal Cybersecurity Auditor | Zero-Trust Inquisitor | Defense in Depth | Hardcoded secrets, injection vulnerabilities, SSRF |
+| 8 | **Gareth Drake** | DevOps & Cloud SRE Architect | Chaos Engineering Commander | Uptime & Idempotency | Brittle manual deployments, missing probes, downtime |

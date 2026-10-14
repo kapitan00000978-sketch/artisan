@@ -6,7 +6,7 @@ In the Humanpowers protocol, all outputs must satisfy objective quality standard
 
 | Score Range | Classification | Action Required |
 | :--- | :--- | :--- |
-| **95 - 100** | 🏆 **Certified Production-Grade** | Ready for user presentation. |
+| **95 - 100** | 🏆 **Certified Production-Grade** | Signed off by The Council of Masters; ready for delivery. |
 | **80 - 94** | ⚠️ **Acceptable but Sub-optimal** | Must trigger `flaw-remediator` background polish. |
 | **< 80** | ❌ **Rejected Draft** | Immediate regeneration and root-cause repair. |
 

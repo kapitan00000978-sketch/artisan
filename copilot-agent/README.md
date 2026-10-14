@@ -1,4 +1,5 @@
 # 🐙 Humanpowers for GitHub Copilot
+Empowered by The Council of Masters
 
 This directory configures **GitHub Copilot (CLI, Chat & Workspace)** with the Humanpowers protocol.
 

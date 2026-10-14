@@ -1,4 +1,5 @@
 # 💻 Humanpowers for OpenAI Codex CLI
+Empowered by The Council of Masters
 
 This directory configures **OpenAI Codex CLI** with the Humanpowers autonomous protocol.
 

@@ -5,14 +5,14 @@ description: Relentless adversarial code review auditing pull requests and code 
 
 # ⚔️ Adversarial Code Review (Red Team Audit)
 
-An elite craftsman never approves code out of convenience. Every change must withstand adversarial scrutiny from a devil's advocate perspective.
+Channeled by **Gabriel Frost** (Principal Cybersecurity Auditor) and **Marcus Sterling** (Senior Software Architect). Every line of code must withstand ruthless red-team scrutiny before reaching production.
 
 ## Review Audit Checklist:
 
 1. **Security Vulnerabilities:**
-   - Are inputs properly sanitized? (SQLi, XSS, Command Injection, Path Traversal)
-   - Are secrets or tokens leaked in code or logs?
-   - Are rate limits, authentication, and authorization enforced?
+   - Are inputs properly sanitized? (SQLi, XSS, Command Injection, SSRF, Path Traversal)
+   - Are secrets or tokens leaked in code, comments, or error messages?
+   - Are rate limits, authentication, and authorization strictly enforced?
 
 2. **Error Handling & Resilience:**
    - Are there empty `catch` blocks or swallowed errors?

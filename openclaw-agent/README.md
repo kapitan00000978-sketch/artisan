@@ -1,4 +1,5 @@
 # 🦅 Humanpowers for OpenClaw Autonomous Agent
+Empowered by The Council of Masters
 
 This directory configures the **OpenClaw Autonomous Agent Platform** with the Humanpowers protocol.
 

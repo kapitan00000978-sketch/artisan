@@ -1,4 +1,5 @@
 # 🌊 Humanpowers for Windsurf IDE (Cascade AI)
+Empowered by The Council of Masters
 
 This directory configures **Windsurf IDE (Cascade AI)** with the Humanpowers autonomous protocol.
 
@@ -7,4 +8,4 @@ This directory configures **Windsurf IDE (Cascade AI)** with the Humanpowers aut
 - `skills/` — Humanpowers skills suite.
 
 ## How to Use:
-Open this workspace in Windsurf or copy `.windsurfrules` to your project root. Cascade will immediately apply senior craftsmanship and autonomous flaw remediation.
+Open this workspace in Windsurf or copy `.windsurfrules` to your project root. Cascade will immediately channel The Council of Masters and execute autonomous flaw remediation.

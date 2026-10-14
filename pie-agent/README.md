@@ -1,4 +1,5 @@
 # 🥧 Humanpowers for Pi / Pie Coding Agent
+Empowered by The Council of Masters
 
 This directory configures the **Pi / Pie Coding Agent (Rust-based)** with the Humanpowers protocol.
 

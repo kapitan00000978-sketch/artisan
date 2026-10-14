@@ -32,8 +32,8 @@ export class CraftsmanshipEngine {
       stepNumber: 1,
       titleUz: "1-Bosqich: Boshlang'ich qoralama tayyorlanmoqda (Draft)",
       titleEn: "Stage 1: Generating Raw Initial Output (Draft)",
-      messageUz: `${persona.badge} vazifani qabul qildi va asosiy yechim skeletini tuzmoqda...`,
-      messageEn: `Worker generating primary solution skeleton...`,
+      messageUz: `${persona.nameEn || persona.badge} vazifani qabul qildi va asosiy yechim skeletini tuzmoqda...`,
+      messageEn: `${persona.nameEn || 'Master'} (${persona.archetype || persona.badge}) drafting initial solution architecture...`,
       progress: 25
     });
 
@@ -46,8 +46,8 @@ export class CraftsmanshipEngine {
       stepNumber: 2,
       titleUz: "2-Bosqich: Qattiq sifat va xavfsizlik nazorati (Inspection Audit)",
       titleEn: "Stage 2: Rigorous Quality & Work Ethic Audit",
-      messageUz: `Usta inspektor tekshiruv varaqasidagi (${persona.checklists.length} ta band) mezonlar bo'yicha tahlil qilmoqda...`,
-      messageEn: `Inspector auditing output against strict professional checklists...`,
+      messageUz: `${persona.nameEn || 'Usta inspektor'} (${persona.checklists.length} ta mezon bo'yicha) qat'iy tahlil qilmoqda...`,
+      messageEn: `${persona.nameEn || 'Inspector'} auditing draft against ${persona.checklists.length} strict domain benchmarks...`,
       progress: 55,
       rawDraft
     });
@@ -61,8 +61,8 @@ export class CraftsmanshipEngine {
       stepNumber: 3,
       titleUz: "3-Bosqich: Aniqlangan kamchiliklarni avtomatik tuzatish (Self-Correction)",
       titleEn: "Stage 3: Autonomous Self-Correction & Refinement",
-      messageUz: `${auditReport.flaws.length} ta jiddiy kamchilik aniqlandi. AI o'zi qayta ishlamoqda (foydalanuvchiga bildirmasdan)...`,
-      messageEn: `Found ${auditReport.flaws.length} critical flaws. Auto-fixing flaws according to inspection verdict...`,
+      messageUz: `${auditReport.flaws.length} ta jiddiy kamchilik aniqlandi. ${persona.nameEn || 'AI'} o'zi qayta ishlamoqda...`,
+      messageEn: `Caught ${auditReport.flaws.length} critical flaws. ${persona.nameEn || 'Master'} executing autonomous background remediation...`,
       progress: 80,
       auditReport
     });
@@ -76,8 +76,8 @@ export class CraftsmanshipEngine {
       stepNumber: 4,
       titleUz: "4-Bosqich: Yakuniy sertifikatlash va qabul qilish (Verified & Delivered)",
       titleEn: "Stage 4: Verification Passed & Pristine Artifact Delivered",
-      messageUz: `Barcha talablar bajarildi! Baho: ${auditReport.passingScore}/100. Natija tayyor.`,
-      messageEn: `All acceptance criteria satisfied! Score: ${auditReport.passingScore}/100. Zero micromanagement required.`,
+      messageUz: `Barcha talablar bajarildi! Baho: ${auditReport.passingScore}/100. ${persona.nameEn || 'Usta'} tasdiqladi.`,
+      messageEn: `All acceptance criteria satisfied! Score: ${auditReport.passingScore}/100. Signed off by ${persona.nameEn || 'Master'}. Zero micromanagement required.`,
       progress: 100
     });
 

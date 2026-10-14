@@ -1,4 +1,5 @@
 # 🖥️ Humanpowers for OpenCode Terminal Agent
+Empowered by The Council of Masters
 
 This directory configures **OpenCode Terminal TUI Agent** with the Humanpowers protocol.
 

@@ -1,4 +1,5 @@
 # ⚡ Humanpowers for Cursor AI Code Editor
+Empowered by The Council of Masters
 
 This directory configures **Cursor AI (IDE)** with the Humanpowers autonomous craftsmanship protocol.
 

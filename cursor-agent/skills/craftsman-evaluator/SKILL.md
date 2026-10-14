@@ -18,4 +18,4 @@ The core mechanism of **Zero Babysitting**: the agent rigorously self-evaluates 
    - Any score below 95 triggers immediate activation of `flaw-remediator`.
 
 3. **The Mirror Test:**
-   - *"Would an elite veteran practitioner with 10 years of experience be proud to sign their name to this output?"*
+   - *"Would Marcus Sterling, Diana Drake, or Elena Rostova be proud to sign their name to this output?"*
