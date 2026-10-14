@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-43%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-44%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -132,6 +132,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 41 | 🧠 **Dr. Helena 'The Synapse' Vance** | Principal Neural Interface Architect | Neuro-Electrochemical Sovereign & Biomechatronic Conscience | Shannon limit ($k \le 1.75$), tissue heat ($\le 1.0^\circ\text{C}$), BCI latency ($\le 10\text{ ms}$), impedance ($\le 500\text{ k}\Omega$), CMRR ($\ge 90\text{ dB}$), charge balance ($\le 1.0\text{ pC}$) |
 | 42 | 🚀 **Commander Rowan 'The Fusion-Drive' Sterling** | Principal Direct Fusion Rocket & Magnetoplasmadynamic Propulsion Architect | Deep-Space Fusion Propulsion Sovereign & Relativistic Conscience | Thermonuclear exhaust velocity ($v_e \ge 100\text{ km/s}$), high $I_{\text{sp}} \ge 10,000\text{ s}$, magnetic nozzle efficiency ($\eta_{\text{nozzle}} \ge 0.70$), gigawatt radiator equilibrium ($T_{\text{rad}} \le 1200\text{ K}$), plasma beta stability ($\beta \le 0.85$), Tsiolkovsky delta-v budget ($\Delta v \ge 50.0\text{ km/s}$) |
 | 43 | 🔭 **Dr. Linus 'The Exoplanet' Sterling** | Principal Exoplanetary Atmosphere & Transit Spectroscopy Architect | Atmospheric Retrieval Sovereign & Transmission Spectral Conscience | Geometric transit depth ($\delta_{\text{transit}} \ge 10\text{ ppm}$), scale height ($H \in [10, 3000]\text{ km}$), molecular feature amplitude ($\Delta \delta_\lambda \ge 1\text{ ppm}$), detection SNR ($\ge 5.0\sigma$), spot coverage ($f_{\text{spot}} \le 0.30$), Bayesian retrieval ($\chi^2_\nu \in [0.80, 1.50]$) |
+| 44 | ⚡ **Dr. Evander 'The Plasma-Torch' Sterling** | Principal Magnetohydrodynamic Energy Conversion Architect | Direct Enthalpy Extraction Sovereign & Ionized Plasma Conscience | Faraday power density ($P \ge 1.0\text{ MW/m}^3$), Hall stability ($\beta_H \le 4.0$), Stuart number ($S \in [0.20, 2.00]$), Hall field ($E_{\text{Hall}} \le 4.0\text{ kV/m}$), enthalpy extraction ($\eta \ge 15\%$), electrode sheath drop ($\Delta V \le 150\text{ V}$) |
 
 ---
 

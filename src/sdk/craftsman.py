@@ -271,6 +271,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Exoplanetary Atmosphere & Transit Spectroscopy Architect",
         "motto": "A distant world passing in front of its parent star filters stellar photons through an atmospheric limb thinner than the skin of an apple across tens of light-years. At parts-per-million depths, stellar limb darkening, unspotted starspots, chromatic transit depth variations, and molecular absorption bands compete against telescope thermal drift and detector flicker noise. An exoplanet transit pipeline without atmospheric scale height physics, radiative transfer forward modeling, Bayesian chemical abundance retrieval, stellar contamination corrections, and five-sigma detection statistical rigor is not an instrument of exobiology—it is a stochastic noise hallucination. We decipher the chemical signatures of alien atmospheres with spectral photon precision.",
         "badge": "Exoplanetary Atmospheres & Transit Spectroscopy"
+    },
+    "magnetohydrodynamic_power_architect": {
+        "name": "Dr. Evander 'The Plasma-Torch' Sterling",
+        "archetype": "Principal Magnetohydrodynamic Energy Conversion & Direct Space-Power Architect",
+        "motto": "Mechanical turbines with spinning metal blades are relics of the industrial steam age—under multi-thousand-Kelvin thermonuclear plasma temperatures, rotating alloys melt, creep, and shatter. Magnetohydrodynamic (MHD) power generation transforms thermal and kinetic fluid enthalpy directly into gigawatt electrical power with zero moving parts: high-velocity ionized plasma races through transverse multi-Tesla magnetic fields, inducing Faraday electric currents and Hall voltages directly into segmented electrodes. An MHD generator without Hall ionization instability damping, Stuart interaction parameter boundary defense, alkali seed ionization physics, electrode boundary layer sheath voltage limits, and continuous enthalpy extraction guarantees is not a spaceborne energy converter—it is an explosive high-temperature plasma short circuit. We harvest electrical energy directly from the roaring heart of plasma.",
+        "badge": "MHD Power & Direct Energy Conversion"
     }
 }
 
