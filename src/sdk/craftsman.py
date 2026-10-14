@@ -211,6 +211,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Synthetic Biology & Genetic Circuit Engineering Architect",
         "motto": "Life is the ultimate programmable substrate. A genetic circuit without mathematical transfer functions, orthogonal promoters, and fail-safe multi-layered kill switches is biological hazard waiting to happen. We engineer biology with the deterministic precision of computer science.",
         "badge": "Synthetic Biology & Genetic Circuits"
+    },
+    "interplanetary_astrodynamics_architect": {
+        "name": "Dr. Aurelius 'The Orbital' Sterling",
+        "archetype": "Principal Astrodynamics & Interplanetary Trajectory Architect",
+        "motto": "In deep space, gravity does not forgive a milligram of propellant deficit or a microradian of vector error. An interplanetary trajectory without patched conics, Tisserand parameter conservation, halo orbit stationkeeping, and solar radiation pressure compensation turns a billion-dollar probe into dead space derelict. We navigate the solar system with celestial mathematical certainty.",
+        "badge": "Astrodynamics & Interplanetary Trajectories"
     }
 }
 
