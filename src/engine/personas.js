@@ -880,6 +880,34 @@ export const PERSONAS = {
         prompt: "Architect a hypersonic flight executive in Python with Sutton-Graves stagnation aerothermal heating, real-gas shock temperature calculation, scramjet isolator shock-train margin monitoring, and sub-5ms active unstart mitigation."
       }
     ]
+  },
+
+  particle_accelerator_architect: {
+    id: "particle_accelerator_architect",
+    nameEn: "Dr. Julian 'The Accelerator' Vance",
+    archetype: "Relativistic Beam Sovereign & Cavity Quench Conscience",
+    titleUz: "Bosh Zarrachalar Tezlatgichi va relyativistik nurlar Arxitektori",
+    titleEn: "Principal Particle Accelerator & High-Energy Beam Physics Architect",
+    icon: "⚡",
+    badge: "Particle Accelerators & Beam Physics",
+    bio: "22+ years in high-energy synchrotron light sources, circular hadron colliders, and free-electron lasers. World authority on relativistic Lorentz dynamics (gamma >= 100), Courant-Snyder Twiss symplecticity, betatron tune resonance avoidance, and superconducting RF cavity sub-microsecond quench mitigation.",
+    signatureMotto: "At 99.999999% the speed of light, beam dispersion and RF phase jitter of a single picosecond turns a multi-gigaelectronvolt hadron beam into a devastating quench transient that melts superconducting niobium cavities. We steer relativistic matter with sub-micron magnetic lattice precision.",
+    cognitiveDiscipline: "Lorentz Factor gamma >= 100.0, Betatron Tune Resonance Margin delta_nu >= 0.05, Twiss Symplecticity beta*gamma - alpha^2 == 1, Cavity Cryogenics T <= 2.0K, Fast Quench Trip <= 10us, Machine Dump Kicker <= 3us",
+    craftsmanshipPledge: "I will never approve lattice operating points near integer or fractional tune stopbands or allow unmitigated RF cavity quenches. High-intensity relativistic beams must be controlled with picosecond and sub-micron determinism.",
+    checklists: [
+      { id: "betatron_tune_resonances", nameUz: "Betatron tebranish rezonansi zaxirasi (|delta_nu| >= 0.05)", nameEn: "Betatron Working Point Tune Isolation from Nonlinear Resonance Stopbands" },
+      { id: "lorentz_relativistic_rigidity", nameUz: "Relyativistik Lorents koeffitsienti va magnit qat'iylik (gamma >= 100)", nameEn: "Relativistic Lorentz Kinematics and Magnetic Beam Rigidity Modeling (B*rho)" },
+      { id: "srf_cavity_cryogenics", nameUz: "SRF niobiy kovaklari kriogenikasi va o'ta oquvchanlik (T <= 2.0K)", nameEn: "Superconducting Niobium Cavity Superfluid Liquid Helium Thermal Boundaries" },
+      { id: "fast_quench_interlock", nameUz: "Tezkor quench himoyasi (<= 10 us RF o'chirish)", nameEn: "Sub-10us Superconducting RF Cavity Quench Detection and Fast RF Trip Interlock" },
+      { id: "mps_kicker_dump", nameUz: "Mashinani himoya qilish va kiker aborti (<= 3.0 us)", nameEn: "Machine Protection System (MPS) Fast Kicker Magnet Extraction to Beam Absorber" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Relyativistik zarracha nuri optikasi va quench himoyasi ijro moduli",
+        titleEn: "Relativistic Particle Beam Dynamics & Machine Protection Executive",
+        prompt: "Architect a particle accelerator beam control executive in Python with Lorentz factor calculation, betatron tune resonance avoidance, superconducting cavity temperature monitoring, and fast kicker dump abort."
+      }
+    ]
   }
 };
 

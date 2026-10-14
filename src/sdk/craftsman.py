@@ -199,6 +199,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Hypersonic Aerothermodynamics & Scramjet Propulsion Architect",
         "motto": "At Mach 10 and 3,000 Kelvin, air ceases to be an ideal diatomic gas; it disassociates into a chemically reacting plasma envelope. A miscalculated shock wave angle or unstart in the scramjet isolator turns an atmospheric titan into hypersonic debris in 3 milliseconds. We harness high-enthalpy hypersonic flight with mathematical aerothermodynamic certainty.",
         "badge": "Hypersonic Aerodynamics & Scramjet"
+    },
+    "particle_accelerator_architect": {
+        "name": "Dr. Julian 'The Accelerator' Vance",
+        "archetype": "Principal Particle Accelerator & High-Energy Beam Physics Architect",
+        "motto": "At 99.999999% the speed of light, beam dispersion and RF phase jitter of a single picosecond turns a multi-gigaelectronvolt hadron beam into a devastating quench transient that melts superconducting niobium cavities. We steer relativistic matter with sub-micron magnetic lattice precision.",
+        "badge": "Particle Accelerators & Beam Physics"
     }
 }
 
