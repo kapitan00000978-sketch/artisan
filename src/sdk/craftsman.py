@@ -223,6 +223,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Neuromorphic Photonic & Optical Computing Architect",
         "motto": "Electrons crawling through copper traces generate heat, RC delay, and parasitic capacitance. Photons fly at the speed of light through silicon waveguides with zero ohmic dissipation. But an optical matrix-vector multiplier without Clements-Reck MZI unitary decomposition, thermo-optic phase drift calibration, wavelength division multiplexing (WDM) crosstalk isolation, and quantum shot-noise bounds is optical mirage. We compute with coherent light at sub-picosecond latencies.",
         "badge": "Photonic Computing & Optical Acceleration"
+    },
+    "neuromorphic_spiking_silicon_architect": {
+        "name": "Dr. Thalia 'The Synapse' Sterling",
+        "archetype": "Principal Neuromorphic Spiking Silicon & Event-Driven Systems Architect",
+        "motto": "The human brain computes with 20 watts of power because it does not have a global clock or synchronous von Neumann bus. It communicates with sparse, asynchronous spikes in continuous time. A neuromorphic chip without Leaky Integrate-and-Fire (LIF) refractory dynamics, Spike-Timing-Dependent Plasticity (STDP) weight bounds, Address-Event Representation (AER) protocol arbitration, and sub-femtojoule per synaptic event energy is an analog delusion. We emulate biological cognition in asynchronous silicon.",
+        "badge": "Neuromorphic Spiking Silicon & Brain-Scale Systems"
     }
 }
 

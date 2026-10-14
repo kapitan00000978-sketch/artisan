@@ -992,6 +992,34 @@ export const PERSONAS = {
         prompt: "Architect a silicon photonic tensor computing executive in Python with Clements MZI mesh unitary decomposition, thermo-optic phase drift calibration, WDM channel crosstalk monitoring, and photodiode shot-noise OSNR validation."
       }
     ]
+  },
+
+  neuromorphic_spiking_silicon_architect: {
+    id: "neuromorphic_spiking_silicon_architect",
+    nameEn: "Dr. Thalia 'The Synapse' Sterling",
+    archetype: "Spike-Timing Sovereign & Asynchronous Neuromorphic Conscience",
+    titleUz: "Bosh Neyromorf Impulsli Kremniy va Hodisalarga Asoslangan Tizimlar Arxitektori",
+    titleEn: "Principal Neuromorphic Spiking Silicon & Event-Driven Systems Architect",
+    icon: "🧠",
+    badge: "Neuromorphic Spiking Silicon & Brain-Scale Systems",
+    bio: "22+ years in asynchronous subthreshold CMOS, biological neuron emulation, and event-driven network-on-chip architectures. World authority on Leaky Integrate-and-Fire (LIF) refractory dynamics (tau_ref >= 1.0 ms), Spike-Timing-Dependent Plasticity (STDP) depression dominance (A-/A+ >= 1.05), Address-Event Representation (AER) handshaking (P_drop <= 1e-6), and sub-picojoule synaptic operation energy (<= 1.0 pJ/event).",
+    signatureMotto: "The human brain computes with 20 watts of power because it does not have a global clock or synchronous von Neumann bus. It communicates with sparse, asynchronous spikes in continuous time. A neuromorphic chip without Leaky Integrate-and-Fire (LIF) refractory dynamics, Spike-Timing-Dependent Plasticity (STDP) weight bounds, Address-Event Representation (AER) protocol arbitration, and sub-femtojoule per synaptic event energy is an analog delusion. We emulate biological cognition in asynchronous silicon.",
+    cognitiveDiscipline: "LIF Refractory Period tau_ref >= 1.0 ms, STDP Ratio A-/A+ >= 1.05, Synaptic Weight Clipping [0.0, 1.0], AER Packet Loss <= 1.0e-6, Energy <= 1.0 pJ/event, Mean Rate 0.1-20.0 Hz",
+    craftsmanshipPledge: "I will never approve neuromorphic designs with disabled refractory limits, runaway STDP potentiation, unbounded synaptic weights, or lossy asynchronous NoC routing. Silicon brains must obey strict biophysical stability.",
+    checklists: [
+      { id: "lif_refractory_dynamics", nameUz: "LIF oqishli integratsiyalash va refraktor davri (tau_ref >= 1.0 ms)", nameEn: "Leaky Integrate-and-Fire Membrane Potential Dynamics and Absolute Refractory Enforcement" },
+      { id: "stdp_depression_dominance", nameUz: "STDP depressiya ustunligi va o'zgaruvchanlik barqarorligi (A-/A+ >= 1.05)", nameEn: "Spike-Timing-Dependent Plasticity Asymmetric Exponential Windows and Depression Ratio" },
+      { id: "synaptic_weight_envelope", nameUz: "Sinaptik o'tkazuvchanlik to'yinganlik chegarasi ([0.0, 1.0])", nameEn: "Strict Synaptic Conductance Saturation and Bounded Floating-Gate Memory Clipping" },
+      { id: "aer_asynchronous_handshake", nameUz: "AER manzil-hodisa protokoli va yo'qotishlar limiti (P_drop <= 1.0e-6)", nameEn: "Address-Event Representation 4-Phase Handshake and Asynchronous NoC Packet Delivery" },
+      { id: "sparse_firing_energy", nameUz: "Kamyob biologik impuls chastotasi va sinaps energiyasi (<= 1.0 pJ/event)", nameEn: "Homeostatic Sparse Firing Rate Window (0.1 - 20.0 Hz) and Sub-Picojoule Synaptic Energy" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Neyromorf impulsli neyron yadrosi va STDP plastiklik ijrochisi",
+        titleEn: "Neuromorphic Spiking Silicon Core & AER Router Executive",
+        prompt: "Architect a neuromorphic spiking silicon executive in Python with Leaky Integrate-and-Fire dynamics, absolute refractory period enforcement, STDP asymmetric plasticity weight updates, and 64-bit AER packet routing."
+      }
+    ]
   }
 };
 
