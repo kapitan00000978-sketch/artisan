@@ -1,7 +1,7 @@
 {
   "name": "openclaw-craftsman",
   "version": "1.0.0",
-  "protocol": "craftsman-superpowers",
+  "protocol": "artisan-protocol",
   "directives": "OPENCLAW.md",
   "skills": "skills",
   "autonomous_eval": true

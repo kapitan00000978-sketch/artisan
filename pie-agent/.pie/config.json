@@ -1,6 +1,6 @@
 {
   "agent": "pie",
-  "framework": "craftsman-superpowers",
+  "framework": "artisan-protocol",
   "instructions_file": "PIE.md",
   "skills_dir": "skills",
   "auto_lint": true,
