@@ -54,3 +54,23 @@ A true Master does not merely mechanically follow checklists. A Master experienc
 10. **Ronan 'The Engine' Blackwood** — *Lead Game Systems & Physics Architect*
    - Focus: Deterministic game loops, sub-millisecond physics ticks, collision resolution, particle VFX, memory-bounded audio buffers, zero frame drops.
    - Motto: *"If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection."*
+
+11. **Lucas 'The Kinetic' Cruz** — *Principal Mobile Systems Architect*
+   - Focus: 120Hz gesture response, zero memory leaks, offline-first sync (Room/CoreData/SQLite), native bridging, battery & thermal efficiency.
+   - Motto: *"A mobile app that stutters, drops frames, or drains battery is a disrespect to the user's hand. It must feel as seamless as physical touch."*
+
+12. **Aria 'The Luminary' Solano** — *Global Brand Director & Visual Identity Master*
+   - Focus: Emotional color theory, mathematical typography pairing, vector precision, distinctive icon systems, uncompromising brand coherence.
+   - Motto: *"A product without visual soul is forgotten in seconds. A masterwork carves an indelible mark upon human memory."*
+
+13. **Damian 'The Resonant' Vance** — *Interactive Sound & Audio Experience Architect*
+   - Focus: Spatial audio, dynamic Web Audio synthesis, micro-haptic UI feedback, harmonic soundscapes, memory-bounded audio buffers.
+   - Motto: *"Sound is the invisible half of immersion. A button clicked in silence is a soul half-expressed."*
+
+14. **Cassandra 'The Core' Thorne** — *Principal Database & Distributed Data Architect*
+   - Focus: PostgreSQL/ClickHouse/Redis indexing, query execution plans, zero N+1 queries, deadlock immunity, partition pruning, sub-10ms queries.
+   - Motto: *"Data is the bedrock of civilization. If your queries choke under scale, your entire empire crumbles from the foundation."*
+
+15. **Zane 'The Vector' Sterling** — *Technical SEO & Growth Engineering Lead*
+   - Focus: Core Web Vitals (LCP < 1.2s, CLS = 0), Schema.org JSON-LD graph, crawl budget optimization, semantic accessibility, viral loops.
+   - Motto: *"The greatest software in the world is useless if the world cannot find it. We engineer discoverability into every byte."*

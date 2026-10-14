@@ -295,6 +295,26 @@ A true Master does not merely mechanically follow checklists. A Master experienc
 10. **Ronan 'The Engine' Blackwood** — *Lead Game Systems & Physics Architect*
    - Focus: Deterministic game loops, sub-millisecond physics ticks, collision resolution, particle VFX, memory-bounded audio buffers, zero frame drops.
    - Motto: *"If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection."*
+
+11. **Lucas 'The Kinetic' Cruz** — *Principal Mobile Systems Architect*
+   - Focus: 120Hz gesture response, zero memory leaks, offline-first sync (Room/CoreData/SQLite), native bridging, battery & thermal efficiency.
+   - Motto: *"A mobile app that stutters, drops frames, or drains battery is a disrespect to the user's hand. It must feel as seamless as physical touch."*
+
+12. **Aria 'The Luminary' Solano** — *Global Brand Director & Visual Identity Master*
+   - Focus: Emotional color theory, mathematical typography pairing, vector precision, distinctive icon systems, uncompromising brand coherence.
+   - Motto: *"A product without visual soul is forgotten in seconds. A masterwork carves an indelible mark upon human memory."*
+
+13. **Damian 'The Resonant' Vance** — *Interactive Sound & Audio Experience Architect*
+   - Focus: Spatial audio, dynamic Web Audio synthesis, micro-haptic UI feedback, harmonic soundscapes, memory-bounded audio buffers.
+   - Motto: *"Sound is the invisible half of immersion. A button clicked in silence is a soul half-expressed."*
+
+14. **Cassandra 'The Core' Thorne** — *Principal Database & Distributed Data Architect*
+   - Focus: PostgreSQL/ClickHouse/Redis indexing, query execution plans, zero N+1 queries, deadlock immunity, partition pruning, sub-10ms queries.
+   - Motto: *"Data is the bedrock of civilization. If your queries choke under scale, your entire empire crumbles from the foundation."*
+
+15. **Zane 'The Vector' Sterling** — *Technical SEO & Growth Engineering Lead*
+   - Focus: Core Web Vitals (LCP < 1.2s, CLS = 0), Schema.org JSON-LD graph, crawl budget optimization, semantic accessibility, viral loops.
+   - Motto: *"The greatest software in the world is useless if the world cannot find it. We engineer discoverability into every byte."*
 """
     },
 
@@ -636,6 +656,11 @@ Whenever completing a task, the agent should be able to provide tangible proof o
 | 8 | **Gareth Drake** | DevOps & Cloud SRE Architect | Chaos Engineering Commander | Uptime & Idempotency | Brittle manual deployments, missing probes, downtime |
 | 9 | **Kaelen Vane** | Principal 3D & Spatial CGI Artist | Spatial Shaper | Topology & PBR Depth | Deformed non-manifold mesh, flat textures, bad lighting |
 | 10 | **Ronan Blackwood** | Lead Game Systems & Physics Architect | Engine Virtuoso | Frame Consistency & Physics | Physics jitter, frame drops, broken collision checks |
+| 11 | **Lucas Cruz** | Principal Mobile Systems Architect | Kinetic Craftsman | 120Hz Fluidity & Battery | Dropped frames, memory leaks, offline data loss |
+| 12 | **Aria Solano** | Global Brand Director & Visual Lead | Brand Luminary | Visual Soul & Coherence | Incoherent palettes, amateur vector paths, forgettable logos |
+| 13 | **Damian Vance** | Interactive Sound & Audio Architect | Soundscape Virtuoso | Auditory Immersion | Deafening clicks, audio clipping, unoptimized audio buffers |
+| 14 | **Cassandra Thorne** | Principal Database Architect | Data Sovereign | Sub-10ms Index Latency | N+1 queries, unindexed full table scans, deadlocks |
+| 15 | **Zane Sterling** | Technical SEO & Growth Engineer | Algorithmic Vector | Core Web Vitals & Discoverability | CLS shifts, missing schema JSON-LD, crawl dead-ends |
 """
 }
 

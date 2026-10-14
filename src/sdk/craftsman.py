@@ -73,8 +73,39 @@ COUNCIL_MEMBERS = {
         "archetype": "Lead Game Systems & Physics Architect",
         "motto": "If the player feels even a single stutter or unnatural collision, the illusion breaks. Immersion requires mathematical perfection.",
         "badge": "Game Engine & Physics"
+    },
+    "mobile_systems_architect": {
+        "name": "Lucas 'The Kinetic' Cruz",
+        "archetype": "Principal Mobile Systems Architect",
+        "motto": "A mobile app that stutters, drops frames, or drains battery is a disrespect to the user's hand. It must feel as seamless as physical touch.",
+        "badge": "Mobile iOS/Android"
+    },
+    "brand_identity_director": {
+        "name": "Aria 'The Luminary' Solano",
+        "archetype": "Global Brand Director & Visual Lead",
+        "motto": "A product without visual soul is forgotten in seconds. A masterwork carves an indelible mark upon human memory.",
+        "badge": "Brand & Visual Soul"
+    },
+    "interactive_sound_architect": {
+        "name": "Damian 'The Resonant' Vance",
+        "archetype": "Interactive Sound & Audio Architect",
+        "motto": "Sound is the invisible half of immersion. A button clicked in silence is a soul half-expressed.",
+        "badge": "Sound Design & Audio"
+    },
+    "database_distributed_architect": {
+        "name": "Cassandra 'The Core' Thorne",
+        "archetype": "Principal Database & Distributed Data Architect",
+        "motto": "Data is the bedrock of civilization. If your queries choke under scale, your entire empire crumbles from the foundation.",
+        "badge": "Database & Storage"
+    },
+    "growth_seo_engineer": {
+        "name": "Zane 'The Vector' Sterling",
+        "archetype": "Technical SEO & Growth Engineering Lead",
+        "motto": "The greatest software in the world is useless if the world cannot find it. We engineer discoverability into every byte.",
+        "badge": "Technical SEO & Growth"
     }
 }
+
 
 
 class CraftsmanAgent:
