@@ -73,6 +73,21 @@ if [[ "$AGENT_TARGET" == "windsurf" || "$AGENT_TARGET" == "all" ]]; then
     curl -fsSL "${REPO_RAW}/.windsurfrules" -o "${TARGET_DIR}/.windsurfrules"
 fi
 
+if [[ "$AGENT_TARGET" == "cline" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing Cline & Roo Code Directives (.clinerules)..."
+    curl -fsSL "${REPO_RAW}/.clinerules" -o "${TARGET_DIR}/.clinerules"
+fi
+
+if [[ "$AGENT_TARGET" == "kimi" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing Kimi Code Directives (KIMI.md)..."
+    curl -fsSL "${REPO_RAW}/kimi-agent/KIMI.md" -o "${TARGET_DIR}/KIMI.md"
+fi
+
+if [[ "$AGENT_TARGET" == "kilo" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing Kilo Code Directives (KILO.md)..."
+    curl -fsSL "${REPO_RAW}/kilo-agent/KILO.md" -o "${TARGET_DIR}/KILO.md"
+fi
+
 echo ""
 echo "=================================================================="
 echo "  ✅ Artisan successfully installed!"

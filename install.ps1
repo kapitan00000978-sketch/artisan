@@ -48,6 +48,11 @@ Write-Host "[+] Installing GitHub Copilot & Windsurf Directives..." -ForegroundC
 Invoke-RestMethod -Uri "$RepoRaw/.github/copilot-instructions.md" -OutFile "$TargetDir\.github\copilot-instructions.md"
 Invoke-RestMethod -Uri "$RepoRaw/.windsurfrules" -OutFile "$TargetDir\.windsurfrules"
 
+Write-Host "[+] Installing Cline, Kimi & Kilo Directives..." -ForegroundColor Green
+Invoke-RestMethod -Uri "$RepoRaw/.clinerules" -OutFile "$TargetDir\.clinerules"
+Invoke-RestMethod -Uri "$RepoRaw/kimi-agent/KIMI.md" -OutFile "$TargetDir\KIMI.md"
+Invoke-RestMethod -Uri "$RepoRaw/kilo-agent/KILO.md" -OutFile "$TargetDir\KILO.md"
+
 Write-Host "`n==================================================================" -ForegroundColor Green
 Write-Host "  ✅ Artisan successfully installed!" -ForegroundColor Green
 Write-Host "     Quality and craftsmanship rules are now active." -ForegroundColor Green
