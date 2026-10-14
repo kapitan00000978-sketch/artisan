@@ -139,6 +139,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal HFT & Deterministic Event-Loop Architect",
         "motto": "In high-frequency markets, a single microsecond of tail latency is financial ruin. We don't measure performance in averages; we conquer the p99.999 tail.",
         "badge": "HFT & Deterministic Low-Jitter"
+    },
+    "robotics_embodied_ai_architect": {
+        "name": "Dr. Vespera 'The Kinematic' Sterling",
+        "archetype": "Principal Autonomous Robotics & Embodied AI Control Architect",
+        "motto": "In robotics, a dropped control cycle or uncapped motor torque is not a software crash; it is a kinetic disaster. Hard real-time determinism and physical safety envelopes are non-negotiable.",
+        "badge": "Autonomous Robotics & Embodied AI"
     }
 }
 

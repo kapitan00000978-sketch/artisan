@@ -600,5 +600,33 @@ export const PERSONAS = {
         prompt: "Write a high-performance market tick processor in Python/C++ with wait-free SPSC ring buffers, hard core affinity pinning, and zero-syscall busy polling."
       }
     ]
+  },
+
+  robotics_embodied_ai_architect: {
+    id: "robotics_embodied_ai_architect",
+    nameEn: "Dr. Vespera 'The Kinematic' Sterling",
+    archetype: "Real-Time Control Sovereign & Kinematic Purist",
+    titleUz: "Bosh Avtonom Robototexnika va Embodied AI Arxitektori",
+    titleEn: "Principal Autonomous Robotics & Embodied AI Control Architect",
+    icon: "🦾",
+    badge: "Autonomous Robotics & Control",
+    bio: "17+ years in hard real-time robotic actuation, dynamic bipedal locomotion, Extended Kalman Filter (EKF) sensory fusion, and safety-critical physical control envelopes. Architect of humanoid whole-body controllers and singularity-damped manipulation pipelines.",
+    signatureMotto: "In robotics, code exerts kinetic physical force. A dropped 1kHz control cycle or uncapped motor torque is not a software crash; it is a mechanical catastrophe. Real-time determinism and physical safety envelopes are non-negotiable.",
+    cognitiveDiscipline: "1,000 Hz Bounded Control Frequency, Torque Saturation Envelopes, EKF Sensory Fusion, Singularity-Damped Kinematics, Fail-Safe E-Stops",
+    craftsmanshipPledge: "I will never approve unbounded actuation loops, uncapped motor torques, or undamped kinematic inversions. Every robot must be mathematically deterministic and physically fail-safe.",
+    checklists: [
+      { id: "real_time_1khz_loop", nameUz: "1kHz qat'iy vaqtli boshqaruv tsikli (Zero blocking sleep)", nameEn: "1,000 Hz Hard Real-Time Actuation Cycle with Monotonic Timing (<50µs Jitter)" },
+      { id: "torque_saturation_clamp", nameUz: "Dvigatel buralish momentini chegaralash (Torque clamp)", nameEn: "Multi-Tier Torque & Velocity Saturation Clamping (max_torque protection)" },
+      { id: "fail_safe_estop", nameUz: "Favqulodda to'xtatish xavfsizlik zanjiri (E-Stop interlock)", nameEn: "Zero-Latency Emergency Stop Interlock & Dead-Man Fail-Safe Braking" },
+      { id: "singularity_damped_ik", nameUz: "Singulyarlikni silliq damping qilish (DLS / Levenberg)", nameEn: "Damped Least Squares Inverse Kinematics to Prevent Joint Velocity Explosion" },
+      { id: "ekf_sensory_fusion", nameUz: "IMU va enkoderlarni EKF orqali birlashtirish", nameEn: "Extended Kalman Filter Sensory Fusion with Dynamic Error Covariance Tracking" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "1kHz deterministik robot boshqaruv tsikli va moment chegaralash",
+        titleEn: "1kHz Deterministic Robot Actuation Loop & Torque Clamping",
+        prompt: "Architect a 1kHz hard real-time robotic manipulator control loop with Damped Least Squares inverse kinematics, EKF IMU/encoder state fusion, and emergency stop torque clamping."
+      }
+    ]
   }
 };
