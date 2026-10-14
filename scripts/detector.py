@@ -2,12 +2,15 @@
 """
 Artisan Quality & Security Detection Engine
 Shared rule-based detector for pre-commit gatekeeper, live watchdog, and MCP server.
+Supports full repository auditing, staged git diff scanning, and single-file inspections.
 """
 
 import os
 import sys
 import re
+import json
 import shutil
+import argparse
 import subprocess
 from typing import List, Dict, Any, Optional
 
@@ -18,7 +21,6 @@ if sys.platform == "win32":
 IGNORE_MARKER = "artisan-ignore"
 
 # Rule Definitions: (id, category, regex_pattern, message, score_deduction)
-# We compose patterns safely with inline ignore markers to prevent self-detection.
 RULES = [
     # 1. Stubs & Placeholders (artisan-ignore)
     (
@@ -50,12 +52,19 @@ RULES = [
         25
     ),
 
-    # 2. Dangerous Execution (artisan-ignore)
+    # 2. Dangerous Dynamic Execution & Injections (artisan-ignore)
     (
         "DANGEROUS_EVAL_EXEC",
         "DANGEROUS",
         r"\b(?:eval|exec)\s*\(",
         "Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing.",
+        30
+    ),
+    (
+        "DANGEROUS_SQL_INJECTION",
+        "DANGEROUS",
+        r"(?i)\bf[\"'].*(?:SELECT|INSERT|UPDATE|DELETE)\s+.*\{",
+        "Potential SQL injection via raw string interpolation. Use parameterized queries.",
         30
     ),
 
@@ -110,6 +119,13 @@ RULES = [
         35
     ),
     (
+        "SECRET_JWT",
+        "SECRET",
+        r"eyJ[a-zA-Z0-9_\-]{15,}\.eyJ[a-zA-Z0-9_\-]{15,}\.[a-zA-Z0-9_\-]{10,}",
+        "Hardcoded JSON Web Token (JWT) detected. Externalize tokens securely.",
+        35
+    ),
+    (
         "SECRET_ASSIGNMENT",
         "SECRET",
         r"""\b(?:password|passwd|pwd|secret|token|api_key|apikey|auth_token)\s*[:=]\s*["'][^"'\r\n]{4,}["']""",
@@ -143,7 +159,6 @@ def run_gitleaks(target_dir: str = ".") -> List[Dict[str, Any]]:
             timeout=15
         )
         if proc.returncode != 0 and proc.stdout:
-            import json
             leaks = json.loads(proc.stdout)
             findings = []
             for item in leaks:
@@ -170,18 +185,11 @@ def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
     findings: List[Dict[str, Any]] = []
     lines = code.splitlines()
 
-    # Pre-check for multi-line block catches like try { ... } catch (e) { \n }
-    # Normalize for empty catches spanning multiple lines
-    multi_line_empty_catch = re.search(r"catch\s*(?:\([^)]*\))?\s*\{\s*\}", code)
-    if multi_line_empty_catch and IGNORE_MARKER not in code:
-        pass # Will be captured per line or whole block below
-
     for line_idx, line in enumerate(lines, 1):
         if IGNORE_MARKER in line:
             continue
 
         for rule_id, category, compiled_pattern, message, deduction in COMPILED_RULES:
-            # Check if this rule matches
             if compiled_pattern.search(line):
                 findings.append({
                     "rule_id": rule_id,
@@ -223,7 +231,7 @@ def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
 
     if findings:
         status = "REJECTED"
-        verdict = f"Rejected: {len(findings)} quality/security defect(s) detected. Autonomously remediate all flaws."
+        verdict = f"Rejected: {len(findings)} defect(s) detected. Autonomously remediate all flaws."
         auditor = "Gabriel 'The Sentinel' Frost (Cybersecurity & Quality Auditor)"
     else:
         status = "CERTIFIED"
@@ -241,10 +249,38 @@ def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
     }
 
 
-def scan_project(base_dir: str = ".") -> Dict[str, Any]:
+def scan_file(filepath: str) -> Optional[Dict[str, Any]]:
+    """Scans an individual file on disk."""
+    if not os.path.exists(filepath):
+        return None
+    try:
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+            content = f.read()
+        return scan_code(content, filename=filepath)
+    except Exception:
+        return None
+
+
+def get_staged_git_files() -> List[str]:
+    """Returns a list of currently staged files in git."""
+    try:
+        proc = subprocess.run(
+            ["git", "diff", "--cached", "--name-only", "--diff-filter=ACM"],
+            stdout=subprocess.PIPE,
+            stderr=subprocess.PIPE,
+            text=True
+        )
+        if proc.returncode == 0:
+            return [f.strip() for f in proc.stdout.splitlines() if f.strip()]
+    except Exception:
+        pass
+    return []
+
+
+def scan_project(base_dir: str = ".", staged_only: bool = False) -> Dict[str, Any]:
     """
     Scans project source files for stubs, secrets, and dangerous execution.
-    Excludes node_modules, .git, .venv, test files, and detector definitions.
+    If staged_only is True, only checks files staged for git commit.
     """
     all_findings: List[Dict[str, Any]] = []
     scanned_count = 0
@@ -253,27 +289,38 @@ def scan_project(base_dir: str = ".") -> Dict[str, Any]:
     excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "server.py", "watchdog.py", "sync_artisan.py"}
     valid_extensions = (".js", ".ts", ".py", ".go", ".rs", ".java", ".cpp", ".cs")
 
-    for root, dirs, files in os.walk(base_dir):
-        # Exclude directories
-        dirs[:] = [d for d in dirs if d not in excluded_dirs and not d.startswith(".")]
-        for file in files:
-            if file.endswith(valid_extensions):
-                if file in excluded_files:
+    if staged_only:
+        staged_files = get_staged_git_files()
+        for filepath in staged_files:
+            normalized_path = filepath.replace("\\", "/")
+            path_parts = set(normalized_path.split("/"))
+            if path_parts & excluded_dirs:
+                continue
+            if filepath.endswith(valid_extensions):
+                filename = os.path.basename(filepath)
+                if filename in excluded_files:
                     continue
-                filepath = os.path.join(root, file)
                 scanned_count += 1
-                try:
-                    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-                        content = f.read()
-                    res = scan_code(content, filename=filepath)
-                    if res["findings"]:
+                res = scan_file(filepath)
+                if res and res["findings"]:
+                    all_findings.extend(res["findings"])
+    else:
+        for root, dirs, files in os.walk(base_dir):
+            dirs[:] = [d for d in dirs if d not in excluded_dirs and not d.startswith(".")]
+            for file in files:
+                if file.endswith(valid_extensions):
+                    if file in excluded_files:
+                        continue
+                    filepath = os.path.join(root, file)
+                    scanned_count += 1
+                    res = scan_file(filepath)
+                    if res and res["findings"]:
                         all_findings.extend(res["findings"])
-                except Exception:
-                    pass
 
     # Optional gitleaks pass
-    gitleaks_findings = run_gitleaks(base_dir)
-    all_findings.extend(gitleaks_findings)
+    if not staged_only:
+        gitleaks_findings = run_gitleaks(base_dir)
+        all_findings.extend(gitleaks_findings)
 
     total_deduction = sum(f["deduction"] for f in all_findings)
     score = max(0, 100 - total_deduction) if all_findings else 100
@@ -284,3 +331,45 @@ def scan_project(base_dir: str = ".") -> Dict[str, Any]:
         "findings": all_findings,
         "score": score
     }
+
+
+def main():
+    parser = argparse.ArgumentParser(description="Artisan Quality & Security Detection Engine")
+    parser.add_argument("--file", "-f", help="Scan a specific file")
+    parser.add_argument("--staged", "-s", action="store_true", help="Scan only git staged files")
+    parser.add_argument("--all", "-a", action="store_true", help="Scan entire project (default)")
+    parser.add_argument("--json", "-j", action="store_true", help="Output results in JSON format")
+
+    args = parser.parse_args()
+
+    if args.file:
+        res = scan_file(args.file)
+        if not res:
+            print(f"Error: File not found or unreadable: {args.file}", file=sys.stderr)
+            sys.exit(1)
+        if args.json:
+            print(json.dumps(res, indent=2))
+        else:
+            print(f"[{res['status']}] Score: {res['score']}/100 | File: {args.file}")
+            for flaw in res["flaws"]:
+                print(f"  • {flaw}")
+        sys.exit(0 if res["status"] == "CERTIFIED" else 1)
+
+    result = scan_project(".", staged_only=args.staged)
+
+    if args.json:
+        print(json.dumps(result, indent=2))
+    else:
+        scope = "staged files" if args.staged else "all files"
+        if result["passed"]:
+            print(f"✅ [ARTISAN VERIFIED]: Scanned {result['scanned_files']} {scope}. Gate Score: {result['score']}/100")
+        else:
+            print(f"❌ [ARTISAN REJECTED]: Defects detected across {scope}. Gate Score: {result['score']}/100")
+            for f in result["findings"][:10]:
+                print(f"  • {f['file']}:{f['line']} [{f['category']}] -> {f['message']}")
+
+    sys.exit(0 if result["passed"] else 1)
+
+
+if __name__ == "__main__":
+    main()

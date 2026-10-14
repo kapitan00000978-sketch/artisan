@@ -156,3 +156,32 @@ def calculate_tax(amount: float, rate: float) -> float:
     assert res["status"] == "CERTIFIED"
     assert res["score"] == 100
     assert len(res["flaws"]) == 0
+
+def test_dangerous_sql_injection():
+    code = 'query = f"SELECT * FROM users WHERE id = {user_id}"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("SQL injection" in f for f in res["flaws"])
+
+def test_secrets_jwt():
+    # Header.Payload.Signature
+    jwt_sample = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4ifQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c"
+    code = f'token = "{jwt_sample}"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("JWT" in f for f in res["flaws"])
+
+def test_scan_file_exists():
+    from detector import scan_file
+    res = scan_file("scripts/detector.py")
+    assert res is not None
+    assert "status" in res
+
+def test_git_hook_installer():
+    import importlib.util
+    hook_script = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "install_git_hook.py"))
+    spec = importlib.util.spec_from_file_location("install_git_hook", hook_script)
+    mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(mod)
+    assert mod.install_hook() is True
+

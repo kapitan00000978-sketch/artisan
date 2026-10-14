@@ -142,6 +142,28 @@ python cli/dashboard.py
 
 # 6. Start the Model Context Protocol (MCP) Server:
 python mcp/server.py
+
+# 7. Install Automatic Git Pre-Commit Hook:
+python scripts/install_git_hook.py
+```
+
+### 💻 Artisan CLI (`npx artisan`):
+
+```bash
+# Install protocol rules into current repository
+npx github:kapitan00000978-sketch/artisan init
+
+# Automatically install Git pre-commit quality gate hook
+npx github:kapitan00000978-sketch/artisan hook
+
+# Verify configuration and environment health
+npx github:kapitan00000978-sketch/artisan doctor
+
+# Run fast audit on staged changes
+npx github:kapitan00000978-sketch/artisan audit --staged
+
+# Launch the Model Context Protocol (MCP) server
+npx github:kapitan00000978-sketch/artisan mcp
 ```
 
 ---

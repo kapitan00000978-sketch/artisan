@@ -2,6 +2,7 @@
 """
 Artisan Pre-Commit Gatekeeper
 Audits repository files for secrets, lazy stubs, and empty error catches using the shared detector.
+Supports both full repository audit and fast staged git diff checks.
 """
 
 import os
@@ -16,9 +17,10 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 
-def scan_files():
-    print("🛡️ [Artisan Gatekeeper] Running pre-commit quality and security audit...")
-    result = scan_project(".")
+def scan_files(staged_only: bool = False):
+    scope = "staged changes" if staged_only else "workspace"
+    print(f"🛡️ [Artisan Gatekeeper] Running pre-commit quality and security audit ({scope})...")
+    result = scan_project(".", staged_only=staged_only)
     
     findings = result["findings"]
     if findings:
@@ -34,6 +36,7 @@ def scan_files():
 
 
 if __name__ == "__main__":
-    passed = scan_files()
+    staged = "--staged" in sys.argv or "-s" in sys.argv
+    passed = scan_files(staged_only=staged)
     if not passed:
         sys.exit(1)

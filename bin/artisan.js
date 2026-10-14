@@ -2,7 +2,7 @@
 
 /**
  * ARTISAN — AUTONOMOUS AI AGENT CRAFTSMANSHIP & QUALITY PROTOCOL
- * Zero Babysitting. Pre-Commit Quality & Security Verification.
+ * Pre-Commit Quality & Security Verification.
  */
 
 const fs = require('fs');
@@ -83,15 +83,51 @@ if (command === 'init' || command === 'install') {
   console.log(`     Autonomous Quality & Pre-Commit Craftsmanship Rules installed.`);
   console.log(`==================================================================\n`);
 } else if (command === 'audit' || command === 'gate') {
-  console.log(`🔍 [ARTISAN AUDIT] Running Pre-Commit Quality & Security Scan...`);
+  console.log(`🔍 [ARTISAN AUDIT] Running Quality & Security Scan...`);
   const scriptPath = path.join(packageRoot, 'scripts', 'pre-commit-gatekeeper.py');
   if (fs.existsSync(scriptPath)) {
-    const res = spawnSync('python', [scriptPath], { stdio: 'inherit' });
+    const extraArgs = args.slice(1);
+    const res = spawnSync('python', [scriptPath, ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
   } else {
     console.error(`[-] Gatekeeper script not found at ${scriptPath}`);
     process.exit(1);
   }
+} else if (command === 'hook') {
+  console.log(`🪝 [ARTISAN HOOK] Installing Git pre-commit quality gate...`);
+  const hookScript = path.join(packageRoot, 'scripts', 'install_git_hook.py');
+  if (fs.existsSync(hookScript)) {
+    const res = spawnSync('python', [hookScript], { stdio: 'inherit' });
+    process.exit(res.status || 0);
+  } else {
+    console.error(`[-] Hook installer not found at ${hookScript}`);
+    process.exit(1);
+  }
+} else if (command === 'mcp') {
+  console.log(`🔌 [ARTISAN MCP] Starting Model Context Protocol Server...`);
+  const mcpScript = path.join(packageRoot, 'mcp', 'server.py');
+  if (fs.existsSync(mcpScript)) {
+    spawnSync('python', [mcpScript], { stdio: 'inherit' });
+  } else {
+    console.error(`[-] MCP server not found at ${mcpScript}`);
+    process.exit(1);
+  }
+} else if (command === 'doctor') {
+  console.log(`🩺 [ARTISAN DOCTOR] Inspecting system and project health...\n`);
+  const checks = [
+    { name: 'Core Protocol (AGENTS.md)', pass: fs.existsSync(path.join(targetDir, 'AGENTS.md')) },
+    { name: 'Memory Ledger (.artisan/memory.json)', pass: fs.existsSync(path.join(targetDir, '.artisan', 'memory.json')) },
+    { name: 'Cursor Rules (.cursorrules)', pass: fs.existsSync(path.join(targetDir, '.cursorrules')) },
+    { name: 'Claude Code (CLAUDE.md)', pass: fs.existsSync(path.join(targetDir, 'CLAUDE.md')) },
+    { name: 'Copilot Instructions (.github/copilot-instructions.md)', pass: fs.existsSync(path.join(targetDir, '.github', 'copilot-instructions.md')) },
+    { name: 'Git Pre-Commit Hook (.git/hooks/pre-commit)', pass: fs.existsSync(path.join(targetDir, '.git', 'hooks', 'pre-commit')) }
+  ];
+
+  for (const c of checks) {
+    console.log(`  ${c.pass ? '✅' : '⚠️'}  ${c.name}: ${c.pass ? 'CONFIGURED' : 'NOT FOUND'}`);
+  }
+  console.log(`\nTo install missing rules, run: npx artisan init`);
+  console.log(`To install git pre-commit hook, run: npx artisan hook\n`);
 } else if (command === 'watch' || command === 'daemon') {
   console.log(`👁️ [ARTISAN WATCHDOG] Starting autonomous file sentinel...`);
   const scriptPath = path.join(packageRoot, 'scripts', 'watchdog.py');
@@ -102,14 +138,17 @@ if (command === 'init' || command === 'install') {
     process.exit(1);
   }
 } else if (command === 'status') {
-  console.log(`🛡️ Artisan Protocol     : ACTIVE (v1.0.0)`);
+  console.log(`🛡️ Artisan Protocol     : ACTIVE (v1.0.1)`);
   console.log(`Autonomous Mode        : Enforced (Zero Commands Required)`);
   console.log(`Quality Gatekeeper     : Pre-commit Inspection Active`);
   console.log(`Supported Ecosystems    : 11 Platforms Ready\n`);
 } else {
   console.log(`Usage:`);
   console.log(`  artisan init       # Install Artisan rules into current repository`);
-  console.log(`  artisan status     # Check Artisan protocol status`);
+  console.log(`  artisan hook       # Install Git pre-commit quality gate hook`);
+  console.log(`  artisan audit      # Run quality & security audit (--staged for diff)`);
+  console.log(`  artisan doctor     # Check configuration and environment health`);
+  console.log(`  artisan mcp        # Launch MCP JSON-RPC Server`);
   console.log(`  artisan watch      # Run continuous background watchdog sentinel`);
-  console.log(`  artisan audit      # Run quality & security audit`);
+  console.log(`  artisan status     # Check Artisan protocol status`);
 }

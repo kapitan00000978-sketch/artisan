@@ -1,0 +1,10 @@
+# See https://pre-commit.com for more information
+repos:
+  - repo: local
+    hooks:
+      - id: artisan-gatekeeper
+        name: Artisan Pre-Commit Gatekeeper
+        entry: python scripts/pre-commit-gatekeeper.py --staged
+        language: system
+        types: [text]
+        pass_filenames: false
