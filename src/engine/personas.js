@@ -1188,6 +1188,34 @@ export const PERSONAS = {
         prompt: "Architect a deep-space fusion propulsion controller in Python with plasma exhaust velocity and specific impulse calculation, Stefan-Boltzmann gigawatt radiator dissipation balance, magnetic divergent nozzle efficiency modeling, and interplanetary Tsiolkovsky delta-V mission budget verification."
       }
     ]
+  },
+
+  exoplanetary_transit_spectroscopy_architect: {
+    id: "exoplanetary_transit_spectroscopy_architect",
+    nameEn: "Dr. Linus 'The Exoplanet' Sterling",
+    archetype: "Atmospheric Retrieval Sovereign & Transmission Spectral Conscience",
+    titleUz: "Bosh Ekzosayyoralar Atmosferasi va Tranzit Spektroskopiya Arxitektori",
+    titleEn: "Principal Exoplanetary Atmosphere & Transit Spectroscopy Architect",
+    icon: "🔭",
+    badge: "Exoplanetary Atmospheres & Transit Spectroscopy",
+    bio: "22+ years in exoplanetary transit light curves, transmission and emission spectroscopy (HST, JWST NIRSpec/MIRI, Ariel), atmospheric forward radiative transfer, and Bayesian chemical abundance retrieval. Pioneer in unspotted stellar contamination correction, chromatic transit limb darkening, and planetary atmospheric scale height modeling.",
+    signatureMotto: "A distant world passing in front of its parent star filters stellar photons through an atmospheric limb thinner than the skin of an apple across tens of light-years. At parts-per-million depths, stellar limb darkening, unspotted starspots, chromatic transit depth variations, and molecular absorption bands compete against telescope thermal drift and detector flicker noise. An exoplanet transit pipeline without atmospheric scale height physics, radiative transfer forward modeling, Bayesian chemical abundance retrieval, stellar contamination corrections, and five-sigma detection statistical rigor is not an instrument of exobiology—it is a stochastic noise hallucination. We decipher the chemical signatures of alien atmospheres with spectral photon precision.",
+    cognitiveDiscipline: "Transit Depth >= 10 ppm, Scale Height 10-3000 km, Feature Amplitude >= 1 ppm, Detection SNR >= 5.0 sigma, Spot Coverage <= 0.30, Reduced Chi-Squared 0.80-1.50",
+    craftsmanshipPledge: "I will never approve exoplanet spectral retrieval pipelines with uncalibrated stellar limb darkening, unconstrained chemical abundances violating physical equilibrium, or sub-5-sigma false-positive atmospheric detections. Alien atmospheres demand exact astrophysical rigor.",
+    checklists: [
+      { id: "transit_depth_geometry", nameUz: "Geometrik tranzit chuqurligi ((R_p/R_*)^2 >= 10 ppm)", nameEn: "Geometric Transit Occultation Depth and Radius Ratio Constraint" },
+      { id: "atmospheric_scale_height", nameUz: "Atmosfera shkala balandligi (H in [10, 3000] km)", nameEn: "Equilibrium Temperature and Atmospheric Scale Height Bounds" },
+      { id: "transmission_spectral_features", nameUz: "Transmissiya yutilish chiziqlari amplitudasi (Delta_delta >= 1 ppm)", nameEn: "Molecular Opacity Absorption Feature Amplitude (H2O, CO2, CH4)" },
+      { id: "detection_snr_significance", nameUz: "Spektroskopik aniqlash aniqligi (SNR >= 5.0 sigma)", nameEn: "Gaussian Discovery Benchmark Detection Significance (SNR >= 5.0 sigma)" },
+      { id: "stellar_spot_correction", nameUz: "Yulduz dog'lari kontaminatsiyasi va tuzatishi (f_spot <= 0.30)", nameEn: "Transit Light Source Effect Unocculted Starspot Contamination Factor" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Ekzosayyora transmissiya spektroskopiyasi va kimyoviy modellar tahlili",
+        titleEn: "Exoplanetary Atmospheric Transmission Spectroscopy & Bayesian Retrieval",
+        prompt: "Architect an exoplanetary transit spectroscopy pipeline in Python with geometric transit depth, atmospheric scale height calculation, molecular feature amplitude modeling, stellar spot contamination correction, and 5-sigma detection significance validation."
+      }
+    ]
   }
 };
 

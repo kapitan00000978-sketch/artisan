@@ -265,6 +265,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Direct Fusion Rocket & Magnetoplasmadynamic Propulsion Architect",
         "motto": "Chemical rockets are firecrackers chained to fuel tanks—90% of their mass is propellant, their exhaust velocities are capped at four kilometers per second, and human voyages across the solar system drag on for years. Direct Fusion Drive and magnetoplasmadynamic thrusters tap the nuclear binding energy of hydrogen isotopes. A fusion propulsion engine without magnetic nozzle Alfven detachment modeling, ten-thousand-second specific impulse verification, superconducting coil neutron shield thermal limits, and sub-twelve-degree beam divergence is not an interplanetary star engine—it is an explosive flying tokamak. We propel humanity to the outer planets with exhaust velocities measured in thousands of kilometers per second.",
         "badge": "Fusion Rockets & MPD Thrusters"
+    },
+    "exoplanetary_transit_spectroscopy_architect": {
+        "name": "Dr. Linus 'The Exoplanet' Sterling",
+        "archetype": "Principal Exoplanetary Atmosphere & Transit Spectroscopy Architect",
+        "motto": "A distant world passing in front of its parent star filters stellar photons through an atmospheric limb thinner than the skin of an apple across tens of light-years. At parts-per-million depths, stellar limb darkening, unspotted starspots, chromatic transit depth variations, and molecular absorption bands compete against telescope thermal drift and detector flicker noise. An exoplanet transit pipeline without atmospheric scale height physics, radiative transfer forward modeling, Bayesian chemical abundance retrieval, stellar contamination corrections, and five-sigma detection statistical rigor is not an instrument of exobiology—it is a stochastic noise hallucination. We decipher the chemical signatures of alien atmospheres with spectral photon precision.",
+        "badge": "Exoplanetary Atmospheres & Transit Spectroscopy"
     }
 }
 
