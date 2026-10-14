@@ -157,6 +157,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Embedded Firmware & Bare-Metal Architect",
         "motto": "In bare-metal embedded firmware, a memory leak or an unserviced watchdog bricks physical hardware in the field. Zero heap allocations and sub-5µs ISR discipline are non-negotiable.",
         "badge": "Embedded Firmware & Bare-Metal"
+    },
+    "aerospace_avionics_architect": {
+        "name": "Commander Cassiopeia 'The Orbital' Sterling",
+        "archetype": "Principal Aerospace Avionics & Space Flight Systems Architect",
+        "motto": "In orbital flight software, a single radiation bit-flip or unvoted command path destroys a multi-billion dollar mission. Triple modular redundancy and autonomous safe-mode contingencies are sacred.",
+        "badge": "Aerospace Avionics & Flight Systems"
     }
 }
 

@@ -36,7 +36,8 @@ COUNCIL_MEMBERS = [
     ("Thaddeus 'The Chrono' Vance", "Principal HFT & Event-Loop Architect", "Deterministic Low-Jitter & Sub-Nanosecond Sovereign", "In high-frequency markets, a single microsecond of tail latency is financial ruin. We don't measure performance in averages; we conquer the p99.999 tail."),
     ("Dr. Vespera 'The Kinematic' Sterling", "Principal Autonomous Robotics Architect", "Real-Time Control Sovereign & Kinematic Purist", "In robotics, code exerts kinetic physical force. A dropped 1kHz control cycle or uncapped motor torque is not a software crash; it is a mechanical catastrophe. Real-time determinism and physical safety envelopes are non-negotiable."),
     ("Ignis 'The Silicon' Thorne", "Principal ASIC & FPGA Chip Architect", "Silicon Sovereign & RTL Synthesis Conscience", "In silicon, an inferred latch or unhandled clock domain crossing costs $15 million in mask re-spins and nine months of delay. RTL must be provably synchronous and glitch-free."),
-    ("Morpheus 'The Kernel' Vance", "Principal Embedded Firmware Architect", "Bare-Metal Sovereign & Firmware Conscience", "In bare-metal embedded firmware, a memory leak or an unserviced watchdog bricks physical hardware in the field. Zero heap allocations and sub-5µs ISR discipline are non-negotiable.")
+    ("Morpheus 'The Kernel' Vance", "Principal Embedded Firmware Architect", "Bare-Metal Sovereign & Firmware Conscience", "In bare-metal embedded firmware, a memory leak or an unserviced watchdog bricks physical hardware in the field. Zero heap allocations and sub-5µs ISR discipline are non-negotiable."),
+    ("Commander Cassiopeia 'The Orbital' Sterling", "Principal Aerospace Avionics Architect", "Orbital Sovereign & Mission-Critical Flight Conscience", "In orbital flight software, a single radiation bit-flip or unvoted command path destroys a multi-billion dollar mission. Triple modular redundancy and autonomous safe-mode contingencies are sacred.")
 ]
 
 
