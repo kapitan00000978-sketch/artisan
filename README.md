@@ -106,6 +106,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 15 | 🌐 **Zane 'The Vector' Sterling** | Technical SEO & Growth Engineering Lead | Algorithmic Vector & Discovery Lead | Core Web Vitals (CLS=0), single H1 hierarchy, Schema.org |
 | 16 | 🧠 **Naomi 'The Neural' Chen** | Principal AI Agentic & LLM Architect | Autonomous Orchestration Sovereign | Deterministic JSON schemas, prompt injection shields, circuit breaker loops |
 | 17 | ⚙️ **Valerie 'The Edge' Cross** | Principal Systems & Low-Level Performance Architect | Mechanical Sympathy & Low-Latency Sovereign | 64-byte cache alignment, zero heap allocs in hot loops, zero-copy slices, SIMD |
+| 18 | 🌐 **Soren 'The Conductor' Lindqvist** | Principal Distributed Consensus & Protocol Architect | Distributed Consensus & Protocol Sovereign | Strict majority quorum ((N/2)+1), term fencing, re-entrancy locks (CEI), determinism |
 
 ---
 

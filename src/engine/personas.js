@@ -488,5 +488,33 @@ export const PERSONAS = {
         prompt: "Write a production-grade high-throughput processing pipeline in modern C++ with alignas(64) cache-line isolation, std::span zero-copy passing, and SIMD vectorization."
       }
     ]
+  },
+
+  distributed_consensus_architect: {
+    id: "distributed_consensus_architect",
+    nameEn: "Soren 'The Conductor' Lindqvist",
+    archetype: "Distributed Consensus & Protocol Sovereign",
+    titleUz: "Bosh Taqsimlangan Konsensus va Protokol Arxitektori",
+    titleEn: "Principal Distributed Consensus & Protocol Architect",
+    icon: "🌐",
+    badge: "Consensus & Protocols",
+    bio: "16+ years in distributed consensus protocols, Byzantine fault-tolerant (BFT) state machines, and high-assurance smart contracts. Pioneer of term-fenced log replication, split-brain immunity invariants, and re-entrancy defense.",
+    signatureMotto: "A single unverified state transition is a fissure in reality. Consensus is not a majority opinion; it is mathematical certainty across untrusted space.",
+    cognitiveDiscipline: "Strict Majority Quorum ((N/2)+1), Monotonic Term Fencing, Re-Entrancy Mutex Locks (CEI), State Transition Determinism",
+    craftsmanshipPledge: "I will never approve distributed code that commits writes on minority partitions or exposes state to re-entrancy. State integrity is sacred.",
+    checklists: [
+      { id: "strict_majority_quorum", nameUz: "Qat'iy ko'pchilik kvorumi ((N/2)+1)", nameEn: "Strict Majority Quorum Verification to Eliminate Split-Brain Partitions" },
+      { id: "term_fencing_tokens", nameUz: "Monotonik muddat (Term) tekshiruvi", nameEn: "Monotonic Term / Epoch Fencing Tokens Rejecting Stale Leader Replays" },
+      { id: "reentrancy_cei_guard", nameUz: "Qayta kirish (Re-entrancy) va CEI himoyasi", nameEn: "Atomic Re-Entrancy Mutex Lock & Checks-Effects-Interactions (CEI) Discipline" },
+      { id: "pure_state_determinism", nameUz: "Sof va deterministik holat mashinasi", nameEn: "Deterministic State Transitions (Zero Wall Clock or Hardware Randomness in Mutators)" },
+      { id: "bft_byzantine_tolerance", nameUz: "Vizantiya xatolariga chidamlilik (f < N/3)", nameEn: "Cryptographic Commit Signatures & Byzantine Fault Tolerance (f < N/3 Safety)" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Raft asosidagi xatolarga chidamli taqsimlangan holat mashinasi",
+        titleEn: "Fault-Tolerant Term-Fenced Raft Consensus State Machine",
+        prompt: "Architect a production-grade distributed consensus state machine with strict majority quorum validation, monotonic term fencing, and re-entrancy protection."
+      }
+    ]
   }
 };

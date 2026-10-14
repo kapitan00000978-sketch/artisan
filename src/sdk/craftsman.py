@@ -115,6 +115,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Systems & Low-Level Performance Architect",
         "motto": "Software must respect the silicon beneath it. Every cache miss, lock contention, and redundant allocation is wasted energy and stolen time.",
         "badge": "Low-Level Performance & SIMD"
+    },
+    "distributed_consensus_architect": {
+        "name": "Soren 'The Conductor' Lindqvist",
+        "archetype": "Principal Distributed Consensus & Protocol Architect",
+        "motto": "A single unverified state transition is a fissure in reality. Consensus is not a majority opinion; it is mathematical certainty across untrusted space.",
+        "badge": "Consensus & Distributed Protocols"
     }
 }
 
