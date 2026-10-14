@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Humanpowers Model Context Protocol (MCP) Server
+Artisan Model Context Protocol (MCP) Server
 Standard JSON-RPC 2.0 tool provider for Claude, Cursor, Antigravity, and other MCP clients.
 Empowered by The Council of Masters.
 """
@@ -8,7 +8,10 @@ Empowered by The Council of Masters.
 import sys
 import os
 import json
-import re
+
+# Add scripts directory to path for shared detector
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts")))
+from detector import scan_code
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
@@ -90,7 +93,7 @@ COUNCIL_MEMBERS = {
         "criteria": [
             "Elimination of subjective or ambiguous phrasing",
             "Balanced limitation of liability (capped at 12 months fees paid)",
-            "100% intellectual property assignment and protection",
+            "comprehensive intellectual property assignment and protection",
             "Clear termination triggers, cure periods, and transition terms",
             "Defensible confidentiality (NDA) and data privacy covenants"
         ]
@@ -147,19 +150,19 @@ COUNCIL_MEMBERS = {
 
 TOOLS = [
     {
-        "name": "humanpowers_inspect_code",
-        "description": "Audits code against Humanpowers Council of Masters quality and security checklists before showing it to the user.",
+        "name": "artisan_inspect_code",
+        "description": "Audits code against Artisan Council of Masters quality and security benchmarks before presenting it to the user.",
         "inputSchema": {
             "type": "object",
             "properties": {
-                "code": {"type": "string", "description": "The code to inspect"},
-                "language": {"type": "string", "description": "Language (js, py, ts, etc.)"}
+                "code": {"type": "string", "description": "The source code to inspect"},
+                "language": {"type": "string", "description": "Programming language (js, py, ts, go, etc.)"}
             },
             "required": ["code"]
         }
     },
     {
-        "name": "humanpowers_get_persona",
+        "name": "artisan_get_persona",
         "description": "Retrieves the exact character profile, work ethic, pledge, and checklist from The Council of Masters.",
         "inputSchema": {
             "type": "object",
@@ -173,7 +176,7 @@ TOOLS = [
         }
     },
     {
-        "name": "humanpowers_list_council",
+        "name": "artisan_list_council",
         "description": "Lists all 8 members of The Council of Masters, their names, archetypes, and signature mottos.",
         "inputSchema": {
             "type": "object",
@@ -181,8 +184,8 @@ TOOLS = [
         }
     },
     {
-        "name": "humanpowers_recall_memory",
-        "description": "Retrieves past user preferences and recorded scar tissue to prevent repeating mistakes.",
+        "name": "artisan_recall_memory",
+        "description": "Retrieves past user preferences and recorded project conventions to prevent repeating mistakes.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -192,49 +195,10 @@ TOOLS = [
     }
 ]
 
+
 def handle_inspect_code(args):
     code = args.get("code", "")
-    flaws = []
-
-    # 1. Unfinished stubs (case-insensitive FIXME, TODO, XXX, HACK)
-    if re.search(r"(?i)(?://|#|/\*)\s*(?:todo|fixme|xxx|hack|bug|stub)", code):
-        flaws.append("Unfinished stub detected (TODO/FIXME/XXX). Complete all logic end-to-end.")
-
-    # 2. Silent exception suppression
-    if re.search(r"catch\s*\([^\)]*\)\s*\{\s*\}|except\s*:\s*pass|except\s+Exception\s*:\s*pass", code):
-        flaws.append("Silent exception suppression (empty catch block or bare except: pass). Log or rethrow errors.")
-
-    # 3. Hardcoded passwords & credentials (e.g. password='hunter2')
-    if re.search(r"""(?i)(?:password|passwd|pwd|secret|api_key|apikey|access_token|auth_token|client_secret)\s*[:=]\s*["'][^"'\s]{4,}["']""", code):
-        flaws.append("Security risk: Plaintext password or secret credential detected! Use environment variables.")
-
-    # 4. API keys & tokens (Anthropic sk-ant-..., OpenAI sk-..., GitHub, AWS, private keys)
-    if re.search(r"""(?:sk-ant-[a-zA-Z0-9_\-]{20,}|sk-[a-zA-Z0-9_\-]{20,}|gh[pousr]_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|xox[baprs]-[0-9a-zA-Z]{10,}|sk_live_[0-9a-zA-Z]{24}|-----BEGIN [A-Z ]*PRIVATE KEY-----)""", code):
-        flaws.append("Security risk: Plaintext API key or private key detected! Use environment variables.")
-
-    # 5. Potential SQL Injection via string interpolation
-    if re.search(r"f[\"'].*(?:SELECT|INSERT|UPDATE|DELETE)\s+.*\{", code, re.IGNORECASE):
-        flaws.append("Potential SQL injection via raw string interpolation. Use parameterized queries.")
-
-    # 6. Dangerous dynamic execution
-    if re.search(r"\beval\s*\(|\bexec\s*\(", code):
-        flaws.append("Dangerous dynamic execution ('eval/exec') detected. Replace with safe structured parsing.")
-
-    if flaws:
-        return {
-            "status": "REJECTED",
-            "score": max(20, 100 - len(flaws) * 25),
-            "flaws": flaws,
-            "auditor": "Gabriel 'The Sentinel' Frost (Red Team Lead)",
-            "verdict": "Security/Quality defects identified. Autonomously remediate all flaws before presenting to the user!"
-        }
-    return {
-        "status": "CERTIFIED",
-        "score": 98,
-        "flaws": [],
-        "auditor": "Marcus 'The Vanguard' Sterling (Engineering Lead)",
-        "verdict": "Satisfies all Artisan quality standards. 100% Production-Ready!"
-    }
+    return scan_code(code)
 
 
 def handle_get_persona(args):
@@ -252,6 +216,7 @@ def handle_get_persona(args):
         "criteria": member["criteria"]
     }
 
+
 def handle_list_council(args):
     roster = []
     for key, m in COUNCIL_MEMBERS.items():
@@ -264,8 +229,9 @@ def handle_list_council(args):
         })
     return {"council_size": len(roster), "masters": roster}
 
+
 def handle_recall_memory(args):
-    mem_file = os.path.join(".humanpowers", "memory.json")
+    mem_file = os.path.join(".artisan", "memory.json")
     if os.path.exists(mem_file):
         try:
             with open(mem_file, "r", encoding="utf-8") as f:
@@ -274,6 +240,83 @@ def handle_recall_memory(args):
             pass
     return {"status": "Memory active, zero recorded failures."}
 
+
+def dispatch_request(req):
+    method = req.get("method")
+    msg_id = req.get("id")
+
+    if method == "initialize":
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {
+                "protocolVersion": "2024-11-05",
+                "capabilities": {
+                    "tools": {}
+                },
+                "serverInfo": {
+                    "name": "artisan-mcp",
+                    "version": "1.0.0"
+                }
+            }
+        }
+    elif method == "notifications/initialized":
+        return None
+    elif method == "ping":
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {"status": "ok", "protocol": "artisan-mcp-1.0"}
+        }
+    elif method == "tools/list":
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {"tools": TOOLS}
+        }
+    elif method == "tools/call":
+        params = req.get("params", {})
+        tool_name = params.get("name")
+        args = params.get("arguments", {})
+
+        if tool_name == "artisan_inspect_code":
+            output = handle_inspect_code(args)
+        elif tool_name == "artisan_get_persona":
+            output = handle_get_persona(args)
+        elif tool_name == "artisan_list_council":
+            output = handle_list_council(args)
+        elif tool_name == "artisan_recall_memory":
+            output = handle_recall_memory(args)
+        else:
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {
+                    "code": -32601,
+                    "message": f"Tool not found: {tool_name}"
+                }
+            }
+
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "result": {
+                "content": [
+                    {"type": "text", "text": json.dumps(output, indent=2)}
+                ]
+            }
+        }
+    else:
+        return {
+            "jsonrpc": "2.0",
+            "id": msg_id,
+            "error": {
+                "code": -32601,
+                "message": f"Method not found: {method}"
+            }
+        }
+
+
 def main():
     for line in sys.stdin:
         line = line.strip()
@@ -281,83 +324,9 @@ def main():
             continue
         try:
             req = json.loads(line)
-            method = req.get("method")
-            msg_id = req.get("id")
-
-            if method == "initialize":
-                res = {
-                    "jsonrpc": "2.0",
-                    "id": msg_id,
-                    "result": {
-                        "protocolVersion": "2024-11-05",
-                        "capabilities": {
-                            "tools": {}
-                        },
-                        "serverInfo": {
-                            "name": "humanpowers-mcp",
-                            "version": "1.0.0"
-                        }
-                    }
-                }
-            elif method == "notifications/initialized":
-                continue
-            elif method == "ping":
-                res = {
-                    "jsonrpc": "2.0",
-                    "id": msg_id,
-                    "result": {"status": "ok", "protocol": "humanpowers-mcp-1.0"}
-                }
-            elif method == "tools/list":
-
-                res = {
-                    "jsonrpc": "2.0",
-                    "id": msg_id,
-                    "result": {"tools": TOOLS}
-                }
-            elif method == "tools/call":
-                params = req.get("params", {})
-                tool_name = params.get("name")
-                args = params.get("arguments", {})
-
-                try:
-                    if tool_name == "humanpowers_inspect_code":
-                        output = handle_inspect_code(args)
-                    elif tool_name == "humanpowers_get_persona":
-                        output = handle_get_persona(args)
-                    elif tool_name == "humanpowers_list_council":
-                        output = handle_list_council(args)
-                    elif tool_name == "humanpowers_recall_memory":
-                        output = handle_recall_memory(args)
-                    else:
-                        output = {
-                            "status": "FALLBACK",
-                            "error": f"Unknown tool: {tool_name}",
-                            "message": "Fallback to local Council of Masters heuristics active."
-                        }
-                except Exception as tool_err:
-                    output = {
-                        "status": "FALLBACK",
-                        "error": str(tool_err),
-                        "message": "Tool execution encountered exception. Falling back to local heuristics."
-                    }
-
-                res = {
-                    "jsonrpc": "2.0",
-                    "id": msg_id,
-                    "result": {
-                        "content": [
-                            {"type": "text", "text": json.dumps(output, indent=2)}
-                        ]
-                    }
-                }
-            else:
-                res = {
-                    "jsonrpc": "2.0",
-                    "id": msg_id,
-                    "result": {}
-                }
-
-            print(json.dumps(res), flush=True)
+            res = dispatch_request(req)
+            if res is not None:
+                print(json.dumps(res), flush=True)
         except Exception as e:
             err_res = {
                 "jsonrpc": "2.0",
@@ -365,6 +334,7 @@ def main():
                 "error": {"code": -32603, "message": str(e)}
             }
             print(json.dumps(err_res), flush=True)
+
 
 if __name__ == "__main__":
     if len(sys.argv) > 1 and sys.argv[1] == "--test":

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Humanpowers Universal Python Installer
+Artisan Universal Python Installer
 Usage:
     python cli/installer.py --agent all
     python cli/installer.py --agent cursor
@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 BANNER = """
 ===================================================================
- 🛡️  HUMANPOWERS UNIVERSAL AGENT INSTALLER
+ 🛡️  ARTISAN UNIVERSAL AGENT INSTALLER
      Eliminate AI Prompt Babysitting & Enforce Professional Rigor
 ===================================================================
 """
@@ -44,7 +44,7 @@ def install(agent_target="all"):
     print(f"[*] Target Directory: {target_dir}")
 
     if agent_target == "all":
-        print("[*] Installing Humanpowers protocol across all agent configurations...")
+        print("[*] Installing Artisan protocol across all agent configurations...")
         for name, folder in SUPPORTED_AGENTS.items():
             src = os.path.join(base_dir, folder)
             if os.path.exists(src):
@@ -57,16 +57,16 @@ def install(agent_target="all"):
         print(f"  [+] Synced specific agent: {folder}")
 
     # Ensure memory dir exists
-    hp_mem = os.path.join(target_dir, ".humanpowers")
+    hp_mem = os.path.join(target_dir, ".artisan")
     os.makedirs(hp_mem, exist_ok=True)
 
-    print("\n[✓] SUCCESS: Humanpowers protocol is now active!")
+    print("\n[✓] SUCCESS: Artisan protocol is now active!")
     print("    - Zero Babysitting: ON")
     print("    - Self-Inspection Loop: ON")
     print("    - Auto-Remediation: ON")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Humanpowers Installer")
+    parser = argparse.ArgumentParser(description="Artisan Installer")
     parser.add_argument("--agent", default="all", help="Target agent or 'all'")
     args = parser.parse_args()
     install(args.agent)

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Humanpowers Quality & Workspace Audit Report
+Artisan Quality & Workspace Audit Report
 Calculates real metrics from the current repository: files audited, rules active, and gatekeeper status.
 """
 
@@ -25,15 +25,15 @@ def count_workspace_stats():
                 try:
                     with open(os.path.join(root, file), "r", encoding="utf-8", errors="ignore") as f:
                         total_lines += sum(1 for _ in f)
-                except Exception:
-                    pass
+                except OSError as err:
+                    print(f"Warning reading {file}: {err}", file=sys.stderr)
             elif file.endswith((".md", ".mdc", ".json")):
-                if ".cursor" in root or ".humanpowers" in root or "agents" in root:
+                if ".cursor" in root or ".artisan" in root or "agents" in root:
                     rule_files += 1
     return source_files, total_lines, rule_files
 
 def display_metrics():
-    metrics_path = os.path.join(".humanpowers", "metrics.json")
+    metrics_path = os.path.join(".artisan", "metrics.json")
     if os.path.exists(metrics_path):
         with open(metrics_path, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -51,15 +51,12 @@ def display_metrics():
 
     print("\n" + "=" * 65)
     print(" 🛡️  ARTISAN — WORKSPACE QUALITY & AUDIT REPORT")
-
     print(f"    Mode: {status_note}")
     print("=" * 65)
     for k, v in data.items():
         label = " ".join(w.capitalize() for w in k.split("_"))
         print(f" • {label:<35}: {v}")
     print("=" * 65)
-    print(" 💡 STATUS: Deterministic pre-commit gatekeeper checks active.")
-    print("=" * 65 + "\n")
 
 if __name__ == "__main__":
     display_metrics()

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Humanpowers Live Watchdog Daemon
+Artisan Live Watchdog Daemon
 Monitors file changes and flags code flaws, unfinished stubs, and secret leaks.
 Supports both single-pass scan (--once) and continuous background watch loop (--watch).
 """
@@ -44,7 +44,7 @@ def get_watched_files():
             continue
         for file in files:
             if file.endswith((".js", ".ts", ".py", ".go", ".rs", ".java", ".cs")):
-                if not any(k in file for k in ["watchdog", "pre-commit", "server", "translate_humanpowers"]):
+                if not any(k in file for k in ["watchdog", "pre-commit", "server", "translate_artisan"]):
                     path = os.path.join(root, file)
                     try:
                         watched[path] = os.path.getmtime(path)

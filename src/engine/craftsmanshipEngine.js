@@ -1,4 +1,9 @@
-// Craftsman AI - The Autonomous Craftsmanship & Self-Correction Engine
+/**
+ * DEMO ONLY: Non-functional Interactive Simulation of the Craftsmanship Lifecycle.
+ * NOTE: This client-side web engine is a demonstration simulation for UI preview purposes.
+ * It uses deterministic benchmark values and does not execute real security checks.
+ * For production enforcement, use the Python pre-commit gatekeeper (scripts/detector.py) or the MCP server.
+ */
 import { PERSONAS } from './personas.js';
 
 export class CraftsmanshipEngine {
@@ -94,7 +99,7 @@ export class CraftsmanshipEngine {
         flawsAutoFixed: auditReport.flaws.length,
         initialScore: auditReport.initialScore,
         finalScore: auditReport.passingScore,
-        estimatedReviewMinutesSaved: auditReport.flaws.length * 12
+        flawsIdentified: auditReport.flaws.length
       }
     };
   }
@@ -612,7 +617,7 @@ P.S. Here is a 45-second interactive sandbox link showing how the self-correctio
  * =========================================================================
  * ⚖️ CRAFTSMAN AI AUDITED COMMERCIAL CONTRACT CLAUSE (IRONCLAD)
  * Standart: Legal & Commercial Compliance Auditor
- * Tekshiruv: Cheksiz javobgarlik xavfi bartaraf etildi, IP 100% himoyalandi.
+ * Tekshiruv: Cheksiz javobgarlik xavfi bartaraf etildi, IP to'liq himoyalandi.
  * =========================================================================
  */
 

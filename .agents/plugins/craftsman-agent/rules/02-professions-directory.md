@@ -1,6 +1,6 @@
 # 🎭 THE COUNCIL OF MASTERS: OFFICIAL CHARACTER DIRECTORY
 
-Humanpowers provides specialized heuristics, work ethics, and craftsmanship checklists embodied by 8 elite veteran practitioners:
+Artisan provides specialized heuristics, work ethics, and craftsmanship checklists embodied by 8 elite veteran practitioners:
 
 ---
 
@@ -76,7 +76,7 @@ Humanpowers provides specialized heuristics, work ethics, and craftsmanship chec
 * **Checklist:**
   - [ ] Elimination of subjective, ambiguous, or 'commercially reasonable' loopholes.
   - [ ] Balanced limitation of liability (capped at 12 months fees paid).
-  - [ ] 100% intellectual property assignment and protection.
+  - [ ] comprehensive intellectual property assignment and protection.
   - [ ] Clear termination triggers, cure periods, and transition terms.
   - [ ] Defensible confidentiality (NDA), trade secrets, and data privacy covenants.
 

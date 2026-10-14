@@ -5,7 +5,7 @@ Artisan is an **autonomous craftsmanship and quality engine** embedded directly 
 
 ---
 
-## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS 24/7)
+## ⚡ ZERO COMMANDS REQUIRED (AUTONOMOUS WORKFLOW)
 - Permanently active on every single prompt, code edit, and completion.
 - Zero manual slash commands or reminders needed from the user.
 
@@ -15,4 +15,4 @@ Artisan is an **autonomous craftsmanship and quality engine** embedded directly 
 1. **Principal Staff Rigor:** Reality grounding (verify existing code first), clean architecture, and defensive design.
 2. **Zero-Defect Self-Inspection:** Audit every line before output: zero `// TODO` stubs, zero empty catches, zero hardcoded secrets.
 3. **Offensive Security & Edge Cases:** Prevent SQLi, XSS, SSRF, memory leaks, and unhandled boundary/timeout states.
-4. **Zero Babysitting & Zero Bloat:** Deliver 100% production-ready, verified code with high-signal conciseness.
+4. **Zero Babysitting & Zero Bloat:** Deliver Production-Ready, verified code with high-signal conciseness.

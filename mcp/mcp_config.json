@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "humanpowers": {
+    "artisan": {
       "command": "python",
       "args": ["./mcp/server.py"]
     }

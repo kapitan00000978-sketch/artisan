@@ -3,7 +3,9 @@
   "version": "1.0.0",
   "description": "An open-source protocol and modular framework that injects craftsmanship, senior work ethic, and automated quality gates into AI coding agents.",
   "main": "bin/artisan.js",
-  "bin": "./bin/artisan.js",
+  "bin": {
+    "artisan": "./bin/artisan.js"
+  },
 
 
   "scripts": {

@@ -1,17 +1,16 @@
 <p align="center">
-  <img src="./assets/artisan-banner.jpg" alt="Artisan Banner" width="100%" />
+  <img src="./assets/artisan-banner.jpg" alt="Artisan Banner" width="800" />
 </p>
 
 # 🛡️ Artisan: Autonomous AI Agent Craftsmanship & Quality Protocol
 
-> **Artisan** — An open-source protocol and modular framework that brings engineering responsibility, professional craftsmanship, and automated quality gates into AI coding workflows. Designed to reduce prompt babysitting.
+> **About Artisan**: Open-source quality protocol for AI coding agents: role-based expert personas, a pre-commit and CI quality gate, an MCP server, and persistent project memory. Works with Claude Code, Cursor, Copilot, Windsurf, Antigravity and more.
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-
 [![Council of Masters](https://img.shields.io/badge/council%20of%20masters-8%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-11-cyan.svg)](#-supported-ai-agent-ecosystems)
-[![Self--Correction](https://img.shields.io/badge/quality--gate-enforced-purple.svg)](AGENTS.md)
+[![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
 ---
 
@@ -23,10 +22,18 @@ Developers often spend significant time micromanaging AI coding assistants:
 
 ---
 
+## 🔍 How It Works & Limitations
+
+- **Session-Based Rules:** Rules files (`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, etc.) load per agent session into your assistant's system instructions.
+- **Local Tooling:** The file sentinel watchdog (`scripts/watchdog.py`) and pre-commit gatekeeper (`scripts/pre-commit-gatekeeper.py`) are local command-line tools that run on your machine and in CI.
+- **Scope of Detection:** The security gate catches the specific documented patterns (unfinished stubs like TODO/FIXME/XXX/HACK/implement-later, empty catch/except blocks, dangerous `eval`/`exec`, and exposed API keys or credentials). It does not catch all conceivable logical bugs or domain errors.
+- **Demo Simulation Module:** The web engine in `src/engine/craftsmanshipEngine.js` is a non-functional, client-side interactive DEMO simulation for UI previewing; production enforcement is carried out by `scripts/detector.py` and the MCP server.
+
+---
+
 ## 🏛️ The Council of Masters (Domain Heuristics):
 
 Artisan packages role-specific heuristics inspired by senior discipline leads:
-
 
 | # | Master | Discipline & Role | Archetype | Core Focus |
 | :- | :--- | :--- | :--- | :--- |
@@ -43,11 +50,11 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 
 ## ⚡ Core Capabilities & Built-in Tooling:
 
-1. **🧠 Project Memory Ledger (`.humanpowers/memory.json`):**
+1. **🧠 Project Memory Ledger (`.artisan/memory.json`):**
    Maintains a structured record of team conventions, user preferences, and recorded anti-patterns to avoid repeating known mistakes.
 2. **🔌 Model Context Protocol (MCP) Server (`mcp/server.py`):**
    Standard JSON-RPC 2.0 MCP server allowing Claude, Cursor, and other MCP clients to query domain personas and run static code inspections.
-3. **🚀 GitHub Actions CI/CD Quality Gate (`.github/workflows/humanpowers-gate.yml`):**
+3. **🚀 GitHub Actions CI/CD Quality Gate (`.github/workflows/artisan-gate.yml`):**
    Automated pull request and push inspection that verifies test suites and checks for lazy stubs or exposed credentials.
 4. **👁️ Real-Time Watchdog Daemon (`scripts/watchdog.py`):**
    Continuous background file sentinel (`--watch`) that monitors local edits and flags stubs, empty catches, and credential leaks.
@@ -85,7 +92,6 @@ Artisan provides tailored configuration modules across 11 agent environments:
 ## ⚡ Quick Installation:
 
 Install Artisan configuration files into any repository:
-
 
 ```bash
 # 🍏 Linux & macOS (curl bash installer):

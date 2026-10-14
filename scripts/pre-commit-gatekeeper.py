@@ -1,62 +1,35 @@
 #!/usr/bin/env python3
 """
-Humanpowers Pre-Commit Gatekeeper
-Checks staged git files for lazy placeholders, security leaks, and empty error catches.
+Artisan Pre-Commit Gatekeeper
+Audits repository files for secrets, lazy stubs, and empty error catches using the shared detector.
 """
 
 import os
 import sys
-import re
+
+# Ensure scripts dir is on sys.path
+sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+from detector import scan_project, PATTERNS
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 
-PATTERNS = [
-    (r"(?i)(?://|#)\s*(?:todo|fixme|xxx|hack)", "LAZY_STUB", "Unfinished stub detected (TODO/FIXME/XXX). Complete all logic end-to-end."),
-    (r"catch\s*\([^\)]*\)\s*\{\s*\}|except\s*:\s*pass", "SILENT_CATCH", "Silent exception suppression (empty catch block or bare except: pass). Log or rethrow errors."),
-    (r"(?i)(?:password|passwd|pwd|secret|api_key|token|auth_token)\s*[:=]\s*[\"'][^\"'\s]{4,}[\"']|(?:sk-ant-[a-zA-Z0-9_\-]{20,}|sk-[a-zA-Z0-9_\-]{20,}|gh[pousr]_[A-Za-z0-9_]{30,}|AKIA[0-9A-Z]{16}|-----BEGIN [A-Z ]*PRIVATE KEY-----)", "EXPOSED_SECRET", "Security risk: Plaintext API key, hardcoded password, or credential detected! Use environment variables.")
-]
-
-
-
-
 
 def scan_files():
     print("🛡️ [Artisan Gatekeeper] Running pre-commit quality and security audit...")
-    flaws_found = []
-
-
-    # Scan project source files
-    for root, dirs, files in os.walk("."):
-        if any(d in root for d in [".git", "node_modules", ".venv", "__pycache__", "tests"]):
-            continue
-        for file in files:
-            # Only scan actual source code files, ignore documentation
-            if file.endswith((".js", ".ts", ".py", ".go", ".rs", ".java", ".cpp", ".cs")):
-                filepath = os.path.join(root, file)
-                try:
-                    with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-                        lines = f.readlines()
-                        for line_idx, line in enumerate(lines, 1):
-                            # Skip scanning the gatekeeper script, tools, and watchdog itself
-                            if any(k in filepath for k in ["pre-commit-gatekeeper", "watchdog", "translate_humanpowers", "server.py", "mcp"]):
-                                continue
-                            for pattern, flaw_type, message in PATTERNS:
-                                if re.search(pattern, line):
-                                    flaws_found.append(f"{filepath}:{line_idx} [{flaw_type}] -> {message}")
-                except Exception:
-                    pass
-
-    if flaws_found:
+    result = scan_project(".")
+    
+    findings = result["findings"]
+    if findings:
         print("\n❌ [ARTISAN REJECTED - AUDIT FAILED]:")
-        for flaw in flaws_found[:5]:
-            print(f"  • {flaw}")
-        print(f"\nTotal defects detected: {len(flaws_found)}")
-        print("💡 Directive: Artisan Quality Protocol — resolve all flaws independently before committing!\n")
+        for flaw in findings[:10]:
+            print(f"  • {flaw['file']}:{flaw['line']} [{flaw['category']}] -> {flaw['message']}")
+        print(f"\nTotal defects detected: {len(findings)} | Gate Score: {result['score']}/100")
+        print("💡 Directive: Artisan Quality Protocol — resolve all flaws before committing!\n")
         return False
     else:
-        print("✅ [ARTISAN VERIFIED]: All code satisfied strict quality benchmarks. 100% Production-Ready!")
+        print(f"✅ [ARTISAN VERIFIED]: All code satisfied quality and security benchmarks. (Scanned {result['scanned_files']} files, Score: 100/100)")
         return True
 
 

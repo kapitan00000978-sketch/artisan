@@ -1,5 +1,6 @@
 import sys
 import os
+import json
 import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "mcp")))
@@ -25,7 +26,7 @@ def test_mcp_inspect_code_clean():
     clean_code = "def calculate_total(price, tax):\n    return price + (price * tax)\n"
     res = server.handle_inspect_code({"code": clean_code})
     assert res["status"] == "CERTIFIED"
-    assert res["score"] >= 95
+    assert res["score"] == 100
     assert len(res["flaws"]) == 0
 
 def test_mcp_inspect_code_flawed():
@@ -35,14 +36,23 @@ def test_mcp_inspect_code_flawed():
     assert len(res["flaws"]) > 0
 
 def test_mcp_initialize_schema():
-    # Verify initialize returns protocolVersion, capabilities, and serverInfo
     req = {"jsonrpc": "2.0", "id": 1, "method": "initialize"}
-    # Mocking standard response structure check
-    expected_protocol = "2024-11-05"
-    assert expected_protocol == "2024-11-05"
+    res = server.dispatch_request(req)
+    assert res["result"]["protocolVersion"] == "2024-11-05"
+    assert res["result"]["serverInfo"]["name"] == "artisan-mcp"
+    assert res["result"]["serverInfo"]["version"] == "1.0.0"
+
+def test_mcp_tools_list_contains_artisan_tools():
+    req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
+    res = server.dispatch_request(req)
+    tool_names = [t["name"] for t in res["result"]["tools"]]
+    assert "artisan_inspect_code" in tool_names
+    assert "artisan_get_persona" in tool_names
+    assert "artisan_list_council" in tool_names
+    assert "artisan_recall_memory" in tool_names
 
 def test_mcp_inspect_code_catches_secrets_and_fixme():
-    # Test the exact edge case: hardcoded password, FIXME, and Anthropic API key
+    # Test the exact edge case from prompt: hardcoded password, FIXME, and Anthropic API key
     dangerous_code = """
     # FIXME: implement this later
     password = "hunter2"
@@ -55,4 +65,30 @@ def test_mcp_inspect_code_catches_secrets_and_fixme():
     assert "stub" in flaw_text.lower() or "todo" in flaw_text.lower() or "fixme" in flaw_text.lower()
     assert "secret" in flaw_text.lower() or "password" in flaw_text.lower() or "key" in flaw_text.lower()
 
+def test_mcp_unknown_tool_returns_jsonrpc_32601_error():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 42,
+        "method": "tools/call",
+        "params": {
+            "name": "non_existent_tool",
+            "arguments": {}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "error" in res
+    assert res["error"]["code"] == -32601
+    assert "Tool not found" in res["error"]["message"]
+    assert "result" not in res
 
+def test_mcp_unknown_method_returns_jsonrpc_32601_error():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 43,
+        "method": "unknown/method",
+        "params": {}
+    }
+    res = server.dispatch_request(req)
+    assert "error" in res
+    assert res["error"]["code"] == -32601
+    assert "Method not found" in res["error"]["message"]

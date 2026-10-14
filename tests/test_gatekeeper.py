@@ -1,52 +1,158 @@
-import re
-import importlib.util
+import sys
 import os
 import pytest
 
-def get_gatekeeper_module():
-    script_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "pre-commit-gatekeeper.py"))
-    spec = importlib.util.spec_from_file_location("gatekeeper", script_path)
-    module = importlib.util.module_from_spec(spec)
-    spec.loader.exec_module(module)
-    return module
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts")))
+from detector import scan_code, RULES, run_gitleaks
 
-def test_gatekeeper_patterns_catch_stubs():
-    gk = get_gatekeeper_module()
-    stub_pattern = gk.PATTERNS[0][0]
-    sample_code = "// " + "TODO" + ": implement logic"
-    assert re.search(stub_pattern, sample_code) is not None
-    fixme_code = "# " + "FIXME" + ": fix this edge case"
-    assert re.search(stub_pattern, fixme_code) is not None
-    lowercase_fixme = "# " + "fixme" + ": lowercase check"
-    assert re.search(stub_pattern, lowercase_fixme) is not None
+# --- TASK 2: Unit tests for each stub rule ---
 
-def test_gatekeeper_patterns_catch_silent_catch():
-    gk = get_gatekeeper_module()
-    catch_pattern = gk.PATTERNS[1][0]
-    sample_code = "try { doSomething(); } catch (err) { }"
-    assert re.search(catch_pattern, sample_code) is not None
-    bare_except = "try:\n    risky_operation()\nexcept:\n    pass"
-    assert re.search(catch_pattern, bare_except) is not None
+def test_stubs_todo():
+    res = scan_code("// " + "TODO" + ": implement logic")
+    assert res["status"] == "REJECTED"
+    assert any("Unfinished stub" in f for f in res["flaws"])
 
-def test_gatekeeper_patterns_catch_exposed_secrets():
-    gk = get_gatekeeper_module()
-    secret_pattern = gk.PATTERNS[2][0]
-    sample_code = 'const apiKey = "' + 'sk-' + 'a' * 30 + '";'
-    assert re.search(secret_pattern, sample_code) is not None
-    aws_key = 'AWS_KEY = "AKIA1234567890ABCDEF"'
-    assert re.search(secret_pattern, aws_key) is not None
-    pw_code = 'password="hunter2"'
-    assert re.search(secret_pattern, pw_code) is not None
-    token_code = 'api_key = "supersecretkey123"'
-    assert re.search(secret_pattern, token_code) is not None
-    ant_key = 'anthropic_key = "sk-ant-api03-abcdef123456789012345678"'
-    assert re.search(secret_pattern, ant_key) is not None
+def test_stubs_fixme():
+    res = scan_code("# " + "FIXME" + " later: fix edge case")
+    assert res["status"] == "REJECTED"
+    assert any("Unfinished stub" in f for f in res["flaws"])
+
+def test_stubs_xxx():
+    res = scan_code("// " + "XXX" + ": refactor this routine")
+    assert res["status"] == "REJECTED"
+    assert any("Unfinished stub" in f for f in res["flaws"])
+
+def test_stubs_hack():
+    res = scan_code("# " + "HACK" + ": temporary bypass")
+    assert res["status"] == "REJECTED"
+    assert any("Unfinished stub" in f for f in res["flaws"])
+
+def test_stubs_implement_later():
+    res = scan_code("# please " + "implement later")
+    assert res["status"] == "REJECTED"
+    assert any("Unfinished stub" in f for f in res["flaws"])
+
+def test_stubs_pass_placeholder():
+    code = "def handle():\n    pass  # to be filled\n"
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Pass placeholder" in f for f in res["flaws"])
+
+def test_stubs_empty_catch():
+    code1 = "try { run(); } catch (err) {}"
+    res1 = scan_code(code1)
+    assert res1["status"] == "REJECTED"
+    assert any("Empty catch" in f for f in res1["flaws"])
+
+    code2 = "try { run(); } catch {}"
+    res2 = scan_code(code2)
+    assert res2["status"] == "REJECTED"
+    assert any("Empty catch" in f for f in res2["flaws"])
+
+def test_stubs_bare_except():
+    code = "try:\n    run()\nexcept:\n    pass\n"
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Silent exception" in f for f in res["flaws"])
+
+def test_stubs_except_exception_pass():
+    code = "try:\n    run()\nexcept Exception:\n    pass\n"
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Silent exception" in f for f in res["flaws"])
 
 
+# --- TASK 2: Dangerous Execution ---
+
+def test_dangerous_eval():
+    code = "result = eval(user_input)"
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Dangerous dynamic execution" in f for f in res["flaws"])
+
+def test_dangerous_exec():
+    code = "exec(payload)"
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Dangerous dynamic execution" in f for f in res["flaws"])
 
 
-def test_gatekeeper_clean_code_passes():
-    gk = get_gatekeeper_module()
-    for pattern, _, _ in gk.PATTERNS:
-        clean_code = "function add(a: number, b: number): number { return a + b; }"
-        assert re.search(pattern, clean_code) is None
+# --- TASK 2: Secrets & Credentials ---
+
+def test_secrets_anthropic():
+    code = 'key = "sk-ant-api03-abcdefghijklmnopqrstuvwx"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Anthropic API key" in f for f in res["flaws"])
+
+def test_secrets_openai():
+    code = 'token = "sk-abcdefghijklmnopqrstuvwxyz1234567890"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("API key detected" in f for f in res["flaws"])
+
+def test_secrets_github():
+    code1 = 'gh = "ghp_1234567890abcdefghijklmnopqrstuvwxyz"'
+    assert scan_code(code1)["status"] == "REJECTED"
+
+    code2 = 'gh = "gho_1234567890abcdefghijklmnopqrstuvwxyz"'
+    assert scan_code(code2)["status"] == "REJECTED"
+
+    code3 = 'gh = "github_pat_1234567890abcdefghijklmnopqrstuvwxyz"'
+    assert scan_code(code3)["status"] == "REJECTED"
+
+def test_secrets_aws():
+    code = 'AWS_KEY = "AKIA1234567890ABCDEF"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("AWS Access Key" in f for f in res["flaws"])
+
+def test_secrets_slack():
+    code = 'slack = "xoxb-1234567890-abcdefghij"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Slack token" in f for f in res["flaws"])
+
+def test_secrets_google():
+    code = 'google_key = "AIza' + 'a' * 35 + '"'
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Google API key" in f for f in res["flaws"])
+
+def test_secrets_private_key():
+    code = "-----BEGIN RSA PRIVATE KEY-----\nMIIEowIBAAKCAQEA0\n-----END RSA PRIVATE KEY-----"
+    res = scan_code(code)
+    assert res["status"] == "REJECTED"
+    assert any("Private Key" in f for f in res["flaws"])
+
+def test_secrets_literal_assignments():
+    assert scan_code('password="hunter2"')["status"] == "REJECTED"
+    assert scan_code('secret = "super_classified_secret"')["status"] == "REJECTED"
+    assert scan_code('api_key = "production_key_xyz"')["status"] == "REJECTED"
+    assert scan_code('auth_token: "my-secure-token"')["status"] == "REJECTED"
+
+
+# --- TASK 2: Inline ignore marker ---
+
+def test_artisan_ignore_marker():
+    code = 'password = "hunter2" # artisan-ignore\n'
+    res = scan_code(code)
+    assert res["status"] == "CERTIFIED"
+    assert res["score"] == 100
+    assert len(res["flaws"]) == 0
+
+
+# --- TASK 2: Clean code passes ---
+
+def test_clean_sample_passes():
+    code = """
+def calculate_tax(amount: float, rate: float) -> float:
+    \"\"\"Calculates total tax based on the given rate.\"\"\"
+    if amount < 0 or rate < 0:
+        raise ValueError("Amount and rate must be non-negative")
+    return amount * rate
+"""
+    res = scan_code(code)
+    assert res["status"] == "CERTIFIED"
+    assert res["score"] == 100
+    assert len(res["flaws"]) == 0

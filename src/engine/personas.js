@@ -1,4 +1,4 @@
-// Humanpowers - The Council of Masters: Character Personas, Work Ethic & Heuristic Checklists
+// Artisan - The Council of Masters: Character Personas, Work Ethic & Heuristic Checklists
 
 export const PERSONAS = {
   software_architect: {
@@ -141,7 +141,7 @@ export const PERSONAS = {
     checklists: [
       { id: "ambiguity_kill", nameUz: "Noaniq va ikki xil ma'noli iboralarni yo'qotish", nameEn: "Elimination of Ambiguous, Subjective & 'Commercially Reasonable' Loopholes" },
       { id: "liability_caps", nameUz: "Javobgarlik chegarasi (Cap of Liability) muvozanati", nameEn: "Balanced Limitation of Liability (Capped at 12 Months Fees Paid)" },
-      { id: "ip_rights", nameUz: "Intellektual mulk huquqlarini 100% himoya qilish", nameEn: "Bulletproof IP Rights & Work-Made-For-Hire Assignment Clauses" },
+      { id: "ip_rights", nameUz: "Intellektual mulk huquqlarini to'liq himoya qilish", nameEn: "Bulletproof IP Rights & Work-Made-For-Hire Assignment Clauses" },
       { id: "termination", nameUz: "Shartnomani bekor qilish va tovon to'lash tartibi", nameEn: "Unilateral Termination Triggers, Cure Periods & Orderly Transition Rights" },
       { id: "confidentiality", nameUz: "Maxfiylik (NDA) va ma'lumotlar xavfsizligi", nameEn: "Defensible Confidentiality (NDA), Trade Secrets & Data Privacy Covenants" }
     ],

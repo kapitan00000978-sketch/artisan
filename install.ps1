@@ -14,7 +14,7 @@ Write-Host "==================================================================" 
 Write-Host "[*] Target Directory: $TargetDir" -ForegroundColor Yellow
 
 # Ensure directories
-New-Item -ItemType Directory -Force -Path "$TargetDir\.humanpowers" | Out-Null
+New-Item -ItemType Directory -Force -Path "$TargetDir\.artisan" | Out-Null
 New-Item -ItemType Directory -Force -Path "$TargetDir\.cursor\rules" | Out-Null
 New-Item -ItemType Directory -Force -Path "$TargetDir\.github" | Out-Null
 
@@ -22,15 +22,15 @@ Write-Host "[+] Downloading core Artisan protocol..." -ForegroundColor Green
 Invoke-RestMethod -Uri "$RepoRaw/AGENTS.md" -OutFile "$TargetDir\AGENTS.md"
 
 # Safe memory preservation: never overwrite existing user memory
-if (-not (Test-Path "$TargetDir\.humanpowers\memory.json")) {
+if (-not (Test-Path "$TargetDir\.artisan\memory.json")) {
     Write-Host "[+] Initializing clean starter memory template..." -ForegroundColor Green
-    Invoke-RestMethod -Uri "$RepoRaw/.humanpowers/memory.json" -OutFile "$TargetDir\.humanpowers\memory.json"
+    Invoke-RestMethod -Uri "$RepoRaw/.artisan/memory.json" -OutFile "$TargetDir\.artisan\memory.json"
 } else {
-    Write-Host "[*] Preserving existing .humanpowers\memory.json (not overwritten)." -ForegroundColor Yellow
+    Write-Host "[*] Preserving existing .artisan\memory.json (not overwritten)." -ForegroundColor Yellow
 }
 
-if (-not (Test-Path "$TargetDir\.humanpowers\memory.md")) {
-    Invoke-RestMethod -Uri "$RepoRaw/.humanpowers/memory.md" -OutFile "$TargetDir\.humanpowers\memory.md"
+if (-not (Test-Path "$TargetDir\.artisan\memory.md")) {
+    Invoke-RestMethod -Uri "$RepoRaw/.artisan/memory.md" -OutFile "$TargetDir\.artisan\memory.md"
 }
 
 Write-Host "[+] Installing Cursor AI Rules..." -ForegroundColor Green

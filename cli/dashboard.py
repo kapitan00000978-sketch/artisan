@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Humanpowers Interactive Terminal Dashboard (HUD)
+Artisan Interactive Terminal Dashboard (HUD)
 Empowered by The Council of Masters
 """
 
@@ -29,24 +29,24 @@ def clear_screen():
 def render_dashboard():
     clear_screen()
     print("=" * 80)
-    print("  🛡️  HUMANPOWERS CONTROL CENTER & AUTONOMOUS AGENT HUD")
-    print("      Empowered by The Council of Masters — Zero Babysitting Protocol")
+    print("  🛡️  ARTISAN CONTROL CENTER & AGENT HUD")
+    print("      Empowered by The Council of Masters — Quality & Security Protocol")
     print("=" * 80)
-    print(" [STATUS]           : PROTOCOL ACTIVE (ZERO BABYSITTING ENFORCED)")
+    print(" [STATUS]           : PROTOCOL ACTIVE")
     print(" [SUPPORTED AGENTS] : 11 Standalone Agent Environments Synchronized")
-    print(" [MEMORY LEDGER]    : .humanpowers/memory.json (Synchronized)")
+    print(" [MEMORY LEDGER]    : .artisan/memory.json (Synchronized)")
     print("=" * 80)
 
     # Load metrics
-    metrics_path = os.path.join(".humanpowers", "metrics.json")
+    metrics_path = os.path.join(".artisan", "metrics.json")
     if os.path.exists(metrics_path):
         try:
             with open(metrics_path, "r", encoding="utf-8") as f:
                 data = json.load(f)
                 hours = round(data.get("timeSavedMinutes", 0) / 60, 1)
-                print(f" 📊 METRICS: {data.get('totalTasksCompleted')} tasks | {hours} hrs saved | {data.get('flawsAutoRemediated')} flaws auto-fixed | {data.get('averageQualityScore')}/100 quality")
-        except Exception:
-            pass
+                print(f" 📊 METRICS: {data.get('totalTasksCompleted')} tasks | {hours} hrs saved | {data.get('flawsAutoRemediated')} flaws remediated | {data.get('averageQualityScore')}/100 quality")
+        except (json.JSONDecodeError, OSError) as err:
+            print(f" [!] Notice: Could not read metrics ledger: {err}")
     print("-" * 80)
 
     print(" 🏛️  THE COUNCIL OF MASTERS (ACTIVE CHARACTER ROSTER):")
@@ -74,7 +74,7 @@ def render_dashboard():
     print("  [3] Inspect Council of Masters & Signature Mottos")
     print("  [4] Create Custom Domain Persona (Persona Forge)")
     print("  [5] Inspect Persistent Memory Ledger")
-    print("  [6] View ROI & Time-Saved Report")
+    print("  [6] View ROI & Audit Report")
     print("  [0] Exit")
     print("=" * 80)
 
@@ -109,7 +109,7 @@ def main():
                 os.system(f'python cli/persona_forge.py --create "{name}"')
             input("\nPress Enter to return...")
         elif choice == "5":
-            mem_path = os.path.join(".humanpowers", "memory.json")
+            mem_path = os.path.join(".artisan", "memory.json")
             if os.path.exists(mem_path):
                 with open(mem_path, "r", encoding="utf-8") as f:
                     print(json.dumps(json.load(f), indent=2))
@@ -118,7 +118,7 @@ def main():
             os.system("python scripts/roi_tracker.py")
             input("\nPress Enter to return...")
         elif choice == "0":
-            print("\nExiting Humanpowers Control Center. Happy Crafting!\n")
+            print("\nExiting Artisan Control Center. Happy Crafting!\n")
             break
 
 if __name__ == "__main__":

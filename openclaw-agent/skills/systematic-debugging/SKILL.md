@@ -5,12 +5,12 @@ description: Scientific 4-step root cause analysis methodology for debugging. El
 
 # 🔍 Systematic Debugging (Scientific Root Cause Analysis)
 
-Amateur AI models guess randomly and apply blind patches that break other components. Humanpowers enforces a rigorous 4-step scientific debugging process.
+Amateur AI models guess randomly and apply blind patches that break other components. Artisan enforces a rigorous 4-step scientific debugging process.
 
 ## 4-Step Debugging Protocol:
 
 1. **Step 1: Reproduce Deterministically:**
-   - Create a minimal reproduction script or automated test that triggers the bug 100% of the time.
+   - Create a minimal reproduction script or automated test that triggers the bug consistently.
    - Never attempt to fix a bug you cannot reliably reproduce.
 
 2. **Step 2: Trace the Defect to the Exact Root Cause:**

@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Humanpowers Persona Forge
+Artisan Persona Forge
 CLI tool to generate and register new professional personas with character names and rigorous craftsmanship checklists.
 """
 
@@ -43,7 +43,7 @@ def create_persona(title, character_name=None, archetype=None, domain="general")
         "archetype": archetype,
         "domain": domain,
         "motto": f"Excellence in {title} is non-negotiable. Every artifact delivered must be unassailable.",
-        "pledge": f"I will never deliver unverified, incomplete, or irresponsible work. As {character_name}, I stand behind every solution with 100% production-ready quality.",
+        "pledge": f"I will never deliver unverified, incomplete, or irresponsible work. As {character_name}, I stand behind every solution with Production-Ready quality.",
         "checklists": [
             f"1. Strict compliance with {title} industry benchmarks and regulatory guardrails.",
             f"2. Pre-emptive identification of hidden downside risks, concurrency bottlenecks, and failure modes.",
@@ -53,7 +53,7 @@ def create_persona(title, character_name=None, archetype=None, domain="general")
         ]
     }
 
-    persona_dir = os.path.join(".humanpowers", "personas")
+    persona_dir = os.path.join(".artisan", "personas")
     os.makedirs(persona_dir, exist_ok=True)
     file_path = os.path.join(persona_dir, f"{persona_id}.json")
 
@@ -78,7 +78,7 @@ def create_persona(title, character_name=None, archetype=None, domain="general")
     return template
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Humanpowers Persona Forge")
+    parser = argparse.ArgumentParser(description="Artisan Persona Forge")
     parser.add_argument("--create", help="Profession title (e.g. 'Cloud Security Architect')")
     parser.add_argument("--name", help="Character name (e.g. 'Julian Vance')")
     parser.add_argument("--archetype", help="Character archetype (e.g. 'Zero-Trust Bastion')")

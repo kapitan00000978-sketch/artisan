@@ -29,21 +29,21 @@ echo "=================================================================="
 echo "[*] Target Directory : ${TARGET_DIR}"
 echo "[*] Target Agent(s)  : ${AGENT_TARGET}"
 
-mkdir -p "${TARGET_DIR}/.humanpowers"
+mkdir -p "${TARGET_DIR}/.artisan"
 
 echo "[+] Downloading core Artisan protocol..."
 curl -fsSL "${REPO_RAW}/AGENTS.md" -o "${TARGET_DIR}/AGENTS.md"
 
 # Safe memory preservation: never overwrite existing user memory
-if [[ ! -f "${TARGET_DIR}/.humanpowers/memory.json" ]]; then
+if [[ ! -f "${TARGET_DIR}/.artisan/memory.json" ]]; then
     echo "[+] Initializing clean starter memory template..."
-    curl -fsSL "${REPO_RAW}/.humanpowers/memory.json" -o "${TARGET_DIR}/.humanpowers/memory.json"
+    curl -fsSL "${REPO_RAW}/.artisan/memory.json" -o "${TARGET_DIR}/.artisan/memory.json"
 else
-    echo "[*] Preserving existing .humanpowers/memory.json (not overwritten)."
+    echo "[*] Preserving existing .artisan/memory.json (not overwritten)."
 fi
 
-if [[ ! -f "${TARGET_DIR}/.humanpowers/memory.md" ]]; then
-    curl -fsSL "${REPO_RAW}/.humanpowers/memory.md" -o "${TARGET_DIR}/.humanpowers/memory.md"
+if [[ ! -f "${TARGET_DIR}/.artisan/memory.md" ]]; then
+    curl -fsSL "${REPO_RAW}/.artisan/memory.md" -o "${TARGET_DIR}/.artisan/memory.md"
 fi
 
 if [[ "$AGENT_TARGET" == "cursor" || "$AGENT_TARGET" == "all" ]]; then

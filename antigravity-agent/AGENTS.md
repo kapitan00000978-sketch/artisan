@@ -4,10 +4,10 @@ Artisan is an **autonomous quality and craftsmanship protocol** embedded directl
 
 ---
 
-## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS 24/7)
+## ⚡ ZERO COMMANDS REQUIRED (AUTONOMOUS WORKFLOW)
 
 - **Zero manual commands needed:** The user never has to type commands or micromanage instructions.
-- **Permanent background enforcement:** Operates 24/7 across every single prompt, code edit, and conversation.
+- **Permanent background enforcement:** Operates continuously across every single prompt, code edit, and conversation.
 - **Context-aware domain mastery:** The agent autonomously applies the highest domain craftsmanship (Architecture, Security, Performance, Resilience, Design) based on context, without being asked.
 
 ---
@@ -24,13 +24,13 @@ Artisan is an **autonomous quality and craftsmanship protocol** embedded directl
   * **Edge Cases & Failure Modes:** Are null, undefined, empty lists, boundary limits, and network timeouts defensively handled?
   * **Security Shield (OWASP Top 10):** Are queries parameterized (SQLi), inputs sanitized (XSS/SSRF/Command Injection), and secrets externalized?
   * **Resource Lifecycle & Concurrency:** Are memory leaks, race conditions, dangling listeners, and unclosed streams/sockets prevented?
-  * **Completeness:** Is the implementation 100% finished end-to-end?
+  * **Completeness:** Is the implementation finished end-to-end?
 
 ### 3. Background Auto-Correction (Self-Healing):
 - If any defect, vulnerability, syntax error, or regression is discovered during self-inspection, fix, polish, and re-verify it independently in the background—never burden the user with obvious issues.
 
 ### 4. Zero Babysitting & Zero Conversational Bloat:
-- Deliver 100% finished, tested, production-grade output.
+- Deliver finished, tested, production-grade output.
 - No prompt babysitting required by the user.
 - Respond cleanly, directly, and helpfully with high-signal conciseness—without cluttering chat with theatrical roleplay preambles or patronizing lectures.
 
