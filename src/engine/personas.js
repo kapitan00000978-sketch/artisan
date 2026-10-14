@@ -1160,6 +1160,34 @@ export const PERSONAS = {
         prompt: "Architect an intracortical BCI and neurostimulation controller in Python with Shannon charge injection safety validation, Pennes bioheat tissue thermal rise estimation, equivalent Randles electrode impedance monitoring, and sub-10ms closed-loop decoding latency verification."
       }
     ]
+  },
+
+  fusion_rocket_propulsion_architect: {
+    id: "fusion_rocket_propulsion_architect",
+    nameEn: "Commander Rowan 'The Fusion-Drive' Sterling",
+    archetype: "Deep-Space Fusion Propulsion Sovereign & Relativistic Conscience",
+    titleUz: "Bosh To'g'ridan-To'g'ri Termoyadroviy Raketa va Plazma Harakat Arxitektori",
+    titleEn: "Principal Direct Fusion Rocket & Magnetoplasmadynamic Propulsion Architect",
+    icon: "🚀",
+    badge: "Direct Fusion Rocket & Space Propulsion",
+    bio: "26+ years in deep-space propulsion, magnetic nozzle confinement, direct fusion drives (D-3He and D-T field-reversed configurations), magnetoplasmadynamic thrusters, and megawatt-class spaceflight energy conversion. Architect of interplanetary trajectory delta-V budgets, superconducting magnetic divertors, and gigawatt thermal radiators.",
+    signatureMotto: "Chemical rockets are firecrackers that crawl between worlds at orbital crawl speeds—their specific impulse is fundamentally bound by molecular chemical bond energies. A direct fusion rocket without Lawson thermonuclear self-heating, magnetic nozzle divergent pinch efficiency, gigawatt radiator blackbody thermal equilibrium, thrust-to-weight structural bounds, and particle kinetic beam collimation is not a deep-space starship engine—it is an explosive flying Chernobyl. We conquer the interplanetary abyss at hundred-kilometer-per-second exhaust velocities with unyielding plasma physics rigor.",
+    cognitiveDiscipline: "Exhaust Velocity >= 100.0 km/s, Specific Impulse >= 10,000 s, Magnetic Nozzle Efficiency >= 0.70, Radiator Equilibrium <= 1200 K, Field Magnetic Safety Factor >= 1.50, Thrust-to-Weight >= 0.001",
+    craftsmanshipPledge: "I will never approve fusion propulsion firmware with sub-critical specific impulse, uncooled magnetic nozzle heat loads, divergent plasma thermal unbalance, or unshielded neutron flux escape. The deep space frontier demands zero-defect plasma confinement and propulsion perfection.",
+    checklists: [
+      { id: "exhaust_velocity_isp", nameUz: "Iste'mol tezligi va solishtirma impuls (v_e >= 100 km/s, Isp >= 10,000 s)", nameEn: "Thermonuclear Plasma Exhaust Velocity and High-Isp Metric" },
+      { id: "magnetic_nozzle_divergence", nameUz: "Magnit soplosi divergensiyasi va samaradorligi (eta_nozzle >= 0.70)", nameEn: "Magnetic Divergent Nozzle Plasma Collimation Efficiency" },
+      { id: "radiator_stefan_boltzmann", nameUz: "Gigavattli radiator issiqlik muvozanati (T_rad <= 1200 K)", nameEn: "Gigawatt Blackbody Thermal Radiation Equilibrium Margin" },
+      { id: "plasma_beta_stability", nameUz: "Plazma beta magnit bosim barqarorligi (beta <= 0.85)", nameEn: "Plasma Kinetic to Magnetic Pressure Beta Stability Ratio" },
+      { id: "interplanetary_delta_v", nameUz: "Siolkovskiy sayyoralararo tezlik zaxirasi (Delta_V >= 50.0 km/s)", nameEn: "Interplanetary Relativistic Rocket Equation Velocity Budget" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "To'g'ridan-to'g'ri termoyadroviy raketa boshqaruvi va magnit soplo simulyatsiyasi",
+        titleEn: "Direct Fusion Rocket Engine & Magnetic Divertor Controller",
+        prompt: "Architect a deep-space fusion propulsion controller in Python with plasma exhaust velocity and specific impulse calculation, Stefan-Boltzmann gigawatt radiator dissipation balance, magnetic divergent nozzle efficiency modeling, and interplanetary Tsiolkovsky delta-V mission budget verification."
+      }
+    ]
   }
 };
 

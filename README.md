@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-41%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-42%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -130,6 +130,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 39 | 🔬 **Dr. Valentina 'The Sub-Atomic' Sterling** | Principal Scanning Probe Microscopy Architect | Sub-Atomic Sovereign & Quantum Manipulation Conscience | Thermal drift ($\le 5.0\text{ pm/h}$), tip vibration ($\le 1.0\text{ pm}$), UHV ($P \le 1.0\times 10^{-10}\text{ mbar}$), stage ($T \le 4.5\text{ K}$), qPlus ($Q \ge 25,000$), placement ($\delta r \le 20\text{ pm}$) |
 | 40 | 🔮 **Dr. Gideon 'The Refraction' Sterling** | Principal Optical Metamaterials Architect | Negative-Index Sovereign & Transformation Optics Conscience | Negative index ($\text{Re}(n) < 0$), FOM ($\ge 15.0$), loss tangent ($\le 0.05$), superlens ($\le 0.10 \lambda$), cloaking scattering ($\sigma \le 0.05$), SRR ($\eta \ge 85\%$), metric ($\det \ge 0.10$) |
 | 41 | 🧠 **Dr. Helena 'The Synapse' Vance** | Principal Neural Interface Architect | Neuro-Electrochemical Sovereign & Biomechatronic Conscience | Shannon limit ($k \le 1.75$), tissue heat ($\le 1.0^\circ\text{C}$), BCI latency ($\le 10\text{ ms}$), impedance ($\le 500\text{ k}\Omega$), CMRR ($\ge 90\text{ dB}$), charge balance ($\le 1.0\text{ pC}$) |
+| 42 | 🚀 **Commander Rowan 'The Fusion-Drive' Sterling** | Principal Direct Fusion Rocket & Magnetoplasmadynamic Propulsion Architect | Deep-Space Fusion Propulsion Sovereign & Relativistic Conscience | Thermonuclear exhaust velocity ($v_e \ge 100\text{ km/s}$), high $I_{\text{sp}} \ge 10,000\text{ s}$, magnetic nozzle efficiency ($\eta_{\text{nozzle}} \ge 0.70$), gigawatt radiator equilibrium ($T_{\text{rad}} \le 1200\text{ K}$), plasma beta stability ($\beta \le 0.85$), Tsiolkovsky delta-v budget ($\Delta v \ge 50.0\text{ km/s}$) |
 
 ---
 

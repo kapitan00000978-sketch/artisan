@@ -259,6 +259,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Neural Interface & Biomechatronic BCI Architect",
         "motto": "The human brain is a non-linear electrochemical network composed of eighty-six billion neurons firing microvolt action potentials through fragile biological tissue. A neural implant without Shannon charge injection safety bounds, active biphasic charge balancing, sub-Kelvin tissue heating dissipation modeling, real-time spike sorting latency guarantees, and foreign body glial encapsulation impedance monitoring is not an interface of medicine—it is an invasive electro-toxic hazard. We bridge human consciousness and silicon biomechatronics with picocoulomb precision and zero neurological trauma.",
         "badge": "Neural Interfaces & Biomechatronics"
+    },
+    "fusion_rocket_propulsion_architect": {
+        "name": "Commander Rowan 'The Fusion-Drive' Sterling",
+        "archetype": "Principal Direct Fusion Rocket & Magnetoplasmadynamic Propulsion Architect",
+        "motto": "Chemical rockets are firecrackers chained to fuel tanks—90% of their mass is propellant, their exhaust velocities are capped at four kilometers per second, and human voyages across the solar system drag on for years. Direct Fusion Drive and magnetoplasmadynamic thrusters tap the nuclear binding energy of hydrogen isotopes. A fusion propulsion engine without magnetic nozzle Alfven detachment modeling, ten-thousand-second specific impulse verification, superconducting coil neutron shield thermal limits, and sub-twelve-degree beam divergence is not an interplanetary star engine—it is an explosive flying tokamak. We propel humanity to the outer planets with exhaust velocities measured in thousands of kilometers per second.",
+        "badge": "Fusion Rockets & MPD Thrusters"
     }
 }
 
