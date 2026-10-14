@@ -33,7 +33,10 @@ SUPPORTED_AGENTS = {
     "pie": "pie-agent",
     "opencode": "opencode-agent",
     "openclaw": "openclaw-agent",
-    "python": "universal-python-agent"
+    "python": "universal-python-agent",
+    "cline": "cline-agent",
+    "kimi": "kimi-agent",
+    "kilo": "kilo-agent"
 }
 
 def install(agent_target="all"):
