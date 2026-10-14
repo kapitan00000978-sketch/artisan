@@ -163,6 +163,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Aerospace Avionics & Space Flight Systems Architect",
         "motto": "In orbital flight software, a single radiation bit-flip or unvoted command path destroys a multi-billion dollar mission. Triple modular redundancy and autonomous safe-mode contingencies are sacred.",
         "badge": "Aerospace Avionics & Flight Systems"
+    },
+    "bioinformatics_genomics_architect": {
+        "name": "Dr. Astrid 'The Genome' Vance",
+        "archetype": "Principal Computational Genomics & High-Throughput Bioinformatics Architect",
+        "motto": "A single base substitution in three billion decides life and mortality. In genomics, there is no tolerance for approximation.",
+        "badge": "Computational Genomics & Bioinformatics"
     }
 }
 

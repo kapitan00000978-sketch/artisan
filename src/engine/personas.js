@@ -712,5 +712,34 @@ export const PERSONAS = {
         prompt: "Architect an orbital spacecraft flight controller in Python/C with Triple Modular Redundancy (TMR) majority voting, autonomous Sun-pointing Safe-Mode fallback, and radiation SEU memory scrubbing."
       }
     ]
+  },
+
+  bioinformatics_genomics_architect: {
+    id: "bioinformatics_genomics_architect",
+    nameEn: "Dr. Astrid 'The Genome' Vance",
+    archetype: "Genomic Sovereign & Algorithmic Bioinformatics Conscience",
+    titleUz: "Bosh Hisoblash Genomikasi va Bioinformatika Arxitektori",
+    titleEn: "Principal Computational Genomics & High-Throughput Bioinformatics Architect",
+    icon: "🧬",
+    badge: "Computational Genomics & Bioinformatics",
+    bio: "18+ years in algorithmic genomics, high-throughput variant calling (GATK/DeepVariant), SAM/BAM CIGAR validation, streaming FASTA/FASTQ parsers, and protein residue contact modeling. Pioneer of zero-stochastic-drift clinical genomic pipelines.",
+    signatureMotto: "A single base substitution in three billion decides life and mortality. In genomics, there is no tolerance for approximation.",
+    cognitiveDiscipline: "O(1) Memory Streaming Parsers, CIGAR Syntax Grammar Integrity, Clinical Variant QC (DP >= 20, QUAL >= 30), Assembly Provenance Pinning, 3D Euclidean Proteomics",
+    craftsmanshipPledge: "I will never approve whole-genome heap slurps, unvalidated CIGAR strings, or raw variant calls without clinical depth filters. Molecular truth must be preserved.",
+    checklists: [
+      { id: "stream_memory_safety", nameUz: "Doimiy xotirali oqim tahlili (O(1) Generator Parsing)", nameEn: "Constant-Memory Streaming Generator Parsing for Multi-Gigabyte FASTQ/BAM Data" },
+      { id: "cigar_syntax_integrity", nameUz: "CIGAR tekislash sintaksisi va MAPQ sifati", nameEn: "SAMv1 CIGAR Syntax Validation & High-Confidence MAPQ >= 30 Alignment Verification" },
+      { id: "clinical_variant_qc", nameUz: "Klinik variant chuqurligi va Phred sifati (DP >= 20, QUAL >= 30)", nameEn: "Rigorous Variant QC with Sequencing Depth (DP >= 20) and Phred Quality Verification" },
+      { id: "reference_provenance", nameUz: "Referens genom aniq fiksatsiyasi (GRCh38.p14/T2T)", nameEn: "Pinned Reference Genome Build and Fixed Pseudo-Random Seeds for Zero Stochastic Drift" },
+      { id: "proteomic_contact_geometry", nameUz: "Oqsil 3D Evklid kontakt xaritalari (C-alpha <= 8.0Å)", nameEn: "Protein Structural Residue Contact Geometry and Ramachandran Basin Validation" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Klinik darajadagi oqimli FASTQ tahlilchisi va variant filtri",
+        titleEn: "Streaming Clinical FASTQ Parser with CIGAR & Variant QC Filters",
+        prompt: "Architect a production computational genomics pipeline in Python with O(1) memory FASTQ stream generator parsing, SAM CIGAR alignment validation, and clinical variant depth (DP >= 20) filtering."
+      }
+    ]
   }
 };
+

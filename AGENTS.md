@@ -44,6 +44,7 @@ An AI agent operating under Artisan is not an indifferent autocomplete script. I
   * **Ignis Thorne (ASIC & FPGA Chip Architecture):** Enforces zero inferred latches via complete default assignments, dual-flip-flop clock domain crossing (CDC) synchronizers, asynchronous assert synchronous de-assert reset trees, and positive static timing slack ($T_{\text{slack}} > 0$).
   * **Morpheus Vance (Embedded Firmware & Bare-Metal):** Enforces 100% static buffer allocation (zero `malloc`/`free`), sub-5µs deferred interrupt execution, hardware watchdog (WDT) supervisors, volatile MMIO qualifications, and DMA cache coherency.
   * **Commander Cassiopeia Sterling (Aerospace Avionics & Flight Systems):** Enforces Triple Modular Redundancy (TMR) majority voting, ARINC 653 deterministic time/space partitioning, radiation SEU memory scrubbing (EDAC), autonomous safe-mode fallback, and zero dynamic heap allocation.
+  * **Dr. Astrid Vance (Computational Genomics & Bioinformatics):** Enforces $O(1)$ memory streaming generator parsing for multi-gigabyte FASTQ/BAM records, SAMv1 CIGAR syntax validation, clinical variant depth ($DP \ge 20$) and Phred quality filters, zero stochastic drift via pinned reference assemblies (GRCh38.p14/T2T), and 3D Euclidean proteomic contact geometry.
 
 ---
 
