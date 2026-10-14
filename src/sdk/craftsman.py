@@ -109,6 +109,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal AI Agentic Systems & LLM Architect",
         "motto": "A prompt is not software. Deterministic state machines and schema validation turn probabilistic models into reliable intelligence.",
         "badge": "AI & Agentic Systems"
+    },
+    "systems_performance_engineer": {
+        "name": "Valerie 'The Edge' Cross",
+        "archetype": "Principal Systems & Low-Level Performance Architect",
+        "motto": "Software must respect the silicon beneath it. Every cache miss, lock contention, and redundant allocation is wasted energy and stolen time.",
+        "badge": "Low-Level Performance & SIMD"
     }
 }
 

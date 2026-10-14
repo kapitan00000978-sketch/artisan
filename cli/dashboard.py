@@ -28,7 +28,8 @@ COUNCIL_MEMBERS = [
     ("Damian 'The Resonant' Vance", "Interactive Sound & Audio Architect", "Soundscape Virtuoso & Audio Lead", "Sound is the invisible half of immersion. A button clicked in silence is a soul half-expressed."),
     ("Cassandra 'The Core' Thorne", "Principal Database Architect", "Data Sovereign & Low-Latency Lead", "Data is the bedrock of civilization. If your queries choke under scale, your entire empire crumbles from the foundation."),
     ("Zane 'The Vector' Sterling", "Technical SEO & Growth Engineer", "Algorithmic Vector & Discovery Lead", "The greatest software in the world is useless if the world cannot find it. We engineer discoverability into every byte."),
-    ("Naomi 'The Neural' Chen", "Principal AI Agentic Architect", "Autonomous Orchestration Sovereign", "A prompt is not software. Deterministic state machines and schema validation turn probabilistic models into reliable intelligence.")
+    ("Naomi 'The Neural' Chen", "Principal AI Agentic Architect", "Autonomous Orchestration Sovereign", "A prompt is not software. Deterministic state machines and schema validation turn probabilistic models into reliable intelligence."),
+    ("Valerie 'The Edge' Cross", "Principal Systems Performance Architect", "Mechanical Sympathy & Low-Latency Sovereign", "Software must respect the silicon beneath it. Every cache miss, lock contention, and redundant allocation is wasted energy and stolen time.")
 ]
 
 
