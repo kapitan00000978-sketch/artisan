@@ -31,6 +31,13 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 
+# Add project root to sys.path to load src.studio modules
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..")))
+try:
+    from src.studio.orchestrator import StudioOrchestrator
+except ImportError:
+    StudioOrchestrator = None
+
 
 GENERIC_COPY_CLICHES = [
     r"\bwelcome\s+to\b",
@@ -456,6 +463,8 @@ def main():
     parser = argparse.ArgumentParser(description="Artisan Studio — Visual Critique & Elevation Engine")
     parser.add_argument("target", help="HTML file to audit and critique (e.g. index.html)")
     parser.add_argument("--elevate", "-e", action="store_true", help="Autonomously elevate to world-class standards")
+    parser.add_argument("--loop", "-l", action="store_true", help="Execute complete autonomous feedback loop with Orchestrator, Blind Critic & Active Memory")
+    parser.add_argument("--max-cycles", type=int, default=3, help="Maximum iteration budget for Orchestrator loop (default: 3)")
     parser.add_argument("--json", "-j", action="store_true", help="Output critique results as JSON")
     parser.add_argument("--screenshots-dir", default=".artisan/screenshots", help="Directory to save visual captures")
 
@@ -464,6 +473,13 @@ def main():
     if not os.path.exists(args.target):
         print(f"Error: Target file not found: {args.target}", file=sys.stderr)
         sys.exit(1)
+
+    # If --loop is chosen, run full 7-step Orchestrator closed-loop system
+    if args.loop and StudioOrchestrator:
+        orchestrator = StudioOrchestrator(args.target, max_iterations=args.max_cycles)
+        result = orchestrator.run(auto_remediate=True)
+        sys.exit(0 if result["status"] == "CERTIFIED" else 1)
+
 
     print(f"🔍 [Artisan Studio] Launching headless browser & visual inspection on {args.target}...")
     metrics = capture_visual_metrics(args.target, output_dir=args.screenshots_dir)
