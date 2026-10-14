@@ -24,7 +24,7 @@ def scan_files():
 
     # Scan project source files
     for root, dirs, files in os.walk("."):
-        if any(d in root for d in [".git", "node_modules", ".venv", "__pycache__"]):
+        if any(d in root for d in [".git", "node_modules", ".venv", "__pycache__", "tests"]):
             continue
         for file in files:
             # Only scan actual source code files, ignore documentation

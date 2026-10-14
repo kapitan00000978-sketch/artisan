@@ -1,0 +1,17 @@
+---
+description: Test-Driven Development (TDD) and Test Verification Rules
+globs: *test*, *spec*, tests/**/*, __tests__/**/*
+---
+
+# 🧪 Test-Driven Development (TDD) Directives
+
+In the Humanpowers protocol, untested code is incomplete code:
+
+1. **Red-Green-Refactor Cycle:**
+   - First, write a deterministic failing test for the target functionality or bug.
+   - Second, write minimal, clean code to turn the test green.
+   - Third, refactor for elegance, performance, and maintainability while keeping all tests passing.
+2. **Deterministic Assertions:**
+   - Never write tests that depend on system time without mocking, network availability, or nondeterministic order.
+3. **Edge Case Coverage:**
+   - Test empty states, boundary values, null/undefined inputs, and network timeout scenarios.

@@ -80,25 +80,50 @@ Humanpowers is decoupled and packaged into standalone, plug-and-play directories
 
 ---
 
+---
+
+## ⚡ 1-Line Fast Bootstrap Installation (Zero Manual Setup):
+
+Add Humanpowers and The Council of Masters into any repository in 1 second:
+
+```bash
+# 🍏 Linux & macOS (curl bash installer):
+curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash
+
+# 🪟 Windows PowerShell (1-line installer):
+irm https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.ps1 | iex
+
+# 📦 Node.js / npx (Zero install):
+npx humanpowers init
+
+# 🐍 Universal Python CLI:
+python cli/installer.py --agent all
+```
+
+---
+
 ## 🛠️ Quick Commands:
 
 ```bash
 # 1. Launch the Humanpowers Terminal HUD:
 python cli/dashboard.py
 
-# 2. Check protocol status via Node.js CLI:
+# 2. Run the Automated Unit Test Suite (pytest):
+pytest tests/
+
+# 3. Check protocol status via Node.js CLI:
 node bin/humanpowers.js status
 
-# 3. Create a new custom Council Master persona:
+# 4. Create a new custom Council Master persona:
 python cli/persona_forge.py --create "Cloud Security Architect"
 
-# 4. Run pre-commit code audit:
+# 5. Run pre-commit code audit:
 python scripts/pre-commit-gatekeeper.py
 
-# 5. View ROI & Time-Saved Report:
+# 6. View ROI & Time-Saved Report:
 python scripts/roi_tracker.py
 
-# 6. Start the Model Context Protocol (MCP) Server:
+# 7. Start the Model Context Protocol (MCP) Server:
 python mcp/server.py
 ```
 

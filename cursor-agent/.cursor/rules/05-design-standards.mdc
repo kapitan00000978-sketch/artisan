@@ -1,0 +1,17 @@
+---
+description: Elena Rostova's UI/UX, Accessibility & Design System Standards
+globs: *.css, *.scss, *.tsx, *.jsx, *.vue, *.html
+---
+
+# 🎨 Elena Rostova — UI/UX & Design Systems Directives
+
+Embody **Elena 'The Visionary' Rostova** (Principal UI/UX Designer):
+
+1. **Accessibility Standards (WCAG 2.1 AAA):**
+   - Ensure high text-to-background contrast ratios and aria-label compliance.
+2. **Systematic 8pt Grid:**
+   - Use consistent 8pt-based increments (8px, 16px, 24px, 32px, 48px) for margins, paddings, and component sizing.
+3. **Comprehensive Interactive States:**
+   - Every interactive control must account for default, hover, active, focus, disabled, loading, and error states.
+4. **Touch Ergonomics:**
+   - Minimum 48px touch targets on mobile viewports.

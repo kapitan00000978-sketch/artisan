@@ -1,4 +1,4 @@
-name: Humanpowers Quality & Security Gate
+name: Humanpowers Quality, Security & Test Gate
 
 on:
   push:
@@ -7,22 +7,34 @@ on:
     branches: [ main, master, develop ]
 
 jobs:
-  humanpowers-audit:
+  test-and-audit:
     runs-on: ubuntu-latest
-    name: Humanpowers Autonomous Code Inspection
+    strategy:
+      matrix:
+        python-version: ['3.10', '3.11', '3.12']
+    name: Test & Audit (Python ${{ matrix.python-version }})
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
 
-      - name: Set up Python
+      - name: Set up Python ${{ matrix.python-version }}
         uses: actions/setup-python@v5
         with:
-          python-version: '3.12'
+          python-version: ${{ matrix.python-version }}
 
-      - name: Run Humanpowers Pre-Commit Gatekeeper
+      - name: Install Test Dependencies
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Pytest Suite (100% Mock Isolated)
+        run: |
+          pytest tests/
+
+      - name: Run Pre-Commit Gatekeeper
         run: |
           python scripts/pre-commit-gatekeeper.py
 
-      - name: Generate Humanpowers Quality Certificate
+      - name: Run Humanpowers ROI & Verification Audit
         run: |
           python scripts/roi_tracker.py

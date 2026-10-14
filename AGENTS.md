@@ -30,3 +30,7 @@ For all AI Agents operating in this workspace, the **Humanpowers** directives ar
 ### 4. Zero Babysitting (Eliminating Prompt Micromanagement):
 - Never force the user to babysit the agent ("fix this, you missed that, tweak this error").
 - Only deliver 100% complete, fully implemented, tested, and flawless work.
+
+### 5. MCP & External Tool Fallback Guardrails (Anti-Loop):
+- If any MCP server or external inspection tool times out (>10s) or fails, **never enter an infinite retry loop**.
+- Immediately fall back to local heuristic self-inspection using The Council of Masters checklists and proceed autonomously to completion.

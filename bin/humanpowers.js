@@ -1,8 +1,9 @@
 #!/usr/bin/env node
 
 /**
- * HUMANPOWERS CLI INSTALLER
- * Installs Humanpowers rules and skills into any project directory.
+ * HUMANPOWERS CLI BOOTSTRAP INSTALLER
+ * Installs Humanpowers rules and skills into any project directory in 1 command.
+ * Empowered by The Council of Masters.
  */
 
 const fs = require('fs');
@@ -15,46 +16,78 @@ const ASCII_BANNER = `
   ██╔══██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║██╔═══╝ ██║   ██║██║███╗██║██╔══╝  ██╔══██╗╚════██║
   ██║  ██║╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║███████║
   ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝╚══════╝
-                                  AI AGENT PROTOCOL & CRAFTSMANSHIP
+                            THE COUNCIL OF MASTERS — ZERO BABYSITTING
 `;
 
 console.log(ASCII_BANNER);
 
 const targetDir = process.cwd();
-const command = process.argv[2] || 'init';
+const args = process.argv.slice(2);
+const command = args[0] || 'init';
 
-const SUPPORTED_AGENTS = [
-  { name: 'Antigravity / Gemini CLI', dir: 'antigravity-agent' },
-  { name: 'Claude Code (Anthropic)', dir: 'claude-code-agent' },
-  { name: 'Cursor AI Editor', dir: 'cursor-agent' },
-  { name: 'GitHub Copilot', dir: 'copilot-agent' },
-  { name: 'Windsurf Cascade', dir: 'windsurf-agent' },
-  { name: 'Nous Hermes Agent', dir: 'hermes-agent' },
-  { name: 'OpenAI Codex', dir: 'codex-agent' },
-  { name: 'Pie Coding Agent', dir: 'pie-agent' },
-  { name: 'OpenCode TUI', dir: 'opencode-agent' },
-  { name: 'OpenClaw Platform', dir: 'openclaw-agent' },
-  { name: 'Python / LangChain', dir: 'universal-python-agent' }
-];
+const packageRoot = path.resolve(__dirname, '..');
+
+function copyFileSafe(srcRel, dstRel) {
+  const src = path.join(packageRoot, srcRel);
+  const dst = path.join(targetDir, dstRel);
+  if (fs.existsSync(src)) {
+    fs.mkdirSync(path.dirname(dst), { recursive: true });
+    fs.copyFileSync(src, dst);
+    console.log(`  [+] Copied: ${dstRel}`);
+  }
+}
+
+function copyDirSafe(srcRel, dstRel) {
+  const src = path.join(packageRoot, srcRel);
+  const dst = path.join(targetDir, dstRel);
+  if (fs.existsSync(src)) {
+    fs.mkdirSync(dst, { recursive: true });
+    const entries = fs.readdirSync(src, { withFileTypes: true });
+    for (const entry of entries) {
+      const srcPath = path.join(srcRel, entry.name);
+      const dstPath = path.join(dstRel, entry.name);
+      if (entry.isDirectory()) {
+        copyDirSafe(srcPath, dstPath);
+      } else {
+        copyFileSafe(srcPath, dstPath);
+      }
+    }
+  }
+}
 
 if (command === 'init' || command === 'install') {
-  console.log(`[Humanpowers] Initializing in: ${targetDir}`);
-  console.log(`[Humanpowers] Detected all 11 supported agent targets.`);
-  console.log(`[Humanpowers] Copying zero-babysitting and craftsmanship protocol...`);
+  console.log(`[*] Target Directory: ${targetDir}`);
+  console.log(`[*] Installing Humanpowers Core Protocol & The Council of Masters...\n`);
 
-  // Ensure .humanpowers directory
-  const hpDir = path.join(targetDir, '.humanpowers');
-  if (!fs.existsSync(hpDir)) {
-    fs.mkdirSync(hpDir, { recursive: true });
-  }
+  // 1. Core protocol
+  copyFileSafe('AGENTS.md', 'AGENTS.md');
+  copyFileSafe('.humanpowers/memory.json', '.humanpowers/memory.json');
+  copyFileSafe('.humanpowers/memory.md', '.humanpowers/memory.md');
 
-  console.log(`\n✅ Humanpowers is successfully installed and verified!`);
-  console.log(`⚡ Protocols active: Zero Babysitting, Self-Inspection, Auto-Correction.`);
-  console.log(`Run 'python scripts/roi_tracker.py' to view saved time and prevented flaws.`);
+  // 2. Cursor AI
+  copyFileSafe('.cursorrules', '.cursorrules');
+  copyDirSafe('.cursor/rules', '.cursor/rules');
+
+  // 3. Claude Code
+  copyFileSafe('CLAUDE.md', 'CLAUDE.md');
+
+  // 4. Copilot & Windsurf
+  copyFileSafe('.github/copilot-instructions.md', '.github/copilot-instructions.md');
+  copyFileSafe('.windsurfrules', '.windsurfrules');
+
+  console.log(`\n==================================================================`);
+  console.log(`  ✅ Humanpowers successfully initialized!`);
+  console.log(`     The Council of Masters is active across Cursor, Claude,`);
+  console.log(`     Antigravity, Copilot, and Windsurf.`);
+  console.log(`     Zero Babysitting protocol is permanently enforced.`);
+  console.log(`==================================================================\n`);
 } else if (command === 'status') {
-  console.log(`🛡️ Humanpowers Protocol: ACTIVE`);
-  console.log(`Zero Babysitting: ENFORCED`);
-  console.log(`Supported Agents: 11`);
+  console.log(`🛡️ Humanpowers Protocol : ACTIVE`);
+  console.log(`Council of Masters      : 8 Titans Enforced`);
+  console.log(`Zero Babysitting        : ENFORCED`);
+  console.log(`Supported Ecosystems    : 11 Platforms Ready`);
 } else {
-  console.log(`Usage: humanpowers [init|install|status]`);
+  console.log(`Usage:`);
+  console.log(`  npx humanpowers init       # Initialize Humanpowers in current repo`);
+  console.log(`  npx humanpowers status     # Check active protocol state`);
 }

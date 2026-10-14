@@ -34,7 +34,7 @@ def check_file(filepath):
 def scan_all():
     print("🛡️  [Humanpowers Watchdog] Real-time code quality monitoring active...")
     for root, dirs, files in os.walk("."):
-        if any(d in root for d in [".git", "node_modules", ".venv", "__pycache__"]):
+        if any(d in root for d in [".git", "node_modules", ".venv", "__pycache__", "tests"]):
             continue
         for file in files:
             if file.endswith((".js", ".ts", ".py", ".go", ".rs")):

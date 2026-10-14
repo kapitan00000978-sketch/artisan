@@ -272,7 +272,13 @@ def main():
             method = req.get("method")
             msg_id = req.get("id")
 
-            if method == "tools/list":
+            if method == "ping":
+                res = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {"status": "ok", "protocol": "humanpowers-mcp-1.0"}
+                }
+            elif method == "tools/list":
                 res = {
                     "jsonrpc": "2.0",
                     "id": msg_id,
@@ -283,16 +289,27 @@ def main():
                 tool_name = params.get("name")
                 args = params.get("arguments", {})
 
-                if tool_name == "humanpowers_inspect_code":
-                    output = handle_inspect_code(args)
-                elif tool_name == "humanpowers_get_persona":
-                    output = handle_get_persona(args)
-                elif tool_name == "humanpowers_list_council":
-                    output = handle_list_council(args)
-                elif tool_name == "humanpowers_recall_memory":
-                    output = handle_recall_memory(args)
-                else:
-                    output = {"error": f"Unknown tool: {tool_name}"}
+                try:
+                    if tool_name == "humanpowers_inspect_code":
+                        output = handle_inspect_code(args)
+                    elif tool_name == "humanpowers_get_persona":
+                        output = handle_get_persona(args)
+                    elif tool_name == "humanpowers_list_council":
+                        output = handle_list_council(args)
+                    elif tool_name == "humanpowers_recall_memory":
+                        output = handle_recall_memory(args)
+                    else:
+                        output = {
+                            "status": "FALLBACK",
+                            "error": f"Unknown tool: {tool_name}",
+                            "message": "Fallback to local Council of Masters heuristics active."
+                        }
+                except Exception as tool_err:
+                    output = {
+                        "status": "FALLBACK",
+                        "error": str(tool_err),
+                        "message": "Tool execution encountered exception. Falling back to local heuristics."
+                    }
 
                 res = {
                     "jsonrpc": "2.0",

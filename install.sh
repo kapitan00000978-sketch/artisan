@@ -1,0 +1,71 @@
+#!/usr/bin/env bash
+# ==============================================================================
+# Humanpowers 1-Line Bootstrap Installer
+# Usage:
+#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash -s -- --agent cursor
+# ==============================================================================
+
+set -e
+
+REPO_RAW="https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main"
+TARGET_DIR="${PWD}"
+AGENT_TARGET="all"
+
+# Parse arguments
+while [[ "$#" -gt 0 ]]; do
+    case $1 in
+        --agent) AGENT_TARGET="$2"; shift ;;
+        --dir) TARGET_DIR="$2"; shift ;;
+        *) echo "Unknown parameter: $1"; exit 1 ;;
+    esac
+    shift
+done
+
+echo "=================================================================="
+echo "  🛡️  HUMANPOWERS 1-LINE BOOTSTRAP INSTALLER"
+echo "      Empowered by The Council of Masters (Zero Babysitting)"
+echo "=================================================================="
+echo "[*] Target Directory : ${TARGET_DIR}"
+echo "[*] Target Agent(s)  : ${AGENT_TARGET}"
+
+mkdir -p "${TARGET_DIR}/.humanpowers"
+
+echo "[+] Downloading core Humanpowers protocol..."
+curl -fsSL "${REPO_RAW}/AGENTS.md" -o "${TARGET_DIR}/AGENTS.md"
+curl -fsSL "${REPO_RAW}/.humanpowers/memory.json" -o "${TARGET_DIR}/.humanpowers/memory.json"
+curl -fsSL "${REPO_RAW}/.humanpowers/memory.md" -o "${TARGET_DIR}/.humanpowers/memory.md"
+
+if [[ "$AGENT_TARGET" == "cursor" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing Cursor AI Rules (.cursorrules & .cursor/rules)..."
+    mkdir -p "${TARGET_DIR}/.cursor/rules"
+    curl -fsSL "${REPO_RAW}/.cursorrules" -o "${TARGET_DIR}/.cursorrules"
+    curl -fsSL "${REPO_RAW}/.cursor/rules/01-craftsman.mdc" -o "${TARGET_DIR}/.cursor/rules/01-craftsman.mdc"
+    curl -fsSL "${REPO_RAW}/.cursor/rules/02-architecture-standards.mdc" -o "${TARGET_DIR}/.cursor/rules/02-architecture-standards.mdc"
+    curl -fsSL "${REPO_RAW}/.cursor/rules/03-security-directives.mdc" -o "${TARGET_DIR}/.cursor/rules/03-security-directives.mdc"
+    curl -fsSL "${REPO_RAW}/.cursor/rules/04-testing-tdd.mdc" -o "${TARGET_DIR}/.cursor/rules/04-testing-tdd.mdc"
+    curl -fsSL "${REPO_RAW}/.cursor/rules/05-design-standards.mdc" -o "${TARGET_DIR}/.cursor/rules/05-design-standards.mdc"
+fi
+
+if [[ "$AGENT_TARGET" == "claude" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing Claude Code CLI (CLAUDE.md)..."
+    curl -fsSL "${REPO_RAW}/CLAUDE.md" -o "${TARGET_DIR}/CLAUDE.md"
+fi
+
+if [[ "$AGENT_TARGET" == "copilot" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing GitHub Copilot Instructions..."
+    mkdir -p "${TARGET_DIR}/.github"
+    curl -fsSL "${REPO_RAW}/.github/copilot-instructions.md" -o "${TARGET_DIR}/.github/copilot-instructions.md"
+fi
+
+if [[ "$AGENT_TARGET" == "windsurf" || "$AGENT_TARGET" == "all" ]]; then
+    echo "[+] Installing Windsurf Cascade Rules (.windsurfrules)..."
+    curl -fsSL "${REPO_RAW}/.windsurfrules" -o "${TARGET_DIR}/.windsurfrules"
+fi
+
+echo ""
+echo "=================================================================="
+echo "  ✅ Humanpowers successfully installed!"
+echo "     The Council of Masters is now permanently active."
+echo "     Prompt babysitting has been permanently eliminated."
+echo "=================================================================="
