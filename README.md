@@ -26,7 +26,7 @@ Developers often spend significant time micromanaging AI coding assistants:
 
 - **Session-Based Rules:** Rules files (`AGENTS.md`, `CLAUDE.md`, `.cursorrules`, etc.) load per agent session into your assistant's system instructions.
 - **Local Tooling:** The file sentinel watchdog (`scripts/watchdog.py`) and pre-commit gatekeeper (`scripts/pre-commit-gatekeeper.py`) are local command-line tools that run on your machine and in CI.
-- **Scope of Detection:** The security gate catches the specific documented patterns (unfinished stubs like TODO/FIXME/XXX/HACK/implement-later, empty catch/except blocks, dangerous `eval`/`exec`, and exposed API keys or credentials). It does not catch all conceivable logical bugs or domain errors.
+- **Limitations:** The gate catches the listed patterns (stubs, dangerous eval/exec, hardcoded secrets), not all bugs.
 - **Demo Simulation Module:** The web engine in `src/engine/craftsmanshipEngine.js` is a non-functional, client-side interactive DEMO simulation for UI previewing; production enforcement is carried out by `scripts/detector.py` and the MCP server.
 
 ---
