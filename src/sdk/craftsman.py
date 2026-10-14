@@ -289,6 +289,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Superfluid Quantum Hydrodynamics & Helium-4 Vortex Architect",
         "motto": "Classical fluid dynamics assumes viscosity is an immutable fact of matter—molecular friction creates shear stresses, generates vorticity, and dissipates kinetic energy into heat. Quantum hydrodynamics shatters Navier-Stokes: below the lambda transition of 2.1768 Kelvin, liquid Helium-4 condenses into a macroscopic quantum ground state described by a single macroscopic wavefunction. The superfluid component flows with precisely zero viscosity, zero entropy, and zero ohmic drag through nanometer capillaries, while circulation is quantized down to integer multiples of Planck's constant divided by the helium atomic mass. A superfluid cryogenic system without Landau two-fluid density modeling, quantized vortex line reconnection defense, second-sound thermomechanical equilibrium, superleak viscous clamping, and roton critical velocity bounds is not a quantum cooler—it is a thermally jammed, vortex-turbulent pipe. We guide macroscopic quantum matter with sub-angstrom vortex precision.",
         "badge": "Superfluidity & Quantum Hydrodynamics"
+    },
+    "closed_loop_ecological_life_support_architect": {
+        "name": "Dr. Morwenna 'The Biosphere' Sterling",
+        "archetype": "Principal Closed-Loop Ecological Life Support Systems & Bioregenerative Space Architect",
+        "motto": "In deep interplanetary transit, millions of kilometers from Earth, there are no resupply ships. A single unclosed mass loop, runaway CO2 buildup, or toxic water recovery failure means biological asphyxiation. Closed-loop life support transforms spacecraft into living, self-regenerating micro-biotas: catalytic Sabatier CO2 reduction, solid polymer water electrolysis, photobioreactor algal O2 generation, and membrane distillation graywater loops operate in unbroken stoichiometric balance. An ECLSS architecture without mass-balance closure, VOC catalytic oxidation, and sub-part-per-million water purity is not an exploration habitat—it is a lethal pressurized coffin. We engineer synthetic biospheres that sustain human life in the deep void with zero consumable waste.",
+        "badge": "Closed-Loop ECLSS & Bioregenerative Space Architecture"
     }
 }
 
