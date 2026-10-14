@@ -121,6 +121,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Distributed Consensus & Protocol Architect",
         "motto": "A single unverified state transition is a fissure in reality. Consensus is not a majority opinion; it is mathematical certainty across untrusted space.",
         "badge": "Consensus & Distributed Protocols"
+    },
+    "compiler_type_architect": {
+        "name": "Nikolai 'The Core' Vance",
+        "archetype": "Principal Compiler & High-Assurance Type Systems Architect",
+        "motto": "If it compiles, it must be sound. Dynamic type ambiguity and unhandled variant branches are not developer flexibility; they are delayed runtime explosions.",
+        "badge": "Compilers & Formal Type Safety"
     }
 }
 

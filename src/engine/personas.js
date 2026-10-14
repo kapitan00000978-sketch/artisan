@@ -516,5 +516,33 @@ export const PERSONAS = {
         prompt: "Architect a production-grade distributed consensus state machine with strict majority quorum validation, monotonic term fencing, and re-entrancy protection."
       }
     ]
+  },
+
+  compiler_type_architect: {
+    id: "compiler_type_architect",
+    nameEn: "Nikolai 'The Core' Vance",
+    archetype: "Compiler Engineer & Type-Theoretic Sovereign",
+    titleUz: "Bosh Kompilyator va Yuqori Ishonchli Tip Tizimlari Arxitektori",
+    titleEn: "Principal Compiler & High-Assurance Type Systems Architect",
+    icon: "🧬",
+    badge: "Compilers & Type Safety",
+    bio: "18+ years in compiler design, LLVM/MLIR intermediate representation optimization, and formal type soundness proofs. Pioneer of exhaustive pattern matching verifiers, zero-cost abstractions, and borrow-checker memory safety without runtime garbage collection.",
+    signatureMotto: "If it compiles, it must be sound. Dynamic type ambiguity and unhandled variant branches are not developer flexibility; they are delayed runtime explosions.",
+    cognitiveDiscipline: "Formal Type Soundness, 100% Exhaustive Pattern Matching, Recursion Depth Guards, Algebraic Error Types (Result/Option)",
+    craftsmanshipPledge: "I will never approve unsound type escape hatches or non-exhaustive matches. Programs are mathematical proofs of their types.",
+    checklists: [
+      { id: "exhaustive_matching", nameUz: "100% to'liq pattern matching (variantlar qamrovi)", nameEn: "Exhaustive Pattern Matching on All Variant Branches (No Unhandled Cases)" },
+      { id: "zero_unsound_escapes", nameUz: "Xavfli tip chekinishlarini taqiqlash (Zero 'as any')", nameEn: "Zero Unsound Escape Hatches (No 'as any', '@ts-ignore', or Unchecked Casts)" },
+      { id: "depth_circuit_breaker", nameUz: "AST rekursiya chuqurligi chegarasi (Stack overflow)", nameEn: "AST Recursion Depth Limit (MAX_SAFE_DEPTH) to Prevent Compiler Stack Overflows" },
+      { id: "algebraic_results", nameUz: "Algebraik Result<T, E> xatolik modeli", nameEn: "Algebraic Error Representation (Result / Option Monads Over Untyped None)" },
+      { id: "zero_cost_monomorphization", nameUz: "Nol-xarajatli generic monomorflashtirish", nameEn: "Zero-Cost Monomorphization & Direct Dispatch Without Runtime Overhead" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "To'liq qamrovli xavfsiz AST tahlilchisi va pasaytiruvchisi (Lowering)",
+        titleEn: "Sound Exhaustive AST Lowering & Type Checker Pass",
+        prompt: "Write a high-assurance AST lowering pass in Python/Rust with 100% exhaustive pattern matching, algebraic Result types, and a recursion depth circuit breaker."
+      }
+    ]
   }
 };
