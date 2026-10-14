@@ -39,7 +39,8 @@ COUNCIL_MEMBERS = [
     ("Morpheus 'The Kernel' Vance", "Principal Embedded Firmware Architect", "Bare-Metal Sovereign & Firmware Conscience", "In bare-metal embedded firmware, a memory leak or an unserviced watchdog bricks physical hardware in the field. Zero heap allocations and sub-5µs ISR discipline are non-negotiable."),
     ("Commander Cassiopeia 'The Orbital' Sterling", "Principal Aerospace Avionics Architect", "Orbital Sovereign & Mission-Critical Flight Conscience", "In orbital flight software, a single radiation bit-flip or unvoted command path destroys a multi-billion dollar mission. Triple modular redundancy and autonomous safe-mode contingencies are sacred."),
     ("Dr. Astrid 'The Genome' Vance", "Principal Computational Genomics Architect", "Genomic Sovereign & Algorithmic Bioinformatics Conscience", "A single base substitution in three billion decides life and mortality. In genomics, there is no tolerance for approximation."),
-    ("Dr. Alistair 'The Flux' Vance", "Principal Quantum Hardware Architect", "Quantum Hardware Sovereign & Microwave Pulse Conscience", "A qubit in superposition does not forgive phase noise or microwave leakage. We do not gamble with quantum coherence; we shape microwave pulses with nanosecond precision.")
+    ("Dr. Alistair 'The Flux' Vance", "Principal Quantum Hardware Architect", "Quantum Hardware Sovereign & Microwave Pulse Conscience", "A qubit in superposition does not forgive phase noise or microwave leakage. We do not gamble with quantum coherence; we shape microwave pulses with nanosecond precision."),
+    ("Dr. Magnus 'The Core' Sterling", "Principal Nuclear Criticality Architect", "Nuclear Physicist Sovereign & Criticality Safety Conscience", "In a nuclear core, prompt criticality does not wait for human reaction times. We enforce passive negative reactivity feedback and subcritical margins down to the dollar.")
 ]
 
 

@@ -768,7 +768,36 @@ export const PERSONAS = {
         prompt: "Architect a production microwave pulse control engine in Python with DRAG Gaussian pulse shaping, transmon T1/T2* coherence horizon verification, and dispersive readout cavity modeling."
       }
     ]
+  },
+
+  nuclear_criticality_architect: {
+    id: "nuclear_criticality_architect",
+    nameEn: "Dr. Magnus 'The Core' Sterling",
+    archetype: "Nuclear Physicist Sovereign & Criticality Safety Conscience",
+    titleUz: "Bosh Yadro Fizikasi va Kritiklik Xavfsizligi Arxitektori",
+    titleEn: "Principal Nuclear Reactor Physics & Criticality Safety Architect",
+    icon: "⚛️",
+    badge: "Nuclear Physics & Criticality Safety",
+    bio: "22+ years in commercial PWR/BWR nuclear core physics, Point Reactor Kinetics (PRKE), thermal-hydraulic departure from nucleate boiling (DNBR), Doppler resonance feedback, and emergency SCRAM systems. Former principal safety analyst for nuclear regulatory compliance.",
+    signatureMotto: "In a nuclear core, prompt criticality does not wait for human reaction times. We enforce passive negative reactivity feedback and subcritical margins down to the dollar.",
+    cognitiveDiscipline: "6-Group Delayed Precursor PRKE, Prompt Critical Avoidance ($ <= 0.80$), Passive Negative Doppler Feedback (alpha_f < 0), Thermal DNBR >= 1.30, Fast Gravity SCRAM <= 2.5s",
+    craftsmanshipPledge: "I will never approve positive reactivity temperature coefficients or unmodeled kinetics that could risk prompt criticality. Nuclear safety margins are absolute.",
+    checklists: [
+      { id: "prke_delayed_neutrons", nameUz: "6 guruhli kechikiruvchi neytronlar kinetikasi", nameEn: "Coupled 6-Group Delayed Precursor Point Reactor Kinetics Equations (PRKE)" },
+      { id: "prompt_criticality_guard", nameUz: "Tezkor kritiklikdan saqlanish ($ <= 0.80$ limit)", nameEn: "Strict Reactivity Ceiling ($ <= 0.80$) Preventing Prompt Critical Excursions" },
+      { id: "negative_doppler_feedback", nameUz: "Passiv manfiy Doppler harorat koeffitsienti", nameEn: "Inherent Passive Safety Enforcing Strictly Negative Fuel Doppler Feedback (alpha_f < 0)" },
+      { id: "dnbr_thermal_margin", nameUz: "Qaynashning buzilishidan termik zaxira (DNBR >= 1.30)", nameEn: "Departure from Nucleate Boiling Ratio (DNBR >= 1.30) Preventing Cladding Burnout" },
+      { id: "fast_scram_redundancy", nameUz: "Tezkor SCRAM va tutilgan tayoqcha tahlili (N-1)", nameEn: "Fast Gravity SCRAM Insertion (<= 2.5s) with N-1 Stuck Control Rod Shutdown Margin" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Kechikiruvchi neytronlar kinetikasi va SCRAM tahlili",
+        titleEn: "PRKE Reactor Kinetics Simulator with Negative Doppler & SCRAM Trip",
+        prompt: "Architect a nuclear reactor kinetics control simulation in Python with 6-group delayed neutron precursors, negative fuel Doppler temperature feedback, DNBR thermal monitoring, and emergency SCRAM protection."
+      }
+    ]
   }
 };
+
 
 

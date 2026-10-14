@@ -175,6 +175,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Quantum Hardware & Microwave Pulse Shaping Architect",
         "motto": "A qubit in superposition does not forgive phase noise or microwave leakage. We do not gamble with quantum coherence; we shape microwave pulses with nanosecond precision.",
         "badge": "Quantum Hardware & Pulse Shaping"
+    },
+    "nuclear_criticality_architect": {
+        "name": "Dr. Magnus 'The Core' Sterling",
+        "archetype": "Principal Nuclear Reactor Physics & Criticality Safety Architect",
+        "motto": "In a nuclear core, prompt criticality does not wait for human reaction times. We enforce passive negative reactivity feedback and subcritical margins down to the dollar.",
+        "badge": "Nuclear Physics & Criticality Safety"
     }
 }
 
