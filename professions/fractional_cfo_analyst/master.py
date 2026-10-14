@@ -141,20 +141,12 @@ class VictorMontgomeryMaster:
     ) -> None:
         try:
             self.journal.record_decision(
-                master_name="Victor 'The Fortress' Montgomery",
-                decision_type="FINANCIAL_CAPITAL_AUDIT",
-                rationale=(
-                    f"Audited financial model: initial score {initial_score}/100 -> final score {final_score}/100. "
-                    f"Verdict: {verdict}. Fatal defects resolved: {fatal_defects}."
-                ),
-                affected_files=[self.target_path] if self.target_path else ["financial_model.json"],
-                score=final_score,
-                metadata={
-                    "profession": "fractional_cfo_analyst",
-                    "initial_score": initial_score,
-                    "final_score": final_score,
-                    "certified": is_certified
-                }
+                iteration=1,
+                target_file=self.target_path if self.target_path else "financial_model.json",
+                defects_before=[f"Fatal defects: {fatal_defects}"],
+                actions_taken=["victor_cfo_capital_elevation"],
+                score_before=float(initial_score),
+                score_after=float(final_score)
             )
         except Exception as _journal_err:
             sys.stderr.write(f"Note: Decision journal record skipped: {_journal_err}\n")
