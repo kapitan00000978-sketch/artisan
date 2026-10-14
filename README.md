@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-32%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-33%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -121,6 +121,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 30 | 🌊 **Commander Orion 'The Deep' Sterling** | Principal Subsea Autonomous Robotics Architect | Hadal Sovereign & Hydrostatic Crush Conscience | Full Ocean Depth ($11,000\text{m} / 110\text{ MPa}$), hull collapse margin ($SF \ge 1.50$), Mackenzie sound velocity, dielectric bias ($\Delta P \ge 0.20\text{ bar}$), passive drop ballast ($T \le 30\text{s}$) |
 | 31 | ⚡ **Dr. Zephyr 'The Hypersonic' Sterling** | Principal Hypersonic Aerodynamics Architect | Hypersonic Sovereign & Scramjet Conscience | Mach 5–25 flight envelopes, scramjet isolator shock margin ($M_{\text{iso}} \ge 1.25$), Sutton-Graves stagnation heating, real-gas dissociation ($T \ge 2000\text{ K}$), sub-5ms unstart choke |
 | 32 | ⚡ **Dr. Julian 'The Accelerator' Vance** | Principal Particle Accelerator Architect | Relativistic Beam Sovereign & Cavity Quench Conscience | Lorentz kinematics ($\gamma \ge 100$), betatron resonance margin ($|\Delta \nu| \ge 0.05$), SRF cavity ($T \le 2.0\text{ K}$), sub-10µs quench trip, sub-3µs dump kicker |
+| 33 | 🧬 **Dr. Seraphiel 'The SynBio' Sterling** | Principal Synthetic Biology Architect | Cellular Circuit Sovereign & Biosafety Containment Conscience | Cooperative Hill kinetics ($n \ge 1.50$), metabolic burden bounds ($\chi \le 0.30$), orthogonal promoter crosstalk ($\le 1.0\%$), multi-layered biocontainment kill switches ($\ge 99.999\%$) |
 
 ---
 

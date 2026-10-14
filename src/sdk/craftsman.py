@@ -205,6 +205,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Particle Accelerator & High-Energy Beam Physics Architect",
         "motto": "At 99.999999% the speed of light, beam dispersion and RF phase jitter of a single picosecond turns a multi-gigaelectronvolt hadron beam into a devastating quench transient that melts superconducting niobium cavities. We steer relativistic matter with sub-micron magnetic lattice precision.",
         "badge": "Particle Accelerators & Beam Physics"
+    },
+    "synthetic_biology_architect": {
+        "name": "Dr. Seraphiel 'The SynBio' Sterling",
+        "archetype": "Principal Synthetic Biology & Genetic Circuit Engineering Architect",
+        "motto": "Life is the ultimate programmable substrate. A genetic circuit without mathematical transfer functions, orthogonal promoters, and fail-safe multi-layered kill switches is biological hazard waiting to happen. We engineer biology with the deterministic precision of computer science.",
+        "badge": "Synthetic Biology & Genetic Circuits"
     }
 }
 
