@@ -13,6 +13,10 @@
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
+<p align="center">
+  <img src="./assets/artisan-demo.gif" alt="Artisan Protocol Liquid Glass Demo" width="800" style="border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
+</p>
+
 ---
 
 ## 🌐 Live Interactive Playground
