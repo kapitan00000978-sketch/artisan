@@ -217,6 +217,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Astrodynamics & Interplanetary Trajectory Architect",
         "motto": "In deep space, gravity does not forgive a milligram of propellant deficit or a microradian of vector error. An interplanetary trajectory without patched conics, Tisserand parameter conservation, halo orbit stationkeeping, and solar radiation pressure compensation turns a billion-dollar probe into dead space derelict. We navigate the solar system with celestial mathematical certainty.",
         "badge": "Astrodynamics & Interplanetary Trajectories"
+    },
+    "photonic_computing_architect": {
+        "name": "Dr. Corvus 'The Photonic' Vance",
+        "archetype": "Principal Neuromorphic Photonic & Optical Computing Architect",
+        "motto": "Electrons crawling through copper traces generate heat, RC delay, and parasitic capacitance. Photons fly at the speed of light through silicon waveguides with zero ohmic dissipation. But an optical matrix-vector multiplier without Clements-Reck MZI unitary decomposition, thermo-optic phase drift calibration, wavelength division multiplexing (WDM) crosstalk isolation, and quantum shot-noise bounds is optical mirage. We compute with coherent light at sub-picosecond latencies.",
+        "badge": "Photonic Computing & Optical Acceleration"
     }
 }
 

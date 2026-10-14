@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-34%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-35%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -123,6 +123,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 32 | ⚡ **Dr. Julian 'The Accelerator' Vance** | Principal Particle Accelerator Architect | Relativistic Beam Sovereign & Cavity Quench Conscience | Lorentz kinematics ($\gamma \ge 100$), betatron resonance margin ($|\Delta \nu| \ge 0.05$), SRF cavity ($T \le 2.0\text{ K}$), sub-10µs quench trip, sub-3µs dump kicker |
 | 33 | 🧬 **Dr. Seraphiel 'The SynBio' Sterling** | Principal Synthetic Biology Architect | Cellular Circuit Sovereign & Biosafety Containment Conscience | Cooperative Hill kinetics ($n \ge 1.50$), metabolic burden bounds ($\chi \le 0.30$), orthogonal promoter crosstalk ($\le 1.0\%$), multi-layered biocontainment kill switches ($\ge 99.999\%$) |
 | 34 | 🪐 **Dr. Aurelius 'The Orbital' Sterling** | Principal Astrodynamics & Interplanetary Architect | Celestial Mechanics Sovereign & Trajectory Determinism Conscience | Vis-viva transfer energy ($SF_{\Delta v} \ge 1.15$), Tisserand invariant flyby ($|\Delta T_p| \le 0.05$), periapsis clearance ($h \ge 300\text{ km}$), CR3BP Jacobi constant stationkeeping, SRP drift compensation ($\le 1.0\times 10^{-6}\text{ m/s}^2$) |
+| 35 | 💡 **Dr. Corvus 'The Photonic' Vance** | Principal Neuromorphic Photonic Architect | Optical Matrix Sovereign & Photonic Coherence Conscience | Clements MZI decomposition ($\|U^\dagger U - I\|_F \le 1.0\times 10^{-4}$), thermo-optic calibration ($|\delta \phi| \le 0.01\text{ rad}$), WDM crosstalk ($\le -25.0\text{ dB}$), sub-ps MAC, shot noise ($OSNR \ge 30\text{ dB}$) |
 
 ---
 
