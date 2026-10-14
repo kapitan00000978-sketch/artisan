@@ -39,7 +39,28 @@ Whenever an agent takes on a task, it embodies the designated Master from **The 
 
 ---
 
-## ⚡ Core Capabilities & Built-in Tooling:
+## ⚡ Command-Driven On-Demand Activation (No Conversational Bloat)
+
+Humanpowers is **opt-in and command-driven**.
+- **Default Mode:** By default, your AI assistant stays light, fast, concise, and clean. It will never bombard you with unsolicited theatrical personas or long bureaucratic audit preambles.
+- **Command Mode:** When you need deep domain craftsmanship or strict quality inspection, simply prefix your message with any slash command in chat:
+
+| Slash Command | Master Summoned | Domain & Responsibility |
+| :--- | :--- | :--- |
+| **`/council`** or **`/humanpowers`** | **The Full Council** | Tri-party adversarial review & production sign-off |
+| **`/marcus`** or **`/arch`** | **Marcus Sterling** | Software Architecture, SOLID, concurrency, zero tech debt |
+| **`/audit`** or **`/review`** | **Adversarial Red Team** | Deep code inspection, bug hunting, edge cases, regression |
+| **`/gabriel`** or **`/security`** | **Gabriel Frost** | Zero-trust offensive security audit, secret leaks, OWASP |
+| **`/elena`** or **`/design`** | **Elena Rostova** | UI/UX design systems, accessibility (WCAG 2.1 AAA), layout |
+| **`/diana`** or **`/copy`** | **Diana Drake** | Direct-response conversion copywriting & messaging |
+| **`/victor`** or **`/cfo`** | **Victor Montgomery** | Fractional CFO, unit economics, runway, burn rate |
+| **`/arthur`** or **`/legal`** | **Arthur Pendelton** | Commercial counsel, contract audit, liability containment |
+| **`/evelyn`** or **`/ml`** | **Dr. Evelyn Reed** | Staff Data Scientist, ML architecture, statistical rigor |
+| **`/gareth`** or **`/devops`** | **Gareth Drake** | DevOps & Cloud SRE, Docker, CI/CD, zero-downtime rollouts |
+| **`/gate`** | **Pre-Commit Gatekeeper** | Automated scan for unfinished stubs and exposed keys |
+
+---
+
 
 1. **🧠 Project Memory & Scar Tissue Ledger (`.humanpowers/memory.json`):**
    Maintains persistent memory of team conventions, user preferences, and past anti-patterns. The agent never repeats the same mistake twice.

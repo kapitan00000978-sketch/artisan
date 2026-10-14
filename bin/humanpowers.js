@@ -1,13 +1,13 @@
 #!/usr/bin/env node
 
 /**
- * HUMANPOWERS CLI BOOTSTRAP INSTALLER
- * Installs Humanpowers rules and skills into any project directory in 1 command.
- * Empowered by The Council of Masters.
+ * HUMANPOWERS CLI BOOTSTRAP INSTALLER & COMMAND DISPATCHER
+ * Empowered by The Council of Masters — Zero Babysitting
  */
 
 const fs = require('fs');
 const path = require('path');
+const { spawnSync } = require('child_process');
 
 const ASCII_BANNER = `
   ██╗  ██╗██╗   ██╗███╗   ███╗ █████╗ ███╗   ██╗██████╗  ██████╗ ██╗    ██╗███████╗██████╗ ███████╗
@@ -16,14 +16,14 @@ const ASCII_BANNER = `
   ██╔══██║██║   ██║██║╚██╔╝██║██╔══██║██║╚██╗██║██╔═══╝ ██║   ██║██║███╗██║██╔══╝  ██╔══██╗╚════██║
   ██║  ██║╚██████╔╝██║ ╚═╝ ██║██║  ██║██║ ╚████║██║     ╚██████╔╝╚███╔███╔╝███████╗██║  ██║███████║
   ╚═╝  ╚═╝ ╚═════╝ ╚═╝     ╚═╝╚═╝  ╚═╝╚═╝  ╚═══╝╚═╝      ╚═════╝  ╚══╝╚══╝ ╚══════╝╚═╝  ╚═╝╚══════╝
-                            THE COUNCIL OF MASTERS — ZERO BABYSITTING
+                            THE COUNCIL OF MASTERS — COMMAND-DRIVEN
 `;
 
 console.log(ASCII_BANNER);
 
 const targetDir = process.cwd();
 const args = process.argv.slice(2);
-const command = args[0] || 'init';
+const command = (args[0] || 'help').toLowerCase();
 
 const packageRoot = path.resolve(__dirname, '..');
 
@@ -77,17 +77,43 @@ if (command === 'init' || command === 'install') {
 
   console.log(`\n==================================================================`);
   console.log(`  ✅ Humanpowers successfully initialized!`);
-  console.log(`     The Council of Masters is active across Cursor, Claude,`);
-  console.log(`     Antigravity, Copilot, and Windsurf.`);
-  console.log(`     Zero Babysitting protocol is permanently enforced.`);
+  console.log(`     Command-Driven Mode: Fast & clean by default.`);
+  console.log(`     Use slash commands in chat (e.g. /audit, /marcus, /security)`);
+  console.log(`     to summon the Council of Masters on-demand.`);
   console.log(`==================================================================\n`);
+} else if (command === 'audit' || command === 'gate') {
+  console.log(`🔍 [CLI AUDIT] Running Humanpowers Pre-Commit Gatekeeper...`);
+  const scriptPath = path.join(packageRoot, 'scripts', 'pre-commit-gatekeeper.py');
+  if (fs.existsSync(scriptPath)) {
+    const res = spawnSync('python', [scriptPath], { stdio: 'inherit' });
+    process.exit(res.status || 0);
+  } else {
+    console.error(`[-] Gatekeeper script not found at ${scriptPath}`);
+    process.exit(1);
+  }
 } else if (command === 'status') {
-  console.log(`🛡️ Humanpowers Protocol : ACTIVE`);
-  console.log(`Council of Masters      : 8 Titans Enforced`);
+  console.log(`🛡️ Humanpowers Protocol : ACTIVE (Command-Driven)`);
+  console.log(`Council of Masters      : 8 Domain Titans On-Demand`);
   console.log(`Zero Babysitting        : ENFORCED`);
-  console.log(`Supported Ecosystems    : 11 Platforms Ready`);
+  console.log(`Supported Ecosystems    : 11 Platforms Ready\n`);
+} else if (command === 'council' || command === 'commands') {
+  console.log(`⚡ HUMANPOWERS CHAT COMMANDS (Use directly in Cursor, Claude, Antigravity, Copilot, Windsurf):`);
+  console.log(`--------------------------------------------------------------------------------------`);
+  console.log(`  /council       -> Tri-party adversarial deliberation & 100% certified production sign-off`);
+  console.log(`  /marcus, /arch -> Senior Architect Marcus Sterling (SOLID, zero tech debt, concurrency)`);
+  console.log(`  /audit, /review-> Adversarial Red Team review (bugs, edge cases, regression probing)`);
+  console.log(`  /security      -> Gabriel Frost (Zero-trust security audit, secrets, OWASP)`);
+  console.log(`  /design        -> Elena Rostova (UI/UX design systems, accessibility, WCAG 2.1 AAA)`);
+  console.log(`  /copy          -> Diana Drake (Direct-response conversion copywriting, messaging)`);
+  console.log(`  /cfo           -> Victor Montgomery (Unit economics, burn rate, financial runway)`);
+  console.log(`  /legal         -> Arthur Pendelton (Commercial contracts, liability containment)`);
+  console.log(`  /ml            -> Dr. Evelyn Reed (ML systems, statistical validation, data leakage)`);
+  console.log(`  /devops        -> Gareth Drake (Cloud & SRE, Docker, CI/CD, zero-downtime)`);
+  console.log(`  /gate          -> Pre-commit quality gatekeeper scan\n`);
 } else {
   console.log(`Usage:`);
   console.log(`  npx humanpowers init       # Initialize Humanpowers in current repo`);
+  console.log(`  npx humanpowers audit      # Run code quality & security gatekeeper audit`);
+  console.log(`  npx humanpowers council    # List Council of Masters and chat slash commands`);
   console.log(`  npx humanpowers status     # Check active protocol state`);
 }
