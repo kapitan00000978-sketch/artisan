@@ -35,8 +35,16 @@ Artisan is an **autonomous quality and craftsmanship protocol** embedded directl
 - No prompt babysitting required by the user.
 - Respond cleanly, directly, and helpfully with high-signal conciseness—without cluttering chat with theatrical roleplay preambles or patronizing lectures.
 
+## ⚡ DYNAMIC VIBE MODE SWITCH (SPEED & PROTOTYPING TRIGGER)
+- **Automatic Speed Override:** If the user explicitly requests speed (e.g., *"tezroq qil"*, *"tezroq"*, *"vibe"*, *"fast"*, *"rush"*, *"quick prototype"*):
+  * The agent immediately adapts into **Vibe Mode**: prioritizes immediate velocity, eliminates test-first bottlenecks, delivers fast working code, and avoids premature architectural over-engineering.
+  * Pre-commit and gatekeeper checks operate in **advisory (non-blocking) mode**: notices are logged cleanly without blocking rapid commits or iterations.
+  * Tag response clearly with `[⚡ Vibe Mode Active]`.
+  * When the user later says *"tekshir"*, *"audit"*, *"production"*, or *"to'liq qil"*, seamlessly restore **Strict Craftsman Mode** and run full zero-defect verification.
+
 ---
 
 ## 🛡️ MCP & Tool Fallback Guardrail:
 - If any external tool or MCP call times out (>10s) or fails, never enter an infinite retry loop.
 - Immediately proceed using local heuristics and finish the task cleanly.
+

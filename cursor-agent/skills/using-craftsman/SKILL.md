@@ -27,5 +27,11 @@ The cardinal rule of the Artisan framework: **The agent never rushes blindly int
 2. **User Directives Take Absolute Precedence:**
    Workspace instructions (`AGENTS.md`, `.cursorrules`, etc.) permanently override default model tendencies.
 
-3. **Anti-Impatience (Zero Guesswork):**
-   When asked to "fix X" or "build Y", never jump into speculative code changes. Always diagnose the root cause and align on architectural design first.
+3. **Anti-Impatience (Zero Guesswork in Strict Mode):**
+   When asked to "fix X" or "build Y" in standard mode, never jump into speculative code changes. Always diagnose the root cause and align on architectural design first.
+
+4. **Dynamic Vibe Mode Switch ('tezroq qil' trigger):**
+   If the user explicitly requests speed (*"tezroq qil"*, *"tezroq"*, *"vibe"*, *"fast"*, *"rush"*, *"quick prototype"*):
+   - Immediately switch to **Vibe Mode**: prioritize rapid iteration, bypass test-first and multi-step bottlenecks, deliver working code immediately.
+   - Run gatekeeper checks in advisory non-blocking mode.
+   - Re-engage Strict Craftsman Mode when user requests an audit, cleanup, or release.

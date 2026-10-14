@@ -143,6 +143,14 @@ COMPILED_RULES = [
 # Compatibility alias for scripts expecting PATTERNS tuple format
 PATTERNS = [(r[2], r[0], r[3]) for r in RULES]
 
+# Council of Masters domain ownership
+COUNCIL_AUDITORS = {
+    "STUB": "Marcus Sterling (Senior Architect)",
+    "SECRET": "Gabriel Frost (Cybersecurity Auditor)",
+    "DANGEROUS": "Gabriel Frost & Arthur Pendelton",
+    "AST": "Marcus Sterling & Dr. Evelyn Reed",
+}
+
 
 def run_gitleaks(target_dir: str = ".") -> List[Dict[str, Any]]:
     """Run gitleaks if installed, otherwise return empty list."""
@@ -198,6 +206,7 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
                     ast_findings.append({
                         "rule_id": "DANGEROUS_EVAL_EXEC",
                         "category": "DANGEROUS",
+                        "auditor": COUNCIL_AUDITORS["DANGEROUS"],
                         "file": filename,
                         "line": line_no,
                         "matched_text": f"{func.id}(...)",
@@ -214,6 +223,7 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
                     ast_findings.append({
                         "rule_id": "STUB_BARE_EXCEPT",
                         "category": "STUB",
+                        "auditor": COUNCIL_AUDITORS["STUB"],
                         "file": filename,
                         "line": line_no,
                         "matched_text": f"except {exc_name}: pass",
@@ -260,6 +270,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
                 findings.append({
                     "rule_id": rule_id,
                     "category": category,
+                    "auditor": COUNCIL_AUDITORS.get(category, "Artisan Council"),
                     "file": filename,
                     "line": line_idx,
                     "matched_text": line.strip()[:80],
@@ -273,6 +284,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
             findings.append({
                 "rule_id": "STUB_EMPTY_CATCH",
                 "category": "STUB",
+                "auditor": COUNCIL_AUDITORS["STUB"],
                 "file": filename,
                 "line": 1,
                 "matched_text": "catch { }",
@@ -283,6 +295,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
             findings.append({
                 "rule_id": "STUB_BARE_EXCEPT",
                 "category": "STUB",
+                "auditor": COUNCIL_AUDITORS["STUB"],
                 "file": filename,
                 "line": 1,
                 "matched_text": "except: pass",
@@ -407,11 +420,18 @@ def scan_project(base_dir: str = ".", staged_only: bool = False, config_override
     total_deduction = sum(f["deduction"] for f in all_findings)
     score = max(0, 100 - total_deduction) if all_findings else 100
 
+    mode = cfg.get("mode", "strict").lower()
     threshold = cfg.get("threshold_score", 100)
-    passed = (len(all_findings) == 0) if threshold >= 100 else (score >= threshold)
+
+    # In vibe mode, warnings are advisory and never block (always passed = True)
+    if mode == "vibe":
+        passed = True
+    else:
+        passed = (len(all_findings) == 0) if threshold >= 100 else (score >= threshold)
 
     return {
         "passed": passed,
+        "mode": mode,
         "scanned_files": scanned_count,
         "findings": all_findings,
         "score": score
@@ -423,6 +443,7 @@ def main():
     parser.add_argument("--file", "-f", help="Scan a specific file")
     parser.add_argument("--staged", "-s", action="store_true", help="Scan only git staged files")
     parser.add_argument("--all", "-a", action="store_true", help="Scan entire project (default)")
+    parser.add_argument("--vibe", "-v", action="store_true", help="Run in non-blocking Vibe mode (advisory only)")
     parser.add_argument("--json", "-j", action="store_true", help="Output results in JSON format")
 
     args = parser.parse_args()
@@ -440,18 +461,32 @@ def main():
                 print(f"  • {flaw}")
         sys.exit(0 if res["status"] == "CERTIFIED" else 1)
 
-    result = scan_project(".", staged_only=args.staged)
+    cfg = load_artisan_config(".")
+    if args.vibe:
+        cfg["mode"] = "vibe"
+
+    result = scan_project(".", staged_only=args.staged, config_override=cfg)
 
     if args.json:
         print(json.dumps(result, indent=2))
     else:
         scope = "staged files" if args.staged else "all files"
-        if result["passed"]:
+        if result["mode"] == "vibe":
+            print(f"⚡ [ARTISAN VIBE MODE ACTIVE]: Rapid development mode. Advisory scan over {result['scanned_files']} {scope}.")
+            if result["findings"]:
+                print(f"⚡ Advisory notices ({len(result['findings'])} items, Score: {result['score']}/100 - Non-blocking):")
+                for f in result["findings"][:10]:
+                    auditor = f.get("auditor", "Artisan Council")
+                    print(f"  • {f['file']}:{f['line']} [{f['category']}] [{auditor}] -> {f['message']}")
+            else:
+                print(f"✅ [ARTISAN VERIFIED]: Clean code. Gate Score: 100/100")
+        elif result["passed"]:
             print(f"✅ [ARTISAN VERIFIED]: Scanned {result['scanned_files']} {scope}. Gate Score: {result['score']}/100")
         else:
             print(f"❌ [ARTISAN REJECTED]: Defects detected across {scope}. Gate Score: {result['score']}/100")
             for f in result["findings"][:10]:
-                print(f"  • {f['file']}:{f['line']} [{f['category']}] -> {f['message']}")
+                auditor = f.get("auditor", "Artisan Council")
+                print(f"  • {f['file']}:{f['line']} [{f['category']}] [{auditor}] -> {f['message']}")
 
     sys.exit(0 if result["passed"] else 1)
 

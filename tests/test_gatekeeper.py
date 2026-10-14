@@ -273,3 +273,35 @@ def test_claude_hook_check_and_heal(tmp_path):
     assert "logging.warning" in content
 
 
+def test_vibe_mode_non_blocking(tmp_path):
+    from detector import scan_project
+    # Create temporary source file with stub
+    src_file = tmp_path / "vibe_example.py"
+    src_file.write_text("def quick_prototype():\n    # TODO: refine later\n    return 42\n", encoding="utf-8")
+    
+    # In strict mode, should fail
+    strict_res = scan_project(str(tmp_path), config_override={"mode": "strict", "exclude_dirs": []})
+    assert strict_res["passed"] is False
+    assert len(strict_res["findings"]) > 0
+
+    # In vibe mode, should pass (non-blocking advisory)
+    vibe_res = scan_project(str(tmp_path), config_override={"mode": "vibe", "exclude_dirs": []})
+    assert vibe_res["passed"] is True
+    assert vibe_res["mode"] == "vibe"
+    assert len(vibe_res["findings"]) > 0
+
+
+def test_council_auditor_attribution():
+    # Stub finding should be audited by Marcus Sterling
+    res_stub = scan_code("# " + "TODO" + ": implement later")
+    assert len(res_stub["findings"]) > 0
+    assert "Marcus Sterling" in res_stub["findings"][0]["auditor"]
+
+    # Secret finding should be audited by Gabriel Frost
+    fake_key = "sk-ant-" + "a" * 25
+    res_secret = scan_code(f'KEY = "{fake_key}"')
+    assert len(res_secret["findings"]) > 0
+    assert "Gabriel Frost" in res_secret["findings"][0]["auditor"]
+
+
+
