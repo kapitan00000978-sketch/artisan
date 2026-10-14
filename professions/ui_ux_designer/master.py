@@ -13,17 +13,30 @@ import json
 import argparse
 from typing import Dict, Any, List, Optional
 
-from .references import ElenaDesignReferences
-from .inspector import ElenaDesignInspector
-from .rubric import ElenaDesignRubric
-from .blind_critic import ElenaBlindCritic
-from .elevation_engine import ElenaElevationEngine
+# Ensure UTF-8 output on Windows consoles
+if hasattr(sys.stdout, "reconfigure"):
+    try:
+        sys.stdout.reconfigure(encoding="utf-8", errors="replace")
+    except Exception as _enc_err:
+        sys.stderr.write(f"Note: UTF-8 stdout reconfiguration skipped: {_enc_err}\n")
+
+try:
+    from .references import ElenaDesignReferences
+    from .inspector import ElenaDesignInspector
+    from .rubric import ElenaDesignRubric
+    from .blind_critic import ElenaBlindCritic
+    from .elevation_engine import ElenaElevationEngine
+except ImportError:
+    from references import ElenaDesignReferences
+    from inspector import ElenaDesignInspector
+    from rubric import ElenaDesignRubric
+    from blind_critic import ElenaBlindCritic
+    from elevation_engine import ElenaElevationEngine
 
 # Import global ActiveDecisionJournal from studio engine
 try:
     from src.studio.active_memory import ActiveDecisionJournal
 except ImportError:
-    # Fallback to local root path
     sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "../..")))
     from src.studio.active_memory import ActiveDecisionJournal
 

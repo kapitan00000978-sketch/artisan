@@ -89,13 +89,66 @@
       "score_after": 100.0,
       "delta": 42.2,
       "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:33:18",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\Videos\\New folder (3)\\scratch\\test_showcase.html",
+      "defects_before": [
+        "Typographic scale is weak (1.38x scale (H1: 18px / Body: 13px)). Eye does not know where to land.",
+        "Low contrast detected (4.48:1). Strains human eyes and violates WCAG AA.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 39.0,
+      "score_after": 97.0,
+      "delta": 58.0,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:34:00",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\Videos\\New folder (3)\\scratch\\horrible_page.html",
+      "defects_before": [
+        "Typographic scale is weak (1.13x scale (H1: 17px / Body: 15px)). Eye does not know where to land.",
+        "Low contrast detected (2.85:1). Strains human eyes and violates WCAG AA.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 37.2,
+      "score_after": 100.0,
+      "delta": 62.8,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:34:46",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmp3iqxwmyy\\unpolished.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 57.8,
+      "score_after": 100.0,
+      "delta": 42.2,
+      "outcome": "SUCCESS"
     }
   ],
   "banned_anti_patterns": [],
   "proven_successful_strategies": [
     "Secured all target='_blank' links with rel='noopener noreferrer'",
-    "Injected layered frosted glass elevation and verified 8pt spatial margins",
     "Injected responsive viewport meta tag",
+    "Injected layered frosted glass elevation and verified 8pt spatial margins",
     "elena_liquid_glass_elevation"
   ]
 }
