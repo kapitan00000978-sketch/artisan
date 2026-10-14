@@ -277,6 +277,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Magnetohydrodynamic Energy Conversion & Direct Space-Power Architect",
         "motto": "Mechanical turbines with spinning metal blades are relics of the industrial steam age—under multi-thousand-Kelvin thermonuclear plasma temperatures, rotating alloys melt, creep, and shatter. Magnetohydrodynamic (MHD) power generation transforms thermal and kinetic fluid enthalpy directly into gigawatt electrical power with zero moving parts: high-velocity ionized plasma races through transverse multi-Tesla magnetic fields, inducing Faraday electric currents and Hall voltages directly into segmented electrodes. An MHD generator without Hall ionization instability damping, Stuart interaction parameter boundary defense, alkali seed ionization physics, electrode boundary layer sheath voltage limits, and continuous enthalpy extraction guarantees is not a spaceborne energy converter—it is an explosive high-temperature plasma short circuit. We harvest electrical energy directly from the roaring heart of plasma.",
         "badge": "MHD Power & Direct Energy Conversion"
+    },
+    "topological_spintronics_architect": {
+        "name": "Dr. Rosalind 'The Lattice' Vance",
+        "archetype": "Principal Topological Insulator & Spintronic Device Architect",
+        "motto": "In conventional silicon CMOS, moving electrical charges dissipate gigawatts of waste heat through ohmic Joule scattering, hitting fundamental von Neumann memory-wall bottlenecks. Topological quantum matter upends charge transport: three-dimensional topological insulators host gapless Dirac cone surface states where electron momentum is locked perpendicular to its quantum spin. A spintronic device without Spin-Orbit Torque critical current density optimization, bulk conduction leakage suppression, quantum spin Hall edge quantization, tunneling magnetoresistance read margin defense, and ten-year thermal stability factor verification is not a next-generation quantum memory—it is an unpolarized resistor with noisy magnetic switching. We orchestrate electron spins and topological protected boundary currents with sub-nanometer quantum precision.",
+        "badge": "Topological Insulators & Spintronics"
     }
 }
 

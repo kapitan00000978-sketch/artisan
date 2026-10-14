@@ -19,7 +19,7 @@ def test_sdk_execution_lifecycle():
     assert len(result["repaired_flaws"]) > 0
 
 def test_sdk_all_council_members_registered():
-    assert len(COUNCIL_MEMBERS) == 44
+    assert len(COUNCIL_MEMBERS) == 45
     keys = [
         "software_architect", "elite_copywriter", "principal_designer",
         "startup_cfo_analyst", "legal_contract_auditor", "data_scientist_ml",
@@ -38,7 +38,8 @@ def test_sdk_all_council_members_registered():
         "optical_metamaterial_architect", "neural_interface_bci_architect",
         "fusion_rocket_propulsion_architect",
         "exoplanetary_transit_spectroscopy_architect",
-        "magnetohydrodynamic_power_architect"
+        "magnetohydrodynamic_power_architect",
+        "topological_spintronics_architect"
     ]
     for k in keys:
         assert k in COUNCIL_MEMBERS
