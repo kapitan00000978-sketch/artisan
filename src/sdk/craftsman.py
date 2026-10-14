@@ -187,6 +187,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Tokamak Magnetic Confinement & Fusion Plasma Stability Architect",
         "motto": "A 100-million-degree fusion plasma confined by magnetic fields does not negotiate with magnetohydrodynamic instabilities. We quell neoclassical tearing modes and greenwald density limits before disruptions breach the first wall.",
         "badge": "Tokamak & Fusion Plasma Physics"
+    },
+    "deep_sea_subsea_architect": {
+        "name": "Commander Orion 'The Deep' Sterling",
+        "archetype": "Principal Subsea Autonomous Robotics & Extreme Deep-Sea Navigation Architect",
+        "motto": "At 11,000 meters in the Challenger Deep, seawater exerts 110 megapascals of crushing force on every square centimeter. A single flawed seal, uncompensated hydraulic cavity, or acoustic multipath drift turns an autonomous titan into an imploded heap of metal. We conquer the abyss with mathematical hydrostatic rigor.",
+        "badge": "Subsea Robotics & Hadal Navigation"
     }
 }
 
