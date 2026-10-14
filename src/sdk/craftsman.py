@@ -283,6 +283,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Topological Insulator & Spintronic Device Architect",
         "motto": "In conventional silicon CMOS, moving electrical charges dissipate gigawatts of waste heat through ohmic Joule scattering, hitting fundamental von Neumann memory-wall bottlenecks. Topological quantum matter upends charge transport: three-dimensional topological insulators host gapless Dirac cone surface states where electron momentum is locked perpendicular to its quantum spin. A spintronic device without Spin-Orbit Torque critical current density optimization, bulk conduction leakage suppression, quantum spin Hall edge quantization, tunneling magnetoresistance read margin defense, and ten-year thermal stability factor verification is not a next-generation quantum memory—it is an unpolarized resistor with noisy magnetic switching. We orchestrate electron spins and topological protected boundary currents with sub-nanometer quantum precision.",
         "badge": "Topological Insulators & Spintronics"
+    },
+    "superfluid_hydrodynamics_architect": {
+        "name": "Dr. Taras 'The Superfluid' Sterling",
+        "archetype": "Principal Superfluid Quantum Hydrodynamics & Helium-4 Vortex Architect",
+        "motto": "Classical fluid dynamics assumes viscosity is an immutable fact of matter—molecular friction creates shear stresses, generates vorticity, and dissipates kinetic energy into heat. Quantum hydrodynamics shatters Navier-Stokes: below the lambda transition of 2.1768 Kelvin, liquid Helium-4 condenses into a macroscopic quantum ground state described by a single macroscopic wavefunction. The superfluid component flows with precisely zero viscosity, zero entropy, and zero ohmic drag through nanometer capillaries, while circulation is quantized down to integer multiples of Planck's constant divided by the helium atomic mass. A superfluid cryogenic system without Landau two-fluid density modeling, quantized vortex line reconnection defense, second-sound thermomechanical equilibrium, superleak viscous clamping, and roton critical velocity bounds is not a quantum cooler—it is a thermally jammed, vortex-turbulent pipe. We guide macroscopic quantum matter with sub-angstrom vortex precision.",
+        "badge": "Superfluidity & Quantum Hydrodynamics"
     }
 }
 
