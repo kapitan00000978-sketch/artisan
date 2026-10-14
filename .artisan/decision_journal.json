@@ -249,14 +249,153 @@
       "score_after": 100.0,
       "delta": 55.0,
       "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:46:57",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpnrmgspeb\\sloppy_module.py",
+      "defects_before": [
+        "Silent exception swallows detected (1 silent exception swallows). Swallowing errors hides silent failures and corrupts state.",
+        "Unfinished placeholders detected (1 TODO/FIXME placeholders). Amateur shortcuts cannot reach production.",
+        "Weak type contract coverage (0.0% typed functions). Promotes ambiguous data flow and runtime TypeError regressions."
+      ],
+      "actions_taken": [
+        "marcus_structural_refactor_elevation"
+      ],
+      "score_before": 68.5,
+      "score_after": 100.0,
+      "delta": 31.5,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:47:18",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\Videos\\New folder (3)\\scratch\\test_sloppy_script.py",
+      "defects_before": [
+        "Silent exception swallows detected (1 silent exception swallows). Swallowing errors hides silent failures and corrupts state.",
+        "Unfinished placeholders detected (1 TODO/FIXME placeholders). Amateur shortcuts cannot reach production.",
+        "Weak type contract coverage (0.0% typed functions). Promotes ambiguous data flow and runtime TypeError regressions."
+      ],
+      "actions_taken": [
+        "marcus_structural_refactor_elevation"
+      ],
+      "score_before": 68.5,
+      "score_after": 100.0,
+      "delta": 31.5,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:47:38",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmp0cw32hu2\\unpolished.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 57.8,
+      "score_after": 100.0,
+      "delta": 42.2,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:47:38",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmp6ygfz_33\\amateur_3d.html",
+      "defects_before": [
+        "Amateur or flat unlit shading detected (Amateur flat unlit shaders detected). Objects look like 1998 cheap plastic.",
+        "Deficient lighting setup (1 lights (3-Point: False, Soft Shadows: False)). Lacks physical spatial illumination and depth.",
+        "Uncalibrated color science (Raw uncalibrated linear rendering). Highlights risk nuclear clipping and shadows crush to mud.",
+        "Stiff or frozen camera mechanics (Basic static OrbitControls). Spatial navigation feels clunky."
+      ],
+      "actions_taken": [
+        "kaelen_pbr_studio_lighting_elevation"
+      ],
+      "score_before": 45.0,
+      "score_after": 100.0,
+      "delta": 55.0,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:47:38",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpoo6u8j8f\\sloppy_module.py",
+      "defects_before": [
+        "Silent exception swallows detected (1 silent exception swallows). Swallowing errors hides silent failures and corrupts state.",
+        "Unfinished placeholders detected (1 TODO/FIXME placeholders). Amateur shortcuts cannot reach production.",
+        "Weak type contract coverage (0.0% typed functions). Promotes ambiguous data flow and runtime TypeError regressions."
+      ],
+      "actions_taken": [
+        "marcus_structural_refactor_elevation"
+      ],
+      "score_before": 68.5,
+      "score_after": 100.0,
+      "delta": 31.5,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:49:21",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpo8oztvpz\\unpolished.html",
+      "defects_before": [
+        "Typographic scale is weak (1.43x scale (H1: 20px / Body: 14px)). Eye does not know where to land.",
+        "Erratic, un-mathematical spacing (0.0% matching 8pt grid). Violates the 8pt spatial grid.",
+        "Interface is visually flat and sterile. Reminiscent of 2012 beginner mockups."
+      ],
+      "actions_taken": [
+        "elena_liquid_glass_elevation"
+      ],
+      "score_before": 57.8,
+      "score_after": 100.0,
+      "delta": 42.2,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:49:21",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmp9pw45kl7\\amateur_3d.html",
+      "defects_before": [
+        "Amateur or flat unlit shading detected (Amateur flat unlit shaders detected). Objects look like 1998 cheap plastic.",
+        "Deficient lighting setup (1 lights (3-Point: False, Soft Shadows: False)). Lacks physical spatial illumination and depth.",
+        "Uncalibrated color science (Raw uncalibrated linear rendering). Highlights risk nuclear clipping and shadows crush to mud.",
+        "Stiff or frozen camera mechanics (Basic static OrbitControls). Spatial navigation feels clunky."
+      ],
+      "actions_taken": [
+        "kaelen_pbr_studio_lighting_elevation"
+      ],
+      "score_before": 45.0,
+      "score_after": 100.0,
+      "delta": 55.0,
+      "outcome": "SUCCESS"
+    },
+    {
+      "timestamp": "2026-10-14 20:49:21",
+      "iteration": 1,
+      "target_file": "C:\\Users\\user\\AppData\\Local\\Temp\\tmpny0we98y\\sloppy_module.py",
+      "defects_before": [
+        "Silent exception swallows detected (1 silent exception swallows). Swallowing errors hides silent failures and corrupts state.",
+        "Unfinished placeholders detected (1 TODO/FIXME placeholders). Amateur shortcuts cannot reach production.",
+        "Weak type contract coverage (0.0% typed functions). Promotes ambiguous data flow and runtime TypeError regressions."
+      ],
+      "actions_taken": [
+        "marcus_structural_refactor_elevation"
+      ],
+      "score_before": 68.5,
+      "score_after": 100.0,
+      "delta": 31.5,
+      "outcome": "SUCCESS"
     }
   ],
   "banned_anti_patterns": [],
   "proven_successful_strategies": [
-    "Injected layered frosted glass elevation and verified 8pt spatial margins",
-    "Injected responsive viewport meta tag",
-    "kaelen_pbr_studio_lighting_elevation",
     "elena_liquid_glass_elevation",
-    "Secured all target='_blank' links with rel='noopener noreferrer'"
+    "kaelen_pbr_studio_lighting_elevation",
+    "marcus_structural_refactor_elevation",
+    "Injected responsive viewport meta tag",
+    "Secured all target='_blank' links with rel='noopener noreferrer'",
+    "Injected layered frosted glass elevation and verified 8pt spatial margins"
   ]
 }
