@@ -145,6 +145,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Autonomous Robotics & Embodied AI Control Architect",
         "motto": "In robotics, a dropped control cycle or uncapped motor torque is not a software crash; it is a kinetic disaster. Hard real-time determinism and physical safety envelopes are non-negotiable.",
         "badge": "Autonomous Robotics & Embodied AI"
+    },
+    "hardware_chip_architect": {
+        "name": "Ignis 'The Silicon' Thorne",
+        "archetype": "Principal ASIC, FPGA & Hardware Chip Architect",
+        "motto": "In silicon, an inferred latch or unhandled clock domain crossing costs $15 million in mask re-spins and nine months of delay. RTL must be provably synchronous and glitch-free.",
+        "badge": "ASIC, FPGA & Hardware Architecture"
     }
 }
 

@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-22%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-23%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -60,7 +60,7 @@ Artisan — bu dasturchi va AI coding agentlari (Claude Code, Cursor, Copilot, W
 Artisan bu muammoni 5 ta ustun orqali hal qiladi:
 1. **🛡️ Mustaqil Pre-Commit & CI Filtrlari (`scripts/detector.py`):** Kod git repoga kiritilishidan oldin har bir faylni statik tahlil qiladi va Python AST (Abstract Syntax Tree) orqali chuqur semantik tekshiruv o‘tkazadi. Maxfiy kalitlar (`sk-...`, `ghp_...`, `AKIA...`), xavfli buyruqlar va chala stubs topilsa, commit qat'iy to‘xtatiladi.
 2. **🔧 Avtomatik Tuzatish Dvigateli (`artisan fix` / `scripts/remediator.py`):** Bo‘sh `except: pass` va `catch {}` xatolarini mustaqil ravishda to‘g‘ri logging va xatoliklar boshqaruviga o‘tkazadi.
-3. **🏛️ The Council of Masters (Senior Heuristics):** AI agentiga arxitektura, xavfsizlik, SRE, ML, UI/UX, 3D, fizika, mobil, brend, audio, ma'lumotlar bazasi, SEO, AI agentlar, tizimlar unumdorligi, taqsimlangan konsensus, kompilyatorlar, kvant kriptografiya, HFT va robototexnika bo‘yicha 22 nafar Senior darajadagi mutaxassis tajribasi va mezonlarini kontekst sifatida yuklaydi.
+3. **🏛️ The Council of Masters (Senior Heuristics):** AI agentiga arxitektura, xavfsizlik, SRE, ML, UI/UX, 3D, fizika, mobil, brend, audio, ma'lumotlar bazasi, SEO, AI agentlar, tizimlar unumdorligi, taqsimlangan konsensus, kompilyatorlar, kvant kriptografiya, HFT, robototexnika va chip arxitekturasi bo‘yicha 23 nafar Senior darajadagi mutaxassis tajribasi va mezonlarini kontekst sifatida yuklaydi.
 4. **🧠 Doimiy Loyiha Xotirasi (`.artisan/memory.json`):** Loyihaning arxitekturaviy qoidalari va o‘tmishdagi xatolarini saqlab qoladi, shunda AI agent bir xil xatoni qayta takrorlamaydi.
 5. **🔌 Model Context Protocol (MCP) Serveri (`mcp/server.py`):** Standart JSON-RPC 2.0 orqali AI muhitlariga kod tahlili va rollarni to‘g‘ridan-to‘g‘ri vosita (tool) sifatida taqdim etadi.
 
@@ -111,6 +111,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 20 | 🛡️ **Seraphina 'The Aegis' Sterling** | Principal Quantum-Resistant Cryptographer | Quantum Aegis & Zero-Knowledge Sovereign | FIPS 203 ML-KEM lattice encapsulation, constant-time execution, ZKP nullifier deduplication |
 | 21 | ⚡ **Thaddeus 'The Chrono' Vance** | Principal HFT & Event-Loop Architect | Deterministic Low-Jitter Sovereign | Zero-syscall busy polling, CPU core affinity pinning, wait-free SPSC ring buffers |
 | 22 | 🦾 **Dr. Vespera 'The Kinematic' Sterling** | Principal Autonomous Robotics Architect | Real-Time Control Sovereign & Kinematic Purist | 1kHz actuation cycles, torque saturation envelopes, DLS singularity damping, EKF sensory fusion |
+| 23 | ⚡ **Ignis 'The Silicon' Thorne** | Principal ASIC & FPGA Hardware Architect | Silicon Sovereign & RTL Synthesis Conscience | Latch-free combinational logic, dual-flop CDC synchronizers, STA positive slack, sync reset |
 
 ---
 
