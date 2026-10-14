@@ -89,13 +89,13 @@ Install Artisan configuration files into any repository:
 
 ```bash
 # 🍏 Linux & macOS (curl bash installer):
-curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash
+curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh | bash
 
 # 🪟 Windows PowerShell (1-line installer):
-irm https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.ps1 | iex
+irm https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.ps1 | iex
 
 # 📦 Node.js / npx (directly from GitHub repo):
-npx github:kapitan00000978-sketch/humanpowers init
+npx github:kapitan00000978-sketch/artisan init
 
 # 🐍 Universal Python CLI:
 python cli/installer.py --agent all

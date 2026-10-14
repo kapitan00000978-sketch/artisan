@@ -1,10 +1,10 @@
-# 🛡️ HUMANPOWERS PLUGIN FOR GITHUB COPILOT (AUTONOMOUS 24/7 BACKGROUND CRAFTSMANSHIP)
+# 🛡️ ARTISAN PROTOCOL FOR GITHUB COPILOT
 
-Humanpowers is an **always-on, 24/7 autonomous background craftsmanship engine** embedded directly into GitHub Copilot.
+Artisan is an **autonomous craftsmanship and quality engine** embedded directly into GitHub Copilot.
 
 ---
 
-## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS 24/7)
+## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS)
 - Permanently active on every single prompt, code edit, and completion.
 - Zero manual slash commands or reminders needed from the user.
 

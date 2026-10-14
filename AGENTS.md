@@ -1,6 +1,7 @@
-# 🛡️ HUMANPOWERS — AUTONOMOUS 24/7 BACKGROUND CRAFTSMANSHIP PLUGIN
+# 🛡️ ARTISAN — AUTONOMOUS CRAFTSMANSHIP & QUALITY PROTOCOL
 
-Humanpowers is an **always-on, 24/7 autonomous background craftsmanship engine** embedded directly into the AI agent workflow.
+Artisan is an **autonomous quality and craftsmanship protocol** embedded directly into the AI agent workflow.
+
 
 ---
 

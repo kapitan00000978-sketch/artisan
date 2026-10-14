@@ -53,19 +53,19 @@ def get_watched_files():
     return watched
 
 def scan_once():
-    print("🛡️  [Humanpowers Watchdog] Running workspace code scan...")
+    print("🛡️  [Artisan Watchdog] Running workspace code scan...")
     files = get_watched_files()
     total_flaws = 0
     for path in files:
         flaws = check_file(path)
         total_flaws += len(flaws)
     if total_flaws == 0:
-        print("✅ [Humanpowers Watchdog] All active workspace files are clean.")
+        print("✅ [Artisan Watchdog] All active workspace files are clean.")
     else:
-        print(f"❌ [Humanpowers Watchdog] {total_flaws} quality/security defect(s) detected.")
+        print(f"❌ [Artisan Watchdog] {total_flaws} quality/security defect(s) detected.")
 
 def watch_continuous(interval=2.0):
-    print("🛡️  [Humanpowers Watchdog Daemon] Continuous real-time file monitoring active (Press Ctrl+C to stop)...")
+    print("🛡️  [Artisan Watchdog Daemon] Continuous real-time file monitoring active (Press Ctrl+C to stop)...")
     file_mtimes = get_watched_files()
     try:
         while True:
@@ -77,7 +77,8 @@ def watch_continuous(interval=2.0):
                     check_file(path)
                     file_mtimes[path] = mtime
     except KeyboardInterrupt:
-        print("\n[Humanpowers Watchdog Daemon] Stopped.")
+        print("\n[Artisan Watchdog Daemon] Stopped.")
+
 
 if __name__ == "__main__":
     if "--watch" in sys.argv:

@@ -44,13 +44,14 @@ def display_metrics():
             "sourceFilesAudited": src_files,
             "totalLinesAnalyzed": lines,
             "activeRuleModules": rules,
-            "qualityProtocol": "Humanpowers 1.0 (Active)",
+            "qualityProtocol": "Artisan 1.0 (Active)",
             "verificationStatus": "All Code Passing Gatekeeper Benchmarks"
         }
         status_note = "Live workspace analysis"
 
     print("\n" + "=" * 65)
-    print(" 🛡️  HUMANPOWERS — WORKSPACE QUALITY & AUDIT REPORT")
+    print(" 🛡️  ARTISAN — WORKSPACE QUALITY & AUDIT REPORT")
+
     print(f"    Mode: {status_note}")
     print("=" * 65)
     for k, v in data.items():

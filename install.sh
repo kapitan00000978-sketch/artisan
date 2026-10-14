@@ -1,14 +1,14 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Humanpowers Bootstrap Installer
+# Artisan Bootstrap Installer
 # Usage:
-#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash -s -- --agent cursor
+#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh | bash
+#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh | bash -s -- --agent cursor
 # ==============================================================================
 
 set -e
 
-REPO_RAW="https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main"
+REPO_RAW="https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main"
 TARGET_DIR="${PWD}"
 AGENT_TARGET="all"
 
@@ -23,15 +23,15 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 echo "=================================================================="
-echo "  🛡️  HUMANPOWERS BOOTSTRAP INSTALLER"
-echo "      Autonomous AI Agent Quality & Craftsmanship Rules"
+echo "  🛡️  ARTISAN BOOTSTRAP INSTALLER"
+echo "      Autonomous AI Agent Quality & Craftsmanship Protocol"
 echo "=================================================================="
 echo "[*] Target Directory : ${TARGET_DIR}"
 echo "[*] Target Agent(s)  : ${AGENT_TARGET}"
 
 mkdir -p "${TARGET_DIR}/.humanpowers"
 
-echo "[+] Downloading core Humanpowers protocol..."
+echo "[+] Downloading core Artisan protocol..."
 curl -fsSL "${REPO_RAW}/AGENTS.md" -o "${TARGET_DIR}/AGENTS.md"
 
 # Safe memory preservation: never overwrite existing user memory
@@ -75,6 +75,6 @@ fi
 
 echo ""
 echo "=================================================================="
-echo "  ✅ Humanpowers successfully installed!"
+echo "  ✅ Artisan successfully installed!"
 echo "     Quality and craftsmanship rules are now active."
 echo "=================================================================="

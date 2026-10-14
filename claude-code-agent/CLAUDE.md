@@ -1,10 +1,10 @@
-# 🛡️ HUMANPOWERS PLUGIN FOR CLAUDE CODE (AUTONOMOUS 24/7 BACKGROUND CRAFTSMANSHIP)
+# 🛡️ ARTISAN PROTOCOL FOR CLAUDE CODE
 
-Humanpowers is an **always-on, 24/7 autonomous background craftsmanship engine** embedded directly into Claude Code.
+Artisan is an **autonomous craftsmanship and quality engine** embedded directly into Claude Code.
 
 ---
 
-## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS 24/7)
+## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS)
 - Permanently active on every single prompt, code generation, and file edit.
 - Zero manual slash commands or prompt reminders needed from the user.
 

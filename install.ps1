@@ -1,15 +1,15 @@
 # ==============================================================================
-# Humanpowers PowerShell Bootstrap Installer
+# Artisan PowerShell Bootstrap Installer
 # Usage:
-#   irm https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.ps1 | iex
 # ==============================================================================
 
-$RepoRaw = "https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main"
+$RepoRaw = "https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main"
 $TargetDir = Get-Location
 
 Write-Host "==================================================================" -ForegroundColor Cyan
-Write-Host "  🛡️  HUMANPOWERS POWERSHELL BOOTSTRAP INSTALLER" -ForegroundColor Cyan
-Write-Host "      Autonomous AI Agent Quality & Craftsmanship Rules" -ForegroundColor Cyan
+Write-Host "  🛡️  ARTISAN POWERSHELL BOOTSTRAP INSTALLER" -ForegroundColor Cyan
+Write-Host "      Autonomous AI Agent Quality & Craftsmanship Protocol" -ForegroundColor Cyan
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host "[*] Target Directory: $TargetDir" -ForegroundColor Yellow
 
@@ -18,7 +18,7 @@ New-Item -ItemType Directory -Force -Path "$TargetDir\.humanpowers" | Out-Null
 New-Item -ItemType Directory -Force -Path "$TargetDir\.cursor\rules" | Out-Null
 New-Item -ItemType Directory -Force -Path "$TargetDir\.github" | Out-Null
 
-Write-Host "[+] Downloading core Humanpowers protocol..." -ForegroundColor Green
+Write-Host "[+] Downloading core Artisan protocol..." -ForegroundColor Green
 Invoke-RestMethod -Uri "$RepoRaw/AGENTS.md" -OutFile "$TargetDir\AGENTS.md"
 
 # Safe memory preservation: never overwrite existing user memory
@@ -49,6 +49,6 @@ Invoke-RestMethod -Uri "$RepoRaw/.github/copilot-instructions.md" -OutFile "$Tar
 Invoke-RestMethod -Uri "$RepoRaw/.windsurfrules" -OutFile "$TargetDir\.windsurfrules"
 
 Write-Host "`n==================================================================" -ForegroundColor Green
-Write-Host "  ✅ Humanpowers successfully installed!" -ForegroundColor Green
+Write-Host "  ✅ Artisan successfully installed!" -ForegroundColor Green
 Write-Host "     Quality and craftsmanship rules are now active." -ForegroundColor Green
 Write-Host "==================================================================" -ForegroundColor Green

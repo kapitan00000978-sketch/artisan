@@ -22,8 +22,9 @@ PATTERNS = [
 
 
 def scan_files():
-    print("🛡️ [Humanpowers Gatekeeper] Running pre-commit quality and security audit...")
+    print("🛡️ [Artisan Gatekeeper] Running pre-commit quality and security audit...")
     flaws_found = []
+
 
     # Scan project source files
     for root, dirs, files in os.walk("."):
@@ -47,15 +48,16 @@ def scan_files():
                     pass
 
     if flaws_found:
-        print("\n❌ [HUMANPOWERS REJECTED - AUDIT FAILED]:")
+        print("\n❌ [ARTISAN REJECTED - AUDIT FAILED]:")
         for flaw in flaws_found[:5]:
             print(f"  • {flaw}")
         print(f"\nTotal defects detected: {len(flaws_found)}")
-        print("💡 Directive: Humanpowers Zero Babysitting — resolve all flaws independently before committing!\n")
+        print("💡 Directive: Artisan Quality Protocol — resolve all flaws independently before committing!\n")
         return False
     else:
-        print("✅ [HUMANPOWERS VERIFIED]: All code satisfied strict quality benchmarks. 100% Production-Ready!")
+        print("✅ [ARTISAN VERIFIED]: All code satisfied strict quality benchmarks. 100% Production-Ready!")
         return True
+
 
 if __name__ == "__main__":
     passed = scan_files()

@@ -1,11 +1,12 @@
 ---
-description: Humanpowers 24/7 Autonomous Craftsmanship Plugin for Cursor AI
+description: Artisan Autonomous Craftsmanship & Quality Protocol for Cursor AI
 globs: *
 ---
 
-# 🛡️ Humanpowers Plugin (Autonomous 24/7 Deep Craftsmanship)
+# 🛡️ Artisan Protocol (Autonomous Deep Craftsmanship & Quality)
 
-Humanpowers is an **always-on, 24/7 autonomous background craftsmanship engine** embedded directly into Cursor. It operates with **zero manual commands** and zero prompt babysitting from the user.
+Artisan is an **autonomous quality and craftsmanship engine** embedded directly into Cursor. It operates with **zero manual commands** and zero prompt babysitting from the user.
+
 
 ---
 

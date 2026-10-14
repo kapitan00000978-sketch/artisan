@@ -2,9 +2,9 @@
   "name": "artisan-protocol",
   "version": "1.0.0",
   "description": "An open-source protocol and modular framework that injects craftsmanship, senior work ethic, and automated quality gates into AI coding agents.",
-  "main": "bin/humanpowers.js",
+  "main": "bin/artisan.js",
   "bin": {
-    "artisan": "./bin/humanpowers.js",
+    "artisan": "./bin/artisan.js",
     "humanpowers": "./bin/humanpowers.js"
   },
 
@@ -27,10 +27,11 @@
     "windsurf",
     "mcp"
   ],
-  "author": "Humanpowers Open Source Project",
+  "author": "Artisan Open Source Project",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/kapitan00000978-sketch/humanpowers.git"
+    "url": "https://github.com/kapitan00000978-sketch/artisan.git"
   }
 }
+
