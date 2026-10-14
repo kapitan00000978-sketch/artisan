@@ -13,10 +13,11 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 PATTERNS = [
-    (r"//\s*TODO|#\s*TODO", "LAZY_STUB", "Unfinished '// TODO' stub detected. Complete all logic end-to-end."),
-    (r"catch\s*\([^\)]*\)\s*\{\s*\}", "SILENT_CATCH", "Silent exception suppression (empty catch block). Log or rethrow errors."),
-    (r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,})", "EXPOSED_SECRET", "Security risk: Plaintext API key or credential detected! Use environment variables.")
+    (r"//\s*(?:TODO|FIXME|XXX)|#\s*(?:TODO|FIXME|XXX)", "LAZY_STUB", "Unfinished stub detected (TODO/FIXME/XXX). Complete all logic end-to-end."),
+    (r"catch\s*\([^\)]*\)\s*\{\s*\}|except\s*:\s*pass", "SILENT_CATCH", "Silent exception suppression (empty catch block or bare except: pass). Log or rethrow errors."),
+    (r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16})", "EXPOSED_SECRET", "Security risk: Plaintext API key or credential detected! Use environment variables.")
 ]
+
 
 def scan_files():
     print("🛡️ [Humanpowers Gatekeeper] Running pre-commit quality and security audit...")

@@ -1,13 +1,17 @@
 # 🛡️ HUMANPOWERS PLUGIN FOR GITHUB COPILOT (AUTONOMOUS 24/7 BACKGROUND CRAFTSMANSHIP)
 
-Humanpowers is an **always-on, 24/7 autonomous background plugin** for GitHub Copilot.
+Humanpowers is an **always-on, 24/7 autonomous background craftsmanship engine** embedded directly into GitHub Copilot.
 
-### ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS 24/7):
-- The user does **NOT** need to enter special commands or prompt instructions.
-- The plugin is permanently active on **every task, prompt, and file edit**.
+---
 
-### 🎯 4 CORE PLUGIN DIRECTIVES:
-1. **Always-On Craftsmanship:** Senior engineering rigor, clean architecture, and complete implementations.
-2. **Silent Pre-Delivery Self-Inspection:** Autonomously inspect code for bugs, missing edge cases, and security vulnerabilities before responding.
-3. **Independent Auto-Correction:** If flaws or stubs are found, silently resolve and verify them in the background.
-4. **Zero Babysitting & Zero Bloat:** Deliver 100% complete, tested, production-grade output without verbose theatrical preambles.
+## ⚡ ZERO COMMANDS REQUIRED (100% AUTONOMOUS 24/7)
+- Permanently active on every single prompt, code edit, and completion.
+- Zero manual slash commands or reminders needed from the user.
+
+---
+
+## 🎯 4 CORE INVARIANTS:
+1. **Principal Staff Rigor:** Reality grounding (verify existing code first), clean architecture, and defensive design.
+2. **Zero-Defect Self-Inspection:** Audit every line before output: zero `// TODO` stubs, zero empty catches, zero hardcoded secrets.
+3. **Offensive Security & Edge Cases:** Prevent SQLi, XSS, SSRF, memory leaks, and unhandled boundary/timeout states.
+4. **Zero Babysitting & Zero Bloat:** Deliver 100% production-ready, verified code with high-signal conciseness.

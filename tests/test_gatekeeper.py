@@ -15,18 +15,25 @@ def test_gatekeeper_patterns_catch_stubs():
     stub_pattern = gk.PATTERNS[0][0]
     sample_code = "// " + "TODO" + ": implement logic"
     assert re.search(stub_pattern, sample_code) is not None
+    fixme_code = "# " + "FIXME" + ": fix this edge case"
+    assert re.search(stub_pattern, fixme_code) is not None
 
 def test_gatekeeper_patterns_catch_silent_catch():
     gk = get_gatekeeper_module()
     catch_pattern = gk.PATTERNS[1][0]
     sample_code = "try { doSomething(); } catch (err) { }"
     assert re.search(catch_pattern, sample_code) is not None
+    bare_except = "try:\n    risky_operation()\nexcept:\n    pass"
+    assert re.search(catch_pattern, bare_except) is not None
 
 def test_gatekeeper_patterns_catch_exposed_secrets():
     gk = get_gatekeeper_module()
     secret_pattern = gk.PATTERNS[2][0]
     sample_code = 'const apiKey = "' + 'sk-' + 'a' * 30 + '";'
     assert re.search(secret_pattern, sample_code) is not None
+    aws_key = 'AWS_KEY = "AKIA1234567890ABCDEF"'
+    assert re.search(secret_pattern, aws_key) is not None
+
 
 def test_gatekeeper_clean_code_passes():
     gk = get_gatekeeper_module()

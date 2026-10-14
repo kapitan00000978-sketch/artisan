@@ -14,10 +14,11 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 PATTERNS = [
-    (r"//\s*TODO|#\s*TODO", "LAZY_STUB", "Unfinished '// TODO' stub detected!"),
-    (r"catch\s*\([^\)]*\)\s*\{\s*\}", "SILENT_CATCH", "Silent exception suppression (empty catch block)!"),
-    (r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,})", "EXPOSED_SECRET", "Exposed plaintext API key or credential!")
+    (r"//\s*(?:TODO|FIXME|XXX)|#\s*(?:TODO|FIXME|XXX)", "LAZY_STUB", "Unfinished stub detected (TODO/FIXME/XXX)! Complete logic end-to-end."),
+    (r"catch\s*\([^\)]*\)\s*\{\s*\}|except\s*:\s*pass", "SILENT_CATCH", "Silent exception suppression (empty catch block or bare except: pass)!"),
+    (r"(sk-[a-zA-Z0-9]{20,}|ghp_[a-zA-Z0-9]{20,}|AKIA[0-9A-Z]{16})", "EXPOSED_SECRET", "Exposed plaintext API key or credential!")
 ]
+
 
 def check_file(filepath):
     if not os.path.exists(filepath):
