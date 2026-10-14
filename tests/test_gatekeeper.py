@@ -224,4 +224,52 @@ def test_remediator_js_empty_catch():
     assert count == 1
     assert "console.error" in fixed
 
+def test_artisan_config_loader():
+    from detector import load_artisan_config
+    cfg = load_artisan_config(".")
+    assert "rules" in cfg
+    assert "exclude_dirs" in cfg
+
+def test_artisan_config_rule_disable():
+    from detector import scan_code
+    code = "def todo_func():\n    # TODO: implement later\n    pass\n"
+    # When enabled (default)
+    res_enabled = scan_code(code)
+    assert any(f["rule_id"] == "STUB_TODO_FIXME" for f in res_enabled["findings"])
+
+    # When disabled via config override
+    custom_cfg = {"rules": {"STUB_TODO_FIXME": {"enabled": False}}}
+    res_disabled = scan_code(code, config=custom_cfg)
+    assert not any(f["rule_id"] == "STUB_TODO_FIXME" for f in res_disabled["findings"])
+
+def test_benchmark_suite():
+    import importlib.util
+    bench_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "bench", "run_benchmark.py"))
+    spec = importlib.util.spec_from_file_location("run_benchmark", bench_file)
+    bench_mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(bench_mod)
+    summary = bench_mod.run_benchmark()
+    assert summary["total_tasks"] == 10
+    assert summary["artisan_passed"] == 10
+    assert summary["total_defects_repaired"] > 0
+
+def test_claude_hook_check_and_heal(tmp_path):
+    import importlib.util
+    hook_file = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "claude_hook.py"))
+    spec = importlib.util.spec_from_file_location("claude_hook", hook_file)
+    hook_mod = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(hook_mod)
+
+    # Clean file passes
+    clean_file = tmp_path / "clean.py"
+    clean_file.write_text("def add(a, b):\n    return a + b\n", encoding="utf-8")
+    assert hook_mod.check_and_heal(str(clean_file)) is True
+
+    # Auto-remediable file gets healed
+    flawed_file = tmp_path / "flawed.py"
+    flawed_file.write_text("try:\n    run()\nexcept:\n    pass\n", encoding="utf-8")
+    assert hook_mod.check_and_heal(str(flawed_file)) is True
+    content = flawed_file.read_text(encoding="utf-8")
+    assert "logging.warning" in content
+
 

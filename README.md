@@ -22,6 +22,32 @@ Experience real-time static code auditing, AST-based flaw detection, and autonom
 
 ---
 
+## 📊 Empirik Isbot: Benchmark Natijalari (`bench/`)
+
+Artisan shunchaki tavsiyalar to‘plami emas — u o‘lchanadigan natijalar beradi. 10 ta real kod generatsiyasi vazifasi bo‘yicha o‘tkazilgan mustaqil benchmark (`python bench/run_benchmark.py`):
+
+| Ko‘rsatkich | Boshlang‘ich AI (Artisan’siz) | Artisan bilan (Gatekeeper + Auto-Fix) |
+| :--- | :--- | :--- |
+| **Sifat Gatekeeperidan o‘tish** | `1 / 10` (10.0%) | **`10 / 10` (100.0%)** |
+| **Bartaraf etilgan nuqsonlar** | `0` (xatolar repoga o‘tib ketadi) | **`9` ta nuqson avtomatik to‘g‘rilandi** |
+| **Tuzatish tsikllari (Cycles)** | Noma'lum / Inson aralashuvi | **O‘rtacha `1.0` tsiklda avto-tuzatish** |
+
+> Batafsil hisobot va barcha 10 ta vazifa kodlari: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md)
+
+---
+
+## ⚖️ Qachon kerak va qachon kerak emas? (Decision Matrix)
+
+| Holat | Artisan kerakmi? | Sababi |
+| :--- | :---: | :--- |
+| **Production yoki Jamoaviy repolar** | ✅ **HA** | Chala `TODO`lar, yashirin `except: pass` va sizib chiqqan API kalitlar repoga kirmaydi. |
+| **AI agentlar bilan kod yozish** | ✅ **HA** | Claude Code, Cursor, Cline va Kimi'ga qat'iy intizom yuklaydi, vaqtni tejaydi. |
+| **CI/CD pipeline va Pre-commit** | ✅ **HA** | Barcha PR'lar uchun yagona xolis sifat darvozasini o‘rnatadi. |
+| **5 daqiqalik bir martalik prototip** | ❌ *Kerak emas* | Agar shunchaki tezda bitta fikrni sinab ko‘rmoqchi bo‘lsangiz, qat'iy gatekeeper xalaqit qilishi mumkin. |
+| **Faqat matn/kontent yozish** | ❌ *Kerak emas* | Loyihada dasturlash kodlari bo‘lmasa, kod tekshiruvi talab etilmaydi. |
+
+---
+
 ## 📌 Loyiha Tasnifi (Project Description)
 
 **Artisan nima?**  
@@ -131,6 +157,54 @@ npx github:kapitan00000978-sketch/artisan init
 # 🐍 Universal Python CLI:
 python cli/installer.py --agent all
 ```
+
+---
+
+## 🚀 Reusable GitHub Action (`@v1`)
+
+O‘z repoyingizdagi barcha Pull Request va Push'larni sifat darvozasi orqali avtomatik tekshirish uchun workflow faylingizga (`.github/workflows/artisan.yml`) 3 qator qo‘shish kifoya:
+
+```yaml
+name: Artisan Quality Gate
+on: [push, pull_request]
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run Artisan Quality & Security Gate
+        uses: kapitan00000978-sketch/artisan@v1
+```
+
+---
+
+## ⚙️ Moslashuvchan Sozlamalar (`artisan.config.json`)
+
+Har bir jamoa qoidalarni o‘z talablariga moslab sozlashi mumkin. Repozitoriy ildizidagi `artisan.config.json`:
+
+```json
+{
+  "threshold_score": 100,
+  "rules": {
+    "STUB_TODO_FIXME": { "enabled": true, "severity": "error" },
+    "STUB_EMPTY_CATCH": { "enabled": true, "severity": "error" },
+    "STUB_BARE_EXCEPT": { "enabled": true, "severity": "error" },
+    "DANGEROUS_EVAL_EXEC": { "enabled": true, "severity": "error" }
+  },
+  "exclude_dirs": [".git", "node_modules", "tests", "bench"],
+  "exclude_files": ["detector.py"]
+}
+```
+
+---
+
+## 🤝 Ochiq Kod va Hamjamiyat (Contributing)
+
+Artisan ochiq kodli hamjamiyat uchun yaratilgan. Hissa qo‘shish uchun:
+- Qo‘llanma: [`CONTRIBUTING.md`](./CONTRIBUTING.md)
+- Boshlovchilar uchun vazifalar: [Good First Issues](https://github.com/kapitan00000978-sketch/artisan/labels/good%20first%20issue)
+
 
 ---
 

@@ -223,12 +223,28 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
     return ast_findings
 
 
-def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
+def load_artisan_config(base_dir: str = ".") -> Dict[str, Any]:
+    """Loads artisan.config.json if present, returning configuration overrides."""
+    config_path = os.path.join(base_dir, "artisan.config.json")
+    if os.path.exists(config_path):
+        try:
+            with open(config_path, "r", encoding="utf-8") as f:
+                return json.load(f)
+        except Exception:
+            pass
+    return {}
+
+
+def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Audits a string of source code against all Artisan rules.
-    Respects inline 'artisan-ignore' markers.
+    Respects inline 'artisan-ignore' markers and artisan.config.json toggles.
     Returns deterministic status, score, flaws, and detailed findings.
     """
+    if config is None:
+        config = load_artisan_config(".")
+
+    rules_cfg = config.get("rules", {})
     findings: List[Dict[str, Any]] = []
     lines = code.splitlines()
 
@@ -237,6 +253,9 @@ def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
             continue
 
         for rule_id, category, compiled_pattern, message, deduction in COMPILED_RULES:
+            if rule_id in rules_cfg and not rules_cfg[rule_id].get("enabled", True):
+                continue
+
             if compiled_pattern.search(line):
                 findings.append({
                     "rule_id": rule_id,
@@ -304,14 +323,14 @@ def scan_code(code: str, filename: str = "") -> Dict[str, Any]:
     }
 
 
-def scan_file(filepath: str) -> Optional[Dict[str, Any]]:
+def scan_file(filepath: str, config: Optional[Dict[str, Any]] = None) -> Optional[Dict[str, Any]]:
     """Scans an individual file on disk."""
     if not os.path.exists(filepath):
         return None
     try:
         with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
-        return scan_code(content, filename=filepath)
+        return scan_code(content, filename=filepath, config=config)
     except Exception:
         return None
 
@@ -332,16 +351,24 @@ def get_staged_git_files() -> List[str]:
     return []
 
 
-def scan_project(base_dir: str = ".", staged_only: bool = False) -> Dict[str, Any]:
+def scan_project(base_dir: str = ".", staged_only: bool = False, config_override: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Scans project source files for stubs, secrets, and dangerous execution.
     If staged_only is True, only checks files staged for git commit.
+    Respects artisan.config.json for excluded paths and rule thresholds.
     """
+    cfg = config_override or load_artisan_config(base_dir)
     all_findings: List[Dict[str, Any]] = []
     scanned_count = 0
 
     excluded_dirs = {".git", "node_modules", ".venv", "__pycache__", "tests"}
-    excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "remediator.py", "server.py", "watchdog.py", "sync_artisan.py"}
+    if "exclude_dirs" in cfg:
+        excluded_dirs.update(cfg["exclude_dirs"])
+
+    excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "remediator.py", "server.py", "watchdog.py", "sync_artisan.py", "claude_hook.py"}
+    if "exclude_files" in cfg:
+        excluded_files.update(cfg["exclude_files"])
+
     valid_extensions = (".js", ".ts", ".py", ".go", ".rs", ".java", ".cpp", ".cs")
 
     if staged_only:
@@ -356,7 +383,7 @@ def scan_project(base_dir: str = ".", staged_only: bool = False) -> Dict[str, An
                 if filename in excluded_files:
                     continue
                 scanned_count += 1
-                res = scan_file(filepath)
+                res = scan_file(filepath, config=cfg)
                 if res and res["findings"]:
                     all_findings.extend(res["findings"])
     else:
@@ -368,7 +395,7 @@ def scan_project(base_dir: str = ".", staged_only: bool = False) -> Dict[str, An
                         continue
                     filepath = os.path.join(root, file)
                     scanned_count += 1
-                    res = scan_file(filepath)
+                    res = scan_file(filepath, config=cfg)
                     if res and res["findings"]:
                         all_findings.extend(res["findings"])
 
@@ -380,8 +407,11 @@ def scan_project(base_dir: str = ".", staged_only: bool = False) -> Dict[str, An
     total_deduction = sum(f["deduction"] for f in all_findings)
     score = max(0, 100 - total_deduction) if all_findings else 100
 
+    threshold = cfg.get("threshold_score", 100)
+    passed = (len(all_findings) == 0) if threshold >= 100 else (score >= threshold)
+
     return {
-        "passed": len(all_findings) == 0,
+        "passed": passed,
         "scanned_files": scanned_count,
         "findings": all_findings,
         "score": score

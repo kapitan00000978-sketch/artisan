@@ -1,0 +1,37 @@
+name: 'Artisan Quality & Security Gate'
+description: 'Autonomous pre-commit & CI quality gate for AI coding assistants: catches stubs, secret leaks, and unhandled exceptions.'
+author: 'kapitan00000978-sketch'
+branding:
+  icon: 'shield'
+  color: 'indigo'
+
+inputs:
+  staged-only:
+    description: 'Only scan staged git changes instead of full workspace'
+    required: false
+    default: 'false'
+  fail-on-defect:
+    description: 'Fail the workflow if defects are found'
+    required: false
+    default: 'true'
+  python-version:
+    description: 'Python runtime version'
+    required: false
+    default: '3.12'
+
+runs:
+  using: 'composite'
+  steps:
+    - name: Set up Python
+      uses: actions/setup-python@v5
+      with:
+        python-version: ${{ inputs.python-version }}
+
+    - name: Run Artisan Gatekeeper
+      shell: bash
+      run: |
+        FLAGS=""
+        if [ "${{ inputs.staged-only }}" = "true" ]; then
+          FLAGS="--staged"
+        fi
+        python ${{ github.action_path }}/scripts/pre-commit-gatekeeper.py $FLAGS
