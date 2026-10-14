@@ -108,13 +108,20 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
    Standard JSON-RPC 2.0 MCP server allowing Claude, Cursor, and other MCP clients to query domain personas and run static code inspections.
 3. **🚀 GitHub Actions CI/CD Quality Gate (`.github/workflows/artisan-gate.yml`):**
    Automated pull request and push inspection that verifies test suites and checks for lazy stubs or exposed credentials.
-4. **👁️ Real-Time Watchdog Daemon (`scripts/watchdog.py`):**
+4. **🎨 Artisan Studio — Visual Self-Critique & World-Class Elevation (`scripts/artisan_studio.py` / `cli/studio.py`):**
+   Headless Chromium visual capture (Playwright), DOM inspection, and ruthless multi-specialist critique:
+   - **Elena Rostova:** UI/UX depth, liquid-glass cards, typography, and micro-interactions.
+   - **Diana Drake:** Eliminates generic AI cliches, injects high-voltage magnetic copy.
+   - **Marcus Sterling & Gabriel Frost:** Semantic mobile responsiveness and security checks.
+   - **Autonomous Elevation (`--elevate`):** Automatically upgrades beginner mockups into award-winning, responsive, liquid-glass web experiences with visual before-and-after proof.
+
+5. **👁️ Real-Time Watchdog Daemon (`scripts/watchdog.py`):**
    Continuous background file sentinel (`--watch`) that monitors local edits and flags stubs, empty catches, and credential leaks.
-5. **🛡️ Git Pre-Commit Gatekeeper (`scripts/pre-commit-gatekeeper.py`):**
+6. **🛡️ Git Pre-Commit Gatekeeper (`scripts/pre-commit-gatekeeper.py`):**
    Pre-commit hook stopping unfinished stubs, silent exception suppressions, or plaintext keys before git commits.
-6. **🎭 Persona Forge (`cli/persona_forge.py`):**
+7. **🎭 Persona Forge (`cli/persona_forge.py`):**
    CLI to create and register custom domain checklists and personas.
-7. **📊 Workspace Quality & Audit Report (`scripts/roi_tracker.py`):**
+8. **📊 Workspace Quality & Audit Report (`scripts/roi_tracker.py`):**
    Inspects and reports real workspace metrics: active files, total lines audited, and gatekeeper compliance.
 8. **🖥️ Interactive Terminal HUD (`cli/dashboard.py`):**
    Terminal dashboard displaying active protocol status, Council roster, and heuristic checklists.
