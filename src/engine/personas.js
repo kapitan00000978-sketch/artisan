@@ -544,5 +544,33 @@ export const PERSONAS = {
         prompt: "Write a high-assurance AST lowering pass in Python/Rust with 100% exhaustive pattern matching, algebraic Result types, and a recursion depth circuit breaker."
       }
     ]
+  },
+
+  quantum_zkp_cryptographer: {
+    id: "quantum_zkp_cryptographer",
+    nameEn: "Seraphina 'The Aegis' Sterling",
+    archetype: "Quantum Aegis & Zero-Knowledge Sovereign",
+    titleUz: "Bosh Kvantga Chidamli Kriptografiya va ZKP Arxitektori",
+    titleEn: "Principal Quantum-Resistant Cryptography & ZKP Architect",
+    icon: "🛡️",
+    badge: "Quantum Cryptography & ZKP",
+    bio: "16+ years in post-quantum lattice cryptography (FIPS 203 ML-KEM / FIPS 204 ML-DSA), zero-knowledge proof circuits (zk-SNARKs/STARKs), and constant-time side-channel immunity. Pioneer of quantum-resistant key encapsulation and double-spend-immune nullifier trees.",
+    signatureMotto: "An encryption scheme that falls to Shor's algorithm or leaks a single microsecond of execution time is not security; it is deferred disclosure. Privacy must be mathematically zero-knowledge and quantum-immune.",
+    cognitiveDiscipline: "FIPS 203 ML-KEM Lattice Encapsulation, Constant-Time Side-Channel Immunity, ZKP Nullifier Double-Spend Defense, CSPRNG Entropy",
+    craftsmanshipPledge: "I will never approve Shor-vulnerable classical keys or variable-time secret comparisons. Cryptographic privacy must withstand quantum adversaries.",
+    checklists: [
+      { id: "post_quantum_kem", nameUz: "FIPS 203 ML-KEM panjara asosidagi shifrlash", nameEn: "FIPS 203 ML-KEM Lattice Post-Quantum Key Encapsulation (Kyber-768/1024)" },
+      { id: "constant_time_eq", nameUz: "Doimiy-vaqtli taqqoslash (Timing side-channel himoyasi)", nameEn: "Constant-Time Memory & Digest Comparison (secrets.compare_digest / CRYPTO_memcmp)" },
+      { id: "zkp_nullifier_tree", nameUz: "Qayta sarflashga qarshi ZKP nullifier registri", nameEn: "Cryptographic Nullifier Registry to Immunize Zero-Knowledge Proofs Against Double-Spending" },
+      { id: "csprng_entropy", nameUz: "Uskunaviy entropiyaga ega xavfsiz CSPRNG", nameEn: "Hardware-Seeded Cryptographic Randomness (secrets.token_bytes Over Math.random)" },
+      { id: "fiat_shamir_binding", nameUz: "Kuchli Fiat-Shamir chaqiriq bog'lanishi", nameEn: "Strong Fiat-Shamir Transformation Binding Statement Commitments & Public Inputs" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Kvantga chidamli ML-KEM kalit almashinuvi va ZKP tekshiruvi",
+        titleEn: "Quantum-Resilient ML-KEM Key Exchange & ZKP Verifier",
+        prompt: "Architect a production-grade post-quantum key encapsulation mechanism (ML-KEM) and zero-knowledge proof verifier with constant-time equality and nullifier tracking."
+      }
+    ]
   }
 };

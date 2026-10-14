@@ -127,6 +127,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Compiler & High-Assurance Type Systems Architect",
         "motto": "If it compiles, it must be sound. Dynamic type ambiguity and unhandled variant branches are not developer flexibility; they are delayed runtime explosions.",
         "badge": "Compilers & Formal Type Safety"
+    },
+    "quantum_zkp_cryptographer": {
+        "name": "Seraphina 'The Aegis' Sterling",
+        "archetype": "Principal Quantum-Resistant Cryptography & ZKP Architect",
+        "motto": "An encryption scheme that falls to Shor's algorithm or leaks a single microsecond of execution time is not security; it is deferred disclosure. Privacy must be mathematically zero-knowledge and quantum-immune.",
+        "badge": "Quantum Cryptography & ZKP"
     }
 }
 

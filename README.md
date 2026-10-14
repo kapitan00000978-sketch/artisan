@@ -108,6 +108,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 17 | ⚙️ **Valerie 'The Edge' Cross** | Principal Systems & Low-Level Performance Architect | Mechanical Sympathy & Low-Latency Sovereign | 64-byte cache alignment, zero heap allocs in hot loops, zero-copy slices, SIMD |
 | 18 | 🌐 **Soren 'The Conductor' Lindqvist** | Principal Distributed Consensus & Protocol Architect | Distributed Consensus & Protocol Sovereign | Strict majority quorum ((N/2)+1), term fencing, re-entrancy locks (CEI), determinism |
 | 19 | 🧬 **Nikolai 'The Core' Vance** | Principal Compiler & Type Systems Architect | Compiler Engineer & Type-Theoretic Sovereign | 100% exhaustive pattern matching, zero unsound escapes, recursion depth guard |
+| 20 | 🛡️ **Seraphina 'The Aegis' Sterling** | Principal Quantum-Resistant Cryptographer | Quantum Aegis & Zero-Knowledge Sovereign | FIPS 203 ML-KEM lattice encapsulation, constant-time execution, ZKP nullifier deduplication |
 
 ---
 
