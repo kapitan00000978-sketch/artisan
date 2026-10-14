@@ -1,13 +1,14 @@
 <p align="center">
-  <img src="./assets/humanpowers-banner.jpg" alt="Humanpowers Banner" width="100%" />
+  <img src="./assets/artisan-banner.jpg" alt="Artisan Banner" width="100%" />
 </p>
 
-# 🛡️ Humanpowers: Autonomous AI Agent Craftsmanship & Quality Protocol
+# 🛡️ Artisan: Autonomous AI Agent Craftsmanship & Quality Protocol
 
-> **Humanpowers** — An open-source protocol and modular framework that brings engineering responsibility, professional craftsmanship, and automated quality gates into AI coding workflows. Designed to reduce prompt babysitting.
+> **Artisan** — An open-source protocol and modular framework that brings engineering responsibility, professional craftsmanship, and automated quality gates into AI coding workflows. Designed to reduce prompt babysitting.
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
-[![Protocol](https://img.shields.io/badge/protocol-Humanpowers%201.0-emerald.svg)](AGENTS.md)
+[![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
+
 [![Council of Masters](https://img.shields.io/badge/council%20of%20masters-8%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-11-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Self--Correction](https://img.shields.io/badge/quality--gate-enforced-purple.svg)](AGENTS.md)
@@ -18,13 +19,14 @@
 Developers often spend significant time micromanaging AI coding assistants:
 - Base models may rush to generate boilerplate, occasionally leaving unfinished `TODO` stubs, unhandled boundary conditions, or unparameterized queries.
 - Users frequently enter an iterative correction loop: *"Fix this error, you broke that import, handle this edge case."*
-- **Humanpowers addresses this:** By embedding structured domain rules and automated quality checks directly into agent configuration files, the assistant self-audits before presenting results.
+- **Artisan addresses this:** By embedding structured domain rules and automated quality checks directly into agent configuration files, the assistant self-audits before presenting results.
 
 ---
 
 ## 🏛️ The Council of Masters (Domain Heuristics):
 
-Humanpowers packages role-specific heuristics inspired by senior discipline leads:
+Artisan packages role-specific heuristics inspired by senior discipline leads:
+
 
 | # | Master | Discipline & Role | Archetype | Core Focus |
 | :- | :--- | :--- | :--- | :--- |
@@ -62,7 +64,7 @@ Humanpowers packages role-specific heuristics inspired by senior discipline lead
 
 ## 📁 Supported AI Agent Ecosystems:
 
-Humanpowers provides tailored configuration modules across 11 agent environments:
+Artisan provides tailored configuration modules across 11 agent environments:
 
 | # | Agent Environment | Target Platform | Core Config Files |
 | :- | :--- | :--- | :--- |
@@ -82,7 +84,8 @@ Humanpowers provides tailored configuration modules across 11 agent environments
 
 ## ⚡ Quick Installation:
 
-Install Humanpowers configuration files into any repository:
+Install Artisan configuration files into any repository:
+
 
 ```bash
 # 🍏 Linux & macOS (curl bash installer):

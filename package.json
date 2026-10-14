@@ -1,11 +1,13 @@
 {
-  "name": "humanpowers",
+  "name": "artisan-protocol",
   "version": "1.0.0",
-  "description": "An open-source protocol and modular framework that injects human-like responsibility, professional craftsmanship, and autonomous self-inspection into AI coding agents. Permanently kills prompt babysitting.",
+  "description": "An open-source protocol and modular framework that injects craftsmanship, senior work ethic, and automated quality gates into AI coding agents.",
   "main": "bin/humanpowers.js",
   "bin": {
+    "artisan": "./bin/humanpowers.js",
     "humanpowers": "./bin/humanpowers.js"
   },
+
   "scripts": {
     "hud": "python cli/dashboard.py",
     "watchdog": "python scripts/watchdog.py",
