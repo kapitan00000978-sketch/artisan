@@ -27,14 +27,10 @@ jobs:
           python -m pip install --upgrade pip
           pip install -r requirements.txt
 
-      - name: Run Pytest Suite (100% Mock Isolated)
+      - name: Run Pytest Suite
         run: |
           pytest tests/
 
       - name: Run Pre-Commit Gatekeeper
         run: |
           python scripts/pre-commit-gatekeeper.py
-
-      - name: Run Humanpowers ROI & Verification Audit
-        run: |
-          python scripts/roi_tracker.py

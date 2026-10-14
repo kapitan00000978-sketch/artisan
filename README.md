@@ -2,77 +2,67 @@
   <img src="./assets/humanpowers-banner.jpg" alt="Humanpowers Banner" width="100%" />
 </p>
 
-# 🛡️ Humanpowers: Autonomous AI Agent Craftsmanship & Work Ethic Protocol
+# 🛡️ Humanpowers: Autonomous AI Agent Craftsmanship & Quality Protocol
 
-> **Humanpowers** — An open-source protocol and modular framework that injects human-like responsibility, professional craftsmanship, and autonomous self-inspection into AI coding agents. Permanently kills prompt babysitting.
+> **Humanpowers** — An open-source protocol and modular framework that brings engineering responsibility, professional craftsmanship, and automated quality gates into AI coding workflows. Designed to reduce prompt babysitting.
 
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Protocol](https://img.shields.io/badge/protocol-Humanpowers%201.0-emerald.svg)](AGENTS.md)
 [![Council of Masters](https://img.shields.io/badge/council%20of%20masters-8%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-11-cyan.svg)](#-supported-ai-agent-ecosystems)
-[![Self--Correction](https://img.shields.io/badge/zero--babysitting-enforced-purple.svg)](AGENTS.md)
+[![Self--Correction](https://img.shields.io/badge/quality--gate-enforced-purple.svg)](AGENTS.md)
 
 ---
 
-## 🎯 The Pain Point: "Prompt Babysitting"
-Developers and knowledge workers waste 40+ minutes every day micromanaging AI agents:
-- Base models rush to generate raw boilerplate, leaving lazy `// TODO` stubs, uncaught edge cases, and security vulnerabilities.
-- Users are trapped in a frustrating back-and-forth prompt loop: *"Fix this error, you broke that import, handle this edge case."*
-- **Humanpowers ends this loop.** It wraps the agent in an autonomous reflection pipeline: the agent embodies **The Council of Masters**, audits its own draft against rigorous checklists, auto-repairs flaws, and delivers 100% production-ready work.
+## 🎯 The Problem: Iterative Prompt Micromanagement
+Developers often spend significant time micromanaging AI coding assistants:
+- Base models may rush to generate boilerplate, occasionally leaving unfinished `TODO` stubs, unhandled boundary conditions, or unparameterized queries.
+- Users frequently enter an iterative correction loop: *"Fix this error, you broke that import, handle this edge case."*
+- **Humanpowers addresses this:** By embedding structured domain rules and automated quality checks directly into agent configuration files, the assistant self-audits before presenting results.
 
 ---
 
-## 🏛️ The Council of Masters (Character Roster):
+## 🏛️ The Council of Masters (Domain Heuristics):
 
-Whenever an agent takes on a task, it embodies the designated Master from **The Council of Masters**, adopting their distinct mindset, cognitive discipline, and battle-tested heuristics:
+Humanpowers packages role-specific heuristics inspired by senior discipline leads:
 
-| # | Master | Discipline & Role | Archetype | Signature Motto |
+| # | Master | Discipline & Role | Archetype | Core Focus |
 | :- | :--- | :--- | :--- | :--- |
-| 1 | 💻 **Marcus 'The Vanguard' Sterling** | Senior Software Architect & Systems Lead | Systems Sovereign & Zero-Tech-Debt Purist | *"If a system cannot fail gracefully under catastrophic load, it was never engineered—it was merely wished into existence."* |
-| 2 | 🎯 **Diana 'The Closer' Drake** | Elite Direct-Response Conversion Copywriter | Neuromarketing Alchemist & Persuasion Virtuoso | *"Every word must fight for its life on the page. If it does not move the buyer to decisive action, it is dead weight."* |
-| 3 | 🎨 **Elena 'The Visionary' Rostova** | Principal UI/UX Designer & Systems Architect | Aesthetic Sovereign & Spatial Ergonomics Master | *"Aesthetics without ergonomics is decoration; ergonomics without beauty is sterile. A masterwork harmonizes both without compromise."* |
-| 4 | 📊 **Victor 'The Fortress' Montgomery** | Startup Financial Strategist & Fractional CFO | Unit-Economics Inquisitor & Capital Defense Strategist | *"Gross margins and payback periods do not care about your pitch deck enthusiasm. Show me the cash conversion cycle."* |
-| 5 | ⚖️ **Arthur 'The Ironclad' Pendelton** | Senior Commercial Counsel & Contract Auditor | Commercial Safeguard & Contractual Litigator | *"An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin."* |
-| 6 | 🔬 **Dr. Evelyn 'The Oracle' Reed** | Staff Data Scientist & ML Systems Architect | Empirical Scientist & ML Ops Gatekeeper | *"If your validation data leaks into your training set, your model is not intelligent—it is simply cheating itself into a production disaster."* |
-| 7 | 🛡️ **Gabriel 'The Sentinel' Frost** | Principal Cybersecurity & Offensive Security Auditor | Zero-Trust Inquisitor & Threat Modeling Specialist | *"There are two types of systems: those that enforce zero trust, and those that are already compromised without knowing it."* |
-| 8 | ⚡ **Gareth 'The Unbreakable' Drake** | DevOps & Cloud Site Reliability Architect | Chaos Engineering Commander & Zero-Downtime Guardian | *"Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken."* |
+| 1 | 💻 **Marcus 'The Vanguard' Sterling** | Senior Software Architect & Systems Lead | Systems Sovereign & Zero-Tech-Debt Purist | SOLID architecture, zero unhandled stubs, concurrency |
+| 2 | 🎯 **Diana 'The Closer' Drake** | Direct-Response Conversion Copywriter | Neuromarketing Alchemist & Persuasion Virtuoso | High-clarity hooks, value proposition, zero AI filler |
+| 3 | 🎨 **Elena 'The Visionary' Rostova** | Principal UI/UX Designer & Systems Architect | Aesthetic Sovereign & Spatial Ergonomics Master | WCAG 2.1 AAA accessibility, 8pt spatial grid, design tokens |
+| 4 | 📊 **Victor 'The Fortress' Montgomery** | Startup Financial Strategist & Fractional CFO | Unit-Economics Inquisitor & Capital Defense | Unit economics, burn rate, cash conversion cycles |
+| 5 | ⚖️ **Arthur 'The Ironclad' Pendelton** | Senior Commercial Counsel & Contract Auditor | Commercial Safeguard & Contractual Litigator | Contract auditing, liability containment, clear definitions |
+| 6 | 🔬 **Dr. Evelyn 'The Oracle' Reed** | Staff Data Scientist & ML Systems Architect | Empirical Scientist & ML Ops Gatekeeper | Data leakage prevention, statistical validation, model drift |
+| 7 | 🛡️ **Gabriel 'The Sentinel' Frost** | Principal Cybersecurity & Offensive Auditor | Zero-Trust Inquisitor & Threat Modeling | OWASP Top 10, credential protection, parameterized queries |
+| 8 | ⚡ **Gareth 'The Unbreakable' Drake** | DevOps & Cloud Site Reliability Architect | Chaos Engineering Commander & Reliability | Idempotent IaC, container best practices, health probes |
 
 ---
 
-## ⚡ Autonomous 24/7 Background Plugin (Zero Commands Required)
+## ⚡ Core Capabilities & Built-in Tooling:
 
-Humanpowers is an **always-on, 24/7 autonomous background plugin**:
-- **Zero Commands Required:** The user does **not** need to type slash commands, remember hotkeys, or micromanage the agent.
-- **Silent 24/7 Execution:** The plugin seamlessly operates in the background on **every prompt, code generation, and file edit**.
-- **Autonomous Self-Inspection & Auto-Correction:** The agent automatically checks its own code for edge cases, security vulnerabilities, and incomplete stubs before presenting output.
-- **Zero Babysitting & Zero Bloat:** Always produces 100% production-ready results without annoying theatrical roleplay or conversational clutter.
-
-
----
-
-
-1. **🧠 Project Memory & Scar Tissue Ledger (`.humanpowers/memory.json`):**
-   Maintains persistent memory of team conventions, user preferences, and past anti-patterns. The agent never repeats the same mistake twice.
-2. **🔌 Official Model Context Protocol (MCP) Server (`mcp/server.py`):**
-   Full MCP standard server allowing Claude, Cursor, and Antigravity to programmatically trigger code audits, retrieve Council of Masters heuristics, and query memory.
-3. **🚀 GitHub Actions CI/CD Quality Gate (`ci/humanpowers-gate.yml`):**
-   Automated pull request and push inspection that fails builds if unfinished stubs or security risks are committed.
+1. **🧠 Project Memory Ledger (`.humanpowers/memory.json`):**
+   Maintains a structured record of team conventions, user preferences, and recorded anti-patterns to avoid repeating known mistakes.
+2. **🔌 Model Context Protocol (MCP) Server (`mcp/server.py`):**
+   Standard JSON-RPC 2.0 MCP server allowing Claude, Cursor, and other MCP clients to query domain personas and run static code inspections.
+3. **🚀 GitHub Actions CI/CD Quality Gate (`.github/workflows/humanpowers-gate.yml`):**
+   Automated pull request and push inspection that verifies test suites and checks for lazy stubs or exposed credentials.
 4. **👁️ Real-Time Watchdog Daemon (`scripts/watchdog.py`):**
-   Live background watcher that flags amateur AI habits (lazy TODOs, silent catches, exposed API keys) the moment files are saved.
+   Continuous background file sentinel (`--watch`) that monitors local edits and flags stubs, empty catches, and credential leaks.
 5. **🛡️ Git Pre-Commit Gatekeeper (`scripts/pre-commit-gatekeeper.py`):**
-   Stops low-quality or vulnerable commits at the gate before code reaches version control.
+   Pre-commit hook stopping unfinished stubs, silent exception suppressions, or plaintext keys before git commits.
 6. **🎭 Persona Forge (`cli/persona_forge.py`):**
-   Instantly generate and register custom domain personas with character names and rigorous checklists in 1 command.
-7. **📊 Time-Saved & ROI Tracker (`scripts/roi_tracker.py`):**
-   Calculates exact engineering hours and babysitting cycles saved by the Humanpowers protocol.
+   CLI to create and register custom domain checklists and personas.
+7. **📊 Workspace Quality & Audit Report (`scripts/roi_tracker.py`):**
+   Inspects and reports real workspace metrics: active files, total lines audited, and gatekeeper compliance.
 8. **🖥️ Interactive Terminal HUD (`cli/dashboard.py`):**
-   Real-time terminal dashboard displaying protocol status, Council of Masters roster, and active heuristics.
+   Terminal dashboard displaying active protocol status, Council roster, and heuristic checklists.
 
 ---
 
 ## 📁 Supported AI Agent Ecosystems:
 
-Humanpowers is decoupled and packaged into standalone, plug-and-play directories for all 11 major AI agent environments:
+Humanpowers provides tailored configuration modules across 11 agent environments:
 
 | # | Agent Environment | Target Platform | Core Config Files |
 | :- | :--- | :--- | :--- |
@@ -90,11 +80,9 @@ Humanpowers is decoupled and packaged into standalone, plug-and-play directories
 
 ---
 
----
+## ⚡ Quick Installation:
 
-## ⚡ 1-Line Fast Bootstrap Installation (Zero Manual Setup):
-
-Add Humanpowers and The Council of Masters into any repository in 1 second:
+Install Humanpowers configuration files into any repository:
 
 ```bash
 # 🍏 Linux & macOS (curl bash installer):
@@ -103,8 +91,8 @@ curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/
 # 🪟 Windows PowerShell (1-line installer):
 irm https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.ps1 | iex
 
-# 📦 Node.js / npx (Zero install):
-npx humanpowers init
+# 📦 Node.js / npx (directly from GitHub repo):
+npx github:kapitan00000978-sketch/humanpowers init
 
 # 🐍 Universal Python CLI:
 python cli/installer.py --agent all
@@ -112,40 +100,29 @@ python cli/installer.py --agent all
 
 ---
 
-## 🛠️ Quick Commands:
+## 🛠️ Developer Commands:
 
 ```bash
-# 1. Launch the Humanpowers Terminal HUD:
-python cli/dashboard.py
-
-# 2. Run the Automated Unit Test Suite (pytest):
+# 1. Run the Automated Test Suite:
 pytest tests/
 
-# 3. Check protocol status via Node.js CLI:
-node bin/humanpowers.js status
-
-# 4. Create a new custom Council Master persona:
-python cli/persona_forge.py --create "Cloud Security Architect"
-
-# 5. Run pre-commit code audit:
+# 2. Run the Pre-Commit Quality & Security Gatekeeper:
 python scripts/pre-commit-gatekeeper.py
 
-# 6. View ROI & Time-Saved Report:
+# 3. Launch the Continuous Watchdog Sentinel Daemon:
+python scripts/watchdog.py --watch
+
+# 4. View Workspace Quality & Metrics Report:
 python scripts/roi_tracker.py
 
-# 7. Start the Model Context Protocol (MCP) Server:
+# 5. Launch the Terminal HUD:
+python cli/dashboard.py
+
+# 6. Start the Model Context Protocol (MCP) Server:
 python mcp/server.py
 ```
 
 ---
 
-## 🏛️ Adversarial Reflection & Tri-Party Council Review:
-Whenever an agent executes a high-stakes prompt, it runs an internal tri-party Council review:
-* **The Creator (e.g. Marcus Sterling / Elena Rostova):** Architects the optimal, modern, and clean solution.
-* **The Red Teamer (Gabriel Frost — Zero-Trust Auditor):** Relentlessly probes for edge cases, race conditions, memory leaks, and vulnerabilities.
-* **The Master Arbitrator:** Synthesizes the debate into a single, bulletproof, verified artifact.
-
----
-
 ## 📄 License
-MIT License. Created with human craftsmanship for the global AI community.
+MIT License. Created for the global developer community.

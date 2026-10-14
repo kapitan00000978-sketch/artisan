@@ -1,5 +1,5 @@
 # ==============================================================================
-# Humanpowers 1-Line PowerShell Bootstrap Installer
+# Humanpowers PowerShell Bootstrap Installer
 # Usage:
 #   irm https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.ps1 | iex
 # ==============================================================================
@@ -8,8 +8,8 @@ $RepoRaw = "https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers
 $TargetDir = Get-Location
 
 Write-Host "==================================================================" -ForegroundColor Cyan
-Write-Host "  🛡️  HUMANPOWERS 1-LINE POWERSHELL BOOTSTRAP INSTALLER" -ForegroundColor Cyan
-Write-Host "      Empowered by The Council of Masters (Zero Babysitting)" -ForegroundColor Cyan
+Write-Host "  🛡️  HUMANPOWERS POWERSHELL BOOTSTRAP INSTALLER" -ForegroundColor Cyan
+Write-Host "      Autonomous AI Agent Quality & Craftsmanship Rules" -ForegroundColor Cyan
 Write-Host "==================================================================" -ForegroundColor Cyan
 Write-Host "[*] Target Directory: $TargetDir" -ForegroundColor Yellow
 
@@ -20,8 +20,18 @@ New-Item -ItemType Directory -Force -Path "$TargetDir\.github" | Out-Null
 
 Write-Host "[+] Downloading core Humanpowers protocol..." -ForegroundColor Green
 Invoke-RestMethod -Uri "$RepoRaw/AGENTS.md" -OutFile "$TargetDir\AGENTS.md"
-Invoke-RestMethod -Uri "$RepoRaw/.humanpowers/memory.json" -OutFile "$TargetDir\.humanpowers\memory.json"
-Invoke-RestMethod -Uri "$RepoRaw/.humanpowers/memory.md" -OutFile "$TargetDir\.humanpowers\memory.md"
+
+# Safe memory preservation: never overwrite existing user memory
+if (-not (Test-Path "$TargetDir\.humanpowers\memory.json")) {
+    Write-Host "[+] Initializing clean starter memory template..." -ForegroundColor Green
+    Invoke-RestMethod -Uri "$RepoRaw/.humanpowers/memory.json" -OutFile "$TargetDir\.humanpowers\memory.json"
+} else {
+    Write-Host "[*] Preserving existing .humanpowers\memory.json (not overwritten)." -ForegroundColor Yellow
+}
+
+if (-not (Test-Path "$TargetDir\.humanpowers\memory.md")) {
+    Invoke-RestMethod -Uri "$RepoRaw/.humanpowers/memory.md" -OutFile "$TargetDir\.humanpowers\memory.md"
+}
 
 Write-Host "[+] Installing Cursor AI Rules..." -ForegroundColor Green
 Invoke-RestMethod -Uri "$RepoRaw/.cursorrules" -OutFile "$TargetDir\.cursorrules"
@@ -31,7 +41,7 @@ Invoke-RestMethod -Uri "$RepoRaw/.cursor/rules/03-security-directives.mdc" -OutF
 Invoke-RestMethod -Uri "$RepoRaw/.cursor/rules/04-testing-tdd.mdc" -OutFile "$TargetDir\.cursor\rules\04-testing-tdd.mdc"
 Invoke-RestMethod -Uri "$RepoRaw/.cursor/rules/05-design-standards.mdc" -OutFile "$TargetDir\.cursor\rules\05-design-standards.mdc"
 
-Write-Host "[+] Installing Claude Code CLI..." -ForegroundColor Green
+Write-Host "[+] Installing Claude Code Directives..." -ForegroundColor Green
 Invoke-RestMethod -Uri "$RepoRaw/CLAUDE.md" -OutFile "$TargetDir\CLAUDE.md"
 
 Write-Host "[+] Installing GitHub Copilot & Windsurf Directives..." -ForegroundColor Green
@@ -40,6 +50,5 @@ Invoke-RestMethod -Uri "$RepoRaw/.windsurfrules" -OutFile "$TargetDir\.windsurfr
 
 Write-Host "`n==================================================================" -ForegroundColor Green
 Write-Host "  ✅ Humanpowers successfully installed!" -ForegroundColor Green
-Write-Host "     The Council of Masters is now permanently active." -ForegroundColor Green
-Write-Host "     Prompt babysitting has been permanently eliminated." -ForegroundColor Green
+Write-Host "     Quality and craftsmanship rules are now active." -ForegroundColor Green
 Write-Host "==================================================================" -ForegroundColor Green

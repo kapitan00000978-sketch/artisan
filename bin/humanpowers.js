@@ -27,10 +27,14 @@ const command = (args[0] || 'status').toLowerCase();
 
 const packageRoot = path.resolve(__dirname, '..');
 
-function copyFileSafe(srcRel, dstRel) {
+function copyFileSafe(srcRel, dstRel, overwrite = true) {
   const src = path.join(packageRoot, srcRel);
   const dst = path.join(targetDir, dstRel);
   if (fs.existsSync(src)) {
+    if (!overwrite && fs.existsSync(dst)) {
+      console.log(`  [*] Preserved: ${dstRel} (already exists)`);
+      return;
+    }
     fs.mkdirSync(path.dirname(dst), { recursive: true });
     fs.copyFileSync(src, dst);
     console.log(`  [+] Installed: ${dstRel}`);
@@ -57,12 +61,13 @@ function copyDirSafe(srcRel, dstRel) {
 
 if (command === 'init' || command === 'install') {
   console.log(`[*] Target Directory: ${targetDir}`);
-  console.log(`[*] Installing Humanpowers 24/7 Autonomous Craftsmanship Plugin...\n`);
+  console.log(`[*] Installing Humanpowers Craftsmanship Rules...\n`);
 
   // 1. Core protocol
   copyFileSafe('AGENTS.md', 'AGENTS.md');
-  copyFileSafe('.humanpowers/memory.json', '.humanpowers/memory.json');
-  copyFileSafe('.humanpowers/memory.md', '.humanpowers/memory.md');
+  copyFileSafe('.humanpowers/memory.json', '.humanpowers/memory.json', false);
+  copyFileSafe('.humanpowers/memory.md', '.humanpowers/memory.md', false);
+
 
   // 2. Cursor AI plugin rules
   copyFileSafe('.cursorrules', '.cursorrules');

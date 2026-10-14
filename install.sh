@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 # ==============================================================================
-# Humanpowers 1-Line Bootstrap Installer
+# Humanpowers Bootstrap Installer
 # Usage:
 #   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash
 #   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/humanpowers/main/install.sh | bash -s -- --agent cursor
@@ -23,8 +23,8 @@ while [[ "$#" -gt 0 ]]; do
 done
 
 echo "=================================================================="
-echo "  🛡️  HUMANPOWERS 1-LINE BOOTSTRAP INSTALLER"
-echo "      Empowered by The Council of Masters (Zero Babysitting)"
+echo "  🛡️  HUMANPOWERS BOOTSTRAP INSTALLER"
+echo "      Autonomous AI Agent Quality & Craftsmanship Rules"
 echo "=================================================================="
 echo "[*] Target Directory : ${TARGET_DIR}"
 echo "[*] Target Agent(s)  : ${AGENT_TARGET}"
@@ -33,8 +33,18 @@ mkdir -p "${TARGET_DIR}/.humanpowers"
 
 echo "[+] Downloading core Humanpowers protocol..."
 curl -fsSL "${REPO_RAW}/AGENTS.md" -o "${TARGET_DIR}/AGENTS.md"
-curl -fsSL "${REPO_RAW}/.humanpowers/memory.json" -o "${TARGET_DIR}/.humanpowers/memory.json"
-curl -fsSL "${REPO_RAW}/.humanpowers/memory.md" -o "${TARGET_DIR}/.humanpowers/memory.md"
+
+# Safe memory preservation: never overwrite existing user memory
+if [[ ! -f "${TARGET_DIR}/.humanpowers/memory.json" ]]; then
+    echo "[+] Initializing clean starter memory template..."
+    curl -fsSL "${REPO_RAW}/.humanpowers/memory.json" -o "${TARGET_DIR}/.humanpowers/memory.json"
+else
+    echo "[*] Preserving existing .humanpowers/memory.json (not overwritten)."
+fi
+
+if [[ ! -f "${TARGET_DIR}/.humanpowers/memory.md" ]]; then
+    curl -fsSL "${REPO_RAW}/.humanpowers/memory.md" -o "${TARGET_DIR}/.humanpowers/memory.md"
+fi
 
 if [[ "$AGENT_TARGET" == "cursor" || "$AGENT_TARGET" == "all" ]]; then
     echo "[+] Installing Cursor AI Rules (.cursorrules & .cursor/rules)..."
@@ -48,7 +58,7 @@ if [[ "$AGENT_TARGET" == "cursor" || "$AGENT_TARGET" == "all" ]]; then
 fi
 
 if [[ "$AGENT_TARGET" == "claude" || "$AGENT_TARGET" == "all" ]]; then
-    echo "[+] Installing Claude Code CLI (CLAUDE.md)..."
+    echo "[+] Installing Claude Code Directives (CLAUDE.md)..."
     curl -fsSL "${REPO_RAW}/CLAUDE.md" -o "${TARGET_DIR}/CLAUDE.md"
 fi
 
@@ -66,6 +76,5 @@ fi
 echo ""
 echo "=================================================================="
 echo "  ✅ Humanpowers successfully installed!"
-echo "     The Council of Masters is now permanently active."
-echo "     Prompt babysitting has been permanently eliminated."
+echo "     Quality and craftsmanship rules are now active."
 echo "=================================================================="

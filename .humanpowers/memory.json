@@ -1,50 +1,11 @@
 {
   "version": "1.0.0",
-  "project": "Humanpowers Active Workspace",
-  "lastUpdated": "2026-10-12T15:30:00Z",
-  "userPreferences": [
-    {
-      "key": "code_style",
-      "rule": "Always deliver clean, modular, production-grade, and fully documented code.",
-      "category": "engineering"
-    },
-    {
-      "key": "communication",
-      "rule": "Never ask the user to babysit or fix errors; deliver 100% verified results.",
-      "category": "workflow"
-    }
-  ],
-  "scarTissue": [
-    {
-      "id": "SCAR-001",
-      "blunder": "Lazy TODO comments or unfinished placeholders left in code.",
-      "preventiveAction": "Never leave // TODO stubs. Implement all logic completely."
-    },
-    {
-      "id": "SCAR-002",
-      "blunder": "Blind sycophancy (agreeing blindly with dangerous or flawed patterns).",
-      "preventiveAction": "Politely explain the risk and provide the secure, correct architecture."
-    },
-    {
-      "id": "SCAR-003",
-      "blunder": "Hallucinated dependencies (referencing non-existent packages).",
-      "preventiveAction": "Rely strictly on official, verified, and battle-tested packages."
-    }
-  ],
+  "project": "Starter Template",
+  "lastUpdated": "",
+  "userPreferences": [],
+  "scarTissue": [],
   "domainKnowledge": {
-    "framework": "Humanpowers Autonomous Protocol",
-    "supportedAgents": [
-      "Antigravity",
-      "Claude Code",
-      "Cursor",
-      "Copilot",
-      "Windsurf",
-      "Hermes",
-      "Codex",
-      "Pie",
-      "OpenCode",
-      "OpenClaw",
-      "Universal Python"
-    ]
+    "framework": "Humanpowers Quality Protocol",
+    "notes": "Add project-specific conventions and lessons learned here to avoid repeating mistakes."
   }
 }

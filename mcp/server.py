@@ -272,13 +272,31 @@ def main():
             method = req.get("method")
             msg_id = req.get("id")
 
-            if method == "ping":
+            if method == "initialize":
+                res = {
+                    "jsonrpc": "2.0",
+                    "id": msg_id,
+                    "result": {
+                        "protocolVersion": "2024-11-05",
+                        "capabilities": {
+                            "tools": {}
+                        },
+                        "serverInfo": {
+                            "name": "humanpowers-mcp",
+                            "version": "1.0.0"
+                        }
+                    }
+                }
+            elif method == "notifications/initialized":
+                continue
+            elif method == "ping":
                 res = {
                     "jsonrpc": "2.0",
                     "id": msg_id,
                     "result": {"status": "ok", "protocol": "humanpowers-mcp-1.0"}
                 }
             elif method == "tools/list":
+
                 res = {
                     "jsonrpc": "2.0",
                     "id": msg_id,

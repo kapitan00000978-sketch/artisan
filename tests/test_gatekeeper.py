@@ -17,6 +17,8 @@ def test_gatekeeper_patterns_catch_stubs():
     assert re.search(stub_pattern, sample_code) is not None
     fixme_code = "# " + "FIXME" + ": fix this edge case"
     assert re.search(stub_pattern, fixme_code) is not None
+    lowercase_fixme = "# " + "fixme" + ": lowercase check"
+    assert re.search(stub_pattern, lowercase_fixme) is not None
 
 def test_gatekeeper_patterns_catch_silent_catch():
     gk = get_gatekeeper_module()
@@ -33,6 +35,11 @@ def test_gatekeeper_patterns_catch_exposed_secrets():
     assert re.search(secret_pattern, sample_code) is not None
     aws_key = 'AWS_KEY = "AKIA1234567890ABCDEF"'
     assert re.search(secret_pattern, aws_key) is not None
+    pw_code = 'password="hunter2"'
+    assert re.search(secret_pattern, pw_code) is not None
+    token_code = 'api_key = "supersecretkey123"'
+    assert re.search(secret_pattern, token_code) is not None
+
 
 
 def test_gatekeeper_clean_code_passes():

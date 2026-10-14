@@ -90,14 +90,15 @@ export class CraftsmanshipEngine {
       auditReport,
       finalOutput: refinedOutput,
       stats: {
-        timeSavedMinutes: Math.floor(Math.random() * 25) + 35,
+        mode: this.apiProvider === 'simulation' ? 'interactive-demo' : 'live-api',
         flawsAutoFixed: auditReport.flaws.length,
         initialScore: auditReport.initialScore,
         finalScore: auditReport.passingScore,
-        micromanagementCount: 0
+        estimatedReviewMinutesSaved: auditReport.flaws.length * 12
       }
     };
   }
+
 
   _conductInspection(prompt, draft, persona) {
     const checklistResults = persona.checklists.map((item, idx) => {
