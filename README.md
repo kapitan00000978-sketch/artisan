@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-8%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-15%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -60,7 +60,7 @@ Artisan — bu dasturchi va AI coding agentlari (Claude Code, Cursor, Copilot, W
 Artisan bu muammoni 5 ta ustun orqali hal qiladi:
 1. **🛡️ Mustaqil Pre-Commit & CI Filtrlari (`scripts/detector.py`):** Kod git repoga kiritilishidan oldin har bir faylni statik tahlil qiladi va Python AST (Abstract Syntax Tree) orqali chuqur semantik tekshiruv o‘tkazadi. Maxfiy kalitlar (`sk-...`, `ghp_...`, `AKIA...`), xavfli buyruqlar va chala stubs topilsa, commit qat'iy to‘xtatiladi.
 2. **🔧 Avtomatik Tuzatish Dvigateli (`artisan fix` / `scripts/remediator.py`):** Bo‘sh `except: pass` va `catch {}` xatolarini mustaqil ravishda to‘g‘ri logging va xatoliklar boshqaruviga o‘tkazadi.
-3. **🏛️ The Council of Masters (Senior Heuristics):** AI agentiga arxitektura, xavfsizlik, SRE, ML va UI/UX bo‘yicha 8 nafar Senior darajadagi mutaxassis tajribasi va mezonlarini kontekst sifatida yuklaydi.
+3. **🏛️ The Council of Masters (Senior Heuristics):** AI agentiga arxitektura, xavfsizlik, SRE, ML, UI/UX, 3D, fizika, mobil, brend, audio, ma'lumotlar bazasi va SEO bo‘yicha 15 nafar Senior darajadagi mutaxassis tajribasi va mezonlarini kontekst sifatida yuklaydi.
 4. **🧠 Doimiy Loyiha Xotirasi (`.artisan/memory.json`):** Loyihaning arxitekturaviy qoidalari va o‘tmishdagi xatolarini saqlab qoladi, shunda AI agent bir xil xatoni qayta takrorlamaydi.
 5. **🔌 Model Context Protocol (MCP) Serveri (`mcp/server.py`):** Standart JSON-RPC 2.0 orqali AI muhitlariga kod tahlili va rollarni to‘g‘ridan-to‘g‘ri vosita (tool) sifatida taqdim etadi.
 
@@ -97,6 +97,13 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 6 | 🔬 **Dr. Evelyn 'The Oracle' Reed** | Staff Data Scientist & ML Systems Architect | Empirical Scientist & ML Ops Gatekeeper | Data leakage prevention, statistical validation, model drift |
 | 7 | 🛡️ **Gabriel 'The Sentinel' Frost** | Principal Cybersecurity & Offensive Auditor | Zero-Trust Inquisitor & Threat Modeling | OWASP Top 10, credential protection, parameterized queries |
 | 8 | ⚡ **Gareth 'The Unbreakable' Drake** | DevOps & Cloud Site Reliability Architect | Chaos Engineering Commander & Reliability | Idempotent IaC, container best practices, health probes |
+| 9 | 💎 **Kaelen 'The Shaper' Vane** | Principal 3D & Spatial CGI Artist | Spatial Shaper & PBR Master | Energy-conserving PBR shaders, quad topology, WebGL |
+| 10 | 🎮 **Ronan 'The Engine' Blackwood** | Lead Game Systems & Physics Architect | Engine Virtuoso & Physics Pioneer | Fixed timestep integration, continuous collision, zero GC |
+| 11 | 📱 **Lucas 'The Kinetic' Cruz** | Principal Mobile Systems Architect | Kinetic Craftsman & Gesture Lead | 120Hz ProMotion budget, 48dp touch targets, spring physics |
+| 12 | ✨ **Aria 'The Luminary' Solano** | Global Brand Director & Visual Master | Visual Identity & Emotional Resonance | 60-30-10 color rule, modular type scales, vector viewBox |
+| 13 | 🔊 **Damian 'The Resonant' Vance** | Principal Interactive Audio & Sound Architect | Soundscape Virtuoso & Audio Lead | Click-free exponential ramps, master dynamics limiter, ADSR |
+| 14 | 🗄️ **Cassandra 'The Core' Thorne** | Principal Database & Distributed Data Architect | Data Sovereign & Low-Latency Lead | Sub-10ms query plans, zero N+1 loops, concurrent DDL |
+| 15 | 🌐 **Zane 'The Vector' Sterling** | Technical SEO & Growth Engineering Lead | Algorithmic Vector & Discovery Lead | Core Web Vitals (CLS=0), single H1 hierarchy, Schema.org |
 
 ---
 
