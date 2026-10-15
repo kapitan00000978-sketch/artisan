@@ -13,6 +13,11 @@ import re
 import argparse
 from typing import List, Dict, Any, Tuple
 
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(SCRIPTS_DIR)
+sys.path.insert(0, SCRIPTS_DIR)
+sys.path.insert(0, os.path.join(ROOT_DIR, "src", "sdk"))
+
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
@@ -143,6 +148,18 @@ def main():
     total = remediate_workspace(".")
     if total > 0:
         print(f"\n✅ [ARTISAN REMEDIATED]: Successfully resolved {total} defect(s) across workspace.")
+        try:
+            from learning_memory import LearningMemory
+            mem = LearningMemory()
+            mem.record_learning(
+                record_type="success",
+                category="code_remediation",
+                pattern=f"Auto-remediated {total} defects in workspace",
+                lesson="Artisan remediator transformed silent catches/stubs into structured logging."
+            )
+        except (ImportError, OSError, KeyError) as mem_err:
+            import logging
+            logging.debug("Learning memory recording skipped during fix: %s", mem_err)
     else:
         print("✅ [ARTISAN CLEAN]: Zero auto-remediable defects found in workspace.")
 

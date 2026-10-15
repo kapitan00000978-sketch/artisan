@@ -8,8 +8,11 @@ Supports both full repository audit and fast staged git diff checks.
 import os
 import sys
 
-# Ensure scripts dir is on sys.path
-sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+# Ensure scripts and sdk dirs are on sys.path
+SCRIPTS_DIR = os.path.dirname(os.path.abspath(__file__))
+ROOT_DIR = os.path.dirname(SCRIPTS_DIR)
+sys.path.insert(0, SCRIPTS_DIR)
+sys.path.insert(0, os.path.join(ROOT_DIR, "src", "sdk"))
 from detector import scan_project, load_artisan_config, PATTERNS
 
 if sys.platform == "win32":
@@ -45,6 +48,23 @@ def scan_files(staged_only: bool = False, vibe_override: bool = False):
                 print(f"  • {flaw['file']}:{flaw['line']} [{flaw['category']}] [{auditor}] -> {flaw['message']}")
             print(f"\nTotal defects detected: {len(findings)} | Gate Score: {result['score']}/100")
             print("💡 Directive: Artisan Quality Protocol — resolve all flaws before committing!\n")
+
+            # Autonomously record detected flaws into persistent learning memory
+            try:
+                from learning_memory import LearningMemory
+                mem = LearningMemory()
+                for flaw in findings[:5]:
+                    mem.record_learning(
+                        record_type="mistake",
+                        category=flaw.get("category", "code").lower(),
+                        pattern=flaw.get("message", "code defect"),
+                        lesson=f"Rejected in pre-commit audit ({flaw.get('file')}:{flaw.get('line')}). Resolve {flaw.get('message')} before committing.",
+                        severity="high" if flaw.get("category") == "SECURITY" else "medium"
+                    )
+            except (ImportError, OSError, KeyError) as mem_err:
+                import logging
+                logging.debug("Memory record skipped: %s", mem_err)
+
             return False
     else:
         print(f"✅ [ARTISAN VERIFIED]: All code satisfied quality and security benchmarks. (Scanned {result['scanned_files']} files, Score: 100/100)")

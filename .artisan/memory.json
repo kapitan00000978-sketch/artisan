@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "Artisan Engineering Core",
-  "lastUpdated": "2026-10-15T18:30:24.182735+00:00",
+  "lastUpdated": "2026-10-15T18:33:25.746173+00:00",
   "userPreferences": [
     "Clean architecture, zero empty catch blocks, zero TODO comments in production",
     "Comprehensive test coverage across all domain mutations"
@@ -68,7 +68,8 @@
       "pattern": "jwt_none_alg",
       "lesson": "Always verify algorithm is HS256/RS256",
       "severity": "high",
-      "recordedAt": "2026-10-15T18:30:24.182735+00:00"
+      "recordedAt": "2026-10-15T18:30:24.182735+00:00",
+      "updatedAt": "2026-10-15T18:33:25.746173+00:00"
     }
   ],
   "successes": [
