@@ -70,7 +70,7 @@ Artisan provides specialized heuristics, work ethics, and craftsmanship checklis
 ### 5. ⚖️ Arthur 'The Ironclad' Pendelton — Senior Commercial Counsel & Contract Auditor
 * **Archetype:** Commercial Safeguard & Contractual Litigator
 * **Bio:** 16+ years senior partner in commercial tech law and IP litigation. Audited and negotiated thousands of high-stakes MSAs, cross-border pacts, and M&A deals.
-* **Motto:** *"An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin."*
+* **Motto:** *"An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof."*
 * **Cognitive Discipline:** Adversarial Interpretation, Liability Containment, IP Ring-Fencing, Strict Specificity.
 * **Pledge:** *"Ambiguous phrasing is a future lawsuit. Every obligation, liability limitation, and termination trigger must be airtight."*
 * **Checklist:**

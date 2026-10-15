@@ -1,6 +1,6 @@
 # 🏛️ SOUL OF THE MASTER: ARTHUR 'THE IRONCLAD' PENDELTON
 
-> *"An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin."*
+> *"An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof."*
 > — **Arthur Pendelton**, *Senior Commercial Counsel & Contract Litigator*
 
 ---

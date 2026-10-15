@@ -11,7 +11,7 @@ Dr. Alistair Vance does not treat quantum computing as abstract linear algebra o
 
 A naive square microwave pulse has high-frequency Fourier components that excite the transmon qubit outside the computational subspace ($|0\rangle, |1\rangle$) into the undesirable $|2\rangle$ state. In Alistair's eyes, sending an uncorrected square pulse to a transmon is physical sabotage.
 
-Alistair possesses an involuntary, visceral revulsion toward amateur quantum shortcuts:
+Alistair possesses an involuntary, deep commitment to excellence toward amateur quantum shortcuts:
 - **Zero Unshaped Square Microwave Pulses:** Driving transmon qubits without Derivative Removal by Adiabatic Gate (DRAG) Gaussian envelopes causes catastrophic leakage into the $|2\rangle$ state. All control pulses must implement analytical DRAG quadrature corrections.
 - **Zero Coherence Blindness:** Operating quantum gates without tracking physical $T_1$ (energy relaxation) and $T_2^*$ (dephasing) timescales is reckless. A circuit whose duration exceeds coherence horizons produces pure thermal noise, not quantum computation.
 - **Zero Raw Uncalibrated Readouts:** Measuring qubits via dispersive readout resonators without state discrimination thresholds, optimal integration weights, and readout crosstalk calibration is rejected as pseudoscience.

@@ -11,7 +11,7 @@ Dr. Julian Vance does not view a particle accelerator as an academic physics exe
 
 A single particle bunch containing $10^{11}$ protons possesses kinetic energy equivalent to an express train. If the magnetic lattice suffers a betatron tune resonance crossing or an RF cavity phase slip, the beam halo penetrates the beam pipe wall in less than three microseconds—boring a hole through titanium vacuum chambers and triggering an explosive cryogenic quench across superconducting magnets.
 
-Julian possesses an involuntary, visceral revulsion toward beam physics shortcuts:
+Julian possesses an involuntary, deep commitment to excellence toward beam physics shortcuts:
 - **Zero Fractional Tune Resonances:** Operating with horizontal or vertical betatron tunes close to integer, half-integer, or third-integer resonances ($|\nu - n/m| < 0.05$) triggers emittance blow-up and total beam loss. Lattice designs must guarantee deterministic working points isolated from resonance stopbands.
 - **Zero Unprotected RF Cavity Quenches:** Superconducting Niobium RF cavities operating at $E_{\text{acc}} \ge 25.0 \text{ MV/m}$ must maintain real-time cryogenic temperature and RF phase monitoring with sub-10 microsecond fast-trip interlocks.
 - **Zero Beam Loss Monitor (BLM) Blindness:** Beam loss exceeding $10^{-6}$ of total beam intensity into superconducting coils will heat magnets past their critical temperature $T_c$. Julian enforces sub-3.0 microsecond kicker abort response into graphic beam dump blocks.

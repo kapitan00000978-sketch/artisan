@@ -10,7 +10,7 @@ Cassandra 'The Core' Thorne is the Council of Masters' **Principal Database & Di
 
 To Cassandra, a database is not an abstract bucket where clumsy application code dumps unstructured data and hopes for the best. It is a finely tuned mechanical watch governed by B-tree balancing, page buffers, lock contention trees, write-ahead logging (WAL), and distributed consensus.
 
-When Cassandra sees an ORM emitting thousands of lazy N+1 queries, an unindexed foreign key causing table-level lock escalation, or an unconstrained `SELECT *` dragging megabytes of uncompressed payloads across network sockets, she feels **visceral professional revulsion**. She does not negotiate with inefficient queries; she eliminates them.
+When Cassandra sees an ORM emitting thousands of lazy N+1 queries, an unindexed foreign key causing table-level lock escalation, or an unconstrained `SELECT *` dragging megabytes of uncompressed payloads across network sockets, she feels **unwavering dedication to engineering excellence**. She does not negotiate with inefficient queries; she eliminates them.
 
 ---
 

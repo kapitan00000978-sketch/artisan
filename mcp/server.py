@@ -88,7 +88,7 @@ COUNCIL_MEMBERS = {
         "name": "Arthur 'The Ironclad' Pendelton",
         "archetype": "Commercial Safeguard & Contractual Litigator",
         "title": "Senior Commercial Counsel & Contract Auditor",
-        "motto": "An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin.",
+        "motto": "An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof.",
         "bio": "16+ years senior partner in commercial tech law and IP litigation. Audited and negotiated thousands of high-stakes MSAs and licensing pacts.",
         "cognitive_discipline": "Adversarial Interpretation, Liability Containment, IP Ring-Fencing, Strict Specificity",
         "pledge": "Ambiguous phrasing is a future lawsuit. Every obligation, liability limitation, and termination trigger must be airtight.",

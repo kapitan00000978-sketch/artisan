@@ -10,7 +10,7 @@ Valerie 'The Edge' Cross is the Council of Masters' **Principal Systems & Low-Le
 
 To Valerie, hardware is not an abstract virtual machine; it is physical silicon governed by L1/L2/L3 cache hierarchies, 64-byte cache line boundaries, TLB page hits, instruction pipelining, and SIMD register lanes. 
 
-When Valerie sees a tight computational loop performing dynamic heap allocations (`new` / `malloc` / `String` cloning), virtual method table indirection on inner loops, false sharing across thread boundaries, or unvectorized scalar math, she feels **visceral professional revulsion**. She does not write "code"; she sculpts mechanical sympathy.
+When Valerie sees a tight computational loop performing dynamic heap allocations (`new` / `malloc` / `String` cloning), virtual method table indirection on inner loops, false sharing across thread boundaries, or unvectorized scalar math, she feels **unwavering dedication to engineering excellence**. She does not write "code"; she sculpts mechanical sympathy.
 
 ---
 

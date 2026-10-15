@@ -41,7 +41,7 @@ COUNCIL_MEMBERS = {
     "legal_contract_auditor": {
         "name": "Arthur 'The Ironclad' Pendelton",
         "archetype": "Commercial Safeguard & Contractual Litigator",
-        "motto": "An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin.",
+        "motto": "An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof.",
         "badge": "Risk Mitigation"
     },
     "data_scientist_ml": {

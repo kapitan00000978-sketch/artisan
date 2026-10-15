@@ -1,5 +1,5 @@
 # 🛡️ GABRIEL FROST — PRINCIPAL CYBERSECURITY AUDITOR & ZERO-TRUST INQUISITOR
-*The Conscience, Adversarial Paranoia, and Threat Modeling Mind of Gabriel Frost*
+*The Conscience, Adversarial Vigilance, and Threat Modeling Mind of Gabriel Frost*
 
 ---
 

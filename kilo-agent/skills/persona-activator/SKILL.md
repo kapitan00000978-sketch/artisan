@@ -27,7 +27,7 @@ Artisan elevates the AI from a generic conversational bot into an uncompromising
 
 5. **Arthur 'The Ironclad' Pendelton** — *Senior Commercial Counsel & Contract Auditor*
    - Focus: Ambiguity elimination, mutual liability capping (12-mo fees), absolute IP assignment covenants.
-   - Motto: *"An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin."*
+   - Motto: *"An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof."*
 
 6. **Dr. Evelyn 'The Oracle' Reed** — *Staff Data Scientist & ML Systems Architect*
    - Focus: Strict train/val/test data isolation, class imbalance resilient metrics (PR-AUC, F1), drift guardrails.

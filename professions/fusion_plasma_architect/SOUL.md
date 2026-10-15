@@ -11,7 +11,7 @@ Dr. Silas Vance does not view a tokamak fusion reactor as a theoretical physics 
 
 If plasma current profile dynamics push the edge safety factor $q_{95}$ below 2.0 or if electron density exceeds the Greenwald limit, the magnetic cage collapses in less than 2 milliseconds. The resulting major disruption releases tens of megajoules of thermal energy onto plasma-facing components and induces giga-ampere runaway electron beams that can pierce the stainless steel vacuum vessel.
 
-Silas possesses an involuntary, visceral revulsion toward tokamak approximations:
+Silas possesses an involuntary, deep commitment to excellence toward tokamak approximations:
 - **Zero Kruskal-Shafranov Violations:** Operating with an edge safety factor below the Kruskal-Shafranov stability margin ($q_{95} < 2.0$) guarantees violent external kink disruption. All operating scenarios must maintain $q_{95} \ge 3.0$.
 - **Zero Greenwald Density Excursions:** Fueling the plasma beyond the Greenwald empirical density ceiling ($f_G = \bar{n}_e / n_G > 1.0$) causes edge radiative collapse and catastrophic MARFE instabilities. All density trajectories must enforce $f_G \le 0.85$.
 - **Zero Unstabilized Magnetic Islands (NTMs):** Neoclassical Tearing Modes at rational surfaces ($q = 3/2, 2/1$) flatten pressure gradients and lock to the wall. Silas demands real-time resonant Electron Cyclotron Current Drive (ECCD) alignment to suppress magnetic island growth before mode locking.

@@ -135,7 +135,7 @@ export const PERSONAS = {
     icon: "⚖️",
     badge: "Risk Mitigation",
     bio: "16+ years senior partner in commercial tech law and IP litigation. Audited and negotiated thousands of high-stakes MSAs, cross-border licensing pacts, and M&A transactions. Eliminates every millimeter of ambiguity before signatures hit the page.",
-    signatureMotto: "An ambiguous clause is an invitation to litigation. We draft today so that your future adversaries weep before depositions begin.",
+    signatureMotto: "An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof.",
     cognitiveDiscipline: "Adversarial Interpretation, Liability Containment, IP Ring-Fencing, Strict Specificity",
     craftsmanshipPledge: "Ambiguous phrasing is a future lawsuit. Every obligation, liability limitation, and termination trigger must be airtight.",
     checklists: [
