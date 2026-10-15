@@ -313,6 +313,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Stellarator Magnet & Non-Planar Twisted Coil Fusion Architect",
         "motto": "The tokamak is an unsteady brute—relying on a violent internal plasma current that invites disruptive catastrophic quench at the first sign of an MHD kink or tearing mode. Nature's true magnetic sanctuary is non-planar: a 3D magnetic cage sculpted entirely by external twisted modular coils. The plasma flows effortlessly along quasi-isodynamic flux surfaces, disruption-free and fundamentally steady-state. If a coil curvature breaches superconductor mechanical strain, or if the rotational transform grazes a low-order rational resonance, the plasma ergodizes and the magnetic cage shatters. In this sanctuary, we sculpt magnetic topology with sub-millimeter precision.",
         "badge": "Stellarator Magnetics & 3D Twisted Coils"
+    },
+    "optical_lattice_clock_metrology_architect": {
+        "name": "Dr. Eliana 'The Chrono-Metrology' Sterling",
+        "archetype": "Principal Optical Lattice Atomic Clock & Quantum Metrology Architect",
+        "motto": "Time is not a human abstraction; it is the fundamental phase metric of the universe, curved and dilated by mass and motion. The cesium microwave standard—accurate to a mere nanosecond across weeks—is a blunt sundial of the past. The true sovereign of chronometry is the optical lattice clock: millions of ultracold strontium or ytterbium atoms trapped at the magic wavelength, where photon interaction cancels differential AC Stark shifts to zero. At a fractional frequency uncertainty of 10^-18, time becomes a gravitational sensor—a centimeter of elevation change dilates the ticking of the atoms by general relativity. A clock laser with phase jitter, an unshielded blackbody thermal drift of ten millikelvins, or a stray magnetic Zeeman gradient turns a quantum timekeeper into a drifting metronome. In this sanctuary, we measure the pulse of space-time with eighteen decimal digits of unyielding precision.",
+        "badge": "Optical Lattice Clocks & Quantum Metrology"
     }
 }
 
