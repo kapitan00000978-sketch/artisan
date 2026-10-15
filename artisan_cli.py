@@ -21,6 +21,8 @@ if sys.platform == "win32":
 ROOT_DIR = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, os.path.join(ROOT_DIR, "scripts"))
 sys.path.insert(0, os.path.join(ROOT_DIR, "src", "sdk"))
+sys.path.insert(0, os.path.join(ROOT_DIR, "src", "libraries"))
+sys.path.insert(0, os.path.join(ROOT_DIR, "src"))
 sys.path.insert(0, os.path.join(ROOT_DIR, "mcp"))
 
 ASCII_BANNER = r"""
@@ -565,6 +567,155 @@ def cmd_swarm(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_resume(args: argparse.Namespace) -> int:
+    """Reads cross-agent continuity checkpoint and displays handoff state."""
+    try:
+        from continuity import ContinuityManager
+    except ImportError as imp_err:
+        print(f"[-] Error: Continuity manager could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    no_continuity = getattr(args, "no_continuity", False)
+    manager = ContinuityManager(workspace_root=".", enabled=not no_continuity)
+
+    if no_continuity:
+        print("⚡ [ARTISAN CONTINUITY] Continuity tracking bypassed via --no-continuity flag.")
+        return 0
+
+    checkpoint = manager.load_checkpoint()
+    if getattr(args, "json", False):
+        from dataclasses import asdict
+        data = asdict(checkpoint) if checkpoint else {"status": "NO_CHECKPOINT", "enabled": manager.is_enabled}
+        print(json.dumps(data, indent=2))
+        return 0
+
+    if not checkpoint:
+        print("\n📍 [ARTISAN CONTINUITY] No previous agent checkpoint found.")
+        print("   Starting fresh session. Run 'artisan checkpoint \"<task>\"' to record milestones.\n")
+        return 0
+
+    prompt = manager.generate_resumption_prompt()
+    print("\n" + prompt + "\n")
+    return 0
+
+
+def cmd_checkpoint(args: argparse.Namespace) -> int:
+    """Records an atomic progress checkpoint for cross-agent continuity."""
+    try:
+        from continuity import ContinuityManager
+    except ImportError as imp_err:
+        print(f"[-] Error: Continuity manager could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    no_continuity = getattr(args, "no_continuity", False)
+    if no_continuity:
+        print("⚡ [ARTISAN CONTINUITY] Skipping checkpoint: --no-continuity active.")
+        return 0
+
+    manager = ContinuityManager(workspace_root=".", enabled=True)
+    task = args.task
+    agent = getattr(args, "agent", "generic-agent") or "generic-agent"
+    file_path = getattr(args, "file", None)
+    line_num = getattr(args, "line", None)
+    completed = [args.completed] if getattr(args, "completed", None) else None
+    pending = [args.next] if getattr(args, "next", None) else None
+    decision = [args.decision] if getattr(args, "decision", None) else None
+    status = getattr(args, "status", "IN_PROGRESS") or "IN_PROGRESS"
+
+    success = manager.save_checkpoint(
+        last_task=task,
+        last_agent=agent,
+        stopped_at_file=file_path,
+        stopped_at_line=line_num,
+        completed_milestones=completed,
+        pending_milestones=pending,
+        architectural_decisions=decision,
+        status=status,
+    )
+
+    if success:
+        print(f"💾 [ARTISAN CONTINUITY] Checkpoint saved successfully by '{agent}'.")
+        print(f"   Task: {task}")
+        if file_path:
+            loc = f"{file_path}" + (f":{line_num}" if line_num else "")
+            print(f"   Stopped at: {loc}")
+        print("   Next agent connecting can run 'artisan resume' to pick up immediately.")
+        return 0
+    else:
+        print("[-] Error: Failed to record continuity checkpoint.", file=sys.stderr)
+        return 1
+
+
+def cmd_lib(args: argparse.Namespace) -> int:
+    """Explores and scaffolds universal enterprise domain libraries."""
+    try:
+        from registry import LibraryRegistry
+    except ImportError as imp_err:
+        print(f"[-] Error: Library registry could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    action = getattr(args, "action", "list") or "list"
+
+    if action == "list":
+        domains = LibraryRegistry.list_domains()
+        if getattr(args, "json", False):
+            print(json.dumps(domains, indent=2))
+            return 0
+
+        print("\n📚 [ARTISAN ENTERPRISE DOMAIN LIBRARIES]")
+        print("=" * 60)
+        for dom_key, dom_data in domains.items():
+            print(f"\n🔹 {dom_key.upper()} — {dom_data['title']}")
+            print(f"   {dom_data['description']}")
+            print(f"   Modules: {', '.join(m['name'] for m in dom_data['modules'])}")
+        print("\n💡 Usage:")
+        print("   artisan lib info <domain>            # Detailed module inspection")
+        print("   artisan lib scaffold <domain> -t ./lib  # Copy library into project\n")
+        return 0
+
+    elif action == "info":
+        domain = getattr(args, "domain", None)
+        if not domain:
+            print("[-] Error: Please specify a domain name (e.g. 'architecture', 'security', 'performance', 'testing', 'copywriting', 'design').", file=sys.stderr)
+            return 1
+        try:
+            info = LibraryRegistry.get_domain(domain)
+        except KeyError as err:
+            print(f"[-] Error: {err}", file=sys.stderr)
+            return 1
+
+        if getattr(args, "json", False):
+            print(json.dumps(info, indent=2))
+            return 0
+
+        print(f"\n📦 [ARTISAN LIBRARY: {domain.upper()}]")
+        print(f"Title: {info['title']}")
+        print(f"Description: {info['description']}\n")
+        print("Modules & Classes:")
+        for m in info["modules"]:
+            print(f"  • {m['name']:<18} class: {m['class']:<24} {m['purpose']}")
+        print("")
+        return 0
+
+    elif action == "scaffold":
+        domain = getattr(args, "domain", None)
+        target = getattr(args, "target", "./lib") or "./lib"
+        if not domain:
+            print("[-] Error: Please specify a domain name to scaffold.", file=sys.stderr)
+            return 1
+        try:
+            copied = LibraryRegistry.scaffold_domain(domain, target)
+            print(f"✨ Successfully scaffolded domain '{domain}' into: {target}")
+            for c in copied:
+                print(f"   + {os.path.relpath(c)}")
+            return 0
+        except Exception as exc:
+            print(f"[-] Scaffolding failed: {exc}", file=sys.stderr)
+            return 1
+
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -641,6 +792,31 @@ def main():
     p_sw.add_argument("--plan", "-p", action="store_true", help="Display delegation plan without registering active sessions")
     p_sw.add_argument("--json", "-j", action="store_true", help="Output swarm execution plan in JSON format")
 
+    # resume
+    p_res = subparsers.add_parser("resume", help="Pick up where previous AI agent left off (cross-agent continuity)")
+    p_res.add_argument("--agent", "-a", help="Override active AI agent identifier")
+    p_res.add_argument("--no-continuity", action="store_true", help="Bypass continuity checkpoint and run fresh")
+    p_res.add_argument("--json", "-j", action="store_true", help="Output raw checkpoint JSON")
+
+    # checkpoint
+    p_cp = subparsers.add_parser("checkpoint", help="Record progress checkpoint for subsequent AI agents")
+    p_cp.add_argument("task", help="Summary of task performed or state reached")
+    p_cp.add_argument("--agent", "-a", default="artisan-agent", help="Name of current agent (e.g. claude, cursor)")
+    p_cp.add_argument("--file", "-f", help="Target file where work stopped")
+    p_cp.add_argument("--line", "-l", type=int, help="Line number where work stopped")
+    p_cp.add_argument("--completed", "-c", help="Milestone just completed")
+    p_cp.add_argument("--next", "-n", help="Recommended next milestone for the next agent")
+    p_cp.add_argument("--decision", "-d", help="Key architectural decision to record")
+    p_cp.add_argument("--status", default="IN_PROGRESS", choices=["IN_PROGRESS", "PAUSED", "COMPLETED"], help="Session status")
+    p_cp.add_argument("--no-continuity", action="store_true", help="Bypass saving checkpoint")
+
+    # lib
+    p_lib = subparsers.add_parser("lib", aliases=["library", "libraries"], help="Explore and scaffold enterprise domain libraries")
+    p_lib.add_argument("action", nargs="?", default="list", choices=["list", "info", "scaffold"], help="Library action (default: list)")
+    p_lib.add_argument("domain", nargs="?", help="Domain name (e.g. architecture, security, performance, testing, copywriting, design)")
+    p_lib.add_argument("--target", "-t", default="./lib", help="Destination directory for scaffolding (default: ./lib)")
+    p_lib.add_argument("--json", "-j", action="store_true", help="Output library metadata in JSON format")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -673,6 +849,12 @@ def main():
         return cmd_review(args)
     elif args.subcommand == "swarm":
         return cmd_swarm(args)
+    elif args.subcommand == "resume":
+        return cmd_resume(args)
+    elif args.subcommand == "checkpoint":
+        return cmd_checkpoint(args)
+    elif args.subcommand in ("lib", "library", "libraries"):
+        return cmd_lib(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()

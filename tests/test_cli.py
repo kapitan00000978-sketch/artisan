@@ -290,4 +290,65 @@ def test_cmd_swarm_json_output(capsys):
     assert data["status"] == "SWARM_PIPELINE_READY"
 
 
+def test_cmd_checkpoint_and_resume(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        orig_cwd = os.getcwd()
+        try:
+            os.chdir(tmpdir)
+            # 1. Record checkpoint
+            cp_args = argparse.Namespace(
+                task="Test task execution",
+                agent="claude-agent",
+                file="main.py",
+                line=25,
+                completed="Setup complete",
+                next="Add tests",
+                decision="Use SQLite",
+                status="IN_PROGRESS",
+                no_continuity=False,
+            )
+            ret_cp = artisan_cli.cmd_checkpoint(cp_args)
+            assert ret_cp == 0
+            captured = capsys.readouterr()
+            assert "Checkpoint saved successfully" in captured.out
 
+            # 2. Resume session
+            res_args = argparse.Namespace(
+                no_continuity=False,
+                json=True,
+            )
+            ret_res = artisan_cli.cmd_resume(res_args)
+            assert ret_res == 0
+            captured_res = capsys.readouterr()
+            data = json.loads(captured_res.out)
+            assert data["last_agent"] == "claude-agent"
+            assert data["last_task"] == "Test task execution"
+            assert data["stopped_at_file"] == "main.py"
+        finally:
+            os.chdir(orig_cwd)
+
+
+def test_cmd_lib_list_and_info(capsys):
+    # 1. List
+    list_args = argparse.Namespace(
+        action="list",
+        json=True,
+    )
+    ret_list = artisan_cli.cmd_lib(list_args)
+    assert ret_list == 0
+    captured = capsys.readouterr()
+    domains = json.loads(captured.out)
+    assert "architecture" in domains
+    assert "security" in domains
+
+    # 2. Info
+    info_args = argparse.Namespace(
+        action="info",
+        domain="security",
+        json=True,
+    )
+    ret_info = artisan_cli.cmd_lib(info_args)
+    assert ret_info == 0
+    captured_info = capsys.readouterr()
+    sec_info = json.loads(captured_info.out)
+    assert sec_info["title"] == "Defensive Security & Zero-Trust Guards"

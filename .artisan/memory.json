@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "Artisan Engineering Core",
-  "lastUpdated": "2026-10-15T21:19:45.754798+00:00",
+  "lastUpdated": "2026-10-15T21:39:51.113984+00:00",
   "userPreferences": [
     "Clean architecture, zero empty catch blocks, zero TODO comments in production",
     "Comprehensive test coverage across all domain mutations"
@@ -60,7 +60,7 @@
       "lesson": "Always enforce pagination limits.",
       "severity": "high",
       "recordedAt": "2026-10-15T15:08:39.779478+00:00",
-      "updatedAt": "2026-10-15T20:11:54.095875+00:00"
+      "updatedAt": "2026-10-15T21:29:13.832291+00:00"
     },
     {
       "id": "mis-0004",
@@ -69,25 +69,25 @@
       "lesson": "Always verify algorithm is HS256/RS256",
       "severity": "high",
       "recordedAt": "2026-10-15T18:30:24.182735+00:00",
-      "updatedAt": "2026-10-15T21:19:45.754798+00:00"
+      "updatedAt": "2026-10-15T21:39:51.113984+00:00"
     },
     {
       "id": "mis-0005",
       "category": "dangerous",
       "pattern": "Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing.",
-      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\reviewer.py:153). Resolve Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing. before committing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\libraries\\security\\ast_scanner.py:64). Resolve Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing. before committing.",
       "severity": "medium",
       "recordedAt": "2026-10-15T20:23:54.412470+00:00",
-      "updatedAt": "2026-10-15T20:25:06.612683+00:00"
+      "updatedAt": "2026-10-15T21:37:57.835504+00:00"
     },
     {
       "id": "mis-0006",
       "category": "stub",
       "pattern": "Silent exception suppression (except: pass or except Exception: pass). Log or handle errors.",
-      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\reviewer.py:202). Resolve Silent exception suppression (except: pass or except Exception: pass). Log or handle errors. before committing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\libraries\\security\\ast_scanner.py:146). Resolve Silent exception suppression (except: pass or except Exception: pass). Log or handle errors. before committing.",
       "severity": "medium",
       "recordedAt": "2026-10-15T20:23:54.438999+00:00",
-      "updatedAt": "2026-10-15T20:25:06.642137+00:00"
+      "updatedAt": "2026-10-15T21:37:57.847152+00:00"
     },
     {
       "id": "mis-0007",
@@ -101,17 +101,19 @@
       "id": "mis-0008",
       "category": "stub",
       "pattern": "Silent exception suppression (except: pass). Log or handle errors.",
-      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\swarm.py:1). Resolve Silent exception suppression (except: pass). Log or handle errors. before committing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\libraries\\copywriting\\doc_generator.py:1). Resolve Silent exception suppression (except: pass). Log or handle errors. before committing.",
       "severity": "medium",
-      "recordedAt": "2026-10-15T21:18:15.249212+00:00"
+      "recordedAt": "2026-10-15T21:18:15.249212+00:00",
+      "updatedAt": "2026-10-15T21:37:57.794753+00:00"
     },
     {
       "id": "mis-0009",
       "category": "stub",
       "pattern": "Silent exception suppression ('except except: pass') verified via AST.",
-      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\swarm.py:168). Resolve Silent exception suppression ('except except: pass') verified via AST. before committing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\libraries\\copywriting\\doc_generator.py:82). Resolve Silent exception suppression ('except except: pass') verified via AST. before committing.",
       "severity": "medium",
-      "recordedAt": "2026-10-15T21:18:15.274803+00:00"
+      "recordedAt": "2026-10-15T21:18:15.274803+00:00",
+      "updatedAt": "2026-10-15T21:37:57.822306+00:00"
     }
   ],
   "successes": [

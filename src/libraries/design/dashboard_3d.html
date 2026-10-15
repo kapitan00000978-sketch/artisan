@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Artisan 3D Swarm & Universal Domain Library</title>
+    <link rel="stylesheet" href="liquid_glass.css">
+    <style>
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 32px 24px;
+        }
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+        }
+        .title-group h1 {
+            font-size: 28px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #00F5FF 0%, #A855F7 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .title-group p {
+            color: var(--text-secondary);
+            font-size: 14px;
+            margin-top: 4px;
+        }
+        .viewport-section {
+            position: relative;
+            height: 520px;
+            border-radius: var(--radius-lg);
+            overflow: hidden;
+            margin-bottom: 32px;
+            background: radial-gradient(circle at center, #111827 0%, #07090E 100%);
+        }
+        canvas#spatialCanvas {
+            width: 100%;
+            height: 100%;
+            display: block;
+        }
+        .hud-overlay {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            pointer-events: none;
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .hud-stats {
+            position: absolute;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 16px;
+        }
+        .stat-card {
+            background: rgba(18, 24, 38, 0.75);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-md);
+            padding: 12px 18px;
+            min-width: 140px;
+        }
+        .stat-value {
+            font-size: 22px;
+            font-weight: 800;
+            color: var(--accent-cyan);
+        }
+        .stat-label {
+            font-size: 11px;
+            color: var(--text-muted);
+            text-transform: uppercase;
+            font-weight: 600;
+        }
+        .card-body {
+            padding: 24px;
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 700;
+            margin-bottom: 8px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .card-desc {
+            font-size: 13px;
+            color: var(--text-secondary);
+            margin-bottom: 16px;
+            min-height: 40px;
+        }
+        .module-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+        .module-item {
+            font-size: 12px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-sm);
+            padding: 8px 12px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-family: monospace;
+            color: #E2E8F0;
+        }
+        .module-badge {
+            font-size: 10px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            background: rgba(168, 85, 247, 0.2);
+            color: #D8B4FE;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Top Navigation -->
+        <header class="header">
+            <div class="title-group">
+                <div class="badge badge-pulse" style="margin-bottom: 8px;">Autonomous Protocol Active</div>
+                <h1>Artisan 3D Swarm & Universal Domain Libraries</h1>
+                <p>Hardware-accelerated spatial visualization of active sub-agents and enterprise toolkits.</p>
+            </div>
+            <div style="display: flex; gap: 12px;">
+                <button class="btn-ghost" onclick="toggleAutoRotate()">Pause Orbit</button>
+                <button class="btn-primary" onclick="resetSwarmCamera()">Center Swarm</button>
+            </div>
+        </header>
+
+        <!-- 3D Spatial Canvas Viewport -->
+        <section class="viewport-section glass-panel">
+            <canvas id="spatialCanvas"></canvas>
+            <div class="hud-overlay">
+                <div class="badge" style="background: rgba(0,245,255,0.15); border-color: var(--accent-cyan);">
+                    Interactive 3D Constellation
+                </div>
+                <div style="font-size: 12px; color: var(--text-muted); background: rgba(0,0,0,0.5); padding: 4px 8px; border-radius: 6px;">
+                    Left-click + drag to rotate • Scroll to zoom
+                </div>
+            </div>
+            <div class="hud-stats">
+                <div class="stat-card">
+                    <div class="stat-value">7 Active</div>
+                    <div class="stat-label">Sub-Agents</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">100 / 100</div>
+                    <div class="stat-label">Gatekeeper Score</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-value">0 Defects</div>
+                    <div class="stat-label">Invariants Kept</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Domain Libraries Grid -->
+        <h2 style="font-size: 20px; margin-bottom: 16px; font-weight: 700;">Enterprise Domain Libraries Ready-to-Connect</h2>
+        <div class="grid-3">
+            <!-- Architecture Library -->
+            <div class="glass-panel card-body">
+                <div class="card-title">
+                    <span style="color: #00F5FF;">🏛️</span> Architecture
+                </div>
+                <div class="card-desc">
+                    Enterprise patterns, deterministic FSM, decoupled event bus, and circuit breaker.
+                </div>
+                <ul class="module-list">
+                    <li class="module-item"><span>FiniteStateMachine</span> <span class="module-badge">fsm.py</span></li>
+                    <li class="module-item"><span>EventBus & DLQ</span> <span class="module-badge">event_bus.py</span></li>
+                    <li class="module-item"><span>CircuitBreaker</span> <span class="module-badge">circuit_breaker.py</span></li>
+                    <li class="module-item"><span>Clean Ports</span> <span class="module-badge">ports.py</span></li>
+                </ul>
+            </div>
+
+            <!-- Security Library -->
+            <div class="glass-panel card-body">
+                <div class="card-title">
+                    <span style="color: #F43F5E;">🛡️</span> Security
+                </div>
+                <div class="card-desc">
+                    Zero-trust sanitizers, thread-safe token bucket rate limiters, and JWT engine.
+                </div>
+                <ul class="module-list">
+                    <li class="module-item"><span>InputSanitizer</span> <span class="module-badge">sanitizer.py</span></li>
+                    <li class="module-item"><span>TokenBucketLimiter</span> <span class="module-badge">token_bucket.py</span></li>
+                    <li class="module-item"><span>JWTEngine (HS256)</span> <span class="module-badge">jwt_validator.py</span></li>
+                    <li class="module-item"><span>ASTSecurityScanner</span> <span class="module-badge">ast_scanner.py</span></li>
+                </ul>
+            </div>
+
+            <!-- Performance Library -->
+            <div class="glass-panel card-body">
+                <div class="card-title">
+                    <span style="color: #10B981;">⚡</span> Performance
+                </div>
+                <div class="card-desc">
+                    Lock-free ring buffer pipelines, LRU/LFU caching, and pre-warmed object pools.
+                </div>
+                <ul class="module-list">
+                    <li class="module-item"><span>LRUCache & TTL</span> <span class="module-badge">cache.py</span></li>
+                    <li class="module-item"><span>SPSCRingBuffer</span> <span class="module-badge">ring_buffer.py</span></li>
+                    <li class="module-item"><span>ObjectPool (RAII)</span> <span class="module-badge">object_pool.py</span></li>
+                    <li class="module-item"><span>Zero-Allocation Cache</span> <span class="module-badge">cache.py</span></li>
+                </ul>
+            </div>
+
+            <!-- Testing Library -->
+            <div class="glass-panel card-body">
+                <div class="card-title">
+                    <span style="color: #A855F7;">🧪</span> Testing & Mutation
+                </div>
+                <div class="card-desc">
+                    Property edge-case fuzzer, synthetic AST mutation engine, and fluent assertions.
+                </div>
+                <ul class="module-list">
+                    <li class="module-item"><span>EdgeCaseGenerator</span> <span class="module-badge">fuzzer.py</span></li>
+                    <li class="module-item"><span>ASTMutationGenerator</span> <span class="module-badge">mutation_suite.py</span></li>
+                    <li class="module-item"><span>assert_that()</span> <span class="module-badge">assertions.py</span></li>
+                    <li class="module-item"><span>FuzzRunner</span> <span class="module-badge">fuzzer.py</span></li>
+                </ul>
+            </div>
+
+            <!-- Copywriting Library -->
+            <div class="glass-panel card-body">
+                <div class="card-title">
+                    <span style="color: #F59E0B;">✍️</span> Copywriting & DX
+                </div>
+                <div class="card-desc">
+                    Automated AST doc generator, Keep-a-Changelog builder, and Flesch readability linter.
+                </div>
+                <ul class="module-list">
+                    <li class="module-item"><span>MarkdownDocGenerator</span> <span class="module-badge">doc_generator.py</span></li>
+                    <li class="module-item"><span>ChangelogBuilder</span> <span class="module-badge">changelog.py</span></li>
+                    <li class="module-item"><span>DXLinter & Flesch</span> <span class="module-badge">dx_linter.py</span></li>
+                    <li class="module-item"><span>API Doc Extractor</span> <span class="module-badge">doc_generator.py</span></li>
+                </ul>
+            </div>
+
+            <!-- Cross-Agent Continuity Engine -->
+            <div class="glass-panel card-body">
+                <div class="card-title">
+                    <span style="color: #38BDF8;">🧠</span> Agent Continuity Memory
+                </div>
+                <div class="card-desc">
+                    Universal checkpointing across AI agents (Cursor, Claude, Copilot, Antigravity, Hermes).
+                </div>
+                <ul class="module-list">
+                    <li class="module-item"><span>ContinuityManager</span> <span class="module-badge">continuity.py</span></li>
+                    <li class="module-item"><span>artisan resume</span> <span class="module-badge">CLI Handoff</span></li>
+                    <li class="module-item"><span>--no-continuity</span> <span class="module-badge">Optional Bypass</span></li>
+                    <li class="module-item"><span>State Checkpoint</span> <span class="module-badge">checkpoints.json</span></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <!-- 3D Engine Initialization -->
+    <script src="spatial_3d.js"></script>
+    <script>
+        let scene;
+        window.addEventListener('DOMContentLoaded', () => {
+            scene = new SpatialScene('spatialCanvas');
+
+            // Register the 7 Sub-Agents in 3D orbit
+            scene.addAgent('architect', 'Marcus: Architect', '#00F5FF');
+            scene.addAgent('security', 'Gabriel: Security', '#F43F5E');
+            scene.addAgent('critic', 'Red-Team Critic', '#A855F7');
+            scene.addAgent('tester', 'Mutation Tester', '#38BDF8');
+            scene.addAgent('performance', 'Systems Perf', '#10B981');
+            scene.addAgent('copywriter', 'Diana: Copywriter', '#F59E0B');
+            scene.addAgent('healer', 'Auto-Healer', '#EC4899');
+
+            scene.start();
+        });
+
+        function toggleAutoRotate() {
+            if (scene) {
+                scene.autoRotate = !scene.autoRotate;
+            }
+        }
+
+        function resetSwarmCamera() {
+            if (scene) {
+                scene.rotationX = 0;
+                scene.rotationY = 0;
+                scene.camera.zoom = 1.0;
+                scene.autoRotate = true;
+            }
+        }
+    </script>
+</body>
+</html>
