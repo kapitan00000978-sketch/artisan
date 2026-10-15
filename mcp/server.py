@@ -178,6 +178,21 @@ for key, val in SDK_COUNCIL_MEMBERS.items():
             ]
         }
 
+# Initialize Smart Context Selector and Persistent Learning Memory
+try:
+    from sdk.context_selector import SmartMasterSelector
+    from sdk.learning_memory import LearningMemory
+except ImportError:
+    try:
+        from context_selector import SmartMasterSelector
+        from learning_memory import LearningMemory
+    except ImportError:
+        SmartMasterSelector = None
+        LearningMemory = None
+
+learning_memory = LearningMemory() if LearningMemory else None
+master_selector = SmartMasterSelector(COUNCIL_MEMBERS) if SmartMasterSelector else None
+
 TOOLS = [
     {
         "name": "artisan_inspect_code",
@@ -207,7 +222,7 @@ TOOLS = [
     },
     {
         "name": "artisan_list_council",
-        "description": "Lists all 8 members of The Council of Masters, their names, archetypes, and signature mottos.",
+        "description": "Lists all members of The Council of Masters, their names, archetypes, and signature mottos.",
         "inputSchema": {
             "type": "object",
             "properties": {}
@@ -221,6 +236,68 @@ TOOLS = [
             "properties": {
                 "query": {"type": "string", "description": "Search query or category"}
             }
+        }
+    },
+    {
+        "name": "artisan_select_masters",
+        "description": "Context-aware selection of the top relevant Council Masters for a specific task or files, preventing context bloat.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "task": {"type": "string", "description": "Task description or user prompt to analyze"},
+                "files": {"type": "array", "items": {"type": "string"}, "description": "Optional list of affected files or extensions"},
+                "limit": {"type": "integer", "description": "Maximum number of masters to select (default: 3)"}
+            },
+            "required": ["task"]
+        }
+    },
+    {
+        "name": "artisan_get_lessons",
+        "description": "Searches persistent learning memory for past mistakes, scar tissue, and lessons learned relevant to the current task.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "task": {"type": "string", "description": "Task keywords or description to match lessons against"},
+                "category": {"type": "string", "description": "Optional category filter (e.g. auth, payment, database, api)"},
+                "limit": {"type": "integer", "description": "Maximum lessons to return (default: 5)"}
+            },
+            "required": ["task"]
+        }
+    },
+    {
+        "name": "artisan_record_learning",
+        "description": "Records a new mistake, success pattern, convention, or lesson into persistent project memory (.artisan/memory.json) to prevent repeating errors.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "type": {
+                    "type": "string",
+                    "enum": ["mistake", "success", "convention", "anti_pattern", "lesson"],
+                    "description": "The category of learning entry"
+                },
+                "category": {"type": "string", "description": "Domain category (e.g. auth, api, ui, database, performance)"},
+                "pattern": {"type": "string", "description": "The pattern, trigger, or mistake observed"},
+                "lesson": {"type": "string", "description": "The rule or remediation to follow in the future"},
+                "severity": {
+                    "type": "string",
+                    "enum": ["critical", "high", "medium", "low"],
+                    "description": "Severity level (default: high)"
+                }
+            },
+            "required": ["type", "category", "pattern", "lesson"]
+        }
+    },
+    {
+        "name": "artisan_inject_prompt",
+        "description": "Generates a laser-targeted system prompt (~1.5K-2K tokens) combining selected masters and relevant lessons for the task (6x token reduction).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "task": {"type": "string", "description": "The task description to generate the prompt for"},
+                "files": {"type": "array", "items": {"type": "string"}, "description": "Optional list of affected file paths"},
+                "limit": {"type": "integer", "description": "Max masters to include (default: 3)"}
+            },
+            "required": ["task"]
         }
     }
 ]
@@ -271,6 +348,61 @@ def handle_recall_memory(args):
     return {"status": "Memory active, zero recorded failures."}
 
 
+def handle_select_masters(args):
+    task = args.get("task", "")
+    files = args.get("files", [])
+    limit = int(args.get("limit", 3))
+    if master_selector:
+        masters = master_selector.select_masters(task, files=files, limit=limit)
+        return {"task": task, "count": len(masters), "selected_masters": masters}
+    return {"status": "Selector not initialized", "selected_masters": []}
+
+
+def handle_get_lessons(args):
+    task = args.get("task", "")
+    category = args.get("category")
+    limit = int(args.get("limit", 5))
+    if learning_memory:
+        lessons = learning_memory.get_lessons(task=task, category=category, limit=limit)
+        snippet = learning_memory.format_warning_snippet(task)
+        return {"task": task, "count": len(lessons), "lessons": lessons, "warning_snippet": snippet}
+    return {"status": "Memory not initialized", "lessons": []}
+
+
+def handle_record_learning(args):
+    rec_type = args.get("type", "lesson")
+    category = args.get("category", "general")
+    pattern = args.get("pattern", "")
+    lesson = args.get("lesson", "")
+    severity = args.get("severity", "high")
+    if learning_memory:
+        return learning_memory.record_learning(
+            record_type=rec_type,
+            category=category,
+            pattern=pattern,
+            lesson=lesson,
+            severity=severity
+        )
+    return {"status": "Memory not initialized"}
+
+
+def handle_inject_prompt(args):
+    task = args.get("task", "")
+    files = args.get("files", [])
+    limit = int(args.get("limit", 3))
+    lessons = []
+    if learning_memory:
+        lessons = learning_memory.get_lessons(task=task, limit=4)
+    if master_selector:
+        return master_selector.build_dynamic_prompt(
+            task_description=task,
+            files=files,
+            lessons=lessons,
+            limit=limit
+        )
+    return {"status": "Selector not initialized", "prompt": ""}
+
+
 def dispatch_request(req):
     method = req.get("method")
     msg_id = req.get("id")
@@ -317,6 +449,14 @@ def dispatch_request(req):
             output = handle_list_council(args)
         elif tool_name == "artisan_recall_memory":
             output = handle_recall_memory(args)
+        elif tool_name == "artisan_select_masters":
+            output = handle_select_masters(args)
+        elif tool_name == "artisan_get_lessons":
+            output = handle_get_lessons(args)
+        elif tool_name == "artisan_record_learning":
+            output = handle_record_learning(args)
+        elif tool_name == "artisan_inject_prompt":
+            output = handle_inject_prompt(args)
         else:
             return {
                 "jsonrpc": "2.0",

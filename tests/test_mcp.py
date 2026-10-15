@@ -46,13 +46,88 @@ def test_mcp_tools_list_contains_artisan_tools():
     req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
     res = server.dispatch_request(req)
     tool_names = [t["name"] for t in res["result"]["tools"]]
+    assert len(tool_names) == 8
     assert "artisan_inspect_code" in tool_names
     assert "artisan_get_persona" in tool_names
     assert "artisan_list_council" in tool_names
     assert "artisan_recall_memory" in tool_names
+    assert "artisan_select_masters" in tool_names
+    assert "artisan_get_lessons" in tool_names
+    assert "artisan_record_learning" in tool_names
+    assert "artisan_inject_prompt" in tool_names
+
+def test_mcp_select_masters_via_dispatch():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 10,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_select_masters",
+            "arguments": {"task": "Build FastAPI auth endpoint with bcrypt", "limit": 2}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "result" in res
+    content = json.loads(res["result"]["content"][0]["text"])
+    assert content["count"] == 2
+    keys = [m["master_key"] for m in content["selected_masters"]]
+    assert "cyber_security_auditor" in keys
+
+def test_mcp_get_lessons_via_dispatch():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 11,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_get_lessons",
+            "arguments": {"task": "auth password login", "limit": 3}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "result" in res
+    content = json.loads(res["result"]["content"][0]["text"])
+    assert "lessons" in content
+    assert len(content["lessons"]) > 0
+
+def test_mcp_record_learning_via_dispatch():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 12,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_record_learning",
+            "arguments": {
+                "type": "mistake",
+                "category": "api",
+                "pattern": "unbounded result payload",
+                "lesson": "Always enforce pagination limits.",
+                "severity": "high"
+            }
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "result" in res
+    content = json.loads(res["result"]["content"][0]["text"])
+    assert content["status"] in ["recorded", "updated"]
+
+def test_mcp_inject_prompt_via_dispatch():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 13,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_inject_prompt",
+            "arguments": {"task": "Create Stripe checkout subscription endpoint", "files": ["checkout.py"]}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "result" in res
+    content = json.loads(res["result"]["content"][0]["text"])
+    assert "prompt" in content
+    assert content["approx_tokens"] < 2000
+    assert "ZERO STUBS" in content["prompt"]
 
 def test_mcp_inspect_code_catches_secrets_and_fixme():
-    # Test the exact edge case from prompt: hardcoded password, FIXME, and Anthropic API key
     dangerous_code = """
     # FIXME: implement this later
     password = "hunter2"
@@ -92,3 +167,4 @@ def test_mcp_unknown_method_returns_jsonrpc_32601_error():
     assert "error" in res
     assert res["error"]["code"] == -32601
     assert "Method not found" in res["error"]["message"]
+
