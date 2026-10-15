@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-51%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-52%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -140,6 +140,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 49 | 🛡️ **Commander Kaelen 'The Shield' Vance** | Principal Magnetospheric Radiation Shielding Architect | Active Dipole Deflection Sovereign & Relativistic Particle Shield Conscience | Magnetic moment ($\mathcal{M} \ge 10\text{ GA}\cdot\text{m}^2$), Stormer cut-off ($R_c \ge 5.0\text{ GV}$), peak coil field ($B \ge 4.0\text{ T}$), habitat leakage ($B \le 0.50\text{ mT}$), HTS current density ($J_c \ge 500\text{ A/mm}^2$), quench dump ($\tau \le 100\text{ ms}$), crew dose ($H_{\text{eff}} \le 100\text{ mSv/yr}$), electrostatic barrier ($\Phi \ge 2.0\text{ MV}$) |
 | 50 | 🌪️ **Dr. Hector 'The Stellar' Vance** | Principal Stellarator Magnetics Architect | Non-Planar Magnetics Sovereign & 3D Flux Topology Conscience | Rotational transform ($\iota/2\pi \in [0.80, 1.25]$), resonance avoidance, bend radius ($\rho \ge 0.50\text{ m}$), standoff ($\Delta_{\text{cp}} \ge 1.20\text{ m}$), ripple ($\epsilon_{\text{eff}}^{3/2} \le 0.010$), divertor ($q_{\text{div}} \le 10\text{ MW/m}^2$, $f_{\text{rad}} \ge 85\%$), peak field ($B \le 16\text{ T}$), casing stress ($\le 650\text{ MPa}$), zero-current ($|I_p| \le 50\text{ kA}$) |
 | 51 | ⏳ **Dr. Eliana 'The Chrono-Metrology' Sterling** | Principal Optical Lattice Clock & Quantum Metrology Architect | Quantum Chronometry Sovereign & Relativistic Geodesy Conscience | Fractional inaccuracy ($\Delta \nu/\nu_0 \le 1.0\times 10^{-18}$), Allan dev ($\sigma_y \le 1.0\times 10^{-16}/\sqrt{\tau}$), magic detuning ($\le 0.05\text{ nm}$), laser linewidth ($\le 10\text{ mHz}$), cavity finesse ($\ge 500,000$), silicon temp ($[123, 125]\text{ K}$), BBR uncertainty ($\le 10\text{ mK}$), atom temp ($\le 2\ \mu\text{K}$), collisional shift ($\le 1.0\times 10^{-19}$), height resolution ($\le 1\text{ cm}$) |
+| 52 | 🌌 **Commander Thorne 'The Sub-Surface' Sterling** | Principal Cryovolcanic & Ocean Explorer Architect | Sub-Ice Cryobot Sovereign & Planetary Protection Conscience | Thermal drill ($P \ge 25\text{ kW}$, $v_{\text{melt}} \ge 1.5\text{ m/h}$), hydrostatic pressure ($P \ge 200\text{ MPa}$, $SF \ge 1.50$), COSPAR IVb bioburden ($\le 0.030\text{ spores/m}^2$, DHMR $\ge 125^\circ\text{C}$), biosensor LOD ($\text{CH}_4 \le 1\text{ nM}$, $\text{H}_2 \le 10\text{ nM}$), tether tensile ($\ge 2.5\text{ kN}$, $L \ge 35\text{ km}$), sonar ($R \ge 5\text{ km}$) |
 
 ---
 

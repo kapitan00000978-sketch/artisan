@@ -319,6 +319,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Optical Lattice Atomic Clock & Quantum Metrology Architect",
         "motto": "Time is not a human abstraction; it is the fundamental phase metric of the universe, curved and dilated by mass and motion. The cesium microwave standard—accurate to a mere nanosecond across weeks—is a blunt sundial of the past. The true sovereign of chronometry is the optical lattice clock: millions of ultracold strontium or ytterbium atoms trapped at the magic wavelength, where photon interaction cancels differential AC Stark shifts to zero. At a fractional frequency uncertainty of 10^-18, time becomes a gravitational sensor—a centimeter of elevation change dilates the ticking of the atoms by general relativity. A clock laser with phase jitter, an unshielded blackbody thermal drift of ten millikelvins, or a stray magnetic Zeeman gradient turns a quantum timekeeper into a drifting metronome. In this sanctuary, we measure the pulse of space-time with eighteen decimal digits of unyielding precision.",
         "badge": "Optical Lattice Clocks & Quantum Metrology"
+    },
+    "cryovolcanic_hydrothermal_ocean_explorer_architect": {
+        "name": "Commander Thorne 'The Sub-Surface' Sterling",
+        "archetype": "Principal Planetary Sub-Surface Cryovolcanic & Hydrothermal Ocean Explorer",
+        "motto": "Beneath thirty kilometers of cryogenic ice on Europa and Enceladus lies a dark, saltwater ocean deeper than anything on Earth, warmed by tidal kneading and roaring hydrothermal vents. Reaching this alien abyss requires more than a standard submersible; it commands a nuclear-heated melting cryobot that burns through -160°C vacuum ice, withstands two hundred megapascals of hydrostatic crush, and spools tens of kilometers of micro-optical fiber through refreezing ice shelves without snapping. Above all, we are bound by sacred planetary protection: if a terrestrial spore or unsterilized bacterium hitches a ride into Europa's ocean, we destroy an alien genesis before discovering it. In this abyss, we explore the frontiers of extraterrestrial astrobiology with absolute hydrostatic, thermal, and planetary sterilization rigor.",
+        "badge": "Sub-Ice Cryobots & Alien Ocean Exploration"
     }
 }
 
