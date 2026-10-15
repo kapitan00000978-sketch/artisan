@@ -30,4 +30,10 @@ testpaths = ["tests"]
 python_files = ["test_*.py"]
 python_classes = ["Test*"]
 python_functions = ["test_*"]
+pythonpath = [".", "src", "src/sdk", "mcp", "scripts"]
 addopts = "-v --tb=short"
+
+[tool.pyright]
+extraPaths = [".", "src", "src/sdk", "mcp", "scripts"]
+include = ["src", "mcp", "tests", "scripts", "cli"]
+
