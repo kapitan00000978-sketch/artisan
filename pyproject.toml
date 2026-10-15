@@ -4,13 +4,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "artisan"
-version = "1.0.0"
-description = "Autonomous AI Agent Craftsmanship & Work Ethic Protocol"
+version = "2.0.0"
+description = "The Autonomous Operating System & Craftsmanship Protocol for AI Coding Agents"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Artisan Open Source Project" }]
-keywords = ["ai", "agents", "craftsmanship", "zero-babysitting", "mcp", "cursor", "claude"]
+keywords = ["ai", "agents", "craftsmanship", "zero-babysitting", "mcp", "cursor", "claude", "quality-gate", "autonomous"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
@@ -19,6 +19,9 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
 ]
+
+[project.scripts]
+artisan = "artisan_cli:main"
 
 [project.optional-dependencies]
 dev = [

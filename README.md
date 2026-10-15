@@ -2,20 +2,55 @@
   <img src="./assets/artisan-banner.jpg" alt="Artisan Banner" width="800" />
 </p>
 
-# 🛡️ Artisan: Autonomous AI Agent Craftsmanship & Quality Protocol
+# 🛡️ Artisan: The Autonomous AI Agent Operating System & Quality Protocol
 
-> **Artisan** is an open-source engineering discipline and quality protocol for AI coding assistants. It enforces deterministic pre-commit & CI gates against unfinished stubs and leaked secrets, injects role-based expert personas, maintains persistent project memory across sessions, and exposes standard Model Context Protocol (MCP) tooling for Claude Code, Cursor, Copilot, Windsurf, Antigravity, and other modern agents.
+> **Stop prompt-babysitting. Stop fixing AI stubs. Stop repeating past bugs.**  
+> **Artisan** is the deterministic quality kernel, living neural memory, and multi-agent coordination protocol for modern AI coding assistants (Claude Code, Cursor, Copilot, Windsurf, Antigravity, Nous Hermes, Kimi). It turns probabilistic LLM generators into disciplined, self-auditing senior engineers.
 
-[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![Version](https://img.shields.io/badge/version-2.0.0-blue.svg)](pyproject.toml)
+[![CI/CD Tests](https://img.shields.io/badge/tests-520%2B%20passing-brightgreen.svg)](tests/)
+[![Quality Gate](https://img.shields.io/badge/gatekeeper-100%2F100-success.svg)](scripts/pre-commit-gatekeeper.py)
+[![Agents](https://img.shields.io/badge/supported%20agents-14%20ecosystems-cyan.svg)](#-supported-ai-agent-ecosystems)
+[![MCP 2.0](https://img.shields.io/badge/MCP-JSON--RPC%202.0-orange.svg)](mcp/server.py)
+[![Strategic Roadmap](https://img.shields.io/badge/roadmap-2026--2031-purple.svg)](docs/STRATEGIC_ROADMAP.md)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
-[![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-64%20titans-gold.svg)](#-the-council-of-masters-character-roster)
-[![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
-[![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
+[![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 
 <p align="center">
   <img src="./assets/artisan-demo.gif" alt="Artisan Protocol Liquid Glass Demo" width="800" style="border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
 </p>
+
+---
+
+## ⚡ The Fundamental Shift: Standard AI vs. Artisan
+
+```mermaid
+graph LR
+    subgraph Standard AI Assistant
+        S1[User Prompt] --> S2[Probabilistic Output]
+        S2 --> S3[// TODO: implement later]
+        S2 --> S4[except: pass]
+        S2 --> S5[Amnesia: Repeats Old Bugs]
+    end
+
+    subgraph Artisan Agent Operating System
+        A1[User Prompt] --> A2[Context Engine & Memory]
+        A2 --> A3[Autonomous Agent Execution]
+        A3 --> A4[AST & Security Gatekeeper]
+        A4 -->|Defect Detected| A5[Self-Healing Auto-Fix]
+        A5 --> A4
+        A4 -->|Clean 100/100| A6[Verified Commit & Learned Lesson]
+    end
+```
+
+| Dimension | Standard AI Coding (Unmanaged) | With Artisan Protocol (v2.0) |
+| :--- | :--- | :--- |
+| **Code Completeness** | ❌ Leaves lazy `// TODO`, `FIXME`, or `pass` placeholders | ✅ **Zero-Defect AST Gate**: Rejects all stubs at pre-commit |
+| **Error Handling** | ❌ Silently swallows errors (`except: pass`, empty `catch {}`) | ✅ **Self-Healing Engine**: Auto-refactors to structured logging |
+| **Session Memory** | ❌ Total amnesia — forgets yesterday's bugs and decisions | ✅ **Living Memory Fabric**: `.artisan/memory.json` retains all scar tissue |
+| **Multi-Agent Sync** | ❌ Claude, Cursor, and Copilot collide on the same files | ✅ **Swarm Registry**: `artisan agents` lock-free workspace coordination |
+| **Token Efficiency** | ❌ 12,000+ token monolithic prompt dump | ✅ **Smart Context Engine**: 37x compression (~320 tokens per task) |
+| **Human Babysitting** | ❌ Continuous *"You broke the build"* corrective loops | ✅ **100% Autonomous**: Passes 520+ tests before human delivery |
 
 ---
 
@@ -295,51 +330,53 @@ Artisan is an emerging open-source project created to bring deterministic qualit
 
 ---
 
-## 🛠️ Developer Commands:
+## 💻 Unified Artisan CLI (Python & Node.js)
+
+Artisan provides an instant, zero-friction developer experience directly from your terminal:
 
 ```bash
-# 1. Run the Automated Test Suite:
-pytest tests/
+# ⚡ 1. Initialize Artisan & auto-install Git pre-commit hooks:
+artisan init
+# (Auto-detects Python, Node, Next.js, Go, Rust, Java and deploys all 14 agent rules)
 
-# 2. Run the Pre-Commit Quality & Security Gatekeeper:
-python scripts/pre-commit-gatekeeper.py
+# 🎯 2. Generate 37x compressed prompt with auto-injected scar tissue:
+artisan context "Build secure user login and JWT auth"
 
-# 3. Launch the Continuous Watchdog Sentinel Daemon:
-python scripts/watchdog.py --watch
+# 🛡️ 3. Audit entire codebase for stubs, secrets, and empty catches:
+artisan audit
+artisan audit --staged   # Fast audit on git-staged changes only
 
-# 4. View Workspace Quality & Metrics Report:
-python scripts/roi_tracker.py
+# 🔧 4. Autonomously repair silent catches and unfinished stubs:
+artisan fix
 
-# 5. Launch the Terminal HUD:
-python cli/dashboard.py
+# 🧠 5. Inspect living persistent memory and failure patterns:
+artisan memory
+artisan memory --search "auth"
 
-# 6. Start the Model Context Protocol (MCP) Server:
-python mcp/server.py
+# 🤖 6. Check active concurrent AI agents & file locks:
+artisan agents
 
-# 7. Install Automatic Git Pre-Commit Hook:
-python scripts/install_git_hook.py
+# 📊 7. Workspace quality analytics & ROI report:
+artisan metrics
+
+# 🩺 8. Verify environment, hooks, and agent rule integrity:
+artisan doctor
+
+# 🔌 9. Launch the Model Context Protocol (MCP) server:
+artisan mcp
+
+# 🖥️ 10. Interactive visual terminal HUD:
+artisan hud
 ```
 
-### 💻 Artisan CLI (`npx artisan`):
+### 📦 Run via Python or npx:
 
 ```bash
-# Install protocol rules into current repository
-npx github:kapitan00000978-sketch/artisan init
+# Direct via Python wrapper:
+python artisan.py <command>
 
-# Automatically install Git pre-commit quality gate hook
-npx github:kapitan00000978-sketch/artisan hook
-
-# Autonomously repair silent catches and error suppression
-npx github:kapitan00000978-sketch/artisan fix
-
-# Verify configuration and environment health
-npx github:kapitan00000978-sketch/artisan doctor
-
-# Run fast audit on staged changes
-npx github:kapitan00000978-sketch/artisan audit --staged
-
-# Launch the Model Context Protocol (MCP) server
-npx github:kapitan00000978-sketch/artisan mcp
+# Or direct via npx (no install needed):
+npx github:kapitan00000978-sketch/artisan <command>
 ```
 
 ---

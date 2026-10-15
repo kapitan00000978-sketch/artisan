@@ -1,19 +1,23 @@
 {
   "name": "artisan-protocol",
-  "version": "1.0.0",
-  "description": "An open-source protocol and modular framework that injects craftsmanship, senior work ethic, and automated quality gates into AI coding agents.",
+  "version": "2.0.0",
+  "description": "The Autonomous Operating System & Craftsmanship Protocol for AI Coding Agents (Claude, Cursor, Copilot, Hermes, Antigravity).",
   "main": "bin/artisan.js",
   "bin": {
     "artisan": "./bin/artisan.js"
   },
-
-
   "scripts": {
+    "init": "node bin/artisan.js init",
+    "audit": "node bin/artisan.js audit",
+    "fix": "node bin/artisan.js fix",
+    "memory": "node bin/artisan.js memory",
+    "status": "node bin/artisan.js status",
     "hud": "python cli/dashboard.py",
     "watchdog": "python scripts/watchdog.py",
     "gatekeeper": "python scripts/pre-commit-gatekeeper.py",
-    "roi": "python scripts/roi_tracker.py",
-    "mcp": "python mcp/server.py"
+    "metrics": "python scripts/roi_tracker.py",
+    "mcp": "python mcp/server.py",
+    "test": "pytest tests/"
   },
   "keywords": [
     "ai",
