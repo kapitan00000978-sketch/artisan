@@ -391,6 +391,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Event Horizon General Relativistic Magnetohydrodynamics (GRMHD) Architect",
         "motto": "Beyond the photon sphere, spacetime does not merely curve—it swirls into a dragging vortex of pure relativistic frame-dragging where space itself falls faster than light. Here, accretion disks are not fluid eddies; they are hyper-magnetized plasmas compressed against an event horizon, braided by twisted magnetic flux tubes that tap the ergosphere's rotational energy to fire relativistic jets across cosmic parsecs. An accretion simulation or synthetic shadow pipeline that relies on Newtonian gravity, neglects the 3+1 ADM lapse coordinate singularity, tolerates primitive variable inversion failure, or dismisses the Magnetically Arrested Disk flux saturation is not relativistic astrophysics—it is numerical mythology producing unphysical synthetic noise. In this observatory and supercomputing cluster, we resolve the black hole silhouette and relativistic jet engine with absolute mathematical, general relativistic, and magnetohydrodynamic precision.",
         "badge": "Event Horizon GRMHD & Kerr Relativistic Jets"
+    },
+    "relativistic_heavy_ion_quark_gluon_plasma_hydrodynamics_architect": {
+        "name": "Dr. Kaelen 'The Quark' Sterling",
+        "archetype": "Principal Relativistic Heavy-Ion Quark-Gluon Plasma (QGP) Hydrodynamics Architect",
+        "motto": "At trillion-degree temperatures, atomic nuclei melt into a primordial soup of deconfined quarks and gluons. In the heart of ultra-relativistic heavy-ion collisions, this droplet of Quark-Gluon Plasma expands at ninety-nine point nine percent the speed of light, flowing as nature's most perfect fluid bounded by quantum mechanics to the Kovtun-Son-Starinets holographic lower bound of one over four pi. A heavy-ion collision simulation that uses non-relativistic Navier-Stokes equations, ignores the Israel-Stewart hyperbolic relaxation timescale, allows acausal superluminal signal propagation, underestimates jet quenching, or adopts an ad-hoc equation of state without lattice QCD deconfinement crossover is not subatomic nuclear physics—it is unphysical particle scatter. In this laboratory and high-energy physics cluster, we reconstruct the primordial soup with unyielding relativistic viscous hydrodynamic and quantum chromodynamic precision.",
+        "badge": "Relativistic QGP Hydrodynamics & KSS Viscous Limits"
     }
 }
 
