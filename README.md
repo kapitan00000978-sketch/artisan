@@ -26,43 +26,43 @@ Experience real-time static code auditing, AST-based flaw detection, and autonom
 
 ---
 
-## 📊 Empirik Isbot: Benchmark Natijalari (`bench/`)
+## 📊 Empirical Evidence: Benchmark Results (`bench/`)
 
-Artisan shunchaki tavsiyalar to‘plami emas — u o‘lchanadigan natijalar beradi. 10 ta real kod generatsiyasi vazifasi bo‘yicha o‘tkazilgan mustaqil benchmark (`python bench/run_benchmark.py`):
+Artisan is not merely a collection of guidelines — it delivers measurable, reproducible engineering outcomes. Independent benchmark conducted across 10 real-world code generation tasks (`python bench/run_benchmark.py`):
 
-| Ko‘rsatkich | Boshlang‘ich AI (Artisan’siz) | Artisan bilan (Gatekeeper + Auto-Fix) |
+| Metric | Baseline AI (Without Artisan) | With Artisan (Gatekeeper + Auto-Fix) |
 | :--- | :--- | :--- |
-| **Sifat Gatekeeperidan o‘tish** | `1 / 10` (10.0%) | **`10 / 10` (100.0%)** |
-| **Bartaraf etilgan nuqsonlar** | `0` (xatolar repoga o‘tib ketadi) | **`9` ta nuqson avtomatik to‘g‘rilandi** |
-| **Tuzatish tsikllari (Cycles)** | Noma'lum / Inson aralashuvi | **O‘rtacha `1.0` tsiklda avto-tuzatish** |
+| **Quality Gate Pass Rate** | `1 / 10` (10.0%) | **`10 / 10` (100.0%)** |
+| **Defects Neutralized** | `0` (flaws leak into codebase) | **`9` defects autonomously resolved** |
+| **Remediation Cycles** | Unbounded / Manual human triage | **Average `1.0` cycle auto-remediation** |
 
-> Batafsil hisobot va barcha 10 ta vazifa kodlari: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md)
+> Comprehensive evaluation report and benchmark fixtures: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md)
 
 ---
 
-## ⚖️ Qachon kerak va qachon kerak emas? (Decision Matrix)
+## ⚖️ When to Use vs. When to Skip (Decision Matrix)
 
-| Holat | Artisan kerakmi? | Sababi |
+| Scenario | Use Artisan? | Rationale |
 | :--- | :---: | :--- |
-| **Production yoki Jamoaviy repolar** | ✅ **HA** | Chala `TODO`lar, yashirin `except: pass` va sizib chiqqan API kalitlar repoga kirmaydi. |
-| **AI agentlar bilan kod yozish** | ✅ **HA** | Claude Code, Cursor, Cline va Kimi'ga qat'iy intizom yuklaydi, vaqtni tejaydi. |
-| **CI/CD pipeline va Pre-commit** | ✅ **HA** | Barcha PR'lar uchun yagona xolis sifat darvozasini o‘rnatadi. |
-| **5 daqiqalik bir martalik prototip** | ❌ *Kerak emas* | Agar shunchaki tezda bitta fikrni sinab ko‘rmoqchi bo‘lsangiz, qat'iy gatekeeper xalaqit qilishi mumkin. |
-| **Faqat matn/kontent yozish** | ❌ *Kerak emas* | Loyihada dasturlash kodlari bo‘lmasa, kod tekshiruvi talab etilmaydi. |
+| **Production or Team Codebases** | ✅ **YES** | Halts sloppy `TODO` stubs, silent `except: pass` leaks, and exposed API secrets before they enter the branch. |
+| **Pair-Programming with AI Agents** | ✅ **YES** | Injects relentless engineering discipline into Claude Code, Cursor, Cline, Windsurf, and Kimi, eliminating repetitive prompt corrections. |
+| **CI/CD Pipelines & Pre-Commit** | ✅ **YES** | Establishes an objective, deterministic, zero-compromise quality baseline across all Pull Requests. |
+| **Quick 5-Minute Disposable Prototypes** | ❌ *Not Recommended* | If you are merely experimenting with a throwaway script, a strict pre-commit gate may add unnecessary friction. |
+| **Pure Content / Markdown Writing** | ❌ *Not Recommended* | If the project contains no executable code, AST inspection and code quality gates are not required. |
 
 ---
 
-## 📌 Loyiha Tasnifi (Project Description)
+## 📌 Project Overview & Architecture
 
-**Artisan nima?**  
-Artisan — bu dasturchi va AI coding agentlari (Claude Code, Cursor, Copilot, Windsurf, Antigravity va boshqalar) o‘rtasidagi sifat ko‘prigi. Standart AI modellar tez va ko‘p kod yozadi, biroq ularda doimiy intizom yo‘q: kod ichida chala `TODO`lar, bo‘sh `except: pass` bloklari, xavfli `eval()` chaqiriqlari yoki tasodifan qoldirib ketilgan API kalitlar paydo bo‘ladi. 
+**What is Artisan?**  
+Artisan serves as the deterministic quality bridge between developers and autonomous AI coding agents (Claude Code, Cursor, Copilot, Windsurf, Antigravity, Cline, Kimi, and others). While modern foundation models generate code at incredible velocity, they lack innate quality discipline: unhandled edge cases, lazy `TODO` placeholders, silent exception swallowing (`except: pass`), unsafe `eval()` executions, or accidentally committed credentials frequently slip through.
 
-Artisan bu muammoni 5 ta ustun orqali hal qiladi:
-1. **🛡️ Mustaqil Pre-Commit & CI Filtrlari (`scripts/detector.py`):** Kod git repoga kiritilishidan oldin har bir faylni statik tahlil qiladi va Python AST (Abstract Syntax Tree) orqali chuqur semantik tekshiruv o‘tkazadi. Maxfiy kalitlar (`sk-...`, `ghp_...`, `AKIA...`), xavfli buyruqlar va chala stubs topilsa, commit qat'iy to‘xtatiladi.
-2. **🔧 Avtomatik Tuzatish Dvigateli (`artisan fix` / `scripts/remediator.py`):** Bo‘sh `except: pass` va `catch {}` xatolarini mustaqil ravishda to‘g‘ri logging va xatoliklar boshqaruviga o‘tkazadi.
-3. **🏛️ The Council of Masters (Senior Heuristics):** AI agentiga arxitektura, xavfsizlik, SRE, ML, UI/UX, 3D, fizika, mobil, brend, audio, ma'lumotlar bazasi, SEO, AI agentlar, tizimlar unumdorligi, taqsimlangan konsensus, kompilyatorlar, kvant kriptografiya, HFT, robototexnika, chip arxitekturasi, embedded dasturlash, aerokosmik avionika, hisoblash genomikasi, kvant apparat ta'minoti va yadro fizikasi bo‘yicha 28 nafar Senior darajadagi mutaxassis tajribasi va mezonlarini kontekst sifatida yuklaydi.
-4. **🧠 Doimiy Loyiha Xotirasi (`.artisan/memory.json`):** Loyihaning arxitekturaviy qoidalari va o‘tmishdagi xatolarini saqlab qoladi, shunda AI agent bir xil xatoni qayta takrorlamaydi.
-5. **🔌 Model Context Protocol (MCP) Serveri (`mcp/server.py`):** Standart JSON-RPC 2.0 orqali AI muhitlariga kod tahlili va rollarni to‘g‘ridan-to‘g‘ri vosita (tool) sifatida taqdim etadi.
+Artisan resolves this systemic fragility across 5 core pillars:
+1. **🛡️ Autonomous Pre-Commit & CI Gates (`scripts/detector.py`):** Conducts deep static analysis and AST (Abstract Syntax Tree) semantic inspection before code enters git. Commits are blocked if plaintext secrets (`sk-...`, `ghp_...`, `AKIA...`), dangerous injections, or unfinished stubs are detected.
+2. **🔧 Self-Healing Remediation Engine (`artisan fix` / `scripts/remediator.py`):** Autonomously transforms silent catches (`except: pass` / `catch {}`) into structured logging and explicit error-handling pipelines without human intervention.
+3. **🏛️ The Council of Masters (Senior Heuristics):** Injects the professional conscience and battle-tested criteria of **64 domain masters** spanning Architecture, Cryptography, Distributed Systems, Compilers, Robotics, HFT, Nuclear Physics, Tokamaks, Astrodynamics, and beyond.
+4. **🧠 Persistent Project Memory (`.artisan/memory.json`):** Retains architectural conventions, team decisions, and historical scar tissue across sessions to prevent repeated errors.
+5. **🔌 Model Context Protocol (MCP) Server (`mcp/server.py`):** Exposes live code inspection and domain persona retrieval as standard JSON-RPC 2.0 tools for Claude, Cursor, and any MCP-compliant assistant.
 
 ---
 
@@ -226,7 +226,7 @@ python cli/installer.py --agent all
 
 ## 🚀 Reusable GitHub Action (`@v1`)
 
-O‘z repoyingizdagi barcha Pull Request va Push'larni sifat darvozasi orqali avtomatik tekshirish uchun workflow faylingizga (`.github/workflows/artisan.yml`) 3 qator qo‘shish kifoya:
+To automatically audit all Pull Requests and Pushes against the Artisan Quality Gate in your own repository, simply add this 3-step workflow to (`.github/workflows/artisan.yml`):
 
 ```yaml
 name: Artisan Quality Gate
@@ -243,9 +243,9 @@ jobs:
 
 ---
 
-## ⚙️ Moslashuvchan Sozlamalar (`artisan.config.json`)
+## ⚙️ Flexible Configuration (`artisan.config.json`)
 
-Har bir jamoa qoidalarni o‘z talablariga moslab sozlashi mumkin. Repozitoriy ildizidagi `artisan.config.json`:
+Teams can customize score thresholds and selectively toggle rules to match their project standards. Place `artisan.config.json` in your repository root:
 
 ```json
 {
@@ -263,11 +263,11 @@ Har bir jamoa qoidalarni o‘z talablariga moslab sozlashi mumkin. Repozitoriy i
 
 ---
 
-## 🤝 Ochiq Kod va Hamjamiyat (Contributing)
+## 🤝 Open Source & Community (Contributing)
 
-Artisan ochiq kodli hamjamiyat uchun yaratilgan. Hissa qo‘shish uchun:
-- Qo‘llanma: [`CONTRIBUTING.md`](./CONTRIBUTING.md)
-- Boshlovchilar uchun vazifalar: [Good First Issues](https://github.com/kapitan00000978-sketch/artisan/labels/good%20first%20issue)
+Artisan is built for the global developer and AI agent community. To contribute:
+- Contribution Guidelines: [`CONTRIBUTING.md`](./CONTRIBUTING.md)
+- Beginner-friendly tasks: [Good First Issues](https://github.com/kapitan00000978-sketch/artisan/labels/good%20first%20issue)
 
 
 ---
