@@ -484,6 +484,52 @@ def cmd_mutate(args: argparse.Namespace) -> int:
         return 1
 
 
+def cmd_review(args: argparse.Namespace) -> int:
+    """Runs adversarial red-team peer review on files or git diff."""
+    try:
+        from reviewer import AdversarialReviewer
+    except ImportError as imp_err:
+        print(f"[-] Error: Reviewer engine could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    reviewer = AdversarialReviewer(pass_threshold=args.threshold if hasattr(args, "threshold") and args.threshold else 85.0)
+
+    if args.files:
+        report = reviewer.review_files(args.files)
+    elif args.staged or args.diff or args.commit:
+        report = reviewer.review_diff(staged=args.staged, commit=args.commit)
+    else:
+        # Default to uncommitted git diff review
+        report = reviewer.review_diff(staged=False)
+
+    if args.json:
+        print(json.dumps(report, indent=2))
+        return 0 if report["passed"] else 1
+
+    if args.markdown:
+        print(reviewer.format_markdown_review(report))
+        return 0 if report["passed"] else 1
+
+    # Terminal output
+    verdict_icon = "🟢" if report["passed"] else "🔴"
+    print(f"\n🛡️ [ARTISAN ADVERSARIAL PEER REVIEW] {verdict_icon} Verdict: {report['verdict']}")
+    print(f"📊 Quality & Resilience Score: {report['score']}/100 (Threshold: {report['threshold']})")
+    print(f"📁 Audited Target(s): {len(report['audited_files'])} file(s) | Defects: {report['defects_count']}\n")
+
+    if not report["findings"]:
+        print("✨ ZERO DEFECTS DETECTED. Certified clean by Gabriel Frost & Marcus Sterling.")
+    else:
+        for idx, f in enumerate(report["findings"], 1):
+            sev = f.get("severity", "MAJOR")
+            persona = f.get("persona", "Master")
+            file_loc = f"{f['file']}:{f['line']}"
+            print(f"  {idx}. [{sev}] [{persona}] {file_loc}")
+            print(f"     ⚠️  {f['message']}")
+            print(f"     💡 Directive: {f['suggestion']}\n")
+
+    return 0 if report["passed"] else 1
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -543,6 +589,16 @@ def main():
     p_mut.add_argument("--limit", "-l", type=int, default=10, help="Maximum number of AST mutants to generate")
     p_mut.add_argument("--json", "-j", action="store_true", help="Output mutation test results in JSON format")
 
+    # review
+    p_rev = subparsers.add_parser("review", help="Run adversarial red-team peer review on files or git diff")
+    p_rev.add_argument("files", nargs="*", help="Optional source files to review")
+    p_rev.add_argument("--diff", action="store_true", help="Review unstaged git diff modifications")
+    p_rev.add_argument("--staged", action="store_true", help="Review staged git diff modifications")
+    p_rev.add_argument("--commit", "-c", help="Review diff against a specific git commit or reference")
+    p_rev.add_argument("--markdown", "-m", action="store_true", help="Output GitHub PR markdown formatted review")
+    p_rev.add_argument("--json", "-j", action="store_true", help="Output review report in JSON format")
+    p_rev.add_argument("--threshold", "-t", type=float, default=85.0, help="Minimum pass score threshold (default: 85.0)")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -571,6 +627,8 @@ def main():
         return cmd_context(args)
     elif args.subcommand == "mutate":
         return cmd_mutate(args)
+    elif args.subcommand == "review":
+        return cmd_review(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()

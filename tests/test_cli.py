@@ -214,3 +214,49 @@ def test_cmd_mutate_json_output(capsys):
         assert "mutation_score" in data
         assert "total_mutants" in data
 
+
+def test_cmd_review_clean_files(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        sample = os.path.join(tmpdir, "clean.py")
+        with open(sample, "w", encoding="utf-8") as f:
+            f.write("def hello():\n    return 'world'\n")
+
+        args = argparse.Namespace(
+            files=[sample],
+            diff=False,
+            staged=False,
+            commit=None,
+            markdown=False,
+            json=False,
+            threshold=85.0
+        )
+        ret = artisan_cli.cmd_review(args)
+        assert ret == 0
+        captured = capsys.readouterr()
+        assert "APPROVED_FOR_PRODUCTION" in captured.out
+
+
+def test_cmd_review_json_output(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        sample = os.path.join(tmpdir, "vuln.py")
+        with open(sample, "w", encoding="utf-8") as f:
+            f.write("import os\ndef run(c):\n    os.system(c)\n")
+
+        args = argparse.Namespace(
+            files=[sample],
+            diff=False,
+            staged=False,
+            commit=None,
+            markdown=False,
+            json=True,
+            threshold=85.0
+        )
+        ret = artisan_cli.cmd_review(args)
+        assert ret == 1
+        captured = capsys.readouterr()
+        data = json.loads(captured.out)
+        assert data["passed"] is False
+        assert data["verdict"] == "VETO_REVISION_REQUIRED"
+        assert len(data["findings"]) >= 1
+
+

@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "Artisan Engineering Core",
-  "lastUpdated": "2026-10-15T20:11:54.095875+00:00",
+  "lastUpdated": "2026-10-15T20:26:52.607597+00:00",
   "userPreferences": [
     "Clean architecture, zero empty catch blocks, zero TODO comments in production",
     "Comprehensive test coverage across all domain mutations"
@@ -69,7 +69,33 @@
       "lesson": "Always verify algorithm is HS256/RS256",
       "severity": "high",
       "recordedAt": "2026-10-15T18:30:24.182735+00:00",
-      "updatedAt": "2026-10-15T20:11:38.543435+00:00"
+      "updatedAt": "2026-10-15T20:26:52.607597+00:00"
+    },
+    {
+      "id": "mis-0005",
+      "category": "dangerous",
+      "pattern": "Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\reviewer.py:153). Resolve Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing. before committing.",
+      "severity": "medium",
+      "recordedAt": "2026-10-15T20:23:54.412470+00:00",
+      "updatedAt": "2026-10-15T20:25:06.612683+00:00"
+    },
+    {
+      "id": "mis-0006",
+      "category": "stub",
+      "pattern": "Silent exception suppression (except: pass or except Exception: pass). Log or handle errors.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\reviewer.py:202). Resolve Silent exception suppression (except: pass or except Exception: pass). Log or handle errors. before committing.",
+      "severity": "medium",
+      "recordedAt": "2026-10-15T20:23:54.438999+00:00",
+      "updatedAt": "2026-10-15T20:25:06.642137+00:00"
+    },
+    {
+      "id": "mis-0007",
+      "category": "stub",
+      "pattern": "Unfinished stub or placeholder detected. Complete all logic end-to-end.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\reviewer.py:279). Resolve Unfinished stub or placeholder detected. Complete all logic end-to-end. before committing.",
+      "severity": "medium",
+      "recordedAt": "2026-10-15T20:23:54.516059+00:00"
     }
   ],
   "successes": [
