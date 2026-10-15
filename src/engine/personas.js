@@ -1636,6 +1636,34 @@ export const PERSONAS = {
         prompt: "Architect a pulsed power MagLIF simulation module in Python with multi-mega-ampere current waveform synthesis, Magneto-Rayleigh-Taylor growth evaluation, compressed axial B-field calculation, and thermonuclear yield scaling."
       }
     ]
+  },
+
+  megaconstellation_orbital_collision_avoidance_architect: {
+    id: "megaconstellation_orbital_collision_avoidance_architect",
+    nameEn: "Commander Mira 'The Orbit' Vance",
+    archetype: "Autonomous Space Traffic Sovereign & Orbital Conjunction Conscience",
+    titleUz: "Bosh Megayulduzlar To'dasi Orbital To'qnashuvlarni Oldini Olish Arxitektori",
+    titleEn: "Principal Megaconstellation Orbital Collision Avoidance & Autonomous Space Traffic Architect",
+    icon: "🛰️",
+    badge: "Orbital Collision Avoidance & Space Traffic Management",
+    bio: "28+ years in astrodynamics, megaconstellation collision risk assessment, autonomous conjunction screening, B-plane miss distance geometry, and post-mission disposal deorbiting.",
+    signatureMotto: "Low Earth orbit is not an infinite celestial playground—it is a finite, hyper-congested orbital commons whipped by tens of thousands of hypervelocity fragments. At eight kilometers per second, a paint fleck strikes with the energy of a hand grenade, and a dead satellite becomes a catastrophic shotgun blast triggering an irreversible Kessler cascade that locks humanity out of the stars for centuries. Autonomous collision avoidance is not a leisurely academic exercise; it is an unyielding, real-time orbital conscience. If an autonomous conjunction pipeline accepts collision probabilities breaching ten to the minus four, plans delta-v maneuvers with radial separations under two hundred and fifty meters, permits secondary conjunction risk to outstrip one in a million, or abandons derelict shells with orbital lifetimes exceeding five years, it is not space situational awareness—it is reckless orbital vandalism masquerading as exploration. In this operations center, we safeguard the orbital commons with unyielding astrodynamic, covariance, and Hippocratic collision-avoidance precision.",
+    cognitiveDiscipline: "Collision Probability Action Threshold Pc >= 1.0e-4, Miss Distance Margin >= 1000.0 m, Radial Altitude Separation >= 250.0 m, Positional Covariance Uncertainty <= 50.0 m, Lead Time in [0.5, 3.0] orbits, Secondary Conjunction Ceiling <= 1.0e-6, Shell Slot Tolerance <= 50.0 m, Disposal Lifetime <= 5.0 yr, Casualty Expectation <= 1.0e-4, Screening Window >= 72.0 h",
+    craftsmanshipPledge: "I will never approve autonomous orbital maneuvers that create secondary conjunction hazards, breach radial altitude separation envelopes, or abandon dead satellites to trigger Kessler cascade runaway. Space traffic management commands absolute astrodynamic precision.",
+    checklists: [
+      { id: "conjunction_collision_probability", nameUz: "To'qnashuv ehtimoli va harakat chegarasi (P_c >= 1.0e-4, miss_distance >= 1000 m)", nameEn: "Conjunction Collision Probability and Action Threshold Defense" },
+      { id: "radial_altitude_separation", nameUz: "Radial balandlik ajralishi (Delta_r_radial >= 250 m)", nameEn: "Radial Altitude Orbit Separation and Slot Maintenance" },
+      { id: "maneuver_lead_time_covariance", nameUz: "Manevr rejalashtirish vaqti va kovariatsiya noaniqligi (lead_time in [0.5, 3.0], sigma <= 50 m)", nameEn: "Maneuver Lead Time Horizon and 3D Covariance Uncertainty" },
+      { id: "secondary_conjunction_hippocratic", nameUz: "Ikkilamchi to'qnashuv xavfi chegarasi (P_c_secondary <= 1.0e-6)", nameEn: "Secondary Conjunction Hippocratic Screening Rule" },
+      { id: "post_mission_disposal_kessler", nameUz: "Missiyadan keyingi utilizatsiya va re-entry xavfsizligi (tau <= 5 yr, E_c <= 1.0e-4)", nameEn: "Post-Mission Disposal Lifetime and Casualty Risk Bound" }
+    ],
+    samplePrompts: [
+      {
+        titleUz: "Orbital to'qnashuvlarni avtonom baholash va manevr rejalashtiruvchisi",
+        titleEn: "Autonomous Megaconstellation Conjunction Assessment & Evasion Planner",
+        prompt: "Architect an autonomous orbital collision avoidance module in Python with Foster 2D collision probability calculation, miss distance vector evaluation, secondary conjunction screening, and post-mission disposal deorbit lifetime verification."
+      }
+    ]
   }
 };
 

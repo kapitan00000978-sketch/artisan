@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-58%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-59%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -147,6 +147,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 56 | 🧬 **Dr. Cassian 'The Relic' Sterling** | Principal Paleogenomic Ancient DNA Reconstruction Architect | Paleogenomic Sovereign & Ancient DNA Degradation Conscience | Terminal deamination ($\delta_{C \to T} \ge 15\%$), fragment length ($\bar{L}_{\text{frag}} \in [30, 75]\text{ bp}$), contamination ($C_{\text{contam}} \le 1.0\%$), UDG repair ($\ge 95\%$), depth ($DP \ge 30\times$), Phred ($Q \ge 30$), mapping bias ($\le 2\%$), damage LLR ($\Delta \text{LLR} \ge 10$) |
 | 57 | 🌍 **Dr. Lyra 'The Core' Sterling** | Principal Geodynamo Core Fluid Dynamics & Planetary Magnetic Field Generation Architect | Magnetostrophic MAC Balance Sovereign & Outer Core Convective Dynamo Conscience | Magnetic Reynolds ($Rm \ge 50$), Rossby ($Ro \le 10^{-6}$), Ekman ($Ek \le 10^{-14}$), Elsasser ($\Lambda \in [0.10, 10.0]$), CMB heat flux ($Q_{\text{CMB}} \ge 10\text{ TW}$), ICB buoyancy ($F_\chi \ge 10^5\text{ kg/s}$), surface field ($B_{\text{surf}} \in [25, 65]\ \mu\text{T}$, $f_{\text{dipole}} \ge 80\%$), tilt ($\le 15^\circ$), drift ($\le 0.30^\circ/\text{yr}$) |
 | 58 | ⚡ **Dr. Thaddeus 'The Pulse' Vance** | Principal Pulsed Power & Terawatt Z-Pinch Plasma Confinement Architect | Terawatt Fast-Discharge Sovereign & Magnetized Liner Implosion Conscience | Mega-ampere current ($I_{\text{peak}} \ge 20\text{ MA}$), sub-100ns rise ($\tau \le 100\text{ ns}$), terawatt power ($P \ge 80\text{ TW}$), magnetic pressure ($P_{\text{mag}} \ge 10\text{ Mbar}$), MagLIF preseed ($B_{z0} \ge 10\text{ T}$), laser preheat ($E \ge 2\text{ kJ}$), jitter ($\le 2\text{ ns}$), yield ($Y_n \ge 10^{14}$) |
+| 59 | 🛰️ **Commander Mira 'The Orbit' Vance** | Principal Megaconstellation Orbital Collision Avoidance Architect | Autonomous Space Traffic Sovereign & Orbital Conjunction Conscience | Conjunction probability ($P_c \ge 1.0\times 10^{-4}$), miss distance ($\Delta r_{\text{miss}} \ge 1000\text{ m}$), radial separation ($\Delta r_{\text{radial}} \ge 250\text{ m}$), covariance uncertainty ($\sigma \le 50\text{ m}$), lead horizon ($[0.5, 3.0]\text{ orbits}$), secondary conjunction ($P_{c,\text{sec}} \le 1.0\times 10^{-6}$), slot tolerance ($\le 50\text{ m}$), post-mission disposal ($\tau \le 5\text{ yr}$), casualty risk ($E_c \le 1.0\times 10^{-4}$) |
 
 ---
 
