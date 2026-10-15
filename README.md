@@ -155,10 +155,18 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 
 ## ⚡ Core Capabilities & Built-in Tooling:
 
-1. **🧠 Project Memory Ledger (`.artisan/memory.json`):**
-   Maintains a structured record of team conventions, user preferences, and recorded anti-patterns to avoid repeating known mistakes.
-2. **🔌 Model Context Protocol (MCP) Server (`mcp/server.py`):**
-   Standard JSON-RPC 2.0 MCP server allowing Claude, Cursor, and other MCP clients to query domain personas and run static code inspections.
+1. **🧠 Persistent Learning Memory (`.artisan/memory.json`):**
+   Maintains a structured, evolving record of past mistakes, scar tissue, verified successes, and project conventions (`artisan_get_lessons` & `artisan_record_learning`). Dynamically warns agents against known historical failure patterns.
+2. **🔌 Model Context Protocol (MCP) Server with 8 Real-Time Tools (`mcp/server.py`):**
+   Full-duplex JSON-RPC 2.0 server turning any MCP client (Claude Code, Cursor, Windsurf, Cline) into a cognitive learning agent:
+   - `artisan_select_masters` — Context-aware selection of relevant domain leads based on task keywords and file types.
+   - `artisan_get_lessons` — Searches past scar tissue and mistakes to prevent repeating bugs.
+   - `artisan_record_learning` — Autonomously writes lessons and success patterns into persistent storage.
+   - `artisan_inject_prompt` — Generates a task-targeted 2K-token dynamic prompt (6x context optimization).
+   - `artisan_inspect_code` — Pre-commit AST-level flaw and secret leak analysis.
+   - `artisan_get_persona` — Retrieves full discipline criteria and pledge for any Council Master.
+   - `artisan_list_council` — Lists all 64 Council Titans.
+   - `artisan_recall_memory` — Direct query interface for memory ledger.
 3. **🚀 GitHub Actions CI/CD Quality Gate (`.github/workflows/artisan-gate.yml`):**
    Automated pull request and push inspection that verifies test suites and checks for lazy stubs or exposed credentials.
 4. **🎨 Artisan Studio — Visual Self-Critique & World-Class Elevation (`scripts/artisan_studio.py` / `cli/studio.py`):**
