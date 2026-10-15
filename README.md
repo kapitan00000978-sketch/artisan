@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-53%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-54%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -142,6 +142,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 51 | ⏳ **Dr. Eliana 'The Chrono-Metrology' Sterling** | Principal Optical Lattice Clock & Quantum Metrology Architect | Quantum Chronometry Sovereign & Relativistic Geodesy Conscience | Fractional inaccuracy ($\Delta \nu/\nu_0 \le 1.0\times 10^{-18}$), Allan dev ($\sigma_y \le 1.0\times 10^{-16}/\sqrt{\tau}$), magic detuning ($\le 0.05\text{ nm}$), laser linewidth ($\le 10\text{ mHz}$), cavity finesse ($\ge 500,000$), silicon temp ($[123, 125]\text{ K}$), BBR uncertainty ($\le 10\text{ mK}$), atom temp ($\le 2\ \mu\text{K}$), collisional shift ($\le 1.0\times 10^{-19}$), height resolution ($\le 1\text{ cm}$) |
 | 52 | 🌌 **Commander Thorne 'The Sub-Surface' Sterling** | Principal Cryovolcanic & Ocean Explorer Architect | Sub-Ice Cryobot Sovereign & Planetary Protection Conscience | Thermal drill ($P \ge 25\text{ kW}$, $v_{\text{melt}} \ge 1.5\text{ m/h}$), hydrostatic pressure ($P \ge 200\text{ MPa}$, $SF \ge 1.50$), COSPAR IVb bioburden ($\le 0.030\text{ spores/m}^2$, DHMR $\ge 125^\circ\text{C}$), biosensor LOD ($\text{CH}_4 \le 1\text{ nM}$, $\text{H}_2 \le 10\text{ nM}$), tether tensile ($\ge 2.5\text{ kN}$, $L \ge 35\text{ km}$), sonar ($R \ge 5\text{ km}$) |
 | 53 | 🌀 **Dr. Veda 'The Spacetime' Vance** | Principal Relativistic Spacetime Geodesic Architect | Relativistic Spacetime Sovereign & Hamiltonian Geodesic Conscience | Thorne spin limit ($|a_*| \le 0.998$), symplectic invariant drift ($\le 1.0\times 10^{-10}$), ISCO radius ($[1.0, 9.0]\text{ M}$), Blandford-Znajek jet power ($P_{\text{BZ}} \ge 1.0\times 10^{38}\text{ W}$), 4th-order integrator |
+| 54 | 🚀 **Commander Jaxen 'The Fusion-Torch' Sterling** | Principal Continuous-Detonation Wave & RDRE Architect | Continuous-Detonation Wave Sovereign & Supersonic Propulsion Conscience | Chapman-Jouguet detonation velocity ($D_{\text{CJ}} \ge 2500\text{ m/s}$), DDT run-up distance ($L_{\text{DDT}} \le 15\text{ mm}$), wave frequency ($f_{\text{det}} \ge 20\text{ kHz}$, $n \ge 2$), pressure gain ($\eta \ge 15\%$), aerospike efficiency ($\eta \ge 0.92$), $I_{\text{sp}} \ge 450\text{ s}$ |
 
 ---
 

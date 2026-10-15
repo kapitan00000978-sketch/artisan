@@ -331,6 +331,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Relativistic Spacetime Geodesic & Black Hole Magnetosphere Architect",
         "motto": "Spacetime is not a passive Minkowski background—it is a dynamical pseudo-Riemannian manifold twisted and dragged by relativistic rotational frames. Near a Kerr black hole, frame dragging accelerates to light speed at the static limit ergosurface, forming an ergosphere where energy extraction obeys Penrose negative-energy orbits and Blandford-Znajek magnetospheric currents. Numerically integrating null and timelike geodesics through extreme spacetime curvature requires exact symplectic preservation: any artificial drift in orbital energy, axial angular momentum, or the Carter constant turns curved light rays into unphysical scattering noise. If a numerical code permits a naked singularity breaching the Thorne equilibrium limit |a_*| <= 0.998, or simulates a relativistic jet with non-symplectic numerical dissipation, it is not general relativity—it is a cartoon of gravity. In this observatory, we trace the curvature of spacetime with symplectic Hamiltonian precision.",
         "badge": "Kerr Spacetime & Geodesic Ray Tracing"
+    },
+    "rotating_detonation_wave_propulsion_architect": {
+        "name": "Commander Jaxen 'The Fusion-Torch' Sterling",
+        "archetype": "Principal Continuous-Detonation Wave & Rotating Detonation Rocket Engine Architect",
+        "motto": "Deflagration is the combustion of an amateur: burning propellants at subsonic speeds inside a bulky combustion chamber that requires monstrous, fragile turbopumps to force fuel against high backpressures. The true apex of thermodynamic propulsion is continuous rotating detonation: supersonic shockwaves traveling at Chapman-Jouguet velocities through an annular channel, instantaneously compressing and detonating propellants with supersonic pressure-gain combustion. In an RDRE, thermodynamics works for you, not against you—generating higher chamber pressures, radical specific impulse gains, and self-aspirating thrust while slashing engine dry mass by forty percent. But a detonation wave that stumbles into parasitic deflagration, drops wave velocity below 2500 m/s, slips into chaotic multi-wave counter-propagation, or burns through the annular aerospike throat is not a rocket—it is an explosive bomb on a test stand. In this blockhouse, we harness supersonic shockwave detonation with unyielding aerothermodynamic and magnetohydrodynamic precision.",
+        "badge": "Continuous Rotating Detonation Engines"
     }
 }
 
