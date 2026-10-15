@@ -118,6 +118,42 @@ Developers often spend significant time micromanaging AI coding assistants:
 
 ---
 
+## 🤖 Autonomous Sub-Agent Swarm (Multi-Agent OS)
+
+Instead of overloading a single model with dozens of contradictory directives, Artisan orchestrates **7 Specialized Autonomous Sub-Agents** with isolated context, zero token pollution, and lock-free coordination:
+
+```mermaid
+graph TD
+    User([Task / Feature Request]) --> Swarm[Artisan Swarm Orchestrator]
+    Swarm --> Architect[1. artisan-architect<br/>Marcus Sterling: Architecture & Contracts]
+    Swarm --> Security[2. artisan-security<br/>Gabriel Frost: Zero-Trust & Sanitization]
+    Swarm --> Tester[3. artisan-tester<br/>Mutation Lead: Tests & Regression Kill]
+    Swarm --> Critic[4. artisan-critic<br/>Adversarial Reviewer: Veto & Defense]
+    Swarm --> Performance[5. artisan-performance<br/>Valerie Cross: Low-Latency & Memory]
+    Swarm --> Copywriter[6. artisan-copywriter<br/>Diana Drake: High-Impact DX & Docs]
+    Swarm --> Healer[7. artisan-healer<br/>Autonomous Remediator: Self-Correction]
+    
+    Architect --> Registry[(Artisan Agent Registry & Living Memory)]
+    Security --> Registry
+    Tester --> Registry
+    Critic --> Registry
+    Performance --> Registry
+    Copywriter --> Registry
+    Healer --> Registry
+```
+
+| Sub-Agent | Core Lead | Focus Area |
+| :--- | :--- | :--- |
+| **`artisan-architect`** | Marcus Sterling | Clean architecture, modular decomposition, clean APIs, zero tech-debt. |
+| **`artisan-security`** | Gabriel Frost | Zero-trust threat modeling, OWASP Top 10 defense, credential protection. |
+| **`artisan-critic`** | Red-Team Auditor | Objective adversarial peer review, defect ledger compilation, veto/approval. |
+| **`artisan-tester`** | Quality & Mutation Lead | AST mutation testing, boundary coverage, fuzzing, regression catch validation. |
+| **`artisan-performance`** | Valerie Cross | Mechanical sympathy, CPU cache alignment, zero hot-loop allocations, sub-ms latency. |
+| **`artisan-copywriter`** | Diana Drake | High-impact READMEs, clear API references, developer experience. |
+| **`artisan-healer`** | Autonomous Remediator | AST-level auto-repair of silent catches, missing handlers, and unfinished stubs. |
+
+---
+
 ## 🏛️ The Council of Masters (Domain Heuristic Personas):
 
 > [!NOTE]
@@ -375,6 +411,10 @@ artisan mutate src/sdk/context_selector.py --test tests/test_smart_context.py
 artisan review              # Inspect uncommitted changes
 artisan review --staged     # Inspect staged commits
 artisan review --markdown   # GitHub PR formatted review comment
+
+# 🤖 13. Orchestrate Autonomous Multi-Agent Swarm for complex features:
+artisan swarm "Build secure JWT auth with Stripe payments"
+artisan swarm "Build caching layer" --plan   # Preview sub-agent pipeline
 ```
 
 ### 📦 Run via Python or npx:

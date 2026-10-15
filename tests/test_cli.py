@@ -260,3 +260,34 @@ def test_cmd_review_json_output(capsys):
         assert len(data["findings"]) >= 1
 
 
+def test_cmd_swarm_plan_output(capsys):
+    args = argparse.Namespace(
+        task="Build high-performance database caching layer",
+        files=["cache.py"],
+        plan=True,
+        json=False
+    )
+    ret = artisan_cli.cmd_swarm(args)
+    assert ret == 0
+    captured = capsys.readouterr()
+    assert "ARTISAN MULTI-AGENT SWARM ORCHESTRATOR" in captured.out
+    assert "artisan-architect" in captured.out
+
+
+def test_cmd_swarm_json_output(capsys):
+    args = argparse.Namespace(
+        task="Write documentation and README for payment API",
+        files=["README.md"],
+        plan=False,
+        json=True
+    )
+    ret = artisan_cli.cmd_swarm(args)
+    assert ret == 0
+    captured = capsys.readouterr()
+    data = json.loads(captured.out)
+    assert "stages_count" in data
+    assert "stages" in data
+    assert data["status"] == "SWARM_PIPELINE_READY"
+
+
+

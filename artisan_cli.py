@@ -530,6 +530,41 @@ def cmd_review(args: argparse.Namespace) -> int:
     return 0 if report["passed"] else 1
 
 
+def cmd_swarm(args: argparse.Namespace) -> int:
+    """Orchestrates multi-agent swarm task decomposition and execution."""
+    try:
+        from swarm import SwarmOrchestrator
+    except ImportError as imp_err:
+        print(f"[-] Error: Swarm orchestrator module could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    orchestrator = SwarmOrchestrator()
+    task = args.task or ""
+    files = args.files or []
+
+    if args.plan:
+        stages = orchestrator.plan_swarm_pipeline(task=task, files=files)
+        data = {
+            "task": task,
+            "stages_count": len(stages),
+            "stages": stages,
+            "status": "SWARM_PLAN"
+        }
+        if args.json:
+            print(json.dumps(data, indent=2))
+            return 0
+        print(orchestrator.format_cli_pipeline(data))
+        return 0
+
+    execution_report = orchestrator.execute_pipeline(task=task, files=files)
+    if args.json:
+        print(json.dumps(execution_report, indent=2))
+        return 0
+
+    print(orchestrator.format_cli_pipeline(execution_report))
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -599,6 +634,13 @@ def main():
     p_rev.add_argument("--json", "-j", action="store_true", help="Output review report in JSON format")
     p_rev.add_argument("--threshold", "-t", type=float, default=85.0, help="Minimum pass score threshold (default: 85.0)")
 
+    # swarm
+    p_sw = subparsers.add_parser("swarm", help="Orchestrate autonomous sub-agent swarm for complex multi-stage tasks")
+    p_sw.add_argument("task", help="Engineering mission or task description")
+    p_sw.add_argument("--files", "-f", nargs="*", help="Target files involved in the task")
+    p_sw.add_argument("--plan", "-p", action="store_true", help="Display delegation plan without registering active sessions")
+    p_sw.add_argument("--json", "-j", action="store_true", help="Output swarm execution plan in JSON format")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -629,6 +671,8 @@ def main():
         return cmd_mutate(args)
     elif args.subcommand == "review":
         return cmd_review(args)
+    elif args.subcommand == "swarm":
+        return cmd_swarm(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()
