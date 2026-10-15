@@ -436,6 +436,54 @@ def cmd_context(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_mutate(args: argparse.Namespace) -> int:
+    """Executes mutation testing against target file to evaluate regression catch capability."""
+    try:
+        from mutator import MutationTester
+    except ImportError as imp_err:
+        print(f"[-] Error: Mutation testing module could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    target = args.target
+    if not target or not os.path.isfile(target):
+        candidate = os.path.join("src", "sdk", "context_selector.py")
+        if os.path.isfile(candidate):
+            target = candidate
+        else:
+            print("[-] Error: Please specify a valid Python target file to mutate.", file=sys.stderr)
+            return 1
+
+    test_cmd = [sys.executable, "-m", "pytest", args.test, "-q"] if args.test else None
+    limit = args.limit or 10
+
+    if not args.json:
+        print(f"\n🧬 [ARTISAN MUTATION ENGINE] Analyzing: {target} (Max mutants: {limit})...")
+    tester = MutationTester(target_file=target, test_cmd=test_cmd)
+    report = tester.run_mutation_analysis(limit=limit)
+
+    if args.json:
+        print(json.dumps(report, indent=2))
+        return 0
+
+    score = report.get("mutation_score", 0.0)
+    total = report.get("total_mutants", 0)
+    killed = report.get("killed", 0)
+    survived = report.get("survived", 0)
+
+    print(f"\n📊 MUTATION TEST REPORT: {target}")
+    print(f"  • Total Mutants Generated : {total}")
+    print(f"  • Mutants Killed (Tests caught bug) : {killed} ✅")
+    print(f"  • Mutants Survived (Tests missed bug): {survived} {'⚠️' if survived > 0 else '✨'}")
+    print(f"  • Test Suite Mutation Score        : {score}%")
+
+    if score >= 80.0:
+        print("\n✅ VERDICT: High-Fidelity Test Suite (Relentlessly catches logic mutations).")
+        return 0
+    else:
+        print("\n⚠️ VERDICT: Fragile Test Suite (Tests passed even when logic was modified. Strengthen assertions).")
+        return 1
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -488,6 +536,13 @@ def main():
     p_ctx.add_argument("--files", "-f", nargs="*", help="Optional files involved in the task")
     p_ctx.add_argument("--json", "-j", action="store_true", help="Output prompt metadata in JSON format")
 
+    # mutate
+    p_mut = subparsers.add_parser("mutate", help="Run AST mutation testing to measure test suite regression catch rate")
+    p_mut.add_argument("target", nargs="?", help="Target Python file to mutate (e.g. src/sdk/context_selector.py)")
+    p_mut.add_argument("--test", "-t", help="Specific pytest file or path to run against mutants")
+    p_mut.add_argument("--limit", "-l", type=int, default=10, help="Maximum number of AST mutants to generate")
+    p_mut.add_argument("--json", "-j", action="store_true", help="Output mutation test results in JSON format")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -514,6 +569,8 @@ def main():
         return cmd_metrics(args)
     elif args.subcommand in ("context", "prompt"):
         return cmd_context(args)
+    elif args.subcommand == "mutate":
+        return cmd_mutate(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()

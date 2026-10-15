@@ -189,3 +189,28 @@ def test_cmd_agents():
     args = argparse.Namespace(register=None, release=None, files=[])
     ret = artisan_cli.cmd_agents(args)
     assert ret == 0
+
+
+def test_cmd_mutate_json_output(capsys):
+    with tempfile.TemporaryDirectory() as tmpdir:
+        target_py = os.path.join(tmpdir, "calc.py")
+        test_py = os.path.join(tmpdir, "test_calc.py")
+        with open(target_py, "w", encoding="utf-8") as f:
+            f.write("def add(a, b):\n    return a + b\n")
+        with open(test_py, "w", encoding="utf-8") as f:
+            f.write("from calc import add\ndef test_add():\n    assert add(1, 2) == 3\n")
+
+        args = argparse.Namespace(
+            target=target_py,
+            test=test_py,
+            limit=2,
+            json=True
+        )
+        ret = artisan_cli.cmd_mutate(args)
+        assert ret == 0
+        captured = capsys.readouterr()
+        data = json.loads(captured.out)
+        assert "target_file" in data
+        assert "mutation_score" in data
+        assert "total_mutants" in data
+
