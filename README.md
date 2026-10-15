@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-61%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-62%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
