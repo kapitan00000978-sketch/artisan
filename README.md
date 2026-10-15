@@ -367,6 +367,14 @@ artisan mcp
 
 # 🖥️ 10. Interactive visual terminal HUD:
 artisan hud
+
+# 🧬 11. Run zero-dependency AST Mutation Testing on test suites:
+artisan mutate src/sdk/context_selector.py --test tests/test_smart_context.py
+
+# ⚔️ 12. Run Adversarial Red-Team Code Review on files or git diff:
+artisan review              # Inspect uncommitted changes
+artisan review --staged     # Inspect staged commits
+artisan review --markdown   # GitHub PR formatted review comment
 ```
 
 ### 📦 Run via Python or npx:
