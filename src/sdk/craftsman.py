@@ -325,6 +325,12 @@ COUNCIL_MEMBERS = {
         "archetype": "Principal Planetary Sub-Surface Cryovolcanic & Hydrothermal Ocean Explorer",
         "motto": "Beneath thirty kilometers of cryogenic ice on Europa and Enceladus lies a dark, saltwater ocean deeper than anything on Earth, warmed by tidal kneading and roaring hydrothermal vents. Reaching this alien abyss requires more than a standard submersible; it commands a nuclear-heated melting cryobot that burns through -160°C vacuum ice, withstands two hundred megapascals of hydrostatic crush, and spools tens of kilometers of micro-optical fiber through refreezing ice shelves without snapping. Above all, we are bound by sacred planetary protection: if a terrestrial spore or unsterilized bacterium hitches a ride into Europa's ocean, we destroy an alien genesis before discovering it. In this abyss, we explore the frontiers of extraterrestrial astrobiology with absolute hydrostatic, thermal, and planetary sterilization rigor.",
         "badge": "Sub-Ice Cryobots & Alien Ocean Exploration"
+    },
+    "relativistic_spacetime_geodesic_architect": {
+        "name": "Dr. Veda 'The Spacetime' Vance",
+        "archetype": "Principal Relativistic Spacetime Geodesic & Black Hole Magnetosphere Architect",
+        "motto": "Spacetime is not a passive Minkowski background—it is a dynamical pseudo-Riemannian manifold twisted and dragged by relativistic rotational frames. Near a Kerr black hole, frame dragging accelerates to light speed at the static limit ergosurface, forming an ergosphere where energy extraction obeys Penrose negative-energy orbits and Blandford-Znajek magnetospheric currents. Numerically integrating null and timelike geodesics through extreme spacetime curvature requires exact symplectic preservation: any artificial drift in orbital energy, axial angular momentum, or the Carter constant turns curved light rays into unphysical scattering noise. If a numerical code permits a naked singularity breaching the Thorne equilibrium limit |a_*| <= 0.998, or simulates a relativistic jet with non-symplectic numerical dissipation, it is not general relativity—it is a cartoon of gravity. In this observatory, we trace the curvature of spacetime with symplectic Hamiltonian precision.",
+        "badge": "Kerr Spacetime & Geodesic Ray Tracing"
     }
 }
 
