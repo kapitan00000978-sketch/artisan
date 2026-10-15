@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-60%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-61%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -149,6 +149,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 58 | ⚡ **Dr. Thaddeus 'The Pulse' Vance** | Principal Pulsed Power & Terawatt Z-Pinch Plasma Confinement Architect | Terawatt Fast-Discharge Sovereign & Magnetized Liner Implosion Conscience | Mega-ampere current ($I_{\text{peak}} \ge 20\text{ MA}$), sub-100ns rise ($\tau \le 100\text{ ns}$), terawatt power ($P \ge 80\text{ TW}$), magnetic pressure ($P_{\text{mag}} \ge 10\text{ Mbar}$), MagLIF preseed ($B_{z0} \ge 10\text{ T}$), laser preheat ($E \ge 2\text{ kJ}$), jitter ($\le 2\text{ ns}$), yield ($Y_n \ge 10^{14}$) |
 | 59 | 🛰️ **Commander Mira 'The Orbit' Vance** | Principal Megaconstellation Orbital Collision Avoidance Architect | Autonomous Space Traffic Sovereign & Orbital Conjunction Conscience | Conjunction probability ($P_c \ge 1.0\times 10^{-4}$), miss distance ($\Delta r_{\text{miss}} \ge 1000\text{ m}$), radial separation ($\Delta r_{\text{radial}} \ge 250\text{ m}$), covariance uncertainty ($\sigma \le 50\text{ m}$), lead horizon ($[0.5, 3.0]\text{ orbits}$), secondary conjunction ($P_{c,\text{sec}} \le 1.0\times 10^{-6}$), slot tolerance ($\le 50\text{ m}$), post-mission disposal ($\tau \le 5\text{ yr}$), casualty risk ($E_c \le 1.0\times 10^{-4}$) |
 | 60 | 🌊 **Dr. Silas 'The Wave' Sterling** | Principal Extreme Non-Linear Ocean Wave & Rogue Wave Hydrodynamics Architect | Non-Linear Schrödinger Breather Sovereign & Rogue Wave Conscience | Benjamin-Feir Index ($\text{BFI} \ge 1.0$), rogue height ratio ($H_{\text{rogue}} \ge 2.0 H_s$), crest abnormality ($\alpha_{\text{crest}} \ge 1.25$), steepness ($k a \in [0.10, 0.44]$), slamming pressure ($P_{\text{slam}} \ge 500\text{ kPa}$), kurtosis ($K \ge 3.0$), directional spreading ($\le 30^\circ$), HOSM order ($\ge 3$), deck air gap ($\ge 2.0\text{ m}$) |
+| 61 | 🔬 **Dr. Nadia 'The Sub-Micron' Vance** | Principal High-NA EUV Photolithography & Sub-2nm Semiconductor Patterning Architect | High-NA EUV Sovereign & Stochastic Defect Conscience | High-NA ($\text{NA} \ge 0.55$), resolution ($HP \le 8.0\text{ nm}$, $k_1 \ge 0.30$), line width roughness ($\text{LWR}_{3\sigma} \le 1.20\text{ nm}$), dose ($[30, 75]\text{ mJ/cm}^2$), photon density ($\ge 10\text{ ph/nm}^2$), overlay ($\le 1.10\text{ nm}$), CDU ($\le 0.60\text{ nm}$), pellicle ($T \ge 90\%$) |
 
 ---
 
