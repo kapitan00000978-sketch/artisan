@@ -304,4 +304,71 @@ def test_council_auditor_attribution():
     assert "Gabriel Frost" in res_secret["findings"][0]["auditor"]
 
 
+def test_multiline_block_stubs():
+    # Multiline C/JS-style block comment
+    c_code = "/*\n * " + "TODO" + ": finish implementation\n */\nint x = 1;"
+    res_c = scan_code(c_code, filename="service.c")
+    assert res_c["status"] == "REJECTED"
+    assert any("stub" in f.lower() or "todo" in f.lower() for f in res_c["flaws"])
+
+    # Python multiline docstring stub
+    py_code = '"""\n' + 'FIXME' + ': optimize algorithm later\n"""\ndef run():\n    return 42\n'
+    res_py = scan_code(py_code, filename="service.py")
+    assert res_py["status"] == "REJECTED"
+    assert any("stub" in f.lower() or "fixme" in f.lower() for f in res_py["flaws"])
+
+
+def test_secret_assignment_false_positive_suppression():
+    # Legitimate test/dummy passwords should NOT be flagged as secret leaks
+    dummy_code = 'password = "test123"\napi_key = "dummy"\ntoken = "placeholder"\n'
+    res_dummy = scan_code(dummy_code, filename="config.py")
+    assert res_dummy["status"] == "CERTIFIED"
+    assert res_dummy["score"] == 100
+
+    # Real production-style passwords without dummy keywords MUST be flagged
+    real_secret_code = 'password = "prod_98a7x!complex_secret"'
+    res_real = scan_code(real_secret_code, filename="config.py")
+    assert res_real["status"] == "REJECTED"
+    assert any("secret" in f.lower() or "password" in f.lower() for f in res_real["flaws"])
+
+
+def test_expanded_sql_injection():
+    # JS template literal injection
+    js_code = "const q = `SELECT * FROM users WHERE id = ${userId}`;"
+    res_js = scan_code(js_code, filename="repo.js")
+    assert res_js["status"] == "REJECTED"
+    assert any("sql" in f.lower() for f in res_js["flaws"])
+
+    # String concatenation SQL injection
+    concat_code = 'query = "SELECT * FROM users WHERE id = " + user_id'
+    res_concat = scan_code(concat_code, filename="repo.py")
+    assert res_concat["status"] == "REJECTED"
+    assert any("sql" in f.lower() for f in res_concat["flaws"])
+
+    # Formatted string SQL injection
+    fmt_code = 'query = "SELECT * FROM accounts WHERE name = %s" % username'
+    res_fmt = scan_code(fmt_code, filename="accounts.py")
+    assert res_fmt["status"] == "REJECTED"
+    assert any("sql" in f.lower() for f in res_fmt["flaws"])
+
+
+def test_graduated_multi_file_scoring(tmp_path):
+    from detector import scan_project
+    # Create 5 clean files
+    for i in range(4):
+        f = tmp_path / f"clean_{i}.py"
+        f.write_text(f"def func_{i}():\n    return {i}\n", encoding="utf-8")
+    # Create 1 file with a minor stub (deduction: 20)
+    flawed = tmp_path / "flawed.py"
+    flawed.write_text("def stub_func():\n    # " + "TODO" + ": implement\n    return None\n", encoding="utf-8")
+
+    # In previous flawed scoring: (100 - 20) = 80 if 1 file, but if 5 files had deductions total was summed.
+    # Now: 4 files with score 100, 1 file with score 80 -> Average project score = (400 + 80)/5 = 96
+    res = scan_project(str(tmp_path), config_override={"mode": "vibe", "exclude_dirs": []})
+    assert res["score"] == 96
+    assert res["metrics"]["warning_count"] == 1
+    assert res["metrics"]["critical_count"] == 0
+
+
+
 

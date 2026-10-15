@@ -2,8 +2,12 @@
 # ==============================================================================
 # Artisan Bootstrap Installer
 # Usage:
+#   # Recommended secure installation:
+#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh -o install.sh
+#   bash install.sh
+#
+#   # Quick pipe mode:
 #   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh | bash
-#   curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh | bash -s -- --agent cursor
 # ==============================================================================
 
 set -e

@@ -26,17 +26,17 @@ Experience real-time static code auditing, AST-based flaw detection, and autonom
 
 ---
 
-## 📊 Empirical Evidence: Benchmark Results (`bench/`)
+## 📊 Synthetic Verification Suite (`bench/`)
 
-Artisan is not merely a collection of guidelines — it delivers measurable, reproducible engineering outcomes. Independent benchmark conducted across 10 real-world code generation tasks (`python bench/run_benchmark.py`):
+Artisan provides a reproducible verification harness evaluating deterministic static detection and autonomous remediation across 10 controlled fixtures containing common AI anti-patterns (`python bench/run_benchmark.py`):
 
-| Metric | Baseline AI (Without Artisan) | With Artisan (Gatekeeper + Auto-Fix) |
+| Fixture Metric | Baseline AI Output (Without Gatekeeper) | With Artisan (Gatekeeper + Auto-Fix) |
 | :--- | :--- | :--- |
 | **Quality Gate Pass Rate** | `1 / 10` (10.0%) | **`10 / 10` (100.0%)** |
-| **Defects Neutralized** | `0` (flaws leak into codebase) | **`9` defects autonomously resolved** |
+| **Defects Neutralized** | `0` (flaws leak into codebase) | **`9` anti-patterns deterministically resolved** |
 | **Remediation Cycles** | Unbounded / Manual human triage | **Average `1.0` cycle auto-remediation** |
 
-> Comprehensive evaluation report and benchmark fixtures: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md)
+> Controlled evaluation methodology and task fixtures: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md)
 
 ---
 
@@ -83,7 +83,13 @@ Developers often spend significant time micromanaging AI coding assistants:
 
 ---
 
-## 🏛️ The Council of Masters (Domain Heuristics):
+## 🏛️ The Council of Masters (Domain Heuristic Personas):
+
+> [!NOTE]
+> **Transparency & Architectural Modularity:**  
+> The **Council of Masters** comprises 64 role-based synthetic domain personas and heuristic quality checklists inspired by open industry benchmarks (OWASP, ISO/IEC, SRE) and academic engineering literature. They are **not** real persons or claimed corporate employment affiliations.  
+>  
+> To eliminate context bloat, the 64 masters are organized into **8 Domain Guilds** (Software Architecture, Cybersecurity, UI/UX, Cloud DevOps, AI/LLMs, Business/Finance, Systems/Low-Level, and Deep-Tech Physics). When working on web apps or APIs, `SmartMasterSelector` dynamically loads only the 2–3 relevant software leads, reducing prompt overhead by over 80%. Specialized physics and deep-tech personas (Tokamaks, Geodynamo, Superfluid) serve as domain-specific simulation checklists for scientific computing codebases.
 
 Artisan packages role-specific heuristics inspired by senior discipline leads:
 
@@ -184,7 +190,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
    CLI to create and register custom domain checklists and personas.
 8. **📊 Workspace Quality & Audit Report (`scripts/roi_tracker.py`):**
    Inspects and reports real workspace metrics: active files, total lines audited, and gatekeeper compliance.
-8. **🖥️ Interactive Terminal HUD (`cli/dashboard.py`):**
+9. **🖥️ Interactive Terminal HUD (`cli/dashboard.py`):**
    Terminal dashboard displaying active protocol status, Council roster, and heuristic checklists.
 
 ---
@@ -212,22 +218,31 @@ Artisan provides tailored configuration modules across 14 agent environments:
 
 ---
 
-## ⚡ Quick Installation:
+## ⚡ Installation:
 
-Install Artisan configuration files into any repository:
+Install Artisan configuration files into any repository.
+
+> [!TIP]
+> **Security Best Practice:** Piping remote scripts directly to shell carries inherent supply-chain risks. We recommend downloading and inspecting scripts before execution:
+> ```bash
+> # Download, inspect, and execute locally:
+> curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh -o install.sh
+> bash install.sh
+> ```
 
 ```bash
-# 🍏 Linux & macOS (curl bash installer):
+# 🍏 Linux & macOS (quick bash installer):
 curl -fsSL https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.sh | bash
 
-# 🪟 Windows PowerShell (1-line installer):
+# 🪟 Windows PowerShell (quick installer):
 irm https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.ps1 | iex
 
 # 📦 Node.js / npx (directly from GitHub repo):
 npx github:kapitan00000978-sketch/artisan init
 
 # 🐍 Universal Python CLI:
-python cli/installer.py --agent all
+git clone https://github.com/kapitan00000978-sketch/artisan.git
+cd artisan && python cli/installer.py --agent all
 ```
 
 ---
@@ -273,10 +288,10 @@ Teams can customize score thresholds and selectively toggle rules to match their
 
 ## 🤝 Open Source & Community (Contributing)
 
-Artisan is built for the global developer and AI agent community. To contribute:
+Artisan is an emerging open-source project created to bring deterministic quality controls and craftsmanship to autonomous AI coding workflows. We welcome feedback, bug reports, and pull requests as the community develops:
 - Contribution Guidelines: [`CONTRIBUTING.md`](./CONTRIBUTING.md)
-- Beginner-friendly tasks: [Good First Issues](https://github.com/kapitan00000978-sketch/artisan/labels/good%20first%20issue)
-
+- Report Issues & Improvements: [GitHub Issues](https://github.com/kapitan00000978-sketch/artisan/issues)
+- Good First Issues: [Beginner Tasks](https://github.com/kapitan00000978-sketch/artisan/labels/good%20first%20issue)
 
 ---
 
@@ -330,4 +345,4 @@ npx github:kapitan00000978-sketch/artisan mcp
 ---
 
 ## 📄 License
-MIT License. Created for the global developer community.
+MIT License. Open source under the MIT License.

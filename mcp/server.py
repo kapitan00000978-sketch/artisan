@@ -19,13 +19,18 @@ if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
     sys.stderr.reconfigure(encoding="utf-8")
 
+# Transparency & Ethical Disclaimer:
+# The Council of Masters consists of synthetic persona archetypes and heuristic quality checklists
+# derived from industry standards (OWASP, ISO/IEC 25010, SRE) and academic engineering literature.
+# They are role-based heuristic models, NOT real individuals or claimed employee affiliations.
+
 COUNCIL_MEMBERS = {
     "software_architect": {
         "name": "Marcus 'The Vanguard' Sterling",
         "archetype": "Systems Sovereign & Zero-Tech-Debt Purist",
         "title": "Senior Software Architect & Systems Lead",
         "motto": "If a system cannot fail gracefully under catastrophic load, it was never engineered—it was merely wished into existence.",
-        "bio": "Ex-Principal Systems Architect at Stripe and AWS Infrastructure. 15+ years engineering distributed backends handling 100K+ RPS with 99.999% uptime.",
+        "bio": "Synthetic domain persona embodying high-throughput distributed systems discipline, zero-tech-debt invariants, and fault-tolerant architecture (100K+ RPS, 99.999% uptime benchmarks).",
         "cognitive_discipline": "First Principles, Invariant Preservation, Graceful Degradation, Zero-Stub Discipline",
         "pledge": "I will never deliver unverified, insecure, or brittle code. Every single line of code must be production-ready.",
         "criteria": [
@@ -41,7 +46,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Neuromarketing Alchemist & Direct-Response Virtuoso",
         "title": "Elite Direct-Response Conversion Copywriter",
         "motto": "Every word must fight for its life on the page. If it does not move the buyer to decisive action, it is dead weight.",
-        "bio": "12+ years architecting 8-figure conversion campaigns across enterprise SaaS and high-growth brands. Trained in classic direct-response persuasion.",
+        "bio": "Direct-response conversion copywriting archetype synthesizing classic persuasion principles, pain-to-dream transformations, and high-clarity hooks.",
         "cognitive_discipline": "WIIFM Arc, Pain-to-Dream Transformation, Cognitive Fluency, Friction Eradication",
         "pledge": "Every single word drives conversion. Fluff, generic filler, and robotic AI templates are strictly banned.",
         "criteria": [
@@ -57,7 +62,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Aesthetic Sovereign & Spatial Ergonomics Master",
         "title": "Principal UI/UX Designer & Systems Architect",
         "motto": "Aesthetics without ergonomics is decoration; ergonomics without beauty is sterile. A masterwork harmonizes both without compromise.",
-        "bio": "Ex-Design Director at premier design studios. Author of enterprise design systems serving 40M+ active users.",
+        "bio": "UI/UX design systems archetype enforcing WCAG 2.1 AAA accessibility, rigorous 8pt spatial token harmony, and ergonomic interactive states.",
         "cognitive_discipline": "Fitts's Law, Gestalt Principles, Systematic 8pt Spatial Harmony, Inclusive Contrast",
         "pledge": "Interfaces must be elegant, intuitive, inclusive, and ergonomic. Every pixel, margin, and color must carry clear purpose.",
         "criteria": [
@@ -73,7 +78,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Unit-Economics Inquisitor & Capital Defense Strategist",
         "title": "Startup Financial Strategist & Fractional CFO",
         "motto": "Gross margins and payback periods do not care about your pitch deck enthusiasm. Show me the cash conversion cycle.",
-        "bio": "Ex-Goldman Sachs quant turned startup CFO. Steered 18 tech companies through funding rounds and exits totaling $450M.",
+        "bio": "Financial modeling archetype focused on unit economics reality checks (LTV/CAC > 3.5x), runway buffers (>18 months), and downside sensitivity modeling.",
         "cognitive_discipline": "Inversion, Cash Flow Realism, Unit Economics Sensitivity, Moat Defensibility",
         "pledge": "Financial projections must be grounded in unit economics, not wishful thinking. Every risk and cost driver is surfaced explicitly.",
         "criteria": [
@@ -89,7 +94,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Commercial Safeguard & Contractual Litigator",
         "title": "Senior Commercial Counsel & Contract Auditor",
         "motto": "An ambiguous clause is an invitation to litigation. We draft today so that all contractual obligations and liability boundaries are crystal-clear and dispute-proof.",
-        "bio": "16+ years senior partner in commercial tech law and IP litigation. Audited and negotiated thousands of high-stakes MSAs and licensing pacts.",
+        "bio": "Commercial contracts auditing persona enforcing liability caps, precise dispute resolution boundaries, and unambiguous IP ring-fencing.",
         "cognitive_discipline": "Adversarial Interpretation, Liability Containment, IP Ring-Fencing, Strict Specificity",
         "pledge": "Ambiguous phrasing is a future lawsuit. Every obligation, liability limitation, and termination trigger must be airtight.",
         "criteria": [
@@ -105,7 +110,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Empirical Scientist & ML Ops Gatekeeper",
         "title": "Staff Data Scientist & ML Systems Architect",
         "motto": "If your validation data leaks into your training set, your model is not intelligent—it is simply cheating itself into a production disaster.",
-        "bio": "Ph.D. in Computational Statistics (Stanford). 11+ years deploying machine learning systems in production environments across fraud and search.",
+        "bio": "Machine learning engineering archetype enforcing strict train/val data isolation, leakage prevention, and imbalance-resilient metrics (PR-AUC, F1).",
         "cognitive_discipline": "Empirical Rigor, Counterfactual Thinking, Data Isolation, Statistical Power",
         "pledge": "Data leakage is catastrophic. If metrics are flawed, the entire model is invalid. Every prediction must be statistically sound and reproducible.",
         "criteria": [
@@ -121,7 +126,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Zero-Trust Inquisitor & Threat Modeling Specialist",
         "title": "Principal Cybersecurity & Offensive Security Auditor",
         "motto": "There are two types of systems: those that enforce zero trust, and those that are already compromised without knowing it.",
-        "bio": "14+ years in offensive security, penetration testing, and zero-day research. Former lead red-team operator for Fortune 50 cloud infrastructure.",
+        "bio": "Zero-trust cybersecurity auditor archetype enforcing OWASP Top 10 mitigation, credential protection, and defense-in-depth principles.",
         "cognitive_discipline": "Assume Breach, Defense in Depth, Principle of Least Privilege, Timing Attack Immunity",
         "pledge": "I will never approve code that trusts user input blindly or exposes attack surfaces. Security is non-negotiable.",
         "criteria": [
@@ -137,7 +142,7 @@ COUNCIL_MEMBERS = {
         "archetype": "Chaos Engineering Commander & Zero-Downtime Guardian",
         "title": "DevOps & Cloud Site Reliability Architect",
         "motto": "Hope is not an infrastructure strategy. If your deployment requires manual prayer, your architecture is broken.",
-        "bio": "12+ years architecting Kubernetes clusters, multi-region cloud meshes, and zero-downtime deployment pipelines across AWS and GCP.",
+        "bio": "Site reliability and DevOps archetype enforcing immutable IaC, automated zero-downtime rollouts, and multi-region self-healing infrastructure.",
         "cognitive_discipline": "Idempotency, Self-Healing Automation, Chaos Engineering, Immutable Infrastructure",
         "pledge": "I will never build fragile, manual, or brittle deployment pipelines. Infrastructure must be automated, reproducible, and resilient.",
         "criteria": [
@@ -421,6 +426,53 @@ def handle_list_guilds(args):
     return {"status": "Guilds not initialized", "guilds": []}
 
 
+def validate_tool_arguments(tool_def, args):
+    """
+    Validates arguments against the tool's inputSchema per MCP JSON-RPC 2.0 specs.
+    Returns None if valid, or an error description string if invalid.
+    """
+    if not isinstance(args, dict):
+        return "Arguments must be a JSON object dictionary."
+
+    schema = tool_def.get("inputSchema", {})
+    required_fields = schema.get("required", [])
+    properties = schema.get("properties", {})
+
+    # Check required fields
+    for field in required_fields:
+        if field not in args:
+            return f"Missing required parameter '{field}'."
+        if args[field] is None:
+            return f"Required parameter '{field}' cannot be null."
+
+    # Validate types of provided fields
+    for field, val in args.items():
+        if field not in properties or val is None:
+            continue
+        prop_def = properties[field]
+        expected_type = prop_def.get("type")
+
+        if expected_type == "string":
+            if not isinstance(val, str):
+                return f"Parameter '{field}' must be a string, got {type(val).__name__}."
+        elif expected_type == "integer":
+            if isinstance(val, bool) or not isinstance(val, int):
+                return f"Parameter '{field}' must be an integer, got {type(val).__name__}."
+        elif expected_type == "array":
+            if not isinstance(val, list):
+                return f"Parameter '{field}' must be an array list, got {type(val).__name__}."
+        elif expected_type == "boolean":
+            if not isinstance(val, bool):
+                return f"Parameter '{field}' must be a boolean, got {type(val).__name__}."
+
+        # Enum check if specified
+        if "enum" in prop_def and val not in prop_def["enum"]:
+            allowed = ", ".join(repr(e) for e in prop_def["enum"])
+            return f"Parameter '{field}' has invalid value {repr(val)}. Allowed: [{allowed}]."
+
+    return None
+
+
 def dispatch_request(req):
     method = req.get("method")
     msg_id = req.get("id")
@@ -456,8 +508,40 @@ def dispatch_request(req):
         }
     elif method == "tools/call":
         params = req.get("params", {})
+        if not isinstance(params, dict):
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {
+                    "code": -32602,
+                    "message": "Invalid params: params must be a JSON object."
+                }
+            }
+
         tool_name = params.get("name")
         args = params.get("arguments", {})
+
+        tool_def = next((t for t in TOOLS if t["name"] == tool_name), None)
+        if not tool_def:
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {
+                    "code": -32601,
+                    "message": f"Tool not found: {tool_name}"
+                }
+            }
+
+        val_err = validate_tool_arguments(tool_def, args)
+        if val_err:
+            return {
+                "jsonrpc": "2.0",
+                "id": msg_id,
+                "error": {
+                    "code": -32602,
+                    "message": f"Invalid params for tool '{tool_name}': {val_err}"
+                }
+            }
 
         if tool_name == "artisan_inspect_code":
             output = handle_inspect_code(args)

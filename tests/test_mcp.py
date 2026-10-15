@@ -188,3 +188,60 @@ def test_mcp_unknown_method_returns_jsonrpc_32601_error():
     assert res["error"]["code"] == -32601
     assert "Method not found" in res["error"]["message"]
 
+
+def test_mcp_missing_required_argument_returns_32602_error():
+    # artisan_inspect_code requires 'code' parameter
+    req = {
+        "jsonrpc": "2.0",
+        "id": 50,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_inspect_code",
+            "arguments": {}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "error" in res
+    assert res["error"]["code"] == -32602
+    assert "Missing required parameter 'code'" in res["error"]["message"]
+
+
+def test_mcp_invalid_argument_type_returns_32602_error():
+    # 'limit' in artisan_select_masters must be an integer, not a string or boolean
+    req = {
+        "jsonrpc": "2.0",
+        "id": 51,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_select_masters",
+            "arguments": {"task": "Build auth", "limit": "not_an_int"}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "error" in res
+    assert res["error"]["code"] == -32602
+    assert "must be an integer" in res["error"]["message"]
+
+
+def test_mcp_invalid_enum_argument_returns_32602_error():
+    # 'type' in artisan_record_learning has strict enum: ["mistake", "success", "convention", "anti_pattern", "lesson"]
+    req = {
+        "jsonrpc": "2.0",
+        "id": 52,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_record_learning",
+            "arguments": {
+                "type": "invalid_junk_type",
+                "category": "api",
+                "pattern": "something",
+                "lesson": "something else"
+            }
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "error" in res
+    assert res["error"]["code"] == -32602
+    assert "has invalid value" in res["error"]["message"]
+
+

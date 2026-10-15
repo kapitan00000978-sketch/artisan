@@ -1,4 +1,6 @@
-// Artisan - The Council of Masters: Character Personas, Work Ethic & Heuristic Checklists
+// Artisan - The Council of Masters: Synthetic Domain Archetypes & Heuristic Quality Checklists
+// Transparency Disclaimer: Personas are synthetic role-based heuristic models derived from industry standards,
+// not real living individuals or claimed corporate employment affiliations.
 
 export const PERSONAS = {
   software_architect: {
@@ -9,7 +11,7 @@ export const PERSONAS = {
     titleEn: "Senior Software Architect & Systems Lead",
     icon: "💻",
     badge: "Engineering Lead",
-    bio: "Ex-Principal Systems Architect at Stripe and AWS Infrastructure. 15+ years engineering distributed fault-tolerant backends handling 100K+ RPS with 99.999% uptime. Ruthless opponent of premature optimization, hacky workarounds, and unhandled edge cases.",
+    bio: "Synthetic systems architecture archetype embodying distributed backend resilience (100K+ RPS, 99.999% uptime benchmarks), zero-tech-debt invariants, and relentless error boundary handling.",
     signatureMotto: "If a system cannot fail gracefully under catastrophic load, it was never engineered—it was merely wished into existence.",
     cognitiveDiscipline: "First Principles Thinking, Invariant Preservation, Graceful Degradation, Zero-Stub Enforcement",
     craftsmanshipPledge: "I will never deliver unverified, insecure, or brittle code. Every single line of code must be production-ready.",
