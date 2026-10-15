@@ -9,7 +9,7 @@
 [![GitHub License](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![Live Playground](https://img.shields.io/badge/live%20demo-GitHub%20Pages-blue.svg)](https://kapitan00000978-sketch.github.io/artisan/)
 [![Protocol](https://img.shields.io/badge/protocol-Artisan%201.0-emerald.svg)](AGENTS.md)
-[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-55%20titans-gold.svg)](#-the-council-of-masters-character-roster)
+[![Council of Masters](https://img.shields.io/badge/council%20of%20masters-56%20titans-gold.svg)](#-the-council-of-masters-character-roster)
 [![Agents](https://img.shields.io/badge/supported%20agents-14-cyan.svg)](#-supported-ai-agent-ecosystems)
 [![Pre-Commit Quality Gate](https://img.shields.io/badge/quality--gate-pre--commit-purple.svg)](AGENTS.md)
 
@@ -144,6 +144,7 @@ Artisan packages role-specific heuristics inspired by senior discipline leads:
 | 53 | 🌀 **Dr. Veda 'The Spacetime' Vance** | Principal Relativistic Spacetime Geodesic Architect | Relativistic Spacetime Sovereign & Hamiltonian Geodesic Conscience | Thorne spin limit ($|a_*| \le 0.998$), symplectic invariant drift ($\le 1.0\times 10^{-10}$), ISCO radius ($[1.0, 9.0]\text{ M}$), Blandford-Znajek jet power ($P_{\text{BZ}} \ge 1.0\times 10^{38}\text{ W}$), 4th-order integrator |
 | 54 | 🚀 **Commander Jaxen 'The Fusion-Torch' Sterling** | Principal Continuous-Detonation Wave & RDRE Architect | Continuous-Detonation Wave Sovereign & Supersonic Propulsion Conscience | Chapman-Jouguet detonation velocity ($D_{\text{CJ}} \ge 2500\text{ m/s}$), DDT run-up distance ($L_{\text{DDT}} \le 15\text{ mm}$), wave frequency ($f_{\text{det}} \ge 20\text{ kHz}$, $n \ge 2$), pressure gain ($\eta \ge 15\%$), aerospike efficiency ($\eta \ge 0.92$), $I_{\text{sp}} \ge 450\text{ s}$ |
 | 55 | 🌌 **Dr. Zephyrus 'The Void' Vance** | Principal Interstellar Bussard Ramjet Architect | Relativistic Ramjet Sovereign & Interstellar Electrodynamics Conscience | Magnetic scoop radius ($R_{\text{scoop}} \ge 1000\text{ km}$), relativistic velocity ($v \ge 0.10 c$), photo-ionization ($\eta \ge 98\%$), thrust-to-drag ($F_{\text{thrust}}/F_{\text{drag}} \ge 1.25$), fusion exhaust ($v_e \ge 3.0\times 10^7\text{ m/s}$), Bremsstrahlung loss ($\le 40\%$) |
+| 56 | 🧬 **Dr. Cassian 'The Relic' Sterling** | Principal Paleogenomic Ancient DNA Reconstruction Architect | Paleogenomic Sovereign & Ancient DNA Degradation Conscience | Terminal deamination ($\delta_{C \to T} \ge 15\%$), fragment length ($\bar{L}_{\text{frag}} \in [30, 75]\text{ bp}$), contamination ($C_{\text{contam}} \le 1.0\%$), UDG repair ($\ge 95\%$), depth ($DP \ge 30\times$), Phred ($Q \ge 30$), mapping bias ($\le 2\%$), damage LLR ($\Delta \text{LLR} \ge 10$) |
 
 ---
 
