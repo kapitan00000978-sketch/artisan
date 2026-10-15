@@ -158,3 +158,34 @@ def test_cmd_audit_json_output(capsys):
     assert "score" in data
     assert "passed" in data
     assert ret == 0
+
+
+def test_cmd_context_output(capsys):
+    args = argparse.Namespace(task="Build secure user login with JWT", files=[], json=False)
+    ret = artisan_cli.cmd_context(args)
+    captured = capsys.readouterr()
+    assert ret == 0
+    assert "ARTISAN DYNAMIC CONTEXT" in captured.out
+    assert "Context Optimization" in captured.out
+
+
+def test_cmd_context_json(capsys):
+    args = argparse.Namespace(task="Database connection pooling", files=[], json=True)
+    ret = artisan_cli.cmd_context(args)
+    captured = capsys.readouterr()
+    assert ret == 0
+    data = json.loads(captured.out)
+    assert "prompt" in data
+    assert "selected_masters" in data
+
+
+def test_cmd_metrics():
+    args = argparse.Namespace()
+    ret = artisan_cli.cmd_metrics(args)
+    assert ret == 0
+
+
+def test_cmd_agents():
+    args = argparse.Namespace(register=None, release=None, files=[])
+    ret = artisan_cli.cmd_agents(args)
+    assert ret == 0

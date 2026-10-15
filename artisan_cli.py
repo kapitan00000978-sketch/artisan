@@ -409,6 +409,33 @@ def cmd_metrics(args: argparse.Namespace) -> int:
         return 1
 
 
+def cmd_context(args: argparse.Namespace) -> int:
+    """Dynamically builds a token-optimized, scar-tissue-injected prompt for any task."""
+    try:
+        from context_selector import SmartMasterSelector
+        from learning_memory import LearningMemory
+        selector = SmartMasterSelector()
+        memory = LearningMemory()
+    except ImportError as imp_err:
+        print(f"[-] Error: Could not load context engine: {imp_err}", file=sys.stderr)
+        return 1
+
+    task = args.task or ""
+    files = args.files or []
+    lessons = memory.get_lessons(task=task, limit=4)
+    res = selector.build_dynamic_prompt(task_description=task, files=files, lessons=lessons)
+
+    if args.json:
+        print(json.dumps(res, indent=2))
+        return 0
+
+    print(res["prompt"])
+    print("\n" + "-" * 70)
+    print(f"📊 [Context Optimization]: {res['approx_tokens']} tokens (~{res['optimization_ratio']} compression vs 12K baseline)")
+    print("-" * 70)
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -455,6 +482,12 @@ def main():
     # metrics
     subparsers.add_parser("metrics", help="Display workspace quality statistics and audit metrics")
 
+    # context / prompt
+    p_ctx = subparsers.add_parser("context", aliases=["prompt"], help="Generate a token-optimized, scar-tissue-injected prompt for a task")
+    p_ctx.add_argument("task", help="Description of the engineering task")
+    p_ctx.add_argument("--files", "-f", nargs="*", help="Optional files involved in the task")
+    p_ctx.add_argument("--json", "-j", action="store_true", help="Output prompt metadata in JSON format")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -479,6 +512,8 @@ def main():
         return cmd_agents(args)
     elif args.subcommand == "metrics":
         return cmd_metrics(args)
+    elif args.subcommand in ("context", "prompt"):
+        return cmd_context(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()

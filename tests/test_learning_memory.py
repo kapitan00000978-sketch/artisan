@@ -92,3 +92,13 @@ def test_learning_memory_warning_snippet():
         snippet = mem.format_warning_snippet("payment transaction charge")
         assert "PAST LESSONS & SCAR TISSUE" in snippet
         assert "idempotency" in snippet.lower()
+
+
+def test_learning_memory_synonym_expansion():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        mem_path = os.path.join(tmpdir, "test_memory.json")
+        mem = LearningMemory(mem_path)
+        # Search using synonym 'login' which maps to 'auth'
+        lessons = mem.get_lessons(task="User login flow", limit=3)
+        assert len(lessons) > 0
+        assert any(l["category"] == "auth" for l in lessons)

@@ -16,6 +16,30 @@ from typing import List, Dict, Any, Optional
 
 DEFAULT_MEMORY_PATH = os.path.join(".artisan", "memory.json")
 
+# Semantic domain synonym expansion mapping
+SYNONYM_MAP: Dict[str, List[str]] = {
+    "login": ["auth", "authentication", "session", "credential"],
+    "signup": ["auth", "registration", "user"],
+    "password": ["auth", "hash", "secret", "credential"],
+    "jwt": ["auth", "token", "signature", "bearer"],
+    "payment": ["stripe", "billing", "charge", "checkout", "idempotency"],
+    "stripe": ["payment", "billing", "charge", "idempotency"],
+    "money": ["payment", "finance", "billing"],
+    "db": ["database", "sql", "query", "migration"],
+    "sql": ["database", "query", "injection", "orm"],
+    "postgres": ["database", "sql", "pool"],
+    "mysql": ["database", "sql", "pool"],
+    "sqlite": ["database", "sql"],
+    "rest": ["api", "endpoint", "http", "route"],
+    "fastapi": ["api", "endpoint", "route"],
+    "express": ["api", "endpoint", "route"],
+    "speed": ["performance", "latency", "cache", "slow"],
+    "slow": ["performance", "latency", "bottleneck", "optimization"],
+    "css": ["ui", "design", "style", "layout"],
+    "frontend": ["ui", "design", "component", "react"],
+    "ui": ["design", "frontend", "layout", "contrast"]
+}
+
 
 class LearningMemory:
     """
@@ -148,7 +172,11 @@ class LearningMemory:
         if not task and not category:
             return all_items[:limit]
 
-        task_tokens = set(re.findall(r"\b[a-z0-9_\-\.]{2,}\b", (task or "").lower()))
+        raw_tokens = set(re.findall(r"\b[a-z0-9_\-\.]{2,}\b", (task or "").lower()))
+        task_tokens = set(raw_tokens)
+        for t in raw_tokens:
+            if t in SYNONYM_MAP:
+                task_tokens.update(SYNONYM_MAP[t])
         scored_items = []
 
         for item in all_items:
