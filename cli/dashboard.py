@@ -91,7 +91,7 @@ def render_dashboard():
     print("      Empowered by The Council of Masters — Quality & Security Protocol")
     print("=" * 80)
     print(" [STATUS]           : PROTOCOL ACTIVE")
-    print(" [SUPPORTED AGENTS] : 11 Standalone Agent Environments Synchronized")
+    print(" [SUPPORTED AGENTS] : 14 Standalone Agent Environments Synchronized")
     print(" [MEMORY LEDGER]    : .artisan/memory.json (Synchronized)")
     print("=" * 80)
 
@@ -112,12 +112,13 @@ def render_dashboard():
         print(f"  • {name:<34} | {title:<28} | {archetype}")
 
     print("-" * 80)
-    print(" 📂 SUPPORTED AGENT ECOSYSTEM:")
+    print(" 📂 SUPPORTED AGENT ECOSYSTEM (14 PLATFORMS):")
     agents = [
-        "1. Antigravity & Gemini CLI", "2. Claude Code CLI", "3. Cursor AI Editor",
-        "4. GitHub Copilot", "5. Windsurf Cascade", "6. Nous Hermes Agent",
-        "7. OpenAI Codex", "8. Pi/Pie Coding Agent", "9. OpenCode TUI",
-        "10. OpenClaw Platform", "11. Universal Python Agent"
+        "1. Antigravity & Gemini", "2. Claude Code CLI", "3. Cursor AI Editor",
+        "4. GitHub Copilot", "5. Windsurf Cascade", "6. Cline Agent",
+        "7. Moonshot Kimi Code", "8. Kilo Agent", "9. Nous Hermes Agent",
+        "10. OpenAI Codex", "11. Pi/Pie Coding Agent", "12. OpenCode TUI",
+        "13. OpenClaw Platform", "14. Universal Python Agent"
     ]
     for i in range(0, len(agents), 2):
         row = f"  • {agents[i]:<36}"

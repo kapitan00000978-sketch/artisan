@@ -354,6 +354,61 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     return 0 if all_ok else 1
 
 
+def cmd_agents(args: argparse.Namespace) -> int:
+    """Displays active AI agent sessions and checks for conflicting locks in the workspace."""
+    try:
+        from agent_registry import AgentRegistry
+        reg = AgentRegistry()
+    except ImportError as imp_err:
+        print(f"[-] Error: Agent registry module could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+    if args.register:
+        parts = args.register.split(":", 1)
+        name = parts[0].strip()
+        intent = parts[1].strip() if len(parts) > 1 else "Active in workspace"
+        files = args.files or []
+        sess = reg.register_session(agent_name=name, active_files=files, intent=intent)
+        print(f"✅ Registered active agent session: {sess['session_id']} ({name})")
+        return 0
+
+    if args.release:
+        released = reg.release_session(args.release)
+        if released:
+            print(f"✅ Released session: {args.release}")
+        else:
+            print(f"ℹ️ Session not found: {args.release}")
+        return 0
+
+    sessions = reg.get_active_sessions()
+    print(f"\n🤖 [ARTISAN MULTI-AGENT STATE] ({len(sessions)} active session(s)):\n")
+    if not sessions:
+        print("  Zero concurrent agents currently registered. Workspace is single-tenant.")
+    else:
+        for idx, s in enumerate(sessions, 1):
+            name = s.get("agent_name", "Unknown")
+            sid = s.get("session_id", "")
+            intent = s.get("intent", "General task")
+            files = s.get("active_files", [])
+            print(f"  {idx}. [{name}] (ID: {sid})")
+            print(f"     Intent : {intent}")
+            if files:
+                print(f"     Holding: {', '.join(files)}")
+            print()
+    return 0
+
+
+def cmd_metrics(args: argparse.Namespace) -> int:
+    """Displays workspace quality statistics and audit metrics."""
+    try:
+        from roi_tracker import display_metrics
+        display_metrics()
+        return 0
+    except ImportError as imp_err:
+        print(f"[-] Error: ROI tracker module could not be loaded: {imp_err}", file=sys.stderr)
+        return 1
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -391,6 +446,15 @@ def main():
     # mcp
     subparsers.add_parser("mcp", help="Start the Model Context Protocol (MCP) JSON-RPC server")
 
+    # agents
+    p_agents = subparsers.add_parser("agents", help="List or register concurrent AI agent sessions")
+    p_agents.add_argument("--register", "-r", help="Register current agent session (e.g. 'Claude Code:Refactoring API')")
+    p_agents.add_argument("--release", help="Release session by ID")
+    p_agents.add_argument("--files", "-f", nargs="*", help="Active files held by this session")
+
+    # metrics
+    subparsers.add_parser("metrics", help="Display workspace quality statistics and audit metrics")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -411,6 +475,10 @@ def main():
         return cmd_memory(args)
     elif args.subcommand == "doctor":
         return cmd_doctor(args)
+    elif args.subcommand == "agents":
+        return cmd_agents(args)
+    elif args.subcommand == "metrics":
+        return cmd_metrics(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()
