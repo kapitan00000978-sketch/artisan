@@ -46,7 +46,7 @@ def test_mcp_tools_list_contains_artisan_tools():
     req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
     res = server.dispatch_request(req)
     tool_names = [t["name"] for t in res["result"]["tools"]]
-    assert len(tool_names) == 8
+    assert len(tool_names) == 9
     assert "artisan_inspect_code" in tool_names
     assert "artisan_get_persona" in tool_names
     assert "artisan_list_council" in tool_names
@@ -55,6 +55,26 @@ def test_mcp_tools_list_contains_artisan_tools():
     assert "artisan_get_lessons" in tool_names
     assert "artisan_record_learning" in tool_names
     assert "artisan_inject_prompt" in tool_names
+    assert "artisan_list_guilds" in tool_names
+
+def test_mcp_list_guilds_via_dispatch():
+    req = {
+        "jsonrpc": "2.0",
+        "id": 14,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_list_guilds",
+            "arguments": {}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "result" in res
+    content = json.loads(res["result"]["content"][0]["text"])
+    assert content["guilds_count"] == 8
+    assert len(content["guilds"]) == 8
+    names = [g["name"] for g in content["guilds"]]
+    assert any("Software" in n for n in names)
+    assert any("Cybersecurity" in n for n in names)
 
 def test_mcp_select_masters_via_dispatch():
     req = {

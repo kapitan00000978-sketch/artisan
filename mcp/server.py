@@ -178,17 +178,21 @@ for key, val in SDK_COUNCIL_MEMBERS.items():
             ]
         }
 
-# Initialize Smart Context Selector and Persistent Learning Memory
+# Initialize Smart Context Selector, Persistent Learning Memory, and Guilds
 try:
     from sdk.context_selector import SmartMasterSelector
     from sdk.learning_memory import LearningMemory
+    from sdk.guilds import COUNCIL_GUILDS, list_guilds_summary
 except ImportError:
     try:
         from context_selector import SmartMasterSelector
         from learning_memory import LearningMemory
+        from guilds import COUNCIL_GUILDS, list_guilds_summary
     except ImportError:
         SmartMasterSelector = None
         LearningMemory = None
+        COUNCIL_GUILDS = {}
+        list_guilds_summary = None
 
 learning_memory = LearningMemory() if LearningMemory else None
 master_selector = SmartMasterSelector(COUNCIL_MEMBERS) if SmartMasterSelector else None
@@ -299,6 +303,14 @@ TOOLS = [
             },
             "required": ["task"]
         }
+    },
+    {
+        "name": "artisan_list_guilds",
+        "description": "Lists all 8 specialized Council Guilds (Squads), their leads, member counts, and focus areas.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {}
+        }
     }
 ]
 
@@ -403,6 +415,12 @@ def handle_inject_prompt(args):
     return {"status": "Selector not initialized", "prompt": ""}
 
 
+def handle_list_guilds(args):
+    if list_guilds_summary:
+        return {"guilds_count": len(COUNCIL_GUILDS), "guilds": list_guilds_summary()}
+    return {"status": "Guilds not initialized", "guilds": []}
+
+
 def dispatch_request(req):
     method = req.get("method")
     msg_id = req.get("id")
@@ -457,6 +475,8 @@ def dispatch_request(req):
             output = handle_record_learning(args)
         elif tool_name == "artisan_inject_prompt":
             output = handle_inject_prompt(args)
+        elif tool_name == "artisan_list_guilds":
+            output = handle_list_guilds(args)
         else:
             return {
                 "jsonrpc": "2.0",
