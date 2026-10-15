@@ -11,6 +11,7 @@ import json
 
 # Add scripts directory to path for shared detector
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src", "sdk")))
 from detector import scan_code
 
 if sys.platform == "win32":
@@ -148,6 +149,29 @@ COUNCIL_MEMBERS = {
     }
 }
 
+# Dynamically merge all registered council members from the Artisan SDK
+try:
+    from craftsman import COUNCIL_MEMBERS as SDK_COUNCIL_MEMBERS
+    for key, val in SDK_COUNCIL_MEMBERS.items():
+        if key not in COUNCIL_MEMBERS:
+            COUNCIL_MEMBERS[key] = {
+                "name": val.get("name", key),
+                "archetype": val.get("archetype", "Master of Discipline"),
+                "title": val.get("archetype", "Council Master"),
+                "motto": val.get("motto", "Excellence is non-negotiable."),
+                "bio": f"Master of {val.get('badge', key)}. Enforces relentless domain excellence.",
+                "cognitive_discipline": val.get("badge", "Domain Mastery"),
+                "pledge": "I will never deliver unverified, incomplete, or brittle work.",
+                "criteria": [
+                    f"Strict compliance with {val.get('badge', key)} domain benchmarks",
+                    "Zero silent error suppression and zero unhandled edge cases",
+                    "Production-ready implementation with autonomous self-inspection"
+                ]
+            }
+except ImportError as err:
+    import logging
+    logging.debug("SDK council members could not be imported: %s", err)
+
 TOOLS = [
     {
         "name": "artisan_inspect_code",
@@ -236,8 +260,8 @@ def handle_recall_memory(args):
         try:
             with open(mem_file, "r", encoding="utf-8") as f:
                 return json.load(f)
-        except Exception:
-            pass
+        except (json.JSONDecodeError, OSError) as err:
+            return {"status": "Memory read error", "error": str(err)}
     return {"status": "Memory active, zero recorded failures."}
 
 

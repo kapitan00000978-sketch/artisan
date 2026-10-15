@@ -9,7 +9,7 @@ import server
 def test_mcp_list_council():
     res = server.handle_list_council({})
     assert "masters" in res
-    assert res["council_size"] == 8
+    assert res["council_size"] == 64
     names = [m["name"] for m in res["masters"]]
     assert any("Marcus" in n for n in names)
     assert any("Diana" in n for n in names)

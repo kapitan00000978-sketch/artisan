@@ -39,32 +39,80 @@ SUPPORTED_AGENTS = {
     "kilo": "kilo-agent"
 }
 
+def copy_file_or_dir(src, dst):
+    """Safely copies a file or directory tree to dst."""
+    if not os.path.exists(src):
+        return False
+    if os.path.abspath(src) == os.path.abspath(dst):
+        return True
+    if os.path.isdir(src):
+        os.makedirs(dst, exist_ok=True)
+        for item in os.listdir(src):
+            s = os.path.join(src, item)
+            d = os.path.join(dst, item)
+            copy_file_or_dir(s, d)
+    else:
+        parent = os.path.dirname(dst)
+        if parent:
+            os.makedirs(parent, exist_ok=True)
+        shutil.copy2(src, dst)
+    return True
+
+
 def install(agent_target="all"):
     print(BANNER)
     base_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     target_dir = os.getcwd()
 
-    print(f"[*] Target Directory: {target_dir}")
+    print(f"[*] Base Directory   : {base_dir}")
+    print(f"[*] Target Directory : {target_dir}")
+    is_external = os.path.abspath(base_dir) != os.path.abspath(target_dir)
 
-    if agent_target == "all":
-        print("[*] Installing Artisan protocol across all agent configurations...")
-        for name, folder in SUPPORTED_AGENTS.items():
-            src = os.path.join(base_dir, folder)
-            if os.path.exists(src):
-                print(f"  [+] Synced: {folder}")
-    else:
-        folder = SUPPORTED_AGENTS.get(agent_target.lower())
+    # 1. Install core protocol rules
+    if is_external:
+        agents_src = os.path.join(base_dir, "AGENTS.md")
+        if os.path.exists(agents_src):
+            copy_file_or_dir(agents_src, os.path.join(target_dir, "AGENTS.md"))
+            print("  [+] Installed core AGENTS.md protocol")
+
+    # 2. Initialize .artisan memory directory
+    mem_dir = os.path.join(target_dir, ".artisan")
+    os.makedirs(mem_dir, exist_ok=True)
+    mem_file = os.path.join(mem_dir, "memory.json")
+    if not os.path.exists(mem_file):
+        sample_mem_src = os.path.join(base_dir, ".artisan", "memory.json")
+        if os.path.exists(sample_mem_src) and is_external:
+            shutil.copy2(sample_mem_src, mem_file)
+        else:
+            with open(mem_file, "w", encoding="utf-8") as f:
+                f.write('{"user_preferences": {}, "conventions": [], "recorded_scar_tissue": []}\n')
+        print("  [+] Initialized clean project memory (.artisan/memory.json)")
+
+    # 3. Deploy specific agent configuration(s)
+    agents_to_deploy = list(SUPPORTED_AGENTS.keys()) if agent_target == "all" else [agent_target.lower()]
+    for agent_key in agents_to_deploy:
+        folder = SUPPORTED_AGENTS.get(agent_key)
         if not folder:
-            print(f"[!] Unknown agent: {agent_target}. Choose from: {list(SUPPORTED_AGENTS.keys())}")
-            return
-        print(f"  [+] Synced specific agent: {folder}")
+            print(f"[!] Unknown agent: {agent_key}. Supported: {list(SUPPORTED_AGENTS.keys())}")
+            continue
 
-    # Ensure memory dir exists
-    hp_mem = os.path.join(target_dir, ".artisan")
-    os.makedirs(hp_mem, exist_ok=True)
+        agent_src_dir = os.path.join(base_dir, folder)
+        if not os.path.exists(agent_src_dir):
+            continue
+
+        if is_external:
+            for item in os.listdir(agent_src_dir):
+                if item == "README.md":
+                    continue
+                src_item = os.path.join(agent_src_dir, item)
+                dst_item = os.path.join(target_dir, item)
+                copy_file_or_dir(src_item, dst_item)
+
+        print(f"  [+] Active: {folder} ({agent_key})")
 
     print("\n[✓] SUCCESS: Artisan protocol is now active!")
     print("    - Zero Babysitting: ON")
+    print("    - 64 Council Titans: READY")
     print("    - Self-Inspection Loop: ON")
     print("    - Auto-Remediation: ON")
 
