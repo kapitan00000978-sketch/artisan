@@ -74,12 +74,17 @@ if (command === 'init' || command === 'install') {
   // 3. Claude Code plugin
   copyFileSafe('CLAUDE.md', 'CLAUDE.md');
 
-  // 4. Copilot, Windsurf, Cline, Kimi & Kilo
+  // 4. Copilot, Windsurf, Cline, Kimi, Kilo, Hermes, Codex, OpenClaw, OpenCode & Pie
   copyFileSafe('.github/copilot-instructions.md', '.github/copilot-instructions.md');
   copyFileSafe('.windsurfrules', '.windsurfrules');
   copyFileSafe('.clinerules', '.clinerules');
   copyFileSafe('kimi-agent/KIMI.md', 'KIMI.md');
   copyFileSafe('kilo-agent/KILO.md', 'KILO.md');
+  copyFileSafe('hermes-agent/HERMES.md', 'HERMES.md');
+  copyFileSafe('codex-agent/CODEX.md', 'CODEX.md');
+  copyFileSafe('openclaw-agent/OPENCLAW.md', 'OPENCLAW.md');
+  copyFileSafe('opencode-agent/OPENCODE.md', 'OPENCODE.md');
+  copyFileSafe('pie-agent/PIE.md', 'PIE.md');
 
   // 5. Automatically install git pre-commit hook if in git repository
   const gitDir = path.join(targetDir, '.git');

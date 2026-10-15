@@ -1,12 +1,41 @@
 # 🏛️ Artisan for Nous Research Hermes Agent
-Empowered by The Council of Masters
 
-This directory configures the **Nous Research Hermes Agent OS** with the Artisan protocol.
+Empowered by the Artisan Autonomous Quality & Craftsmanship Protocol.
 
-## Contents:
-- `HERMES.md` — Hermes agent configuration and prompt guidelines.
-- `system_prompt.txt` — System prompt for OpenHermes / Nous-Hermes local LLMs.
-- `skills/` — Artisan skills suite.
+This directory configures **Nous Research Hermes Agent OS** and local Hermes LLMs (Hermes 2 Pro, Hermes 3, OpenHermes) with deterministic quality enforcement, defensive architecture, and persistent memory.
 
-## How to Use:
-Pass `system_prompt.txt` to your Hermes inference runner or load `HERMES.md` into Hermes Agent OS.
+---
+
+## 📦 Contents:
+- **`HERMES.md`** — Universal Hermes agent configuration and craftsmanship protocol. Copied into project roots via `artisan init`.
+- **`system_prompt.txt`** — Direct system prompt block ready for insertion into local Hermes inference runners (vLLM, Ollama, LM Studio, TGI).
+- **`skills/`** — Artisan domain skills for sub-agents and tool-calling execution.
+
+---
+
+## ⚡ Quick Start:
+
+### Option 1: 1-Click CLI Setup (Recommended)
+```bash
+# In your target project root:
+artisan init
+```
+This automatically deploys `HERMES.md` alongside your Git pre-commit quality gate and `.artisan/memory.json`.
+
+### Option 2: Local LLM Inference Runner
+When invoking OpenHermes or Hermes 3 via Ollama, llama.cpp, or vLLM, load `system_prompt.txt` as the system directive:
+```python
+system_prompt = open("hermes-agent/system_prompt.txt", "r", encoding="utf-8").read()
+# Inject into your chat completion request
+```
+
+### Option 3: Hermes Agent OS
+Place `HERMES.md` in the working directory of Hermes Agent OS or register it in your agent runtime settings.
+
+---
+
+## 🎯 Enforced Standards:
+1. **Zero-Defect Self-Inspection:** Zero stubs (`TODO`, `FIXME`, `pass`), zero silent error suppressions, zero hardcoded secrets.
+2. **Defensive Architecture:** Built-in defenses against SQLi, XSS, SSRF, memory leaks, and race conditions.
+3. **Background Auto-Correction:** Silently repairs any defect or test regression before user reporting.
+4. **Persistent Learning:** Seamlessly accesses `.artisan/memory.json` to avoid past project mistakes.

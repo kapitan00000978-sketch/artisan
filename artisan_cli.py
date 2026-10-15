@@ -151,6 +151,11 @@ def cmd_init(args: argparse.Namespace) -> int:
         (".clinerules", ".clinerules"),
         ("kimi-agent/KIMI.md", "KIMI.md"),
         ("kilo-agent/KILO.md", "KILO.md"),
+        ("hermes-agent/HERMES.md", "HERMES.md"),
+        ("codex-agent/CODEX.md", "CODEX.md"),
+        ("openclaw-agent/OPENCLAW.md", "OPENCLAW.md"),
+        ("opencode-agent/OPENCODE.md", "OPENCODE.md"),
+        ("pie-agent/PIE.md", "PIE.md"),
     ]
 
     for src_rel, dst_rel in configs:

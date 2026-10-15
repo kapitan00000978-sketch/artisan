@@ -98,8 +98,16 @@ def test_cmd_init_in_clean_directory():
             data = json.load(f)
             assert data["version"] == "2.0.0"
 
-        # Protocol file copied
+        # Protocol and agent rule files copied
         assert os.path.exists(os.path.join(tmpdir, "AGENTS.md"))
+        assert os.path.exists(os.path.join(tmpdir, "HERMES.md"))
+        assert os.path.exists(os.path.join(tmpdir, "CODEX.md"))
+        assert os.path.exists(os.path.join(tmpdir, "OPENCLAW.md"))
+        assert os.path.exists(os.path.join(tmpdir, "OPENCODE.md"))
+        assert os.path.exists(os.path.join(tmpdir, "PIE.md"))
+        assert os.path.exists(os.path.join(tmpdir, "CLAUDE.md"))
+        assert os.path.exists(os.path.join(tmpdir, "KIMI.md"))
+        assert os.path.exists(os.path.join(tmpdir, "KILO.md"))
 
 
 def test_cmd_status():
