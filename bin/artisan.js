@@ -81,6 +81,15 @@ if (command === 'init' || command === 'install') {
   copyFileSafe('kimi-agent/KIMI.md', 'KIMI.md');
   copyFileSafe('kilo-agent/KILO.md', 'KILO.md');
 
+  // 5. Automatically install git pre-commit hook if in git repository
+  const gitDir = path.join(targetDir, '.git');
+  if (fs.existsSync(gitDir)) {
+    const hookScript = path.join(packageRoot, 'scripts', 'install_git_hook.py');
+    if (fs.existsSync(hookScript)) {
+      spawnSync('python', [hookScript], { stdio: 'inherit' });
+    }
+  }
+
   console.log(`\n==================================================================`);
   console.log(`  ✅ Artisan Protocol is now active!`);
   console.log(`     Autonomous Quality & Pre-Commit Craftsmanship Rules installed.`);
@@ -151,19 +160,38 @@ if (command === 'init' || command === 'install') {
     console.error(`[-] Remediator script not found at ${fixScript}`);
     process.exit(1);
   }
+} else if (command === 'memory') {
+  const memScript = path.join(packageRoot, 'artisan_cli.py');
+  if (fs.existsSync(memScript)) {
+    const extraArgs = args.slice(1);
+    const res = spawnSync('python', [memScript, 'memory', ...extraArgs], { stdio: 'inherit' });
+    process.exit(res.status || 0);
+  }
+} else if (command === 'hud') {
+  const hudScript = path.join(packageRoot, 'cli', 'dashboard.py');
+  if (fs.existsSync(hudScript)) {
+    spawnSync('python', [hudScript], { stdio: 'inherit' });
+  }
 } else if (command === 'status') {
-  console.log(`🛡️ Artisan Protocol     : ACTIVE (v1.0.1)`);
-  console.log(`Autonomous Mode        : Enforced (Zero Commands Required)`);
-  console.log(`Quality Gatekeeper     : Pre-commit Inspection Active`);
-  console.log(`Supported Ecosystems    : 11 Platforms Ready\n`);
+  const statusScript = path.join(packageRoot, 'artisan_cli.py');
+  if (fs.existsSync(statusScript)) {
+    spawnSync('python', [statusScript, 'status'], { stdio: 'inherit' });
+  } else {
+    console.log(`🛡️ Artisan Protocol     : ACTIVE (v1.0.1)`);
+    console.log(`Autonomous Mode        : Enforced (Zero Commands Required)`);
+    console.log(`Quality Gatekeeper     : Pre-commit Inspection Active`);
+    console.log(`Supported Ecosystems    : 14 Platforms Ready\n`);
+  }
 } else {
   console.log(`Usage:`);
-  console.log(`  artisan init       # Install Artisan rules into current repository`);
+  console.log(`  artisan init       # Install Artisan rules & auto-hook into repository`);
   console.log(`  artisan hook       # Install Git pre-commit quality gate hook`);
   console.log(`  artisan audit      # Run quality & security audit (--staged for diff)`);
   console.log(`  artisan fix        # Auto-remediate silent catches and stubs`);
+  console.log(`  artisan memory     # Inspect persistent learning memory and scar tissue`);
   console.log(`  artisan doctor     # Check configuration and environment health`);
   console.log(`  artisan mcp        # Launch MCP JSON-RPC Server`);
+  console.log(`  artisan hud        # Launch interactive terminal HUD`);
   console.log(`  artisan watch      # Run continuous background watchdog sentinel`);
   console.log(`  artisan status     # Check Artisan protocol status`);
 }
