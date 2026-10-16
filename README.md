@@ -212,14 +212,14 @@ hallwright mcp
 
 Hallwright includes zero-dependency, production-grade building blocks ready for immediate use via `hallwright lib <domain>`:
 
-| Domain Module | Path | Description |
+| Domain Module | Real Verified Path | Description |
 | :--- | :--- | :--- |
-| **Auth & Security** | [`src/libraries/auth_security.py`](./src/libraries/auth_security.py) | PBKDF2/HMAC-SHA256 password hashing, constant-time verification, cryptographic tokens, role permissions. |
-| **Database Engine** | [`src/libraries/database.py`](./src/libraries/database.py) | Parameterized SQLite connection pooling, schema migrations, and transaction management with zero string interpolation. |
-| **Payments & Billing** | [`src/libraries/payments.py`](./src/libraries/payments.py) | Idempotent payment intent processing, double-charge defense, webhook signature verification. |
-| **Real-Time PubSub** | [`src/libraries/real_time.py`](./src/libraries/real_time.py) | In-memory pub/sub broker with regex topic matching, backpressure buffering, thread-safe delivery. |
-| **Caching Layer** | [`src/libraries/caching.py`](./src/libraries/caching.py) | Thread-safe LRU/TTL cache with expiration sweeps, cache-stampede locking, cache-aside decorators. |
-| **Resilient HTTP Client** | [`src/libraries/resilient_http.py`](./src/libraries/resilient_http.py) | Standard-library HTTP client with exponential backoff, jitter, circuit breaker state machine, timeouts. |
+| **Architecture & Resilience** | [`src/libraries/architecture/circuit_breaker.py`](./src/libraries/architecture/circuit_breaker.py) | Circuit breaker state machine with exponential backoff, jitter, and event bus pub/sub broker. |
+| **Security & Auth** | [`src/libraries/security/jwt_validator.py`](./src/libraries/security/jwt_validator.py) | Zero-dependency JWT RS256/HS256 validator and injection sanitizer (`sanitizer.py`). |
+| **High-Throughput Performance** | [`src/libraries/performance/cache.py`](./src/libraries/performance/cache.py) | Thread-safe LRU/TTL cache with stampede lock and pre-allocated ring buffer (`ring_buffer.py`). |
+| **Mutation & Fuzz Testing** | [`src/libraries/testing/mutation_suite.py`](./src/libraries/testing/mutation_suite.py) | AST mutation test generator and deterministic property-based fuzzer (`fuzzer.py`). |
+| **Developer Experience** | [`src/libraries/copywriting/dx_linter.py`](./src/libraries/copywriting/dx_linter.py) | Developer experience & docstring linter and Keep-a-Changelog generator (`changelog.py`). |
+| **Spatial 3D & Design** | [`src/libraries/design/spatial_3d.js`](./src/libraries/design/spatial_3d.js) | Standalone Three.js/WebGL spatial swarm HUD and dark-mode CSS tokens (`liquid_glass.css`). |
 
 ---
 

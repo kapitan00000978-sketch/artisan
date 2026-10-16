@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "Artisan Engineering Core",
-  "lastUpdated": "2026-10-16T09:58:07.093457+00:00",
+  "lastUpdated": "2026-10-16T19:04:57.772118+00:00",
   "userPreferences": [
     "Clean architecture, zero empty catch blocks, zero TODO comments in production",
     "Comprehensive test coverage across all domain mutations"
@@ -60,7 +60,7 @@
       "lesson": "Always enforce pagination limits.",
       "severity": "high",
       "recordedAt": "2026-10-15T15:08:39.779478+00:00",
-      "updatedAt": "2026-10-16T09:58:07.093457+00:00"
+      "updatedAt": "2026-10-16T19:04:57.772118+00:00"
     },
     {
       "id": "mis-0004",
@@ -69,7 +69,7 @@
       "lesson": "Always verify algorithm is HS256/RS256",
       "severity": "high",
       "recordedAt": "2026-10-15T18:30:24.182735+00:00",
-      "updatedAt": "2026-10-16T09:57:48.368646+00:00"
+      "updatedAt": "2026-10-16T19:04:38.005262+00:00"
     },
     {
       "id": "mis-0005",
@@ -114,6 +114,14 @@
       "severity": "medium",
       "recordedAt": "2026-10-15T21:18:15.274803+00:00",
       "updatedAt": "2026-10-16T09:55:48.820248+00:00"
+    },
+    {
+      "id": "mis-0010",
+      "category": "dangerous",
+      "pattern": "Potential SQL injection via raw string interpolation or concatenation. Use parameterized queries.",
+      "lesson": "Rejected in pre-commit audit (.\\professions\\database_architect\\elevation_engine.py:133). Resolve Potential SQL injection via raw string interpolation or concatenation. Use parameterized queries. before committing.",
+      "severity": "medium",
+      "recordedAt": "2026-10-16T19:02:54.797113+00:00"
     }
   ],
   "successes": [

@@ -1,0 +1,65 @@
+{
+  "$schema": "https://json.schemastore.org/artisan.json",
+  "version": "1.0.0",
+  "mode": "strict",
+  "threshold_score": 100,
+  "rules": {
+    "STUB_TODO_FIXME": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "STUB_PASS_PLACEHOLDER": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "STUB_EMPTY_CATCH": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "STUB_BARE_EXCEPT": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "DANGEROUS_EVAL_EXEC": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "SECRET_ANTHROPIC": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "SECRET_OPENAI": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "SECRET_AWS": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "SECRET_ASSIGNMENT": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "SECRET_GENERIC_KEY": {
+      "enabled": true,
+      "severity": "error"
+    }
+  },
+  "exclude_dirs": [
+    ".git",
+    "node_modules",
+    ".venv",
+    "__pycache__",
+    "tests",
+    "bench"
+  ],
+  "exclude_files": [
+    "detector.py",
+    "pre-commit-gatekeeper.py",
+    "remediator.py",
+    "server.py",
+    "watchdog.py",
+    "sync_artisan.py",
+    "claude_hook.py"
+  ]
+}

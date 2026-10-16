@@ -35,10 +35,11 @@ def remediate_python_code(content: str) -> Tuple[str, int]:
         nonlocal modifications
         modifications += 1
         indent = match.group(1)
+        sub_indent = indent + ("\t" if "\t" in indent else "    ")
         return (
             f"{indent}except Exception as _artisan_err:\n"
-            f"{indent}    import logging\n"
-            f"{indent}    logging.warning(f'Handled error: {{_artisan_err}}')  # artisan-ignore"
+            f"{sub_indent}import logging\n"
+            f"{sub_indent}logging.warning(f'Handled error: {{_artisan_err}}')  # artisan-ignore"
         )
     content = re.sub(pattern_bare, repl_bare, content)
 
@@ -48,10 +49,11 @@ def remediate_python_code(content: str) -> Tuple[str, int]:
         nonlocal modifications
         modifications += 1
         indent = match.group(1)
+        sub_indent = indent + ("\t" if "\t" in indent else "    ")
         return (
             f"{indent}except Exception as _artisan_err:\n"
-            f"{indent}    import logging\n"
-            f"{indent}    logging.warning(f'Handled error: {{_artisan_err}}')  # artisan-ignore"
+            f"{sub_indent}import logging\n"
+            f"{sub_indent}logging.warning(f'Handled error: {{_artisan_err}}')  # artisan-ignore"
         )
     content = re.sub(pattern_exc, repl_exc, content)
 
@@ -83,19 +85,32 @@ def remediate_js_code(content: str) -> Tuple[str, int]:
 
 
 def remediate_file(filepath: str) -> int:
-    """Remediates an individual file on disk."""
+    """Remediates an individual file on disk with strict decoding and AST verification."""
     if not os.path.exists(filepath):
         return 0
 
     try:
-        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+        # Strict UTF-8 reading without errors="ignore" to prevent irreversible data loss (HW-002)
+        with open(filepath, "r", encoding="utf-8") as f:
             original = f.read()
+    except (UnicodeDecodeError, OSError) as read_err:
+        print(f"  [-] Skipping unreadable/non-UTF8 file {filepath}: {read_err}", file=sys.stderr)
+        return 0
 
+    try:
         fixed = original
         changes = 0
 
         if filepath.endswith(".py"):
             fixed, changes = remediate_python_code(original)
+            # Verify Python AST syntax before writing to prevent IndentationError (HW-001)
+            if changes > 0:
+                import ast
+                try:
+                    ast.parse(fixed, filename=filepath)
+                except SyntaxError as syn_err:
+                    print(f"  [!] Remediation aborted for {filepath}: would produce syntax error ({syn_err})", file=sys.stderr)
+                    return 0
         elif filepath.endswith((".js", ".ts", ".jsx", ".tsx")):
             fixed, changes = remediate_js_code(original)
 

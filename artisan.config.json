@@ -24,15 +24,19 @@
       "enabled": true,
       "severity": "error"
     },
-    "SECRET_ANTHROPIC_KEY": {
+    "SECRET_ANTHROPIC": {
       "enabled": true,
       "severity": "error"
     },
-    "SECRET_OPENAI_KEY": {
+    "SECRET_OPENAI": {
       "enabled": true,
       "severity": "error"
     },
-    "SECRET_AWS_KEY": {
+    "SECRET_AWS": {
+      "enabled": true,
+      "severity": "error"
+    },
+    "SECRET_ASSIGNMENT": {
       "enabled": true,
       "severity": "error"
     },

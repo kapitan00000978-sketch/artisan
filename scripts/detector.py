@@ -152,6 +152,27 @@ COMPILED_RULES = [
 # Compatibility alias for scripts expecting PATTERNS tuple format
 PATTERNS = [(r[2], r[0], r[3]) for r in RULES]
 
+# Rule ID aliases to guarantee config compatibility (HW-026)
+RULE_ALIASES = {
+    "SECRET_ANTHROPIC_KEY": "SECRET_ANTHROPIC",
+    "SECRET_OPENAI_KEY": "SECRET_OPENAI",
+    "SECRET_AWS_KEY": "SECRET_AWS",
+    "SECRET_GENERIC_KEY": "SECRET_ASSIGNMENT",
+    "SECRET_ASSIGNMENT": "SECRET_GENERIC_KEY",
+    "SECRET_ANTHROPIC": "SECRET_ANTHROPIC_KEY",
+    "SECRET_OPENAI": "SECRET_OPENAI_KEY",
+    "SECRET_AWS": "SECRET_AWS_KEY",
+}
+
+def is_rule_enabled(rule_id: str, rules_cfg: Dict[str, Any]) -> bool:
+    """Checks whether a rule is enabled in configuration, resolving any alias names (HW-026)."""
+    if rule_id in rules_cfg:
+        return rules_cfg[rule_id].get("enabled", True)
+    alt = RULE_ALIASES.get(rule_id)
+    if alt and alt in rules_cfg:
+        return rules_cfg[alt].get("enabled", True)
+    return True
+
 # Council of Masters domain ownership
 COUNCIL_AUDITORS = {
     "STUB": "Marcus Sterling (Senior Architect)",
@@ -323,7 +344,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
             continue
 
         for rule_id, category, compiled_pattern, message, deduction in COMPILED_RULES:
-            if rule_id in rules_cfg and not rules_cfg[rule_id].get("enabled", True):
+            if not is_rule_enabled(rule_id, rules_cfg):
                 continue
 
             match = compiled_pattern.search(line)
@@ -375,29 +396,44 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
                 })
 
     # Check for empty catch or except spanning across multiple lines if not caught per line
-    if not any(f["rule_id"] in ("STUB_EMPTY_CATCH", "STUB_BARE_EXCEPT") for f in findings):
-        if re.search(r"catch\s*(?:\([^)]*\))?\s*\{\s*\}", code) and IGNORE_MARKER not in code:
-            findings.append({
-                "rule_id": "STUB_EMPTY_CATCH",
-                "category": "STUB",
-                "auditor": COUNCIL_AUDITORS["STUB"],
-                "file": filename,
-                "line": 1,
-                "matched_text": "catch { }",
-                "message": "Empty catch block detected. Handle or log exceptions properly.",
-                "deduction": 25
-            })
-        if re.search(r"except(?:\s+Exception(?:\s+as\s+[a-zA-Z0-9_]+)?)?\s*:\s*\n\s*pass\b", code) and IGNORE_MARKER not in code:
-            findings.append({
-                "rule_id": "STUB_BARE_EXCEPT",
-                "category": "STUB",
-                "auditor": COUNCIL_AUDITORS["STUB"],
-                "file": filename,
-                "line": 1,
-                "matched_text": "except: pass",
-                "message": "Silent exception suppression (except: pass). Log or handle errors.",
-                "deduction": 25
-            })
+    # Fix HW-027: Inspect line-level ignore markers rather than checking if IGNORE_MARKER appears anywhere in the file
+    if not any(f["rule_id"] == "STUB_EMPTY_CATCH" for f in findings):
+        for m in re.finditer(r"catch\s*(?:\([^)]*\))?\s*\{\s*\}", code):
+            start_pos = m.start()
+            line_no = code[:start_pos].count("\n") + 1
+            line_str = lines[line_no - 1] if line_no <= len(lines) else ""
+            if IGNORE_MARKER not in line_str and "hallwright-ignore" not in line_str:
+                findings.append({
+                    "rule_id": "STUB_EMPTY_CATCH",
+                    "category": "STUB",
+                    "auditor": COUNCIL_AUDITORS["STUB"],
+                    "file": filename,
+                    "line": line_no,
+                    "matched_text": m.group(0),
+                    "message": "Empty catch block detected. Handle or log exceptions properly.",
+                    "deduction": 25
+                })
+                break
+
+    if not any(f["rule_id"] == "STUB_BARE_EXCEPT" for f in findings):
+        for m in re.finditer(r"except(?:\s+Exception(?:\s+as\s+[a-zA-Z0-9_]+)?)?\s*:\s*\n\s*pass\b", code):
+            start_pos = m.start()
+            line_no = code[:start_pos].count("\n") + 1
+            except_line = lines[line_no - 1] if line_no <= len(lines) else ""
+            pass_line = lines[line_no] if line_no < len(lines) else ""
+            if (IGNORE_MARKER not in except_line and "hallwright-ignore" not in except_line and
+                IGNORE_MARKER not in pass_line and "hallwright-ignore" not in pass_line):
+                findings.append({
+                    "rule_id": "STUB_BARE_EXCEPT",
+                    "category": "STUB",
+                    "auditor": COUNCIL_AUDITORS["STUB"],
+                    "file": filename,
+                    "line": line_no,
+                    "matched_text": m.group(0),
+                    "message": "Silent exception suppression (except: pass). Log or handle errors.",
+                    "deduction": 25
+                })
+                break
 
     # Deep AST analysis for Python code (eliminates regex blindspots)
     if filename.endswith(".py") or ("def " in code and ("import " in code or "try:" in code)):
@@ -479,9 +515,12 @@ def scan_project(base_dir: str = ".", staged_only: bool = False, config_override
     file_scores: List[int] = []
     scanned_count = 0
 
-    excluded_dirs = {".git", "node_modules", ".venv", "__pycache__", "tests"}
+    # Configurable exclusion list; does not forcibly exclude tests if user wishes to audit test suites (HW-025)
+    default_excluded_dirs = {".git", "node_modules", ".venv", "__pycache__"}
     if "exclude_dirs" in cfg:
-        excluded_dirs.update(cfg["exclude_dirs"])
+        excluded_dirs = set(cfg["exclude_dirs"])
+    else:
+        excluded_dirs = default_excluded_dirs
 
     excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "remediator.py", "server.py", "watchdog.py", "sync_artisan.py", "claude_hook.py"}
     if "exclude_files" in cfg:
