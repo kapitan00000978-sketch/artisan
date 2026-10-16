@@ -19,6 +19,10 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 IGNORE_MARKER = "artisan-ignore"
+IGNORE_MARKERS = ("artisan-ignore", "hallwright-ignore")
+
+def is_ignored(text: str) -> bool:
+    return any(marker in text for marker in IGNORE_MARKERS)
 
 # Safe placeholder values that should NOT trigger false-positive secret alerts
 DUMMY_SECRET_VALUES = {
@@ -31,41 +35,41 @@ DUMMY_SECRET_VALUES = {
 
 # Rule Definitions: (id, category, regex_pattern, message, score_deduction)
 RULES = [
-    # 1. Stubs & Placeholders (artisan-ignore)
+    # 1. Stubs & Placeholders (hallwright-ignore)
     (
         "STUB_TODO_FIXME",
         "STUB",
-        r"(?:#|//|/\*|--|\*)\s*.*?\b(?:todo|fixme|xxx|hack|tbd|stub:)\b|\bimplement\s+later\b",
+        r"(?:#|//|/\*|--|\*)\s*.*?\b(?:todo|fixme|xxx|hack|tbd|stub:)\b|\bimplement\s+later\b",  # hallwright-ignore
         "Unfinished stub or placeholder detected. Complete all logic end-to-end.",
         20
     ),
     (
         "STUB_PASS_PLACEHOLDER",
         "STUB",
-        r"\bpass\s*#.*",
+        r"\bpass\s*#.*",  # hallwright-ignore
         "Pass placeholder detected. Implement complete functionality.",
         20
     ),
     (
         "STUB_EMPTY_CATCH",
         "STUB",
-        r"catch\s*(?:\([^)]*\))?\s*\{\s*\}",
+        r"catch\s*(?:\([^)]*\))?\s*\{\s*\}",  # hallwright-ignore
         "Empty catch block detected. Handle or log exceptions properly.",
         25
     ),
     (
         "STUB_BARE_EXCEPT",
         "STUB",
-        r"except(?:\s+Exception(?:\s+as\s+[a-zA-Z0-9_]+)?)?\s*:\s*pass\b|except\s*:\s*pass\b",
-        "Silent exception suppression (except: pass or except Exception: pass). Log or handle errors.",
+        r"except(?:\s+Exception(?:\s+as\s+[a-zA-Z0-9_]+)?)?\s*:\s*pass\b|except\s*:\s*pass\b",  # hallwright-ignore
+        "Silent exception suppression detected. Log or handle errors.",  # hallwright-ignore
         25
     ),
 
-    # 2. Dangerous Dynamic Execution & Injections (artisan-ignore)
+    # 2. Dangerous Dynamic Execution & Injections (hallwright-ignore)
     (
         "DANGEROUS_EVAL_EXEC",
         "DANGEROUS",
-        r"\b(?:eval|exec)\s*\(",
+        r"\b(?:eval|exec)\s*\(",  # hallwright-ignore
         "Dangerous dynamic execution ('eval' or 'exec') detected. Replace with safe structured parsing.",
         30
     ),
@@ -209,8 +213,8 @@ def run_gitleaks(target_dir: str = ".") -> List[Dict[str, Any]]:
                     "deduction": 35
                 })
             return findings
-    except Exception:
-        pass
+    except (subprocess.SubprocessError, FileNotFoundError, json.JSONDecodeError, OSError):
+        return []
     return []
 
 
@@ -220,7 +224,7 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
     ast_findings: List[Dict[str, Any]] = []
     try:
         tree = ast.parse(code, filename=filename or "<input>")
-    except Exception:
+    except (SyntaxError, ValueError):
         return []
 
     lines = code.splitlines()
@@ -232,7 +236,7 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
             if isinstance(func, ast.Name) and func.id in ("eval", "exec"):
                 line_no = getattr(node, "lineno", 1)
                 line_content = lines[line_no - 1] if line_no <= len(lines) else ""
-                if IGNORE_MARKER not in line_content:
+                if not is_ignored(line_content):
                     ast_findings.append({
                         "rule_id": "DANGEROUS_EVAL_EXEC",
                         "category": "DANGEROUS",
@@ -243,12 +247,12 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
                         "message": f"Dangerous dynamic execution ('{func.id}') verified via AST analysis.",
                         "deduction": 30
                     })
-        # 2. Detect empty except blocks (bare except: pass or except Exception: pass)
+        # 2. Detect empty except blocks in AST
         elif isinstance(node, ast.ExceptHandler):
             if len(node.body) == 1 and isinstance(node.body[0], ast.Pass):
                 line_no = getattr(node, "lineno", 1)
                 line_content = lines[line_no - 1] if line_no <= len(lines) else ""
-                if IGNORE_MARKER not in line_content:
+                if not is_ignored(line_content):
                     exc_name = "bare except" if node.type is None else "except"
                     ast_findings.append({
                         "rule_id": "STUB_BARE_EXCEPT",
@@ -293,7 +297,7 @@ def scan_multilingual_structural(code: str, filename: str = "") -> List[Dict[str
             start_pos = m.start()
             line_no = code[:start_pos].count("\n") + 1
             line_str = code.splitlines()[line_no - 1] if line_no <= len(code.splitlines()) else ""
-            if IGNORE_MARKER not in line_str:
+            if not is_ignored(line_str):
                 findings.append({
                     "rule_id": "STUB_EMPTY_CATCH",
                     "category": "STUB",
@@ -311,7 +315,7 @@ def scan_multilingual_structural(code: str, filename: str = "") -> List[Dict[str
             start_pos = m.start()
             line_no = code[:start_pos].count("\n") + 1
             line_str = code.splitlines()[line_no - 1] if line_no <= len(code.splitlines()) else ""
-            if IGNORE_MARKER not in line_str:
+            if not is_ignored(line_str):
                 findings.append({
                     "rule_id": "STUB_EMPTY_CATCH",
                     "category": "STUB",
@@ -340,7 +344,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
     lines = code.splitlines()
 
     for line_idx, line in enumerate(lines, 1):
-        if IGNORE_MARKER in line:
+        if is_ignored(line):
             continue
 
         for rule_id, category, compiled_pattern, message, deduction in COMPILED_RULES:
@@ -378,7 +382,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
     )
     for match in block_comment_pattern.finditer(code):
         block_text = match.group(0)
-        if IGNORE_MARKER in block_text:
+        if is_ignored(block_text):
             continue
         if re.search(r"\b(?:todo|fixme|xxx|hack|tbd|stub)\b|\bimplement\s+later\b", block_text, re.IGNORECASE):
             start_pos = match.start()
@@ -396,13 +400,12 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
                 })
 
     # Check for empty catch or except spanning across multiple lines if not caught per line
-    # Fix HW-027: Inspect line-level ignore markers rather than checking if IGNORE_MARKER appears anywhere in the file
     if not any(f["rule_id"] == "STUB_EMPTY_CATCH" for f in findings):
         for m in re.finditer(r"catch\s*(?:\([^)]*\))?\s*\{\s*\}", code):
             start_pos = m.start()
             line_no = code[:start_pos].count("\n") + 1
             line_str = lines[line_no - 1] if line_no <= len(lines) else ""
-            if IGNORE_MARKER not in line_str and "hallwright-ignore" not in line_str:
+            if not is_ignored(line_str):
                 findings.append({
                     "rule_id": "STUB_EMPTY_CATCH",
                     "category": "STUB",
@@ -421,8 +424,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
             line_no = code[:start_pos].count("\n") + 1
             except_line = lines[line_no - 1] if line_no <= len(lines) else ""
             pass_line = lines[line_no] if line_no < len(lines) else ""
-            if (IGNORE_MARKER not in except_line and "hallwright-ignore" not in except_line and
-                IGNORE_MARKER not in pass_line and "hallwright-ignore" not in pass_line):
+            if not is_ignored(except_line) and not is_ignored(pass_line):
                 findings.append({
                     "rule_id": "STUB_BARE_EXCEPT",
                     "category": "STUB",

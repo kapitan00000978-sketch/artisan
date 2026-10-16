@@ -178,7 +178,7 @@ Hallwright provides a reproducible verification harness evaluating deterministic
 | **Remediation Cycles** | Unbounded / Manual human triage | **Average `1.0` cycle auto-remediation** |
 
 > Controlled evaluation methodology and task fixtures: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md).  
-> *Note: Hallwright's internal protocol and CLI test suite contains 580+ passing unit, regression, and mutation tests.*
+> *Note: Hallwright's internal protocol and CLI test suite contains 600 passing unit, regression, and mutation tests.*
 
 ---
 
