@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./assets/artisan-banner.jpg" alt="Hallwright Banner" width="800" />
+  <img src="./assets/hallwright-banner.jpg" alt="Hallwright Banner" width="800" />
 </p>
 
 # 🛡️ Hallwright: A Guardrail Layer for AI Coding Agents
