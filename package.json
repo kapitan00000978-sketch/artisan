@@ -1,7 +1,7 @@
 {
   "name": "artisan-protocol",
   "version": "2.0.0",
-  "description": "The Autonomous Operating System & Craftsmanship Protocol for AI Coding Agents (Claude, Cursor, Copilot, Hermes, Antigravity).",
+  "description": "A guardrail layer for AI coding agents: pre-commit gate, living project memory, and subagent/skill definitions.",
   "main": "bin/artisan.js",
   "bin": {
     "artisan": "./bin/artisan.js"

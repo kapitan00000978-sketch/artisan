@@ -5,12 +5,12 @@ build-backend = "setuptools.build_meta"
 [project]
 name = "artisan"
 version = "2.0.0"
-description = "The Autonomous Operating System & Craftsmanship Protocol for AI Coding Agents"
+description = "A guardrail layer for AI coding agents: pre-commit gate, project memory, and subagent definitions"
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [{ name = "Artisan Open Source Project" }]
-keywords = ["ai", "agents", "craftsmanship", "zero-babysitting", "mcp", "cursor", "claude", "quality-gate", "autonomous"]
+keywords = ["ai", "agents", "craftsmanship", "guardrails", "mcp", "cursor", "claude", "quality-gate", "pre-commit"]
 classifiers = [
     "Programming Language :: Python :: 3",
     "Programming Language :: Python :: 3.10",
