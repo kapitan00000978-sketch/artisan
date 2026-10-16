@@ -2,52 +2,14 @@
   <img src="./assets/hallwright-banner.jpg" alt="Hallwright Banner" width="800" />
 </p>
 
-# 🛡️ Hallwright: A Guardrail Layer for AI Coding Agents
+# 🛡️ Hallwright: Autonomous Quality Protocol & Pre-Commit Craftsmanship Gate
 
 > **Deterministic pre-commit gate, project memory, and subagent/skill definitions for Claude Code, Cursor, Copilot, Antigravity, and other AI coding assistants.**
 
 [![CI](https://github.com/kapitan00000978-sketch/hallwright/actions/workflows/artisan-gate.yml/badge.svg)](https://github.com/kapitan00000978-sketch/hallwright/actions)
-[![npm version](https://img.shields.io/npm/v/hallwright.svg)](https://www.npmjs.com/)
+[![npm version](https://img.shields.io/npm/v/hallwright.svg)](https://www.npmjs.com/package/hallwright)
 [![MCP 2.0](https://img.shields.io/badge/MCP-JSON--RPC%202.0-orange.svg)](mcp/server.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
-
----
-
-## ⚡ The 3 Core Pillars
-
-Hallwright is not an AI model or operating system. It sits between your developer workspace and whichever AI assistant you use, providing three deterministic guardrails:
-
-```
-                  ┌─────────────────────────────────────────┐
-                  │          Your Host AI Assistant         │
-                  │   (Claude Code, Cursor, Copilot, etc.)  │
-                  └────────────────────┬────────────────────┘
-                                       │
-                        ┌──────────────┴──────────────┐
-                        ▼                             ▼
-              ┌───────────────────┐         ┌───────────────────┐
-              │  2. Project       │         │  3. Subagent &    │
-              │     Memory        │         │     Skill Defs    │
-              │  (.artisan/)      │         │  (.agents/, MCP)  │
-              └─────────┬─────────┘         └─────────┬─────────┘
-                        │                             │
-                        ▼                             ▼
-                  ┌─────────────────────────────────────────┐
-                  │        Local Codebase & Git Stage       │
-                  └────────────────────┬────────────────────┘
-                                       │ git commit
-                                       ▼
-                        ┌─────────────────────────────┐
-                        │   1. Pre-Commit AST Gate    │
-                        │   (Blocks stubs & secrets)  │
-                        └─────────────────────────────┘
-```
-
-| Pillar | What It Does | Key Command |
-| :--- | :--- | :--- |
-| **1. Deterministic Gate** | Intercepts unfinished stubs (`pass`, `// TODO`), empty catches (`except: pass`), and secret leaks before commit. | `hallwright audit --staged` |
-| **2. Project Memory** | Records past bugs as persistent "scar tissue" (`.artisan/memory.json`) and provides cross-agent continuity handoffs (`.artisan/continuity.json`). | `hallwright memory` / `hallwright resume` |
-| **3. Subagents & Skills** | Provides 7 specialized role definitions and domain skills that your host assistant can adopt for complex tasks. | `hallwright swarm` / `hallwright context` |
 
 ---
 
@@ -98,6 +60,44 @@ def handle_webhook(payload):
 
 ---
 
+## ⚡ The 3 Core Pillars
+
+Hallwright is not an AI model or operating system. It sits between your developer workspace and whichever AI assistant you use, providing three deterministic guardrails:
+
+```
+                  ┌─────────────────────────────────────────┐
+                  │          Your Host AI Assistant         │
+                  │   (Claude Code, Cursor, Copilot, etc.)  │
+                  └────────────────────┬────────────────────┘
+                                       │
+                        ┌──────────────┴──────────────┐
+                        ▼                             ▼
+              ┌───────────────────┐         ┌───────────────────┐
+              │  2. Project       │         │  3. Subagent &    │
+              │     Memory        │         │     Skill Defs    │
+              │  (.artisan/)      │         │  (.agents/, MCP)  │
+              └─────────┬─────────┘         └─────────┬─────────┘
+                        │                             │
+                        ▼                             ▼
+                  ┌─────────────────────────────────────────┐
+                  │        Local Codebase & Git Stage       │
+                  └────────────────────┬────────────────────┘
+                                       │ git commit
+                                       ▼
+                        ┌─────────────────────────────┐
+                        │   1. Pre-Commit AST Gate    │
+                        │   (Blocks stubs & secrets)  │
+                        └─────────────────────────────┘
+```
+
+| Pillar | What It Does | Key Command |
+| :--- | :--- | :--- |
+| **1. Deterministic Gate** | Intercepts unfinished stubs (`pass`, `// TODO`), empty catches (`except: pass`), and secret leaks before commit. | `hallwright audit --staged` |
+| **2. Project Memory** | Records past bugs as persistent "scar tissue" (`.artisan/memory.json`) and provides cross-agent continuity handoffs (`.artisan/continuity.json`). | `hallwright memory` / `hallwright resume` |
+| **3. Subagents & Skills** | Provides 7 specialized role definitions and domain skills that your host assistant can adopt for complex tasks. | `hallwright swarm` / `hallwright context` |
+
+---
+
 ## 🔍 How Each Pillar Works
 
 ### Pillar 1: Deterministic Pre-Commit Gate (`scripts/detector.py`)
@@ -127,12 +127,31 @@ Hallwright provides 7 structured sub-agent roles for decomposing complex enginee
 
 ---
 
+## 🏛️ The Council of Masters (Core Engineering Leads)
+
+When generating targeted context via `hallwright context "<task>"`, the `SmartMasterSelector` dynamically matches task keywords to relevant domain leads, injecting only ~2K tokens (~6x context optimization compared to a full monolithic rubric dump):
+
+| Master | Discipline & Role | Core Focus |
+| :--- | :--- | :--- |
+| 💻 **Marcus 'The Vanguard' Sterling** | Senior Software Architect | SOLID architecture, clean interfaces, zero unhandled stubs |
+| 🛡️ **Gabriel 'The Sentinel' Frost** | Principal Cybersecurity Auditor | OWASP Top 10, credential protection, SQL injection prevention |
+| ⚡ **Gareth 'The Unbreakable' Drake** | DevOps & Cloud Reliability Architect | Idempotent IaC, container standards, health probes |
+| 🔬 **Dr. Evelyn 'The Oracle' Reed** | Staff Data Scientist & ML Architect | Data integrity, leakage prevention, statistical validation |
+| 🎨 **Elena 'The Visionary' Rostova** | Principal UI/UX Design Architect | WCAG 2.1 AAA accessibility, design tokens, spatial consistency |
+| 📊 **Victor 'The Fortress' Montgomery** | Financial & Unit-Economics Architect | Deterministic calculations, transaction boundaries, audit logs |
+| ⚖️ **Arthur 'The Ironclad' Pendelton** | Commercial Counsel & Contract Auditor | License compliance, contract safety, clear boundary definitions |
+| 🎯 **Diana 'The Closer' Drake** | Technical Documentation & DX Lead | High-clarity documentation, developer experience, zero AI fluff |
+
+> **Complete 64-Master Roster:** For specialized deep-tech, compiler, distributed systems, and physics domain leads, see [`docs/COUNCIL.md`](./docs/COUNCIL.md).
+
+---
+
 ## ❓ What `hallwright swarm` Actually Does
 
 `hallwright swarm` (or `artisan swarm`) does **not** invoke an LLM or make external API calls. It is a local, deterministic planning and coordination tool:
 
 1. **Task Decomposition:** Analyzes the task description and target files using keyword and extension heuristics.
-2. **Role Selection:** Selects relevant sub-agent roles from the 7 definitions above.
+2. **Role Selection:** Selects relevant sub-agent roles from the definitions above.
 3. **Memory Retrieval:** Queries `.artisan/memory.json` to attach historical lessons relevant to each role.
 4. **Plan Generation:** Outputs a structured, ordered execution plan (e.g. Architect → Security → Tester → Critic) with clear directives.
 5. **Session Coordination:** In execution mode, registers session locks in `.artisan/agent_sessions.json` to prevent multi-agent file collisions.
@@ -159,7 +178,7 @@ Hallwright provides a reproducible verification harness evaluating deterministic
 | **Remediation Cycles** | Unbounded / Manual human triage | **Average `1.0` cycle auto-remediation** |
 
 > Controlled evaluation methodology and task fixtures: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md).  
-> *Note: Hallwright's own protocol and CLI codebase is verified across 580+ automated unit, regression, and mutation tests.*
+> *Note: Hallwright's internal protocol and CLI test suite contains 580+ passing unit, regression, and mutation tests.*
 
 ---
 
@@ -285,11 +304,19 @@ hallwright resume               # Resumes from last agent checkpoint
 hallwright checkpoint "<msg>"   # Checkpoints active progress and blockers
 hallwright resume --no-continuity # Disables continuity tracking
 
+# 🧪 Mutation Testing & Red-Team Review
+hallwright mutate               # Measures test suite assertiveness via AST mutation testing
+hallwright review               # Runs adversarial red-team peer review on files or git diff
+
 # 📦 Enterprise Libraries
 hallwright lib auth             # Inspects and exports production auth & security library
 hallwright lib db               # Inspects database connection pool & migration library
 hallwright lib payments         # Inspects idempotent payment processing library
 hallwright lib list             # Lists all available domain libraries
+
+# 🌐 3D Spatial Swarm HUD & Dashboard
+hallwright 3d                   # Launches hardware-accelerated 3D spatial swarm dashboard
+hallwright hud                  # Launches interactive terminal dashboard
 
 # 🌐 Protocol Server & Metrics
 hallwright mcp                  # Launches Model Context Protocol JSON-RPC 2.0 server
