@@ -17,7 +17,7 @@ Thank you for your interest in contributing to **Artisan**! Artisan is an open-s
 
 ```bash
 # 1. Clone the repository
-git clone https://github.com/kapitan00000978-sketch/artisan.git
+git clone https://github.com/kapitan00000978-sketch/hallwright.git
 cd artisan
 
 # 2. Install development dependencies

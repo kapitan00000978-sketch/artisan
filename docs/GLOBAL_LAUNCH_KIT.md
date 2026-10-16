@@ -28,7 +28,7 @@ Over the past year, our team has been relying heavily on AI coding assistants (C
 
 We realized prompt engineering ("please don't leave TODOs") doesn't work reliably because LLMs are probabilistic token predictors. What AI agents actually need is a **Deterministic Operating System Kernel**.
 
-So we built Artisan: https://github.com/kapitan00000978-sketch/artisan
+So we built Artisan: https://github.com/kapitan00000978-sketch/hallwright
 
 ### What Artisan actually does:
 - **Deterministic AST & Security Pre-Commit Gate:** Inspects Abstract Syntax Trees and git-staged diffs in < 4 seconds. If an AI generates unhandled stubs, bare exception catches, or leaks API keys, the commit is rejected automatically.
@@ -40,12 +40,12 @@ So we built Artisan: https://github.com/kapitan00000978-sketch/artisan
 We ran Artisan against 10 realistic code generation tasks containing common anti-patterns:
 - Raw AI Agent Pass Rate: 10.0% (9/10 suffered defect leakage)
 - With Artisan Active: 100.0% (9 defects autonomously caught and remediated)
-(Full reproducible benchmark: https://github.com/kapitan00000978-sketch/artisan/tree/main/bench)
+(Full reproducible benchmark: https://github.com/kapitan00000978-sketch/hallwright/tree/main/bench)
 
 ### 1-Line Quickstart:
 ```bash
 # In any git repository:
-npx github:kapitan00000978-sketch/artisan init
+npx github:kapitan00000978-sketch/hallwright init
 # or with Python:
 python artisan.py init
 ```
@@ -156,7 +156,7 @@ We'd love your brutal feedback on our AST detection rules, memory schema, and wh
 > 1-Click activation in any repo:
 > 
 > ```bash
-> npx github:kapitan00000978-sketch/artisan init
+> npx github:kapitan00000978-sketch/hallwright init
 > ```
 > 
 > Auto-detects your tech stack (Python, Node/Next.js, Go, Rust, Java), configures rules, and installs the git pre-commit hook.
@@ -165,7 +165,7 @@ We'd love your brutal feedback on our AST detection rules, memory schema, and wh
 > Artisan is 100% open-source (MIT).
 > 
 > Star the repo on GitHub:
-> ⭐ https://github.com/kapitan00000978-sketch/artisan
+> ⭐ https://github.com/kapitan00000978-sketch/hallwright
 > 
 > Try the interactive live playground:
 > 🌐 https://kapitan00000978-sketch.github.io/artisan/

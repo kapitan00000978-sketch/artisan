@@ -4,14 +4,14 @@
   "description": "Autonomous AI Agent Quality & Craftsmanship Protocol: AST deep semantic audit, pre-commit gates, and 8 senior personas.",
   "author": "kapitan00000978-sketch",
   "license": "MIT",
-  "repository": "https://github.com/kapitan00000978-sketch/artisan",
+  "repository": "https://github.com/kapitan00000978-sketch/hallwright",
   "entrypoint": "scripts/pre-commit-gatekeeper.py",
   "mcpServer": {
     "command": "python",
     "args": ["mcp/server.py"]
   },
   "commands": {
-    "init": "npx github:kapitan00000978-sketch/artisan init",
+    "init": "npx github:kapitan00000978-sketch/hallwright init",
     "audit": "python scripts/pre-commit-gatekeeper.py",
     "fix": "python scripts/remediator.py",
     "doctor": "python cli/dashboard.py"

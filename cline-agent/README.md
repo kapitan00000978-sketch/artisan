@@ -8,4 +8,4 @@ This directory configures **Cline** (and **Roo Code**) with the Artisan autonomo
 - `skills/` — Complete Artisan domain skills suite.
 
 ## How to Use:
-Copy `.clinerules` into the root of your project or run `npx github:kapitan00000978-sketch/artisan init`. Cline will automatically read `.clinerules` on every task.
+Copy `.clinerules` into the root of your project or run `npx github:kapitan00000978-sketch/hallwright init`. Cline will automatically read `.clinerules` on every task.

@@ -2,14 +2,14 @@
 # Artisan PowerShell Bootstrap Installer
 # Usage:
 #   # Recommended secure installation:
-#   Invoke-WebRequest -Uri "https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.ps1" -OutFile "install.ps1"
+#   Invoke-WebRequest -Uri "https://raw.githubusercontent.com/kapitan00000978-sketch/hallwright/main/install.ps1" -OutFile "install.ps1"
 #   .\install.ps1
 #
 #   # Quick pipe mode:
-#   irm https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main/install.ps1 | iex
+#   irm https://raw.githubusercontent.com/kapitan00000978-sketch/hallwright/main/install.ps1 | iex
 # ==============================================================================
 
-$RepoRaw = "https://raw.githubusercontent.com/kapitan00000978-sketch/artisan/main"
+$RepoRaw = "https://raw.githubusercontent.com/kapitan00000978-sketch/hallwright/main"
 $TargetDir = Get-Location
 
 Write-Host "==================================================================" -ForegroundColor Cyan

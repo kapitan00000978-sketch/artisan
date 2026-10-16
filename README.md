@@ -6,7 +6,7 @@
 
 > **Deterministic pre-commit gate, project memory, and subagent/skill definitions for Claude Code, Cursor, Copilot, Antigravity, and other AI coding assistants.**
 
-[![CI](https://github.com/kapitan00000978-sketch/artisan/actions/workflows/artisan-gate.yml/badge.svg)](https://github.com/kapitan00000978-sketch/artisan/actions)
+[![CI](https://github.com/kapitan00000978-sketch/hallwright/actions/workflows/artisan-gate.yml/badge.svg)](https://github.com/kapitan00000978-sketch/hallwright/actions)
 [![npm version](https://img.shields.io/npm/v/hallwright.svg)](https://www.npmjs.com/)
 [![MCP 2.0](https://img.shields.io/badge/MCP-JSON--RPC%202.0-orange.svg)](mcp/server.py)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
@@ -55,7 +55,7 @@ Hallwright is not an AI model or operating system. It sits between your develope
 
 ```bash
 # 1. Initialize pre-commit gate & agent configs in your repository
-npx github:kapitan00000978-sketch/artisan init
+npx github:kapitan00000978-sketch/hallwright init
 
 # 2. Audit staged changes for stubs, empty catches & exposed secrets
 hallwright audit --staged
@@ -241,7 +241,7 @@ jobs:
     steps:
       - uses: actions/checkout@v4
       - name: Run Hallwright Quality & Security Gate
-        uses: kapitan00000978-sketch/artisan@v2
+        uses: kapitan00000978-sketch/hallwright@v2
 ```
 *(Both `@v2` and `@v1` tags resolve to current stable releases).*
 
