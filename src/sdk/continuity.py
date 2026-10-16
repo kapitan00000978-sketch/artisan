@@ -11,8 +11,11 @@ or configuration flag.
 import os
 import json
 import time
+import logging
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, field, asdict
+
+logger = logging.getLogger("hallwright.continuity")
 
 
 @dataclass
@@ -48,27 +51,28 @@ class ContinuityManager:
         if enabled is not None:
             self._enabled = enabled
         else:
-            env_val = os.environ.get("ARTISAN_NO_CONTINUITY", "").lower()
+            env_val = (os.environ.get("HALLWRIGHT_NO_CONTINUITY") or os.environ.get("ARTISAN_NO_CONTINUITY", "")).lower()
             if env_val in ("1", "true", "yes"):
                 self._enabled = False
             else:
                 self._enabled = self._check_config_enabled()
 
     def _check_config_enabled(self) -> bool:
-        """Check artisan.config.json if continuity is explicitly disabled."""
-        config_path = os.path.join(self.workspace_root, "artisan.config.json")
-        if os.path.exists(config_path):
-            try:
-                with open(config_path, "r", encoding="utf-8") as f:
-                    cfg = json.load(f)
-                    if isinstance(cfg, dict) and "continuity" in cfg:
-                        cont = cfg["continuity"]
-                        if isinstance(cont, dict):
-                            return bool(cont.get("enabled", True))
-                        elif isinstance(cont, bool):
-                            return cont
-            except Exception:
-                return True
+        """Check hallwright.config.json or artisan.config.json if continuity is explicitly disabled."""
+        for cfg_name in ["hallwright.config.json", "artisan.config.json"]:
+            config_path = os.path.join(self.workspace_root, cfg_name)
+            if os.path.exists(config_path):
+                try:
+                    with open(config_path, "r", encoding="utf-8") as f:
+                        cfg = json.load(f)
+                        if isinstance(cfg, dict) and "continuity" in cfg:
+                            cont = cfg["continuity"]
+                            if isinstance(cont, dict):
+                                return bool(cont.get("enabled", True))
+                            elif isinstance(cont, bool):
+                                return cont
+                except (OSError, json.JSONDecodeError, KeyError) as err:
+                    logger.debug("Failed reading config %s: %s", config_path, err)
         return True
 
     @property
@@ -176,7 +180,7 @@ class ContinuityManager:
         """Write human and AI-readable handoff document."""
         date_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(cp.last_updated))
         lines = [
-            "# 🤝 Artisan Universal Agent Handoff",
+            "# 🤝 Hallwright / Artisan Universal Agent Handoff",
             "",
             f"> **Last Agent Active:** `{cp.last_agent}`",
             f"> **Last Checkpoint:** {date_str}",
@@ -234,7 +238,7 @@ class ContinuityManager:
 
         date_str = time.strftime("%Y-%m-%d %H:%M:%S", time.localtime(cp.last_updated))
         prompt_parts = [
-            f"=== ARTISAN CONTINUITY HANDOFF ({date_str}) ===",
+            f"=== HALLWRIGHT / ARTISAN CONTINUITY HANDOFF ({date_str}) ===",
             f"PREVIOUS AGENT: {cp.last_agent}",
             f"LAST COMPLETED TASK: {cp.last_task}",
         ]

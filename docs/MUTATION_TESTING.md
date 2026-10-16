@@ -1,6 +1,6 @@
-# 🧬 Artisan AST Mutation Testing
+# 🧬 Hallwright AST Mutation Testing
 
-Artisan includes a zero-dependency Abstract Syntax Tree (AST) mutation testing engine (`src/sdk/mutator.py`) to verify the fidelity and assertiveness of test suites.
+Hallwright includes a zero-dependency Abstract Syntax Tree (AST) mutation testing engine (`src/sdk/mutator.py`) to verify the fidelity and assertiveness of test suites.
 
 ---
 

@@ -1,10 +1,10 @@
-# 📊 Artisan Benchmark Evaluation Report
+# 📊 Hallwright Benchmark Evaluation Report
 
 Generated on: `2026-10-15T20:00:44Z`
 
 ## Summary Metrics
 
-| Metric | Baseline (no gate) | With Artisan (Gate + Auto-Fix) |
+| Metric | Baseline (no gate) | With Hallwright (Gate + Auto-Fix) |
 | :--- | :--- | :--- |
 | **Tasks Passed** | 1 / 10 (10.0%) | **10 / 10 (100.0%)** |
 | **Defects Repaired** | 0 | **9 defects resolved** |
@@ -12,7 +12,7 @@ Generated on: `2026-10-15T20:00:44Z`
 
 ## Detailed Task Breakdown
 
-| Task ID | Task Description | Baseline (no gate) | Artisan Status | Auto-Repaired Flaws |
+| Task ID | Task Description | Baseline (no gate) | Hallwright Status | Auto-Repaired Flaws |
 | :--- | :--- | :--- | :--- | :--- |
 | TASK_01 | API Error Handling | `REJECTED` (50/100) | **`CERTIFIED` (100/100)** | 1 flaw(s) |
 | TASK_02 | Database Auth Config | `CERTIFIED` (100/100) | **`CERTIFIED` (100/100)** | 0 flaw(s) |

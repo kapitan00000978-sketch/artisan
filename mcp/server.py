@@ -644,7 +644,8 @@ def dispatch_request(req):
         tool_name = params.get("name")
         args = params.get("arguments", {})
 
-        tool_def = next((t for t in TOOLS if t["name"] == tool_name), None)
+        norm_tool = (tool_name or "").replace("hallwright_", "artisan_")
+        tool_def = next((t for t in TOOLS if t["name"] in (tool_name, norm_tool)), None)
         if not tool_def:
             return {
                 "jsonrpc": "2.0",
@@ -666,31 +667,31 @@ def dispatch_request(req):
                 }
             }
 
-        if tool_name == "artisan_inspect_code":
+        if norm_tool == "artisan_inspect_code":
             output = handle_inspect_code(args)
-        elif tool_name == "artisan_get_persona":
+        elif norm_tool == "artisan_get_persona":
             output = handle_get_persona(args)
-        elif tool_name == "artisan_list_council":
+        elif norm_tool == "artisan_list_council":
             output = handle_list_council(args)
-        elif tool_name == "artisan_recall_memory":
+        elif norm_tool == "artisan_recall_memory":
             output = handle_recall_memory(args)
-        elif tool_name == "artisan_select_masters":
+        elif norm_tool == "artisan_select_masters":
             output = handle_select_masters(args)
-        elif tool_name == "artisan_get_lessons":
+        elif norm_tool == "artisan_get_lessons":
             output = handle_get_lessons(args)
-        elif tool_name == "artisan_record_learning":
+        elif norm_tool == "artisan_record_learning":
             output = handle_record_learning(args)
-        elif tool_name == "artisan_inject_prompt":
+        elif norm_tool == "artisan_inject_prompt":
             output = handle_inject_prompt(args)
-        elif tool_name == "artisan_list_guilds":
+        elif norm_tool == "artisan_list_guilds":
             output = handle_list_guilds(args)
-        elif tool_name == "artisan_resume_continuity":
+        elif norm_tool == "artisan_resume_continuity":
             output = handle_resume_continuity(args)
-        elif tool_name == "artisan_save_checkpoint":
+        elif norm_tool == "artisan_save_checkpoint":
             output = handle_save_checkpoint(args)
-        elif tool_name == "artisan_get_library":
+        elif norm_tool == "artisan_get_library":
             output = handle_get_library(args)
-        elif tool_name == "artisan_review_code":
+        elif norm_tool == "artisan_review_code":
             output = handle_review_code(args)
         else:
             return {

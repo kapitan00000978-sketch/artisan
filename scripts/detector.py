@@ -243,15 +243,18 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
 
 
 def load_artisan_config(base_dir: str = ".") -> Dict[str, Any]:
-    """Loads artisan.config.json if present, returning configuration overrides."""
-    config_path = os.path.join(base_dir, "artisan.config.json")
-    if os.path.exists(config_path):
-        try:
-            with open(config_path, "r", encoding="utf-8") as f:
-                return json.load(f)
-        except Exception:
-            pass
+    """Loads hallwright.config.json or artisan.config.json if present, returning configuration overrides."""
+    for cfg_name in ["hallwright.config.json", "artisan.config.json"]:
+        config_path = os.path.join(base_dir, cfg_name)
+        if os.path.exists(config_path):
+            try:
+                with open(config_path, "r", encoding="utf-8") as f:
+                    return json.load(f)
+            except (OSError, json.JSONDecodeError):
+                continue
     return {}
+
+load_hallwright_config = load_artisan_config
 
 
 def scan_multilingual_structural(code: str, filename: str = "") -> List[Dict[str, Any]]:

@@ -1,13 +1,13 @@
-# 🛡️ ARTISAN — AUTONOMOUS CRAFTSMANSHIP & QUALITY PROTOCOL
+# 🛡️ HALLWRIGHT — AI AGENT GUARDRAIL & QUALITY PROTOCOL
 
-Artisan is an **autonomous quality and craftsmanship protocol** embedded directly into the AI agent workflow.
+Hallwright is a **guardrail layer and craftsmanship protocol** embedded directly into the AI agent workflow.
 
 ---
 
-## ⚡ ZERO COMMANDS REQUIRED (AUTONOMOUS WORKFLOW)
+## ⚡ ZERO COMMANDS REQUIRED (AUTOMATIC WORKFLOW)
 - **Zero manual commands needed:** The user never has to type commands or micromanage instructions.
 - **Permanent background enforcement:** Operates continuously across every single prompt, code edit, and conversation.
-- **Context-aware domain mastery:** The agent autonomously applies the highest domain craftsmanship based on context, without being asked.
+- **Context-aware domain mastery:** The agent applies the highest domain craftsmanship based on context, without being asked.
 
 ---
 
@@ -22,9 +22,9 @@ Artisan is an **autonomous quality and craftsmanship protocol** embedded directl
 
 ## 🔌 ON-DEMAND DOMAIN HEURISTICS (MCP POWERED)
 The Council of Masters (64 Domain Titans) and Persistent Learning Memory are accessible on-demand via standard MCP tools:
-- Use `artisan_select_masters({"task": "..."})` or `artisan_inject_prompt({"task": "..."})` when specialized domain heuristics are required.
-- Use `artisan_get_lessons({"task": "..."})` to consult past scar tissue and mistakes before writing sensitive code.
-- Use `artisan_inspect_code({"code": "..."})` for AST-level pre-commit verification.
-- Use `artisan_resume_continuity()` or `artisan_save_checkpoint({"task": "..."})` for cross-agent session continuity.
-- Use `artisan_get_library({"domain": "..."})` or `src/libraries/` to leverage production-grade enterprise modules.
-- Use `artisan_review_code({"code": "..."})` for adversarial red-team peer review.
+- Use `hallwright_select_masters({"task": "..."})` (or `artisan_select_masters`) or `hallwright_inject_prompt` when specialized domain heuristics are required.
+- Use `hallwright_get_lessons({"task": "..."})` (or `artisan_get_lessons`) to consult past scar tissue and mistakes before writing sensitive code.
+- Use `hallwright_inspect_code({"code": "..."})` (or `artisan_inspect_code`) for AST-level pre-commit verification.
+- Use `hallwright_resume_continuity()` or `hallwright_save_checkpoint({"task": "..."})` for cross-agent session continuity.
+- Use `hallwright_get_library({"domain": "..."})` (or `artisan_get_library`) or `src/libraries/` to leverage production-grade enterprise modules.
+- Use `hallwright_review_code({"code": "..."})` (or `artisan_review_code`) for adversarial red-team peer review.

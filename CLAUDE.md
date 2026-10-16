@@ -1,10 +1,10 @@
-# 🛡️ ARTISAN PROTOCOL FOR CLAUDE CODE
+# 🛡️ HALLWRIGHT PROTOCOL FOR CLAUDE CODE
 
-Artisan is an **autonomous craftsmanship and quality engine** embedded directly into Claude Code.
+Hallwright is a **guardrail and craftsmanship engine** embedded directly into Claude Code.
 
 ---
 
-## ⚡ ZERO COMMANDS REQUIRED (AUTONOMOUS WORKFLOW)
+## ⚡ ZERO COMMANDS REQUIRED (AUTOMATIC WORKFLOW)
 - Permanently active on every single prompt, code generation, and file edit.
 - Zero manual slash commands or prompt reminders needed from the user.
 

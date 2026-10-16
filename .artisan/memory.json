@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "Artisan Engineering Core",
-  "lastUpdated": "2026-10-16T08:08:11.449213+00:00",
+  "lastUpdated": "2026-10-16T09:58:07.093457+00:00",
   "userPreferences": [
     "Clean architecture, zero empty catch blocks, zero TODO comments in production",
     "Comprehensive test coverage across all domain mutations"
@@ -60,7 +60,7 @@
       "lesson": "Always enforce pagination limits.",
       "severity": "high",
       "recordedAt": "2026-10-15T15:08:39.779478+00:00",
-      "updatedAt": "2026-10-16T08:08:11.449213+00:00"
+      "updatedAt": "2026-10-16T09:58:07.093457+00:00"
     },
     {
       "id": "mis-0004",
@@ -69,7 +69,7 @@
       "lesson": "Always verify algorithm is HS256/RS256",
       "severity": "high",
       "recordedAt": "2026-10-15T18:30:24.182735+00:00",
-      "updatedAt": "2026-10-16T08:08:04.940686+00:00"
+      "updatedAt": "2026-10-16T09:57:48.368646+00:00"
     },
     {
       "id": "mis-0005",
@@ -101,19 +101,19 @@
       "id": "mis-0008",
       "category": "stub",
       "pattern": "Silent exception suppression (except: pass). Log or handle errors.",
-      "lesson": "Rejected in pre-commit audit (.\\src\\libraries\\copywriting\\doc_generator.py:1). Resolve Silent exception suppression (except: pass). Log or handle errors. before committing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\continuity.py:1). Resolve Silent exception suppression (except: pass). Log or handle errors. before committing.",
       "severity": "medium",
       "recordedAt": "2026-10-15T21:18:15.249212+00:00",
-      "updatedAt": "2026-10-15T21:37:57.794753+00:00"
+      "updatedAt": "2026-10-16T09:55:48.803931+00:00"
     },
     {
       "id": "mis-0009",
       "category": "stub",
       "pattern": "Silent exception suppression ('except except: pass') verified via AST.",
-      "lesson": "Rejected in pre-commit audit (.\\src\\libraries\\copywriting\\doc_generator.py:82). Resolve Silent exception suppression ('except except: pass') verified via AST. before committing.",
+      "lesson": "Rejected in pre-commit audit (.\\src\\sdk\\continuity.py:71). Resolve Silent exception suppression ('except except: pass') verified via AST. before committing.",
       "severity": "medium",
       "recordedAt": "2026-10-15T21:18:15.274803+00:00",
-      "updatedAt": "2026-10-15T21:37:57.822306+00:00"
+      "updatedAt": "2026-10-16T09:55:48.820248+00:00"
     }
   ],
   "successes": [

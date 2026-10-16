@@ -1,6 +1,6 @@
-# 🛡️ ARTISAN — AUTONOMOUS CRAFTSMANSHIP & QUALITY PROTOCOL FOR HERMES AGENT
+# 🛡️ HALLWRIGHT — CRAFTSMANSHIP & GUARDRAIL PROTOCOL FOR HERMES AGENT
 
-Artisan is an **autonomous craftsmanship and quality protocol** embedded directly into the Nous Research Hermes Agent OS and OpenHermes LLM workflows.
+Hallwright is a **guardrail and craftsmanship protocol** embedded directly into the Nous Research Hermes Agent and OpenHermes LLM workflows.
 
 ---
 

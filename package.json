@@ -1,10 +1,11 @@
 {
-  "name": "artisan-protocol",
+  "name": "hallwright",
   "version": "2.0.0",
-  "description": "A guardrail layer for AI coding agents: pre-commit gate, living project memory, and subagent/skill definitions.",
-  "main": "bin/artisan.js",
+  "description": "Hallwright: A guardrail layer for AI coding agents: pre-commit gate, living project memory, and subagent/skill definitions.",
+  "main": "bin/hallwright.js",
   "bin": {
-    "artisan": "./bin/artisan.js"
+    "hallwright": "./bin/hallwright.js",
+    "artisan": "./bin/hallwright.js"
   },
   "scripts": {
     "init": "node bin/artisan.js init",

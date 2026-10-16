@@ -1,7 +1,7 @@
-# 🤝 Artisan Universal Agent Handoff
+# 🤝 Hallwright / Artisan Universal Agent Handoff
 
 > **Last Agent Active:** `mcp-claude`
-> **Last Checkpoint:** 2026-10-16 11:08:11
+> **Last Checkpoint:** 2026-10-16 12:58:07
 > **Status:** `IN_PROGRESS`
 
 ## 📍 Current Position

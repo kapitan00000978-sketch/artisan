@@ -1,6 +1,6 @@
-# ⚔️ Artisan Adversarial Red-Team Review
+# ⚔️ Hallwright Adversarial Red-Team Review
 
-Artisan provides an objective, adversarial code review engine (`src/sdk/reviewer.py`) designed to audit code modifications without implementation bias.
+Hallwright provides an objective, adversarial code review engine (`src/sdk/reviewer.py`) designed to audit code modifications without implementation bias.
 
 ---
 

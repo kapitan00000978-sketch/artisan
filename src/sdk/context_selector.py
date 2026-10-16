@@ -214,7 +214,7 @@ class SmartMasterSelector:
         selected = self.select_masters(task_description, files, limit=limit)
         
         prompt_lines = [
-            "# 🛡️ ARTISAN DYNAMIC CONTEXT (TASK-TARGETED CRAFTSMANSHIP)",
+            "# 🛡️ HALLWRIGHT / ARTISAN DYNAMIC CONTEXT (TASK-TARGETED GUARDRAIL)",
             "",
             "## ⚡ 4 INVIOLABLE PROTOCOL INVARIANTS",
             "1. ZERO STUBS: Never output unfinished TODOs, mock functions, or empty placeholders.",

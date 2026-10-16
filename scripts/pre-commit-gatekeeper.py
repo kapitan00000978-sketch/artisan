@@ -28,26 +28,26 @@ def scan_files(staged_only: bool = False, vibe_override: bool = False):
 
     scope = "staged changes" if staged_only else "workspace"
     mode_str = " (⚡ Vibe Mode)" if is_vibe else ""
-    print(f"🛡️ [Artisan Gatekeeper] Running pre-commit quality and security audit ({scope}){mode_str}...")
+    print(f"🛡️ [Hallwright Gatekeeper] Running pre-commit quality and security audit ({scope}){mode_str}...")
     result = scan_project(".", staged_only=staged_only, config_override=cfg)
     
     findings = result["findings"]
     if findings:
         if is_vibe:
-            print("\n⚡ [ARTISAN VIBE MODE ACTIVE - ADVISORY NOTICES]:")
+            print("\n⚡ [HALLWRIGHT VIBE MODE ACTIVE - ADVISORY NOTICES]:")
             for flaw in findings[:10]:
-                auditor = flaw.get("auditor", "Artisan Council")
+                auditor = flaw.get("auditor", "Hallwright Council")
                 print(f"  • {flaw['file']}:{flaw['line']} [{flaw['category']}] [{auditor}] -> {flaw['message']}")
             print(f"\n⚡ Total advisory notices: {len(findings)} | Score: {result['score']}/100")
             print("⚡ Directive: Vibe Mode is active. Commits are NON-BLOCKING for fast iteration.\n")
             return True
         else:
-            print("\n❌ [ARTISAN REJECTED - AUDIT FAILED]:")
+            print("\n❌ [HALLWRIGHT REJECTED - AUDIT FAILED]:")
             for flaw in findings[:10]:
-                auditor = flaw.get("auditor", "Artisan Council")
+                auditor = flaw.get("auditor", "Hallwright Council")
                 print(f"  • {flaw['file']}:{flaw['line']} [{flaw['category']}] [{auditor}] -> {flaw['message']}")
             print(f"\nTotal defects detected: {len(findings)} | Gate Score: {result['score']}/100")
-            print("💡 Directive: Artisan Quality Protocol — resolve all flaws before committing!\n")
+            print("💡 Directive: Hallwright Quality Protocol — resolve all flaws before committing!\n")
 
             # Autonomously record detected flaws into persistent learning memory
             try:
@@ -67,7 +67,7 @@ def scan_files(staged_only: bool = False, vibe_override: bool = False):
 
             return False
     else:
-        print(f"✅ [ARTISAN VERIFIED]: All code satisfied quality and security benchmarks. (Scanned {result['scanned_files']} files, Score: 100/100)")
+        print(f"✅ [HALLWRIGHT VERIFIED]: All code satisfied quality and security benchmarks. (Scanned {result['scanned_files']} files, Score: 100/100)")
         return True
 
 

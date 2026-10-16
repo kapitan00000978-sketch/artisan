@@ -1,6 +1,6 @@
-# 🎨 Artisan Studio: Visual Audit & UI Elevation
+# 🎨 Hallwright Studio: Visual Audit & UI Elevation
 
-Artisan Studio provides headless browser visual capture and multi-specialist heuristic review for frontend codebases and web applications.
+Hallwright Studio provides headless browser visual capture and multi-specialist heuristic review for frontend codebases and web applications.
 
 ---
 

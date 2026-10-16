@@ -26,12 +26,12 @@ sys.path.insert(0, os.path.join(ROOT_DIR, "src"))
 sys.path.insert(0, os.path.join(ROOT_DIR, "mcp"))
 
 ASCII_BANNER = r"""
-     _    ____ _____ ___ ____    _    _   _ 
-    / \  |  _ \_   _|_ _/ ___|  / \  | \ | |
-   / _ \ | |_) || |  | |\___ \ / _ \ |  \| |
-  / ___ \|  _ < | |  | | ___) / ___ \| |\  |
- /_/   \_\_| \_\|_| |___|____/_/   \_\_| \_|
-       AI AGENT CRAFTSMANSHIP & QUALITY PROTOCOL
+  _   _    _    _     _  __        ______  ___ ____ _   _ _____ 
+ | | | |  / \  | |   | | \ \      / /  _ \|_ _/ ___| | | |_   _|
+ | |_| | / _ \ | |   | |  \ \ /\ / /| |_) || | |  _| |_| | | |  
+ |  _  |/ ___ \| |___| |___\ V  V / |  _ < | | |_| |  _  | | |  
+ |_| |_/_/   \_\_____|_____|\_/\_/  |_| \_\___\____|_| |_| |_|  
+              AI AGENT GUARDRAIL & QUALITY PROTOCOL
 """
 
 
@@ -177,7 +177,7 @@ def cmd_init(args: argparse.Namespace) -> int:
                 print(f"  [!] Note: Pre-commit hook could not be auto-installed: {e}")
 
     print("\n==================================================================")
-    print("  ✅ Artisan Protocol successfully activated!")
+    print("  ✅ Hallwright Guardrail Protocol successfully activated!")
     print("     Deterministic Quality Gates & Memory are now active.")
     print("==================================================================\n")
     return 0
@@ -276,7 +276,7 @@ def cmd_status(args: argparse.Namespace) -> int:
     has_agents_md = os.path.exists("AGENTS.md")
     detected = detect_tech_stack(".")
 
-    print("📊 ARTISAN STATUS REPORT:")
+    print("📊 HALLWRIGHT STATUS REPORT (ARTISAN COMPLIANT):")
     print(f"  • Protocol Invariant    : Active ({'AGENTS.md loaded' if has_agents_md else 'Missing AGENTS.md'})")
     print(f"  • Pre-Commit Quality Gate: {'INSTALLED (.git/hooks/pre-commit)' if has_gatekeeper else 'NOT INSTALLED'}")
     print(f"  • Detected Stack        : {', '.join(detected)}")
@@ -724,7 +724,7 @@ def cmd_3d(args: argparse.Namespace) -> int:
         print(f"[-] Error: 3D Dashboard HTML not found at {html_path}", file=sys.stderr)
         return 1
     file_url = f"file://{os.path.abspath(html_path)}"
-    print(f"🚀 [ARTISAN 3D SPATIAL DASHBOARD] Launching hardware-accelerated 3D HUD...")
+    print(f"🚀 [HALLWRIGHT / ARTISAN 3D SPATIAL DASHBOARD] Launching 3D Spatial Canvas...")
     print(f"   Opening: {file_url}")
     webbrowser.open(file_url)
     return 0
@@ -732,10 +732,10 @@ def cmd_3d(args: argparse.Namespace) -> int:
 
 def main():
     parser = argparse.ArgumentParser(
-        prog="artisan",
-        description="Artisan Autonomous AI Agent Craftsmanship & Quality Protocol CLI"
+        prog="hallwright",
+        description="Hallwright Guardrail Layer & Quality Protocol for AI Coding Agents"
     )
-    subparsers = parser.add_subparsers(dest="subcommand", help="Artisan command to execute")
+    subparsers = parser.add_subparsers(dest="subcommand", help="Hallwright command to execute")
 
     # init
     p_init = subparsers.add_parser("init", help="Initialize Artisan protocol and agent configurations in the current project")

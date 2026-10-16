@@ -195,9 +195,9 @@ class SwarmOrchestrator:
     def format_cli_pipeline(self, pipeline_data: Dict[str, Any]) -> str:
         """Visualizes the swarm delegation pipeline in a formatted terminal graph."""
         lines = [
-            "\n🤖 [ARTISAN MULTI-AGENT SWARM ORCHESTRATOR]",
+            "\n🤖 [HALLWRIGHT / ARTISAN MULTI-AGENT SWARM ORCHESTRATOR]",
             f"🎯 Mission: \"{pipeline_data['task']}\"",
-            f"📋 Delegated Stages: {pipeline_data['stages_count']} autonomous sub-agents\n",
+            f"📋 Delegated Stages: {pipeline_data['stages_count']} sub-agent stages\n",
             "────────────────────────────────────────────────────────────────────────"
         ]
 
@@ -210,5 +210,5 @@ class SwarmOrchestrator:
             lines.append("")
 
         lines.append("────────────────────────────────────────────────────────────────────────")
-        lines.append("✅ Swarm coordination active. Sessions synchronized via Artisan AgentRegistry.")
+        lines.append("✅ Swarm coordination active. Sessions synchronized via Hallwright / Artisan AgentRegistry.")
         return "\n".join(lines)
