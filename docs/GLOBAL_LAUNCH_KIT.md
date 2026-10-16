@@ -34,7 +34,7 @@ So we built Artisan: https://github.com/kapitan00000978-sketch/artisan
 - **Deterministic AST & Security Pre-Commit Gate:** Inspects Abstract Syntax Trees and git-staged diffs in < 4 seconds. If an AI generates unhandled stubs, bare exception catches, or leaks API keys, the commit is rejected automatically.
 - **Living Memory Fabric (`.artisan/memory.json`):** A persistent, append-safe ledger that records every caught bug as "scar tissue". When your agent starts a new task, Artisan dynamically injects only the relevant past lessons.
 - **Multi-Agent Lock Registry (`artisan agents`):** Prevents Claude Code and Cursor from stepping on each other when running concurrently in the same workspace.
-- **Dynamic Context Engine (`artisan context`):** Compresses a 12,000-token system prompt into ~320 tokens of high-voltage discipline and past lessons (37x token compression).
+- **Dynamic Context Engine (`artisan context`):** Reduces monolithic prompt dumps (~12,000 tokens) down to ~2,000 tokens of targeted domain discipline and past lessons (~6x context optimization).
 
 ### Empirical Benchmark:
 We ran Artisan against 10 realistic code generation tasks containing common anti-patterns:
@@ -71,7 +71,7 @@ We'd love your brutal feedback on our AST detection rules, memory schema, and wh
 
 **Key Highlights:**
 - Share before-and-after code diffs.
-- Demonstrate `artisan context` (37x token savings).
+- Demonstrate `artisan context` (~6x context optimization).
 - Demonstrate `.cursorrules` and `CLAUDE.md` auto-configuration.
 
 ### C. Subreddit: `r/programming`
@@ -123,7 +123,7 @@ We'd love your brutal feedback on our AST detection rules, memory schema, and wh
 > 
 > With `artisan context "<task>"`, Artisan dynamically selects only the 1-2 relevant domain leads and matching scar tissue.
 > 
-> 12,000 tokens ➔ 320 tokens. A 37x compression ratio. 🚀
+> 12,000 tokens ➔ ~2,000 targeted tokens. A ~6x prompt context optimization. 🚀
 
 ### Tweet 6:
 > Multi-Agent Collision Avoidance (`artisan agents`):
