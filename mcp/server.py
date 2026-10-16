@@ -13,6 +13,7 @@ import json
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src")))
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src", "sdk")))
+sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "src", "libraries")))
 from detector import scan_code
 
 if sys.platform == "win32":
@@ -316,8 +317,130 @@ TOOLS = [
             "type": "object",
             "properties": {}
         }
+    },
+    {
+        "name": "artisan_resume_continuity",
+        "description": "Reads the cross-agent continuity checkpoint and returns handoff context, the last agent, where work stopped, completed tasks, and next steps.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "no_continuity": {"type": "boolean", "description": "Optional flag to bypass continuity check"}
+            }
+        }
+    },
+    {
+        "name": "artisan_save_checkpoint",
+        "description": "Records an atomic progress checkpoint to .artisan/checkpoints.json and updates .artisan/agent_handoff.md for future AI agents.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "task": {"type": "string", "description": "Summary of task executed or state reached"},
+                "agent": {"type": "string", "description": "Active AI agent identifier (e.g. claude, cursor, hermes)"},
+                "stopped_at_file": {"type": "string", "description": "File path where work concluded or paused"},
+                "stopped_at_line": {"type": "integer", "description": "Line number where work stopped"},
+                "completed_milestones": {"type": "array", "items": {"type": "string"}, "description": "Milestones just finished"},
+                "pending_milestones": {"type": "array", "items": {"type": "string"}, "description": "Recommended next actions"},
+                "architectural_decisions": {"type": "array", "items": {"type": "string"}, "description": "Key architectural decisions"},
+                "status": {"type": "string", "enum": ["IN_PROGRESS", "PAUSED", "COMPLETED"], "description": "Session status"}
+            },
+            "required": ["task"]
+        }
+    },
+    {
+        "name": "artisan_get_library",
+        "description": "Retrieves metadata, modules, and class interfaces for universal enterprise domain libraries (architecture, security, performance, testing, copywriting, design).",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "domain": {
+                    "type": "string",
+                    "enum": ["architecture", "security", "performance", "testing", "copywriting", "design"],
+                    "description": "Optional specific domain to inspect. Omit to list all available domains."
+                }
+            }
+        }
+    },
+    {
+        "name": "artisan_review_code",
+        "description": "Performs ruthless adversarial red-team peer review (Gabriel Frost & Marcus Sterling) on source code, identifying architectural and security defects.",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "code": {"type": "string", "description": "Source code text to review"},
+                "filename": {"type": "string", "description": "Optional file path or name (default: <buffer>)"}
+            },
+            "required": ["code"]
+        }
     }
 ]
+
+
+def handle_resume_continuity(args):
+    try:
+        from continuity import ContinuityManager
+        from dataclasses import asdict
+        no_cont = args.get("no_continuity", False)
+        manager = ContinuityManager(workspace_root=".", enabled=not no_cont)
+        if not manager.is_enabled:
+            return {"status": "DISABLED", "message": "Continuity tracking is disabled or bypassed."}
+        cp = manager.load_checkpoint()
+        return {
+            "status": "ACTIVE" if cp else "NO_CHECKPOINT",
+            "checkpoint": asdict(cp) if cp else None,
+            "resumption_prompt": manager.generate_resumption_prompt()
+        }
+    except Exception as exc:
+        return {"status": "ERROR", "message": str(exc)}
+
+
+def handle_save_checkpoint(args):
+    try:
+        from continuity import ContinuityManager
+        manager = ContinuityManager(workspace_root=".", enabled=True)
+        task = args.get("task", "")
+        agent = args.get("agent", "mcp-agent")
+        stopped_file = args.get("stopped_at_file")
+        stopped_line = args.get("stopped_at_line")
+        completed = args.get("completed_milestones")
+        pending = args.get("pending_milestones")
+        decisions = args.get("architectural_decisions")
+        status = args.get("status", "IN_PROGRESS")
+
+        saved = manager.save_checkpoint(
+            last_task=task,
+            last_agent=agent,
+            stopped_at_file=stopped_file,
+            stopped_at_line=stopped_line,
+            completed_milestones=completed,
+            pending_milestones=pending,
+            architectural_decisions=decisions,
+            status=status,
+        )
+        return {"saved": saved, "task": task, "agent": agent}
+    except Exception as exc:
+        return {"saved": False, "error": str(exc)}
+
+
+def handle_get_library(args):
+    try:
+        from registry import LibraryRegistry
+        domain = args.get("domain")
+        if domain:
+            return LibraryRegistry.get_domain(domain)
+        return LibraryRegistry.list_domains()
+    except Exception as exc:
+        return {"error": str(exc)}
+
+
+def handle_review_code(args):
+    try:
+        from reviewer import AdversarialReviewer
+        code = args.get("code", "")
+        filename = args.get("filename", "<buffer>")
+        reviewer = AdversarialReviewer()
+        return reviewer.review_text(content=code, file_path=filename)
+    except Exception as exc:
+        return {"error": str(exc), "passed": False}
 
 
 def handle_inspect_code(args):
@@ -561,6 +684,14 @@ def dispatch_request(req):
             output = handle_inject_prompt(args)
         elif tool_name == "artisan_list_guilds":
             output = handle_list_guilds(args)
+        elif tool_name == "artisan_resume_continuity":
+            output = handle_resume_continuity(args)
+        elif tool_name == "artisan_save_checkpoint":
+            output = handle_save_checkpoint(args)
+        elif tool_name == "artisan_get_library":
+            output = handle_get_library(args)
+        elif tool_name == "artisan_review_code":
+            output = handle_review_code(args)
         else:
             return {
                 "jsonrpc": "2.0",

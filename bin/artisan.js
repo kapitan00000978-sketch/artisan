@@ -172,6 +172,15 @@ if (command === 'init' || command === 'install') {
     const res = spawnSync('python', [memScript, 'memory', ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
   }
+} else if (['resume', 'checkpoint', 'lib', 'library', 'libraries', 'swarm', 'review', 'mutate', 'context', 'prompt', '3d', 'spatial', 'studio'].includes(command)) {
+  const cliScript = path.join(packageRoot, 'artisan_cli.py');
+  if (fs.existsSync(cliScript)) {
+    const res = spawnSync('python', [cliScript, command, ...args.slice(1)], { stdio: 'inherit' });
+    process.exit(res.status || 0);
+  } else {
+    console.error(`[-] artisan_cli.py not found at ${cliScript}`);
+    process.exit(1);
+  }
 } else if (command === 'hud') {
   const hudScript = path.join(packageRoot, 'cli', 'dashboard.py');
   if (fs.existsSync(hudScript)) {
@@ -182,21 +191,28 @@ if (command === 'init' || command === 'install') {
   if (fs.existsSync(statusScript)) {
     spawnSync('python', [statusScript, 'status'], { stdio: 'inherit' });
   } else {
-    console.log(`🛡️ Artisan Protocol     : ACTIVE (v1.0.1)`);
+    console.log(`🛡️ Artisan Protocol     : ACTIVE (v2.0.0)`);
     console.log(`Autonomous Mode        : Enforced (Zero Commands Required)`);
     console.log(`Quality Gatekeeper     : Pre-commit Inspection Active`);
     console.log(`Supported Ecosystems    : 14 Platforms Ready\n`);
   }
 } else {
   console.log(`Usage:`);
-  console.log(`  artisan init       # Install Artisan rules & auto-hook into repository`);
-  console.log(`  artisan hook       # Install Git pre-commit quality gate hook`);
-  console.log(`  artisan audit      # Run quality & security audit (--staged for diff)`);
-  console.log(`  artisan fix        # Auto-remediate silent catches and stubs`);
-  console.log(`  artisan memory     # Inspect persistent learning memory and scar tissue`);
-  console.log(`  artisan doctor     # Check configuration and environment health`);
-  console.log(`  artisan mcp        # Launch MCP JSON-RPC Server`);
-  console.log(`  artisan hud        # Launch interactive terminal HUD`);
-  console.log(`  artisan watch      # Run continuous background watchdog sentinel`);
-  console.log(`  artisan status     # Check Artisan protocol status`);
+  console.log(`  artisan init         # Install Artisan rules & auto-hook into repository`);
+  console.log(`  artisan hook         # Install Git pre-commit quality gate hook`);
+  console.log(`  artisan audit        # Run quality & security audit (--staged for diff)`);
+  console.log(`  artisan fix          # Auto-remediate silent catches and stubs`);
+  console.log(`  artisan resume       # Resume cross-agent progress and context handoff`);
+  console.log(`  artisan checkpoint   # Record progress checkpoint for subsequent AI agents`);
+  console.log(`  artisan lib          # Explore and scaffold universal enterprise domain libraries`);
+  console.log(`  artisan 3d           # Launch hardware-accelerated 3D spatial swarm dashboard`);
+  console.log(`  artisan swarm        # Orchestrate autonomous sub-agent swarm pipeline`);
+  console.log(`  artisan review       # Run adversarial peer review on git diff or files`);
+  console.log(`  artisan mutate       # Run AST mutation testing on code and test suite`);
+  console.log(`  artisan memory       # Inspect persistent learning memory and scar tissue`);
+  console.log(`  artisan doctor       # Check configuration and environment health`);
+  console.log(`  artisan mcp          # Launch MCP JSON-RPC Server`);
+  console.log(`  artisan hud          # Launch interactive terminal HUD`);
+  console.log(`  artisan watch        # Run continuous background watchdog sentinel`);
+  console.log(`  artisan status       # Check Artisan protocol status`);
 }

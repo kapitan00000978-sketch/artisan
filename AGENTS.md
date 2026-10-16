@@ -25,3 +25,6 @@ The Council of Masters (64 Domain Titans) and Persistent Learning Memory are acc
 - Use `artisan_select_masters({"task": "..."})` or `artisan_inject_prompt({"task": "..."})` when specialized domain heuristics are required.
 - Use `artisan_get_lessons({"task": "..."})` to consult past scar tissue and mistakes before writing sensitive code.
 - Use `artisan_inspect_code({"code": "..."})` for AST-level pre-commit verification.
+- Use `artisan_resume_continuity()` or `artisan_save_checkpoint({"task": "..."})` for cross-agent session continuity.
+- Use `artisan_get_library({"domain": "..."})` or `src/libraries/` to leverage production-grade enterprise modules.
+- Use `artisan_review_code({"code": "..."})` for adversarial red-team peer review.

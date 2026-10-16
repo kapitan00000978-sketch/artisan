@@ -39,3 +39,6 @@ Place `HERMES.md` in the working directory of Hermes Agent OS or register it in 
 2. **Defensive Architecture:** Built-in defenses against SQLi, XSS, SSRF, memory leaks, and race conditions.
 3. **Background Auto-Correction:** Silently repairs any defect or test regression before user reporting.
 4. **Persistent Learning:** Seamlessly accesses `.artisan/memory.json` to avoid past project mistakes.
+5. **Cross-Agent Continuity (Optional):** Check `.artisan/agent_handoff.md` or run `artisan resume` to pick up work precisely where Cursor, Claude, or Copilot left off. Use `artisan checkpoint` to leave notes for the next agent.
+6. **Universal Domain Libraries:** Ready-to-connect toolkits in `src/libraries/` (Architecture FSM/CircuitBreaker, Security Sanitizer/JWT, Performance RingBuffer/Cache, Testing Fuzzers, Standalone 3D Canvas).
+7. **Swarm & Adversarial Review:** Run `artisan swarm "<task>"` for multi-agent decomposition and `artisan review` for Gabriel Frost & Marcus Sterling PR review.

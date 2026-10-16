@@ -5,3 +5,5 @@ Core Directives:
 3. Background Auto-Correction: Silently diagnose and fix any defect or regression before the user sees it.
 4. Zero Babysitting: Deliver complete, production-ready, verified code.
 5. Constructive Partnership: Calm, solutions-oriented, professional engineering execution.
+6. Cross-Agent Continuity (Optional): Check .artisan/agent_handoff.md or run 'artisan resume' upon joining to pick up where previous agents stopped, and record checkpoints via 'artisan checkpoint' upon milestones.
+7. Enterprise Domain Libraries: Leverage built-in enterprise modules in src/libraries/ (FSM, EventBus, CircuitBreaker, Sanitizer, TokenBucket, JWT, LRU Cache, RingBuffer, ObjectPool, Fuzzer) instead of writing naive boilerplate.

@@ -716,6 +716,20 @@ def cmd_lib(args: argparse.Namespace) -> int:
     return 0
 
 
+def cmd_3d(args: argparse.Namespace) -> int:
+    """Launch the Artisan 3D Spatial Canvas Dashboard in the default browser."""
+    import webbrowser
+    html_path = os.path.join(ROOT_DIR, "src", "libraries", "design", "dashboard_3d.html")
+    if not os.path.exists(html_path):
+        print(f"[-] Error: 3D Dashboard HTML not found at {html_path}", file=sys.stderr)
+        return 1
+    file_url = f"file://{os.path.abspath(html_path)}"
+    print(f"🚀 [ARTISAN 3D SPATIAL DASHBOARD] Launching hardware-accelerated 3D HUD...")
+    print(f"   Opening: {file_url}")
+    webbrowser.open(file_url)
+    return 0
+
+
 def main():
     parser = argparse.ArgumentParser(
         prog="artisan",
@@ -817,6 +831,9 @@ def main():
     p_lib.add_argument("--target", "-t", default="./lib", help="Destination directory for scaffolding (default: ./lib)")
     p_lib.add_argument("--json", "-j", action="store_true", help="Output library metadata in JSON format")
 
+    # 3d / spatial / studio
+    subparsers.add_parser("3d", aliases=["spatial", "studio"], help="Launch hardware-accelerated 3D spatial swarm dashboard")
+
     # hud
     subparsers.add_parser("hud", help="Launch interactive terminal dashboard")
 
@@ -855,6 +872,8 @@ def main():
         return cmd_checkpoint(args)
     elif args.subcommand in ("lib", "library", "libraries"):
         return cmd_lib(args)
+    elif args.subcommand in ("3d", "spatial", "studio"):
+        return cmd_3d(args)
     elif args.subcommand == "mcp":
         from server import main as mcp_main
         mcp_main()

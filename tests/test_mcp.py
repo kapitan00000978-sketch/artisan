@@ -46,7 +46,7 @@ def test_mcp_tools_list_contains_artisan_tools():
     req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
     res = server.dispatch_request(req)
     tool_names = [t["name"] for t in res["result"]["tools"]]
-    assert len(tool_names) == 9
+    assert len(tool_names) == 13
     assert "artisan_inspect_code" in tool_names
     assert "artisan_get_persona" in tool_names
     assert "artisan_list_council" in tool_names
@@ -56,6 +56,10 @@ def test_mcp_tools_list_contains_artisan_tools():
     assert "artisan_record_learning" in tool_names
     assert "artisan_inject_prompt" in tool_names
     assert "artisan_list_guilds" in tool_names
+    assert "artisan_resume_continuity" in tool_names
+    assert "artisan_save_checkpoint" in tool_names
+    assert "artisan_get_library" in tool_names
+    assert "artisan_review_code" in tool_names
 
 def test_mcp_list_guilds_via_dispatch():
     req = {
@@ -243,5 +247,101 @@ def test_mcp_invalid_enum_argument_returns_32602_error():
     assert "error" in res
     assert res["error"]["code"] == -32602
     assert "has invalid value" in res["error"]["message"]
+
+
+def test_mcp_continuity_tools():
+    # 1. Save checkpoint via MCP
+    req_save = {
+        "jsonrpc": "2.0",
+        "id": 60,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_save_checkpoint",
+            "arguments": {
+                "task": "MCP Integration task",
+                "agent": "mcp-claude",
+                "stopped_at_file": "server.py",
+                "stopped_at_line": 50,
+                "completed_milestones": ["MCP Handlers"],
+                "pending_milestones": ["Verification"]
+            }
+        }
+    }
+    res_save = server.dispatch_request(req_save)
+    assert "result" in res_save
+    content_save = json.loads(res_save["result"]["content"][0]["text"])
+    assert content_save["saved"] is True
+    assert content_save["task"] == "MCP Integration task"
+
+    # 2. Resume continuity via MCP
+    req_res = {
+        "jsonrpc": "2.0",
+        "id": 61,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_resume_continuity",
+            "arguments": {}
+        }
+    }
+    res_resume = server.dispatch_request(req_res)
+    assert "result" in res_resume
+    content_resume = json.loads(res_resume["result"]["content"][0]["text"])
+    assert content_resume["status"] == "ACTIVE"
+    assert "mcp-claude" in content_resume["resumption_prompt"]
+
+
+def test_mcp_get_library_tool():
+    # 1. List all domains
+    req_all = {
+        "jsonrpc": "2.0",
+        "id": 62,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_get_library",
+            "arguments": {}
+        }
+    }
+    res_all = server.dispatch_request(req_all)
+    assert "result" in res_all
+    content_all = json.loads(res_all["result"]["content"][0]["text"])
+    assert "architecture" in content_all
+    assert "security" in content_all
+
+    # 2. Get specific domain
+    req_sec = {
+        "jsonrpc": "2.0",
+        "id": 63,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_get_library",
+            "arguments": {"domain": "security"}
+        }
+    }
+    res_sec = server.dispatch_request(req_sec)
+    assert "result" in res_sec
+    content_sec = json.loads(res_sec["result"]["content"][0]["text"])
+    assert "Defensive Security" in content_sec["title"]
+
+
+def test_mcp_review_code_tool():
+    clean_code = "def add(a: int, b: int) -> int:\n    return a + b\n"
+    req_rev = {
+        "jsonrpc": "2.0",
+        "id": 64,
+        "method": "tools/call",
+        "params": {
+            "name": "artisan_review_code",
+            "arguments": {
+                "code": clean_code,
+                "filename": "math_lib.py"
+            }
+        }
+    }
+    res_rev = server.dispatch_request(req_rev)
+    assert "result" in res_rev
+    content_rev = json.loads(res_rev["result"]["content"][0]["text"])
+    assert "score" in content_rev
+    assert content_rev["passed"] is True
+
 
 

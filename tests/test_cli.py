@@ -352,3 +352,17 @@ def test_cmd_lib_list_and_info(capsys):
     captured_info = capsys.readouterr()
     sec_info = json.loads(captured_info.out)
     assert sec_info["title"] == "Defensive Security & Zero-Trust Guards"
+
+
+def test_cmd_3d(capsys, monkeypatch):
+    import webbrowser
+    opened_urls = []
+    monkeypatch.setattr(webbrowser, "open", lambda url: opened_urls.append(url))
+    args = argparse.Namespace()
+    ret = artisan_cli.cmd_3d(args)
+    assert ret == 0
+    captured = capsys.readouterr()
+    assert "ARTISAN 3D SPATIAL DASHBOARD" in captured.out
+    assert len(opened_urls) == 1
+    assert "dashboard_3d.html" in opened_urls[0]
+
