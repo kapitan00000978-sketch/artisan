@@ -8,11 +8,11 @@
     "artisan": "./bin/hallwright.js"
   },
   "scripts": {
-    "init": "node bin/artisan.js init",
-    "audit": "node bin/artisan.js audit",
-    "fix": "node bin/artisan.js fix",
-    "memory": "node bin/artisan.js memory",
-    "status": "node bin/artisan.js status",
+    "init": "node bin/hallwright.js init",
+    "audit": "node bin/hallwright.js audit",
+    "fix": "node bin/hallwright.js fix",
+    "memory": "node bin/hallwright.js memory",
+    "status": "node bin/hallwright.js status",
     "hud": "python cli/dashboard.py",
     "watchdog": "python scripts/watchdog.py",
     "gatekeeper": "python scripts/pre-commit-gatekeeper.py",
@@ -32,7 +32,7 @@
     "windsurf",
     "mcp"
   ],
-  "author": "Artisan Open Source Project",
+  "author": "Hallwright Open Source Project",
   "license": "MIT",
   "repository": {
     "type": "git",

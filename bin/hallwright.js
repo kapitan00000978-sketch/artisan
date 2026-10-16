@@ -166,14 +166,14 @@ if (command === 'init' || command === 'install') {
     process.exit(1);
   }
 } else if (command === 'memory') {
-  const memScript = path.join(packageRoot, 'artisan_cli.py');
+  const memScript = fs.existsSync(path.join(packageRoot, 'hallwright_cli.py')) ? path.join(packageRoot, 'hallwright_cli.py') : path.join(packageRoot, 'artisan_cli.py');
   if (fs.existsSync(memScript)) {
     const extraArgs = args.slice(1);
     const res = spawnSync('python', [memScript, 'memory', ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
   }
 } else if (['resume', 'checkpoint', 'lib', 'library', 'libraries', 'swarm', 'review', 'mutate', 'context', 'prompt', '3d', 'spatial', 'studio'].includes(command)) {
-  const cliScript = path.join(packageRoot, 'artisan_cli.py');
+  const cliScript = fs.existsSync(path.join(packageRoot, 'hallwright_cli.py')) ? path.join(packageRoot, 'hallwright_cli.py') : path.join(packageRoot, 'artisan_cli.py');
   if (fs.existsSync(cliScript)) {
     const res = spawnSync('python', [cliScript, command, ...args.slice(1)], { stdio: 'inherit' });
     process.exit(res.status || 0);
@@ -187,7 +187,7 @@ if (command === 'init' || command === 'install') {
     spawnSync('python', [hudScript], { stdio: 'inherit' });
   }
 } else if (command === 'status') {
-  const statusScript = path.join(packageRoot, 'artisan_cli.py');
+  const statusScript = fs.existsSync(path.join(packageRoot, 'hallwright_cli.py')) ? path.join(packageRoot, 'hallwright_cli.py') : path.join(packageRoot, 'artisan_cli.py');
   if (fs.existsSync(statusScript)) {
     spawnSync('python', [statusScript, 'status'], { stdio: 'inherit' });
   } else {

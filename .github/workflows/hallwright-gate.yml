@@ -1,4 +1,4 @@
-name: Artisan Quality, Security & Test Gate
+name: Hallwright Quality, Security & Test Gate
 
 on:
   push:
