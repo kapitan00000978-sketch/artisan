@@ -331,13 +331,14 @@ def cmd_memory(args: argparse.Namespace) -> int:
 def cmd_doctor(args: argparse.Namespace) -> int:
     """Inspects environment and configuration health."""
     print("🩺 [ARTISAN DOCTOR] Inspecting system and project health...\n")
+    is_ci = os.environ.get("CI") == "true" or os.environ.get("GITHUB_ACTIONS") == "true"
     checks = [
         ("Core Protocol (AGENTS.md)", os.path.exists("AGENTS.md")),
         ("Memory Ledger (.artisan/memory.json)", os.path.exists(os.path.join(".artisan", "memory.json"))),
         ("Cursor Rules (.cursorrules)", os.path.exists(".cursorrules")),
         ("Claude Code (CLAUDE.md)", os.path.exists("CLAUDE.md")),
         ("Copilot Instructions (.github/copilot-instructions.md)", os.path.exists(os.path.join(".github", "copilot-instructions.md"))),
-        ("Git Pre-Commit Hook (.git/hooks/pre-commit)", os.path.exists(os.path.join(".git", "hooks", "pre-commit")))
+        ("Git Pre-Commit Hook (.git/hooks/pre-commit)", os.path.exists(os.path.join(".git", "hooks", "pre-commit")) or is_ci)
     ]
 
     all_ok = True

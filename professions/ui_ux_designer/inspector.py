@@ -100,7 +100,7 @@ class ElenaDesignInspector:
             if h1_size_matches:
                 metrics["h1_font_size"] = float(h1_size_matches[-1])
 
-            body_size_matches = re.findall(r"(?:body|p)[^{]*\{[^}]*font-size:\s*(\d+)px", content, re.IGNORECASE)
+            body_size_matches = re.findall(r"\b(?:body|p)\b[^{]*\{[^}]*font-size:\s*(\d+)px", content, re.IGNORECASE)
             if body_size_matches:
                 metrics["body_font_size"] = float(body_size_matches[-1])
             metrics["scale_ratio"] = round(metrics["h1_font_size"] / max(1.0, metrics["body_font_size"]), 2)
