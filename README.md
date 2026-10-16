@@ -65,9 +65,7 @@ hallwright fix
 ```
 *(Note: Both `hallwright` and `artisan` CLI aliases are fully supported).*
 
-<p align="center">
-  <img src="./assets/artisan-demo.gif" alt="Hallwright Protocol Demo" width="800" style="border-radius: 14px; box-shadow: 0 20px 50px rgba(0,0,0,0.5);" />
-</p>
+---
 
 ### 💡 Instant Example: What Hallwright Intercepts
 
