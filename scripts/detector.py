@@ -601,6 +601,83 @@ def scan_project(base_dir: str = ".", staged_only: bool = False, config_override
     }
 
 
+def to_sarif_v2(scan_result: Dict[str, Any]) -> Dict[str, Any]:
+    """Converts Hallwright scan results into standard OASIS SARIF v2.1.0 format.
+
+    Compatible with GitHub Code Scanning, GitLab SAST, and IDE SARIF viewers.
+    """
+    rules_dict = {}
+    sarif_results = []
+
+    for f in scan_result.get("findings", []):
+        rule_id = f.get("rule_id", "HW_RULE")
+        category = f.get("category", "QUALITY")
+        message = f.get("message", "Defect detected")
+        deduction = f.get("deduction", 10)
+        file_path = f.get("file", "unknown").replace("\\", "/")
+        line = max(1, f.get("line", 1))
+
+        if deduction >= 25 or category in ("DANGEROUS", "SECURITY", "SECRET"):
+            level = "error"
+        else:
+            level = "warning"
+
+        if rule_id not in rules_dict:
+            rules_dict[rule_id] = {
+                "id": rule_id,
+                "name": rule_id,
+                "shortDescription": {"text": message},
+                "fullDescription": {"text": f"Hallwright {category} rule: {message}"},
+                "defaultConfiguration": {
+                    "level": level
+                },
+                "properties": {
+                    "category": category,
+                    "deduction": deduction,
+                    "auditor": f.get("auditor", "Hallwright Council")
+                }
+            }
+
+        sarif_results.append({
+            "ruleId": rule_id,
+            "level": level,
+            "message": {
+                "text": message
+            },
+            "locations": [
+                {
+                    "physicalLocation": {
+                        "artifactLocation": {
+                            "uri": file_path
+                        },
+                        "region": {
+                            "startLine": line,
+                            "startColumn": 1
+                        }
+                    }
+                }
+            ]
+        })
+
+    return {
+        "$schema": "https://raw.githubusercontent.com/oasis-tcs/sarif-spec/master/Schemata/sarif-schema-2.1.0.json",
+        "version": "2.1.0",
+        "runs": [
+            {
+                "tool": {
+                    "driver": {
+                        "name": "Hallwright",
+                        "semanticVersion": "2.0.0",
+                        "informationUri": "https://github.com/kapitan00000978-sketch/hallwright",
+                        "rules": list(rules_dict.values())
+                    }
+                },
+                "results": sarif_results
+            }
+        ]
+    }
+
+
 def main():
     parser = argparse.ArgumentParser(description="Artisan Quality & Security Detection Engine")
     parser.add_argument("--file", "-f", help="Scan a specific file")
@@ -608,15 +685,20 @@ def main():
     parser.add_argument("--all", "-a", action="store_true", help="Scan entire project (default)")
     parser.add_argument("--vibe", "-v", action="store_true", help="Run in non-blocking Vibe mode (advisory only)")
     parser.add_argument("--json", "-j", action="store_true", help="Output results in JSON format")
+    parser.add_argument("--sarif", action="store_true", help="Output results in OASIS SARIF v2.1.0 format")
+    parser.add_argument("--format", choices=["text", "json", "sarif"], default="text", help="Output format")
 
     args = parser.parse_args()
+    output_format = "sarif" if args.sarif else ("json" if args.json else args.format)
 
     if args.file:
         res = scan_file(args.file)
         if not res:
             print(f"Error: File not found or unreadable: {args.file}", file=sys.stderr)
             sys.exit(1)
-        if args.json:
+        if output_format == "sarif":
+            print(json.dumps(to_sarif_v2({"findings": res.get("flaws_detail", [])}), indent=2))
+        elif output_format == "json":
             print(json.dumps(res, indent=2))
         else:
             print(f"[{res['status']}] Score: {res['score']}/100 | File: {args.file}")
@@ -630,7 +712,9 @@ def main():
 
     result = scan_project(".", staged_only=args.staged, config_override=cfg)
 
-    if args.json:
+    if output_format == "sarif":
+        print(json.dumps(to_sarif_v2(result), indent=2))
+    elif output_format == "json":
         print(json.dumps(result, indent=2))
     else:
         scope = "staged files" if args.staged else "all files"

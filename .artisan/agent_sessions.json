@@ -1,47 +1,7 @@
 {
   "version": "1.0.0",
-  "lastUpdated": "2026-10-16T19:05:11.904257+00:00",
+  "lastUpdated": "2026-10-16T19:20:27.910179+00:00",
   "active_sessions": [
-    {
-      "session_id": "sess_artisan-architect_0c448d22",
-      "agent_name": "artisan-architect",
-      "intent": "Stage 1: Senior Software Architect - Write documentation and README for payme",
-      "active_files": [
-        "README.md"
-      ],
-      "started_at": "2026-10-16T19:04:44.447562+00:00",
-      "last_heartbeat": "2026-10-16T19:04:44.447562+00:00"
-    },
-    {
-      "session_id": "sess_artisan-security_85aabd7e",
-      "agent_name": "artisan-security",
-      "intent": "Stage 2: Principal Cybersecurity Auditor - Write documentation and README for payme",
-      "active_files": [
-        "README.md"
-      ],
-      "started_at": "2026-10-16T19:04:44.461600+00:00",
-      "last_heartbeat": "2026-10-16T19:04:44.461600+00:00"
-    },
-    {
-      "session_id": "sess_artisan-critic_6cdaa7ef",
-      "agent_name": "artisan-critic",
-      "intent": "Stage 3: Independent Code Auditor - Write documentation and README for payme",
-      "active_files": [
-        "README.md"
-      ],
-      "started_at": "2026-10-16T19:04:44.475669+00:00",
-      "last_heartbeat": "2026-10-16T19:04:44.475669+00:00"
-    },
-    {
-      "session_id": "sess_artisan-copywriter_3c22cd51",
-      "agent_name": "artisan-copywriter",
-      "intent": "Stage 4: Conversion & DX Copywriter - Write documentation and README for payme",
-      "active_files": [
-        "README.md"
-      ],
-      "started_at": "2026-10-16T19:04:44.489167+00:00",
-      "last_heartbeat": "2026-10-16T19:04:44.489167+00:00"
-    },
     {
       "session_id": "sess_artisan-architect_ab2d1028",
       "agent_name": "artisan-architect",
@@ -73,6 +33,78 @@
       "active_files": [],
       "started_at": "2026-10-16T19:05:11.904257+00:00",
       "last_heartbeat": "2026-10-16T19:05:11.904257+00:00"
+    },
+    {
+      "session_id": "sess_artisan-architect_1caf2bfd",
+      "agent_name": "artisan-architect",
+      "intent": "Stage 1: Senior Software Architect - Write documentation and README for payme",
+      "active_files": [
+        "README.md"
+      ],
+      "started_at": "2026-10-16T19:20:04.189806+00:00",
+      "last_heartbeat": "2026-10-16T19:20:04.189806+00:00"
+    },
+    {
+      "session_id": "sess_artisan-security_2e3bc466",
+      "agent_name": "artisan-security",
+      "intent": "Stage 2: Principal Cybersecurity Auditor - Write documentation and README for payme",
+      "active_files": [
+        "README.md"
+      ],
+      "started_at": "2026-10-16T19:20:04.203964+00:00",
+      "last_heartbeat": "2026-10-16T19:20:04.203964+00:00"
+    },
+    {
+      "session_id": "sess_artisan-critic_392e2dc4",
+      "agent_name": "artisan-critic",
+      "intent": "Stage 3: Independent Code Auditor - Write documentation and README for payme",
+      "active_files": [
+        "README.md"
+      ],
+      "started_at": "2026-10-16T19:20:04.217686+00:00",
+      "last_heartbeat": "2026-10-16T19:20:04.217686+00:00"
+    },
+    {
+      "session_id": "sess_artisan-copywriter_9b5ac55b",
+      "agent_name": "artisan-copywriter",
+      "intent": "Stage 4: Conversion & DX Copywriter - Write documentation and README for payme",
+      "active_files": [
+        "README.md"
+      ],
+      "started_at": "2026-10-16T19:20:04.230822+00:00",
+      "last_heartbeat": "2026-10-16T19:20:04.230822+00:00"
+    },
+    {
+      "session_id": "sess_artisan-architect_1608d15e",
+      "agent_name": "artisan-architect",
+      "intent": "Stage 1: Senior Software Architect - Refactor payment gateway",
+      "active_files": [],
+      "started_at": "2026-10-16T19:20:27.874966+00:00",
+      "last_heartbeat": "2026-10-16T19:20:27.874966+00:00"
+    },
+    {
+      "session_id": "sess_artisan-security_1e4e6706",
+      "agent_name": "artisan-security",
+      "intent": "Stage 2: Principal Cybersecurity Auditor - Refactor payment gateway",
+      "active_files": [],
+      "started_at": "2026-10-16T19:20:27.886972+00:00",
+      "last_heartbeat": "2026-10-16T19:20:27.886972+00:00"
+    },
+    {
+      "session_id": "sess_artisan-tester_921dcce6",
+      "agent_name": "artisan-tester",
+      "intent": "Stage 3: Senior Quality & Mutation Engineer - Refactor payment gateway",
+      "active_files": [],
+      "started_at": "2026-10-16T19:20:27.897623+00:00",
+      "last_heartbeat": "2026-10-16T19:20:27.897623+00:00"
+    },
+    {
+      "session_id": "sess_artisan-critic_d2e1537f",
+      "agent_name": "artisan-critic",
+      "intent": "Stage 4: Independent Code Auditor - Refactor payment gateway",
+      "active_files": [],
+      "started_at": "2026-10-16T19:20:27.910179+00:00",
+      "last_heartbeat": "2026-10-16T19:20:27.910179+00:00"
     }
   ]
 }

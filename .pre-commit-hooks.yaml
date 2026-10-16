@@ -1,0 +1,26 @@
+- id: hallwright-audit
+  name: Hallwright Code Quality Audit
+  description: Scans staged files for unhandled stubs, silent error catches, and hardcoded secrets.
+  entry: python scripts/detector.py --staged
+  language: python
+  types: [text]
+  stages: [pre-commit]
+  pass_filenames: false
+
+- id: hallwright-gate
+  name: Hallwright Pre-Commit Gatekeeper
+  description: Deterministic 100-point pre-commit quality gate verifying zero stubs and test integrity.
+  entry: python scripts/pre-commit-gatekeeper.py
+  language: python
+  types: [text]
+  stages: [pre-commit]
+  pass_filenames: false
+
+- id: hallwright-fix
+  name: Hallwright Auto-Remediator
+  description: Autonomously refactors silent error suppression and placeholder stubs.
+  entry: python hallwright_cli.py fix .
+  language: python
+  types: [text]
+  stages: [manual]
+  pass_filenames: false

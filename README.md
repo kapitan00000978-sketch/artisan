@@ -246,9 +246,10 @@ Hallwright configures 14 agent environments with native instructions and rule se
 
 ---
 
-## 🚀 Reusable GitHub Action (`@v2` / `@v1`)
+## 🚀 Reusable GitHub Action & Pre-Commit Hook
 
-Audit Pull Requests and Pushes automatically in your CI workflow (`.github/workflows/artisan.yml`):
+### 1. GitHub Actions CI (`.github/workflows/hallwright.yml`):
+Audit pull requests, fail on defects, and upload OASIS SARIF v2.1.0 findings to GitHub Code Scanning:
 
 ```yaml
 name: Hallwright Quality Gate
@@ -257,12 +258,32 @@ on: [push, pull_request]
 jobs:
   audit:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - uses: actions/checkout@v4
       - name: Run Hallwright Quality & Security Gate
         uses: kapitan00000978-sketch/hallwright@v2
+        with:
+          sarif-file: hallwright.sarif
+
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: always()
+        with:
+          sarif_file: hallwright.sarif
 ```
 *(Both `@v2` and `@v1` tags resolve to current stable releases).*
+
+### 2. Standard `pre-commit` Framework (`.pre-commit-config.yaml`):
+```yaml
+repos:
+  - repo: https://github.com/kapitan00000978-sketch/hallwright
+    rev: v2.0.0
+    hooks:
+      - id: hallwright-gate
+```
 
 ---
 
@@ -287,6 +308,7 @@ hallwright doctor               # Diagnostic check on git hooks, MCP, and agent 
 # 🛡️ Quality Audit & Auto-Fix
 hallwright audit                # Audits entire repository for stubs, secrets & bad patterns
 hallwright audit --staged       # Fast audit on git-staged changes only
+hallwright audit --sarif         # Emits OASIS SARIF v2.1.0 report for GitHub Code Scanning
 hallwright fix                  # Automatically repairs silent catches and unfinished stubs
 
 # 🎯 Context & Memory

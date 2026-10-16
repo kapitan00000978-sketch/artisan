@@ -186,7 +186,7 @@ def cmd_init(args: argparse.Namespace) -> int:
 def cmd_audit(args: argparse.Namespace) -> int:
     """Executes the quality and security detector."""
     try:
-        from detector import scan_project, load_artisan_config
+        from detector import scan_project, load_artisan_config, to_sarif_v2
     except ImportError:
         print("[-] Error: Detector engine could not be loaded.", file=sys.stderr)
         return 1
@@ -196,8 +196,13 @@ def cmd_audit(args: argparse.Namespace) -> int:
         cfg["mode"] = "vibe"
 
     result = scan_project(".", staged_only=args.staged, config_override=cfg)
+    output_format = "sarif" if getattr(args, "sarif", False) else ("json" if args.json else getattr(args, "format", "text"))
 
-    if args.json:
+    if output_format == "sarif":
+        print(json.dumps(to_sarif_v2(result), indent=2))
+        return 0 if result["passed"] else 1
+
+    if output_format == "json":
         print(json.dumps(result, indent=2))
         return 0 if result["passed"] else 1
 
@@ -748,6 +753,8 @@ def main():
     p_audit.add_argument("--staged", "-s", action="store_true", help="Audit only git staged changes")
     p_audit.add_argument("--vibe", "-v", action="store_true", help="Run in non-blocking advisory Vibe mode")
     p_audit.add_argument("--json", "-j", action="store_true", help="Output audit results in JSON format")
+    p_audit.add_argument("--sarif", action="store_true", help="Output audit results in OASIS SARIF v2.1.0 format")
+    p_audit.add_argument("--format", choices=["text", "json", "sarif"], default="text", help="Output format (text, json, sarif)")
 
     # fix
     p_fix = subparsers.add_parser("fix", help="Auto-remediate silent catches and code defects")

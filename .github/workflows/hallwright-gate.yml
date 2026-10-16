@@ -13,6 +13,9 @@ jobs:
       matrix:
         python-version: ['3.10', '3.11', '3.12']
     name: Test & Audit (Python ${{ matrix.python-version }})
+    permissions:
+      contents: read
+      security-events: write
     steps:
       - name: Checkout Code
         uses: actions/checkout@v4
@@ -34,3 +37,15 @@ jobs:
       - name: Run Pre-Commit Gatekeeper
         run: |
           python scripts/pre-commit-gatekeeper.py
+
+      - name: Generate Hallwright SARIF Report
+        if: matrix.python-version == '3.12' && always()
+        run: |
+          python scripts/detector.py --sarif > hallwright.sarif
+
+      - name: Upload SARIF to GitHub Code Scanning
+        uses: github/codeql-action/upload-sarif@v3
+        if: matrix.python-version == '3.12' && always()
+        with:
+          sarif_file: hallwright.sarif
+          category: hallwright-quality-gate

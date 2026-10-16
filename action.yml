@@ -1,5 +1,5 @@
-name: 'Artisan Quality & Security Gate'
-description: 'Autonomous pre-commit & CI quality gate for AI coding assistants: catches stubs, secret leaks, and unhandled exceptions.'
+name: 'Hallwright Quality & Security Gate'
+description: 'Deterministic pre-commit & CI quality gate for AI coding assistants: catches stubs, secret leaks, and unhandled exceptions.'
 author: 'kapitan00000978-sketch'
 branding:
   icon: 'shield'
@@ -14,6 +14,10 @@ inputs:
     description: 'Fail the workflow if defects are found'
     required: false
     default: 'true'
+  sarif-file:
+    description: 'Optional file path to output OASIS SARIF v2.1.0 report'
+    required: false
+    default: ''
   python-version:
     description: 'Python runtime version'
     required: false
@@ -27,7 +31,7 @@ runs:
       with:
         python-version: ${{ inputs.python-version }}
 
-    - name: Run Artisan Gatekeeper
+    - name: Run Hallwright Gatekeeper
       shell: bash
       run: |
         FLAGS=""
@@ -35,3 +39,13 @@ runs:
           FLAGS="--staged"
         fi
         python ${{ github.action_path }}/scripts/pre-commit-gatekeeper.py $FLAGS
+
+    - name: Export SARIF Report
+      if: inputs.sarif-file != ''
+      shell: bash
+      run: |
+        FLAGS=""
+        if [ "${{ inputs.staged-only }}" = "true" ]; then
+          FLAGS="--staged"
+        fi
+        python ${{ github.action_path }}/scripts/detector.py --sarif $FLAGS > "${{ inputs.sarif-file }}"
