@@ -1,198 +1,172 @@
-# 🚀 ARTISAN: Global Viral Launch Dossier & Real-World Distribution Playbook
+# 🚀 HALLWRIGHT: Real-World Distribution & Promotion Playbook
 
-> **Mission:** How to execute a top-tier, real-world global launch for Artisan v2.0 across Hacker News, Reddit, Twitter/X, Product Hunt, and developer communities worldwide.
+> **Goal:** How to organically introduce Hallwright to real software engineers across Hacker News, Reddit, Twitter/X, and developer communities worldwide without bots, spam, or friction.
 
 ---
 
-## 🎯 1. HACKER NEWS (Show HN) — FRONT-PAGE BLUEPRINT
+## 🎯 1. HACKER NEWS (Show HN) — STEP-BY-STEP
+
+Hacker News ([news.ycombinator.com](https://news.ycombinator.com)) is the most respected community of software engineers. Anyone can post a "Show HN" without requiring approval or bots.
 
 ### 📅 Optimal Submission Timing:
-- **Best Days:** Tuesday or Wednesday.
-- **Best Time:** 8:00 AM – 9:00 AM EST (1:00 PM – 2:00 PM UTC). This catches the European afternoon and US East Coast morning traffic.
+- **Best Days:** Tuesday, Wednesday, or Thursday.
+- **Best Time:** 8:00 AM – 9:00 AM EST (1:00 PM – 2:00 PM UTC). This catches both European afternoon and US morning traffic.
 
-### 📝 Submission Title:
+### 📝 Title to use:
+```text
+Show HN: Hallwright – Pre-commit guardrails and living memory for AI coding agents
 ```
-Show HN: Artisan – The Autonomous OS for AI Coding Agents (Zero Stubs, Living Memory)
-```
-*(Alternative: `Show HN: Artisan – We got tired of AI agents writing // TODO stubs, so we built an OS for them`)*
 
-### 💬 First Comment (The Maker's Story):
+### 💬 Submission Text / First Comment (Copy & Paste):
 ```markdown
 Hey HN,
 
-Over the past year, our team has been relying heavily on AI coding assistants (Claude Code, Cursor, Copilot, Cline). While their speed is astonishing, we kept running into the same 3 maddening failure modes:
+Over the past year, our team has been relying heavily on AI coding assistants (Claude Code, Cursor, Copilot, Antigravity). While their speed is astonishing, we kept running into the same 3 failure modes:
 
-1. The "TODO: implement later" trap: The model outputs 90% of a function, leaves the critical 10% as an unfinished stub, and claims the task is complete.
-2. Silent error swallowing: Converting difficult edge-cases into `except: pass` or empty `catch {}` blocks, hiding production bugs.
-3. Total session amnesia: Every new chat prompt forgets the architectural constraints and bug fixes learned yesterday.
+1. The "TODO: implement later" trap: The model outputs 90% of a function, leaves the critical 10% as an unfinished stub (`pass` or `// TODO`), and claims the task is complete.
+2. Silent error suppression: Converting difficult edge cases into `except: pass` or empty `catch {}` blocks, silently hiding bugs.
+3. Total session amnesia: Every new session forgets the architectural constraints and bug fixes learned yesterday.
 
-We realized prompt engineering ("please don't leave TODOs") doesn't work reliably because LLMs are probabilistic token predictors. What AI agents actually need is a **Deterministic Operating System Kernel**.
+We realized prompt engineering ("please don't leave TODOs") is unreliable because LLMs are probabilistic token predictors. What developer workflows actually need is a **deterministic pre-commit gate and persistent memory layer**.
 
-So we built Artisan: https://github.com/kapitan00000978-sketch/hallwright
+So we built Hallwright: https://github.com/kapitan00000978-sketch/hallwright
 
-### What Artisan actually does:
-- **Deterministic AST & Security Pre-Commit Gate:** Inspects Abstract Syntax Trees and git-staged diffs in < 4 seconds. If an AI generates unhandled stubs, bare exception catches, or leaks API keys, the commit is rejected automatically.
-- **Living Memory Fabric (`.artisan/memory.json`):** A persistent, append-safe ledger that records every caught bug as "scar tissue". When your agent starts a new task, Artisan dynamically injects only the relevant past lessons.
-- **Multi-Agent Lock Registry (`artisan agents`):** Prevents Claude Code and Cursor from stepping on each other when running concurrently in the same workspace.
-- **Dynamic Context Engine (`artisan context`):** Reduces monolithic prompt dumps (~12,000 tokens) down to ~2,000 tokens of targeted domain discipline and past lessons (~6x context optimization).
+### What Hallwright actually does:
+- **Deterministic AST Pre-Commit Gate:** Inspects Abstract Syntax Trees and git-staged changes in < 3 seconds. If an AI generates unfinished stubs, bare exception catches, or leaks API keys, the commit is intercepted automatically (`hallwright audit --staged`).
+- **Living Project Memory (`.artisan/memory.json`):** A persistent ledger that records caught bugs as "scar tissue". When your assistant starts a new task, `hallwright context` dynamically injects only the matching past lessons (~6x context optimization: ~2K tokens vs ~12K monolithic rubric dump).
+- **Auto-Fix (`hallwright fix`):** Refactors empty catches into structured logger statements and replaces empty stubs.
+- **Multi-Agent Coordination (`hallwright swarm`):** Generates structured execution plans and sets session locks so concurrent agent sessions don't collide.
+- **MCP 2.0 JSON-RPC Server:** Direct integration into Claude Desktop, Claude Code, Cursor, Windsurf, and Antigravity.
 
-### Empirical Benchmark:
-We ran Artisan against 10 realistic code generation tasks containing common anti-patterns:
-- Raw AI Agent Pass Rate: 10.0% (9/10 suffered defect leakage)
-- With Artisan Active: 100.0% (9 defects autonomously caught and remediated)
-(Full reproducible benchmark: https://github.com/kapitan00000978-sketch/hallwright/tree/main/bench)
-
-### 1-Line Quickstart:
+### 3-Command Quickstart:
 ```bash
-# In any git repository:
+# Initialize pre-commit gate & agent configs in your repository
 npx github:kapitan00000978-sketch/hallwright init
-# or with Python:
-python artisan.py init
+
+# Audit staged changes for stubs & secrets
+hallwright audit --staged
+
+# Automatically remediate detected defects
+hallwright fix
 ```
 
 The core is zero-dependency, works with 14 agent environments, and is fully open-source (MIT).
 
-We'd love your brutal feedback on our AST detection rules, memory schema, and whether this helps your daily AI workflow.
+We'd love your feedback on our AST detection rules, memory format, and whether this helps your daily AI workflow!
 ```
 
 ---
 
-## ⚡ 2. REDDIT VIRAL LAUNCH STRATEGY
+## ⚡ 2. REDDIT DISTRIBUTION POSTS
 
-### A. Subreddit: `r/LocalLLaMA`
-**Post Title:**  
-`We built a zero-dependency quality gate and persistent memory engine for local LLMs (Hermes 3, Ollama, vLLM)`
+Post these to the subreddits below. These communities welcome open-source tools that solve real day-to-day developer annoyances.
 
-**Angle:** Focus on how smaller local models (8B–70B) often hallucinate stubs or lack instruction discipline compared to Claude 3.5 Sonnet. Artisan bridges that gap with deterministic AST gates.
+### Post A: `r/ClaudeAI` & `r/Cursor`
+- **Title:** `I got tired of Claude & Cursor writing "TODO: implement later" stubs and swallowing errors with except: pass, so I built a deterministic pre-commit guardrail`
+- **Body (Copy & Paste):**
+```markdown
+Like many of you, I use Claude Code and Cursor daily. They're incredible for velocity, but they have two habits that constantly bit me in production:
 
-### B. Subreddit: `r/ClaudeAI` & `r/Cursor`
-**Post Title:**  
-`How we stopped Claude Code & Cursor from writing "// TODO" stubs and forgetting yesterday's bugs`
+1. **Unfinished stubs:** Writing the boilerplate, and leaving `# TODO: implement error recovery` or `pass` in the most critical branch.
+2. **Silent error suppression:** When wrapping logic in try/except, writing `except Exception: pass` so the script doesn't crash during generation.
 
-**Key Highlights:**
-- Share before-and-after code diffs.
-- Demonstrate `artisan context` (~6x context optimization).
-- Demonstrate `.cursorrules` and `CLAUDE.md` auto-configuration.
+Telling the prompt "do not leave TODOs" only works half the time. 
 
-### C. Subreddit: `r/programming`
-**Post Title:**  
-`Why AI coding assistants need a deterministic OS kernel, not more prompt engineering`
+So I built **Hallwright** — a lightweight, deterministic pre-commit gatekeeper and project memory layer:
+👉 https://github.com/kapitan00000978-sketch/hallwright
+
+### How it works:
+- It hooks into your git pre-commit workflow.
+- In < 2 seconds, it parses the AST of staged files (Python, JS/TS, Go, Rust).
+- If it detects bare exception catches, unfinished stubs, or accidental API key leaks, it blocks the commit.
+- Running `hallwright fix` automatically converts bare catches into structured logging and alerts you to complete stubs.
+- It also maintains a local `.artisan/memory.json` file so that when an AI makes a mistake once, it records the lesson and warns future agent sessions.
+
+You can try it in any repo with:
+```bash
+npx github:kapitan00000978-sketch/hallwright init
+```
+
+Fully open-source under MIT. Would love to hear what other patterns you'd like it to catch!
+```
 
 ---
 
-## 🐦 3. TWITTER / X VIRAL LAUNCH THREAD (10 TWEETS)
+### Post B: `r/LocalLLaMA` & `r/Python`
+- **Title:** `Hallwright: Deterministic AST pre-commit gate & living memory protocol for coding assistants (Zero Dependencies)`
+- **Body (Copy & Paste):**
+```markdown
+Hi everyone,
 
-### Tweet 1 (Hook with Video/GIF):
-> 🚨 AI coding agents are incredible at generating code.
+When using local models (like Qwen 2.5 Coder, DeepSeek Coder, or Llama 3) for coding, a common issue is defect leakage — smaller models frequently generate lazy placeholders (`# implement later`), swallow exceptions with bare `except: pass`, or hallucinate incomplete blocks.
+
+I open-sourced **Hallwright**, a deterministic craftsmanship protocol and quality gate designed to run entirely locally:
+👉 https://github.com/kapitan00000978-sketch/hallwright
+
+### Architecture Highlights:
+- **Zero Heavy Dependencies:** Written with standard library AST analysis and Python/Node CLI wrappers.
+- **AST Semantic Analysis:** Detects unfinished AST nodes, bare Exception swallowers, dangerous eval/exec calls, and credential patterns before `git commit`.
+- **Scar-Tissue Memory (`.artisan/memory.json`):** Living ledger that stores failure patterns and injects targeted warning prompts (~2K tokens) instead of blowing out context windows with 12K+ tokens of generic system prompts.
+- **Model Context Protocol (MCP 2.0):** Exposes inspection tools (`hallwright_inspect_code`, `hallwright_get_lessons`) over stdio for any MCP-compliant agent.
+
+Works offline, requires no API keys, and installs into any git repo via `npx github:kapitan00000978-sketch/hallwright init` or `python artisan_cli.py init`.
+
+Feedback and PRs on the AST rule definitions are very welcome!
+```
+
+---
+
+## 🐦 3. TWITTER / X VIRAL THREAD (5 TWEETS)
+
+### Tweet 1 (Hook):
+> AI coding assistants are incredible at writing code fast.
 > 
-> But they're also terrible at software engineering:
-> • They write `// TODO: implement later`
-> • They hide bugs with `except: pass`
-> • They forget yesterday's mistakes
+> But they have 3 annoying habits:
+> 1. Writing `// TODO: implement later`
+> 2. Hiding errors with `except: pass`
+> 3. Forgetting yesterday's bug fixes
 > 
-> Today, we're launching Artisan v2.0: The Autonomous OS for AI Coding Agents.
-> 
-> 🧵👇 [Attach GIF of `artisan context` and `artisan audit`]
+> So we built Hallwright: a deterministic pre-commit guardrail & project memory protocol for AI agents. 🧵👇
 
 ### Tweet 2:
-> Why does this keep happening?
+> Why prompt engineering fails:
 > 
-> Because LLMs are probabilistic token predictors. Telling them *"be careful and don't make mistakes"* in a prompt is like asking water not to be wet.
+> LLMs are probabilistic token predictors. Telling a prompt *"please don't leave stubs"* is a suggestion, not a guarantee.
 > 
-> What AI needs is a deterministic kernel enforcing AST-level boundaries before code touches git.
+> Hallwright enforces a deterministic AST gate at `git commit`. If code has stubs or silent swallowers, it gets blocked before touching your branch.
 
 ### Tweet 3:
-> Enter the **Artisan Quality Gate**:
+> It also features **Living Project Memory** (`.artisan/memory.json`).
 > 
-> ⚡ Runs in < 4 seconds across your entire repo
-> 🔍 Inspects AST for stubs, empty catches, and credential leaks
-> 🛡️ 100/100 score threshold before any git commit is accepted
+> When your AI agent makes a mistake, Hallwright records it as "scar tissue".
 > 
-> Zero humans needed. Zero babysitting.
+> On future tasks, `hallwright context` injects only the relevant past lessons (~6x context optimization: ~2K tokens instead of 12K+ dumps).
 
 ### Tweet 4:
-> The biggest breakthrough in v2.0: **Living Neural Memory** (`.artisan/memory.json`).
+> Works with your existing stack:
+> • Claude Code CLI & Cursor AI
+> • GitHub Copilot & Windsurf
+> • Python, Node, TypeScript, Go, Rust
+> • Full MCP 2.0 JSON-RPC server support
 > 
-> When your agent makes a mistake or an audit fails, Artisan captures the lesson as "scar tissue".
-> 
-> Next time you ask for a similar task, the agent is automatically warned. It never repeats a mistake twice.
+> Run it in any repo:
+> `npx github:kapitan00000978-sketch/hallwright init`
 
 ### Tweet 5:
-> Prompt bloat is a massive problem:
-> Loading 60+ expert personas wastes 12,000+ tokens per message.
+> Hallwright is 100% open-source under MIT.
 > 
-> With `artisan context "<task>"`, Artisan dynamically selects only the 1-2 relevant domain leads and matching scar tissue.
+> ⭐ Star the repo on GitHub:
+> https://github.com/kapitan00000978-sketch/hallwright
 > 
-> 12,000 tokens ➔ ~2,000 targeted tokens. A ~6x prompt context optimization. 🚀
-
-### Tweet 6:
-> Multi-Agent Collision Avoidance (`artisan agents`):
-> 
-> Running Claude Code in one terminal and Cursor in another?
-> Artisan coordinates active file locks so agents don't stomp on each other's edits in the background.
-
-### Tweet 7:
-> We benchmarked Artisan against 10 real-world engineering tasks:
-> 
-> • Baseline AI: 10% quality pass rate (9/10 suffered defect leakage)
-> • With Artisan: 100% pass rate (9 defects autonomously caught & repaired)
-> 
-> Full reproducible benchmarks in `bench/`.
-
-### Tweet 8:
-> Works out-of-the-box with 14 AI ecosystems:
-> 
-> • Claude Code CLI
-> • Cursor AI
-> • GitHub Copilot
-> • Windsurf Cascade
-> • Nous Hermes
-> • Moonshot Kimi
-> • Cline & Roo Code
-> • OpenAI Codex
-> • Antigravity & Gemini
-
-### Tweet 9:
-> 1-Click activation in any repo:
-> 
-> ```bash
-> npx github:kapitan00000978-sketch/hallwright init
-> ```
-> 
-> Auto-detects your tech stack (Python, Node/Next.js, Go, Rust, Java), configures rules, and installs the git pre-commit hook.
-
-### Tweet 10:
-> Artisan is 100% open-source (MIT).
-> 
-> Star the repo on GitHub:
-> ⭐ https://github.com/kapitan00000978-sketch/hallwright
-> 
-> Try the interactive live playground:
-> 🌐 https://kapitan00000978-sketch.github.io/artisan/
-> 
-> RT if you want AI agents to stop writing `// TODO` stubs! 🔁
+> RT if you want AI to stop swallowing errors in production! 🔁
 
 ---
 
-## 🏆 4. PRODUCT HUNT LAUNCH SPECIFICATION
+## 📈 4. SUMMARY OF RECOMMENDED SCHEDULE
 
-- **Product Name:** Artisan 2.0
-- **Tagline:** The Autonomous Operating System for AI Coding Agents
-- **Topics:** Artificial Intelligence, Developer Tools, Open Source, GitHub, Productivity
-- **Makers:** Open Source Community
-- **Pricing:** Free & Open Source (MIT)
-- **Primary CTA:** Try on GitHub
-
----
-
-## 📈 5. REAL-WORLD GROWTH FLYWHEEL
-
-```mermaid
-graph TD
-    A[Developer installs via npx / pip] --> B[Artisan blocks first // TODO stub in pre-commit]
-    B --> C[Developer experiences 'Aha!' moment of zero-defect code]
-    C --> D[Team adds Artisan GitHub Action to CI]
-    D --> E[PR quality score badge displayed on repo]
-    E --> F[Other developers see badge and install Artisan]
-    F --> A
-```
+| Channel | Platform | Action | Estimated Time |
+| :--- | :--- | :--- | :--- |
+| **Day 1** | **Reddit** (`r/ClaudeAI`, `r/Cursor`) | Post Post A above | 5 minutes |
+| **Day 2** | **Hacker News** | Submit Show HN above at 8:30 AM EST | 5 minutes |
+| **Day 3** | **Twitter / X** | Post the 5-tweet thread | 5 minutes |
+| **Day 4** | **Reddit** (`r/LocalLLaMA`, `r/Python`) | Post Post B above | 5 minutes |
