@@ -133,7 +133,7 @@ if (command === 'init' || command === 'install') {
   console.log(`🩺 [HALLWRIGHT DOCTOR] Inspecting system and project health...\n`);
   const checks = [
     { name: 'Core Protocol (AGENTS.md)', pass: fs.existsSync(path.join(targetDir, 'AGENTS.md')) },
-    { name: 'Memory Ledger (.artisan/memory.json)', pass: fs.existsSync(path.join(targetDir, '.artisan', 'memory.json')) },
+    { name: 'Memory Ledger (.hallwright/memory.json)', pass: fs.existsSync(path.join(targetDir, '.hallwright', 'memory.json')) },
     { name: 'Cursor Rules (.cursorrules)', pass: fs.existsSync(path.join(targetDir, '.cursorrules')) },
     { name: 'Claude Code (CLAUDE.md)', pass: fs.existsSync(path.join(targetDir, 'CLAUDE.md')) },
     { name: 'Copilot Instructions (.github/copilot-instructions.md)', pass: fs.existsSync(path.join(targetDir, '.github', 'copilot-instructions.md')) },

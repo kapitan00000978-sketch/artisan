@@ -14,6 +14,14 @@ import tempfile
 from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 
+try:
+    from src.memory.store import SqliteMemoryStore
+except ImportError:
+    try:
+        from memory.store import SqliteMemoryStore
+    except ImportError:
+        SqliteMemoryStore = None
+
 DEFAULT_MEMORY_PATH = os.path.join(".hallwright", "memory.json")
 
 # Semantic domain synonym expansion mapping
@@ -49,6 +57,14 @@ class LearningMemory:
     def __init__(self, memory_path: str = DEFAULT_MEMORY_PATH):
         self.memory_path = memory_path
         self._ensure_storage()
+        db_dir = os.path.dirname(self.memory_path) or ".hallwright"
+        self.db_path = os.path.join(db_dir, "memory.db")
+        if SqliteMemoryStore:
+            self.store = SqliteMemoryStore(db_path=self.db_path)
+            if os.path.exists(self.memory_path):
+                self.store.sync_from_json(self.memory_path)
+        else:
+            self.store = None
 
     def _ensure_storage(self) -> None:
         """Ensures that the memory directory and json file exist with valid schema."""
@@ -251,6 +267,12 @@ class LearningMemory:
                 existing["updatedAt"] = now_iso
                 data["lastUpdated"] = now_iso
                 self._write_atomic(data)
+                if self.store:
+                    existing_id = existing.get("id") or f"lsn_{int(datetime.now(timezone.utc).timestamp()*1000)}"
+                    if clean_type == "convention":
+                        self.store.record_convention(existing_id, cat_clean, lesson)
+                    else:
+                        self.store.record_lesson(existing_id, cat_clean, pattern, lesson, severity=severity)
                 return {
                     "status": "updated",
                     "id": existing.get("id"),
@@ -271,6 +293,11 @@ class LearningMemory:
         records.append(new_entry)
         data["lastUpdated"] = now_iso
         self._write_atomic(data)
+        if self.store:
+            if clean_type == "convention":
+                self.store.record_convention(rec_id, cat_clean, lesson)
+            else:
+                self.store.record_lesson(rec_id, cat_clean, pattern, lesson, severity=severity)
 
         return {
             "status": "recorded",

@@ -75,18 +75,18 @@ def install(agent_target="all"):
             copy_file_or_dir(agents_src, os.path.join(target_dir, "AGENTS.md"))
             print("  [+] Installed core AGENTS.md protocol")
 
-    # 2. Initialize .artisan memory directory
-    mem_dir = os.path.join(target_dir, ".artisan")
+    # 2. Initialize .hallwright memory directory
+    mem_dir = os.path.join(target_dir, ".hallwright")
     os.makedirs(mem_dir, exist_ok=True)
     mem_file = os.path.join(mem_dir, "memory.json")
     if not os.path.exists(mem_file):
-        sample_mem_src = os.path.join(base_dir, ".artisan", "memory.json")
+        sample_mem_src = os.path.join(base_dir, ".hallwright", "memory.json")
         if os.path.exists(sample_mem_src) and is_external:
             shutil.copy2(sample_mem_src, mem_file)
         else:
             with open(mem_file, "w", encoding="utf-8") as f:
                 f.write('{"user_preferences": {}, "conventions": [], "recorded_scar_tissue": []}\n')
-        print("  [+] Initialized clean project memory (.artisan/memory.json)")
+        print("  [+] Initialized clean project memory (.hallwright/memory.json)")
 
     # 3. Deploy specific agent configuration(s)
     agents_to_deploy = list(SUPPORTED_AGENTS.keys()) if agent_target == "all" else [agent_target.lower()]

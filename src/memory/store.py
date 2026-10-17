@@ -221,8 +221,14 @@ class SqliteMemoryStore:
             return 0
 
         imported = 0
-        lessons = data.get("lessons_learned", []) + data.get("recorded_scar_tissue", [])
-        for item in lessons:
+        raw_lessons = (
+            data.get("lessons_learned", []) +
+            data.get("recorded_scar_tissue", []) +
+            data.get("scarTissue", []) +
+            data.get("mistakes", []) +
+            data.get("lessons", [])
+        )
+        for item in raw_lessons:
             lid = item.get("id") or f"lsn_{int(time.time()*1000)}"
             cat = item.get("category", "general")
             pat = item.get("pattern", "")

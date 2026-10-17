@@ -92,11 +92,11 @@ def render_dashboard():
     print("=" * 80)
     print(" [STATUS]           : PROTOCOL ACTIVE")
     print(" [SUPPORTED AGENTS] : 14 Standalone Agent Environments Synchronized")
-    print(" [MEMORY LEDGER]    : .artisan/memory.json (Synchronized)")
+    print(" [MEMORY LEDGER]    : .hallwright/memory.json (Synchronized)")
     print("=" * 80)
 
     # Load metrics
-    metrics_path = os.path.join(".artisan", "metrics.json")
+    metrics_path = os.path.join(".hallwright", "metrics.json")
     if os.path.exists(metrics_path):
         try:
             with open(metrics_path, "r", encoding="utf-8") as f:

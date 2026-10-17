@@ -43,9 +43,17 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Replaced broad `except Exception: pass` and silent suppressions in `scripts/detector.py` and `scripts/watchdog.py` with specific exception handling (`OSError`, `subprocess.SubprocessError`).
   - Self-scanned `detector.py`, `remediator.py`, and `watchdog.py`: all 3 now score 100/100 with zero findings under strict gate checks.
   - Verified 100% test pass rate (`600 passed in 61.01s`).
+- **Step 3 Completed (SQLite WAL Memory Integration):**
+  - Expanded `sync_from_json` in `src/memory/store.py` to ingest `scarTissue`, `mistakes`, `lessons`, and `lessons_learned`.
+  - Integrated `SqliteMemoryStore` into `src/sdk/learning_memory.py` with bidirectional JSON syncing on write.
+  - Integrated `SqliteMemoryStore` into `src/sdk/continuity.py` for cross-agent checkpoints with JSON fallback.
+  - Connected `mcp/server.py` (`handle_recall_memory`, `handle_record_learning`) directly to SQLite store.
+  - Connected `hallwright_cli.py` (`cmd_status`, `cmd_memory`) to report live stats directly from SQLite (`[SQLite (WAL)]`).
+  - Migrated remaining `.artisan` memory paths to `.hallwright` across `bin/hallwright.js`, `install.ps1`, `install.sh`, `cli/installer.py`, `cli/dashboard.py`, and agent skills.
+  - Added `.hallwright/*.db*` to `.gitignore`.
+  - Verified 100% test pass rate (`600 passed in 58.21s`) and gatekeeper score (`100/100` on 510 files).
 
 ### Remaining
-- **Step 3:** Fully wire SQLite WAL memory engine (`src/memory/store.py`) to CLI and MCP server as the default store.
 - **Step 4:** Safe auto-remediation (ensure AST/syntax checks, proper imports, prevent destructive code rewrites).
 - **Step 5:** Distill 64 professions down to ~8 core software guilds, archive science masters to `packs/science/`.
 - **Step 6:** Package & distribution refinement.
@@ -54,4 +62,5 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
 ### Decisions
 - Single unified brand: **Hallwright**.
 - Active persistent state directory: `.hallwright/`.
+- Concurrency-safe primary memory engine: SQLite WAL (`.hallwright/memory.db`) with human-readable git-friendly JSON fallback (`.hallwright/memory.json`).
 - Guardrail layer architecture strictly preserved; no autonomous model invocation inside the core guardrail layer.

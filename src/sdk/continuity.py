@@ -15,6 +15,14 @@ import logging
 from typing import Dict, List, Optional, Any
 from dataclasses import dataclass, field, asdict
 
+try:
+    from src.memory.store import SqliteMemoryStore
+except ImportError:
+    try:
+        from memory.store import SqliteMemoryStore
+    except ImportError:
+        SqliteMemoryStore = None
+
 logger = logging.getLogger("hallwright.continuity")
 
 
@@ -46,6 +54,9 @@ class ContinuityManager:
         self.artisan_dir = os.path.join(self.workspace_root, ".hallwright")
         self.checkpoint_file = os.path.join(self.artisan_dir, "checkpoints.json")
         self.handoff_file = os.path.join(self.artisan_dir, "agent_handoff.md")
+
+        self.db_path = os.path.join(self.artisan_dir, "memory.db")
+        self.store = SqliteMemoryStore(self.db_path) if SqliteMemoryStore else None
 
         # Determine if enabled
         if enabled is not None:
@@ -90,7 +101,30 @@ class ContinuityManager:
 
     def load_checkpoint(self) -> Optional[CheckpointData]:
         """Load current checkpoint data, returning None if disabled or non-existent."""
-        if not self._enabled or not os.path.exists(self.checkpoint_file):
+        if not self._enabled:
+            return None
+
+        if self.store:
+            try:
+                latest = self.store.get_latest_checkpoint()
+                if latest:
+                    extra = latest.get("extra_data", {})
+                    return CheckpointData(
+                        last_updated=latest.get("updated_at", time.time()),
+                        last_agent=latest.get("agent_name", "unknown-agent"),
+                        last_task=latest.get("task", "Unknown"),
+                        stopped_at_file=latest.get("stopped_at_file"),
+                        stopped_at_line=latest.get("stopped_at_line"),
+                        completed_milestones=extra.get("completed_milestones", []),
+                        pending_milestones=extra.get("pending_milestones", []),
+                        architectural_decisions=extra.get("architectural_decisions", []),
+                        context_notes=extra.get("context_notes", []),
+                        status=latest.get("status", "IN_PROGRESS"),
+                    )
+            except Exception as store_err:
+                logger.debug("Failed reading checkpoint from SQLite: %s", store_err)
+
+        if not os.path.exists(self.checkpoint_file):
             return None
 
         try:
@@ -166,6 +200,29 @@ class ContinuityManager:
             context_notes=merged_notes,
             status=status,
         )
+
+        if self.store:
+            try:
+                cp_id = f"cp_{int(checkpoint.last_updated*1000)}"
+                session_id = f"sess_{int(checkpoint.last_updated)}"
+                extra = {
+                    "completed_milestones": checkpoint.completed_milestones,
+                    "pending_milestones": checkpoint.pending_milestones,
+                    "architectural_decisions": checkpoint.architectural_decisions,
+                    "context_notes": checkpoint.context_notes,
+                }
+                self.store.save_checkpoint(
+                    checkpoint_id=cp_id,
+                    session_id=session_id,
+                    agent_name=checkpoint.last_agent,
+                    task=checkpoint.last_task,
+                    stopped_at_file=checkpoint.stopped_at_file,
+                    stopped_at_line=checkpoint.stopped_at_line,
+                    status=checkpoint.status,
+                    extra_data=extra
+                )
+            except Exception as store_err:
+                logger.debug("Failed saving checkpoint to SQLite: %s", store_err)
 
         try:
             with open(self.checkpoint_file, "w", encoding="utf-8") as f:

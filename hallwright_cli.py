@@ -263,19 +263,31 @@ def cmd_fix(args: argparse.Namespace) -> int:
 def cmd_status(args: argparse.Namespace) -> int:
     """Displays workspace health, active guilds, memory status, and pre-commit gate info."""
     print(ASCII_BANNER)
-    mem_path = os.path.join(".hallwright", "memory.json")
     lessons_count = 0
     conventions_count = 0
+    engine_name = "JSON"
 
-    if os.path.exists(mem_path):
-        try:
-            with open(mem_path, "r", encoding="utf-8") as f:
-                data = json.load(f)
-                lessons_count = len(data.get("lessons_learned", []))
-                conventions_count = len(data.get("conventions", [])) + len(data.get("recorded_scar_tissue", []))
-        except (json.JSONDecodeError, OSError):
-            lessons_count = 0
-            conventions_count = 0
+    try:
+        from memory.store import SqliteMemoryStore
+        db_path = os.path.join(".hallwright", "memory.db")
+        store = SqliteMemoryStore(db_path=db_path)
+        mem_path = os.path.join(".hallwright", "memory.json")
+        if os.path.exists(mem_path):
+            store.sync_from_json(mem_path)
+        lessons_count = len(store.get_lessons(limit=10000))
+        conventions_count = len(store.get_conventions())
+        engine_name = "SQLite (WAL)"
+    except Exception:
+        mem_path = os.path.join(".hallwright", "memory.json")
+        if os.path.exists(mem_path):
+            try:
+                with open(mem_path, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    lessons_count = len(data.get("lessons_learned", [])) + len(data.get("scarTissue", [])) + len(data.get("lessons", []))
+                    conventions_count = len(data.get("conventions", [])) + len(data.get("recorded_scar_tissue", []))
+            except (json.JSONDecodeError, OSError):
+                lessons_count = 0
+                conventions_count = 0
 
     has_gatekeeper = os.path.exists(os.path.join(".git", "hooks", "pre-commit"))
     has_agents_md = os.path.exists("AGENTS.md")
@@ -285,7 +297,7 @@ def cmd_status(args: argparse.Namespace) -> int:
     print(f"  • Protocol Invariant    : Active ({'AGENTS.md loaded' if has_agents_md else 'Missing AGENTS.md'})")
     print(f"  • Pre-Commit Quality Gate: {'INSTALLED (.git/hooks/pre-commit)' if has_gatekeeper else 'NOT INSTALLED'}")
     print(f"  • Detected Stack        : {', '.join(detected)}")
-    print(f"  • Persistent Memory     : {lessons_count} lessons, {conventions_count} recorded conventions")
+    print(f"  • Persistent Memory     : {lessons_count} lessons, {conventions_count} recorded conventions [{engine_name}]")
     print(f"  • Council Guilds Active : 8 Domain Guilds (64 Titans available)")
     print(f"  • Smart Context Engine  : Ready (85% token compression)\n")
     return 0

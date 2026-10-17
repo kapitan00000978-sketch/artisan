@@ -189,17 +189,21 @@ try:
     from sdk.context_selector import SmartMasterSelector
     from sdk.learning_memory import LearningMemory
     from sdk.guilds import COUNCIL_GUILDS, list_guilds_summary
+    from src.memory.store import SqliteMemoryStore
 except ImportError:
     try:
         from context_selector import SmartMasterSelector
         from learning_memory import LearningMemory
         from guilds import COUNCIL_GUILDS, list_guilds_summary
+        from memory.store import SqliteMemoryStore
     except ImportError:
         SmartMasterSelector = None
         LearningMemory = None
         COUNCIL_GUILDS = {}
         list_guilds_summary = None
+        SqliteMemoryStore = None
 
+sqlite_store = SqliteMemoryStore() if SqliteMemoryStore else None
 learning_memory = LearningMemory() if LearningMemory else None
 master_selector = SmartMasterSelector(COUNCIL_MEMBERS) if SmartMasterSelector else None
 
@@ -276,7 +280,7 @@ TOOLS = [
     },
     {
         "name": "artisan_record_learning",
-        "description": "Records a new mistake, success pattern, convention, or lesson into persistent project memory (.artisan/memory.json) to prevent repeating errors.",
+        "description": "Records a new mistake, success pattern, convention, or lesson into persistent project memory (.hallwright/memory.json) to prevent repeating errors.",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -478,7 +482,24 @@ def handle_list_council(args):
 
 
 def handle_recall_memory(args):
-    mem_file = os.path.join(".artisan", "memory.json")
+    query = args.get("query") if isinstance(args, dict) else None
+    if sqlite_store:
+        try:
+            lessons = sqlite_store.get_lessons(category=query, limit=100)
+            conventions = sqlite_store.get_conventions(category=query)
+            if lessons or conventions:
+                return {
+                    "status": "success",
+                    "storage": "sqlite-wal",
+                    "lessons_count": len(lessons),
+                    "conventions_count": len(conventions),
+                    "lessons": lessons,
+                    "conventions": conventions
+                }
+        except Exception as err:
+            logger.debug("SQLite memory recall failed: %s", err)
+
+    mem_file = os.path.join(".hallwright", "memory.json")
     if os.path.exists(mem_file):
         try:
             with open(mem_file, "r", encoding="utf-8") as f:

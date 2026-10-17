@@ -27,15 +27,15 @@ Write-Host "[+] Downloading core Artisan protocol..." -ForegroundColor Green
 Invoke-RestMethod -Uri "$RepoRaw/AGENTS.md" -OutFile "$TargetDir\AGENTS.md"
 
 # Safe memory preservation: never overwrite existing user memory
-if (-not (Test-Path "$TargetDir\.artisan\memory.json")) {
+if (-not (Test-Path "$TargetDir\.hallwright\memory.json")) {
     Write-Host "[+] Initializing clean starter memory template..." -ForegroundColor Green
-    Invoke-RestMethod -Uri "$RepoRaw/.artisan/memory.json" -OutFile "$TargetDir\.artisan\memory.json"
+    Invoke-RestMethod -Uri "$RepoRaw/.hallwright/memory.json" -OutFile "$TargetDir\.hallwright\memory.json"
 } else {
-    Write-Host "[*] Preserving existing .artisan\memory.json (not overwritten)." -ForegroundColor Yellow
+    Write-Host "[*] Preserving existing .hallwright\memory.json (not overwritten)." -ForegroundColor Yellow
 }
 
-if (-not (Test-Path "$TargetDir\.artisan\memory.md")) {
-    Invoke-RestMethod -Uri "$RepoRaw/.artisan/memory.md" -OutFile "$TargetDir\.artisan\memory.md"
+if (-not (Test-Path "$TargetDir\.hallwright\memory.md")) {
+    Invoke-RestMethod -Uri "$RepoRaw/.hallwright/memory.md" -OutFile "$TargetDir\.hallwright\memory.md"
 }
 
 Write-Host "[+] Installing Cursor AI Rules..." -ForegroundColor Green
