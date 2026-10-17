@@ -76,8 +76,20 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Added `*.egg-info/` to `.gitignore`.
   - Verified 100% test pass rate across test suite and gatekeeper score (`100/100`).
 
+- **Step 8 Completed (Comprehensive Audit Remediation & Ballast Isolation):**
+  - Added real defensive security rules to `scripts/detector.py`: `DANGEROUS_COMMAND_INJECTION` (blocking `shell=True` and dynamic `os.system`), `DANGEROUS_DOM_XSS` (blocking dynamic `innerHTML` injections and `dangerouslySetInnerHTML`), and `DANGEROUS_SSRF` (blocking dynamic URL parameters in HTTP clients).
+  - Added regression test suite in `tests/test_audit_fixes.py` (HW-033, HW-034, HW-035, HW-036) verifying security detections and ensuring safe static constructs are not falsely flagged.
+  - Eliminated command injection vulnerabilities in `cli/dashboard.py` by transitioning all `os.system(...)` calls to safe `subprocess.run([...])` argument sequences.
+  - Purged `.artisan/` resurrection paths from `cli/persona_forge.py` and `cli/dashboard.py`.
+  - Re-architected `scripts/install_git_hook.py` to be robust across external repositories (checking `hallwright`, local gatekeeper, and `npx` gracefully without breaking user commits).
+  - Implemented `resolvePythonCommand()` in `bin/hallwright.js` providing cross-platform reliability on macOS and Linux (resolving `python3` vs `python`).
+  - Updated `mcp/server.py` to publish canonical `hallwright_*` tools in the MCP `tools/list` manifest while preserving legacy `artisan_*` aliases.
+  - Enforced strict UTF-8 decoding in `scripts/roi_tracker.py`, `scripts/watchdog.py`, and `scripts/detector.py`.
+  - Isolated 39 theoretical science profession modules and 39 science test files into `packs/science/` with dedicated documentation (`packs/science/README.md`), keeping the core software engineering guardrail lean and focused.
+  - Verified 100% test pass rate across core test suite (`334 passed`) and pre-commit gatekeeper audit (`510 files scanned, Score: 100/100`).
+
 ### Remaining
-- None! All 6 core refactoring steps + decision journal pruning have been executed and verified with proof.
+- None! All identified security gaps, platform bugs, CLI injections, and science ballast have been systematically eliminated and verified.
 
 ### Decisions
 - Single unified brand: **Hallwright**.
@@ -85,4 +97,5 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
 - Concurrency-safe primary memory engine: SQLite WAL (`.hallwright/memory.db`) with human-readable git-friendly JSON fallback (`.hallwright/memory.json`).
 - Core software craftsmanship centered on 8 professional software guilds (`references/<guild>.md`).
 - Bounded decision journal: 50-record rolling retention window.
-- Guardrail layer architecture strictly preserved; no autonomous model invocation inside the core guardrail layer.
+- Theoretical science personas preserved in modular `packs/science/` extension pack.
+- Guardrail layer architecture strictly preserved; zero placeholder stubs, zero silent catches, zero hardcoded secrets.
