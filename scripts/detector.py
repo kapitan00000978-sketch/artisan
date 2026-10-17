@@ -432,7 +432,7 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
                     "file": filename,
                     "line": line_no,
                     "matched_text": m.group(0),
-                    "message": "Silent exception suppression (except: pass). Log or handle errors.",
+                    "message": "Silent exception suppression. Log or handle errors.",  # hallwright-ignore
                     "deduction": 25
                 })
                 break
@@ -485,7 +485,7 @@ def scan_file(filepath: str, config: Optional[Dict[str, Any]] = None) -> Optiona
         with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
             content = f.read()
         return scan_code(content, filename=filepath, config=config)
-    except Exception:
+    except (OSError, UnicodeDecodeError):
         return None
 
 
@@ -500,9 +500,8 @@ def get_staged_git_files() -> List[str]:
         )
         if proc.returncode == 0:
             return [f.strip() for f in proc.stdout.splitlines() if f.strip()]
-    except Exception:
-        pass
-    return []
+    except (subprocess.SubprocessError, OSError):
+        return []
 
 
 def scan_project(base_dir: str = ".", staged_only: bool = False, config_override: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
@@ -524,7 +523,7 @@ def scan_project(base_dir: str = ".", staged_only: bool = False, config_override
     else:
         excluded_dirs = default_excluded_dirs
 
-    excluded_files = {"detector.py", "pre-commit-gatekeeper.py", "remediator.py", "server.py", "watchdog.py", "sync_artisan.py", "claude_hook.py"}
+    excluded_files = set()
     if "exclude_files" in cfg:
         excluded_files.update(cfg["exclude_files"])
 

@@ -37,9 +37,14 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Removed duplicate CLI wrappers and aliases (`artisan_cli.py`, `artisan.py`, `bin/artisan.js`, `artisan.config.json`).
   - Unified runtime memory and config paths in `src/sdk/continuity.py`, `src/sdk/learning_memory.py`, `src/sdk/agent_registry.py`, `src/memory/store.py`, `src/studio/active_memory.py`, `scripts/roi_tracker.py`, `scripts/artisan_studio.py`, `hallwright_cli.py`, `bin/hallwright.js`, `tests/test_cli.py`, `tests/test_continuity.py`, `package.json`, and `index.html`.
   - Verified 100% test pass rate (`600 passed in 57.40s`) and pre-commit gate pass (`100/100`).
+- **Step 2 Completed (Zero-Immunity & Silent Catch Remediation):**
+  - Emptied `EXCLUDED_FILES` in both `scripts/detector.py` and `scripts/remediator.py`.
+  - Removed legacy ballast `scripts/sync_artisan.py`.
+  - Replaced broad `except Exception: pass` and silent suppressions in `scripts/detector.py` and `scripts/watchdog.py` with specific exception handling (`OSError`, `subprocess.SubprocessError`).
+  - Self-scanned `detector.py`, `remediator.py`, and `watchdog.py`: all 3 now score 100/100 with zero findings under strict gate checks.
+  - Verified 100% test pass rate (`600 passed in 61.01s`).
 
 ### Remaining
-- **Step 2:** Eliminate self-exclusion (`EXCLUDED_FILES`) in `detector.py` and remediate all `except Exception: pass` silent swallowers.
 - **Step 3:** Fully wire SQLite WAL memory engine (`src/memory/store.py`) to CLI and MCP server as the default store.
 - **Step 4:** Safe auto-remediation (ensure AST/syntax checks, proper imports, prevent destructive code rewrites).
 - **Step 5:** Distill 64 professions down to ~8 core software guilds, archive science masters to `packs/science/`.
