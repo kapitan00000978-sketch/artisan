@@ -30,6 +30,10 @@ py-modules = ["hallwright_cli"]
 where = ["."]
 include = ["src*", "professions*", "scripts*", "mcp*"]
 
+[tool.setuptools.package-data]
+"*" = ["*.md", "*.json", "*.sh", "*.bat", "*.yaml", "*.yml"]
+
+
 [project.optional-dependencies]
 dev = [
     "pytest>=7.4.0,<9.0.0",

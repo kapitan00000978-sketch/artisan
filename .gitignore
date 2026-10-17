@@ -4,6 +4,8 @@ __pycache__/
 *.pyo
 .venv/
 dist/
+build/
+hallwright-*/
 .DS_Store
 Thumbs.db
 .aider*

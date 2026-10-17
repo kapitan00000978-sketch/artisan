@@ -1,0 +1,24 @@
+include README.md
+include LICENSE
+include AGENTS.md
+include CLAUDE.md
+include HERMES.md
+include CODEX.md
+include OPENCLAW.md
+include OPENCODE.md
+include PIE.md
+include KIMI.md
+include KILO.md
+include .cursorrules
+include .windsurfrules
+include .clinerules
+include hallwright.config.json
+recursive-include .cursor/rules *
+include .github/copilot-instructions.md
+recursive-include references *
+recursive-include scripts *.py *.sh *.bat
+recursive-include mcp *.py *.json
+recursive-include src *.py *.md *.json
+recursive-include professions *.py *.md *.json
+recursive-include packs/science *.py *.md *.json
+recursive-include tests *.py
