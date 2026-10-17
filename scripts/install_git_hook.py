@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-Artisan Git Hook Installer
+Hallwright Git Hook Installer
 Installs pre-commit quality gate into .git/hooks/pre-commit
 """
 
@@ -23,13 +23,19 @@ def install_hook():
 
     hook_path = os.path.join(hooks_dir, "pre-commit")
     hook_content = """#!/bin/sh
-# Artisan Pre-Commit Quality & Security Gate
-if command -v python3 >/dev/null 2>&1; then
-    python3 scripts/pre-commit-gatekeeper.py --staged
-elif command -v python >/dev/null 2>&1; then
-    python scripts/pre-commit-gatekeeper.py --staged
+# Hallwright Pre-Commit Quality & Security Gate
+if command -v hallwright >/dev/null 2>&1; then
+    hallwright audit --staged
+elif [ -f scripts/pre-commit-gatekeeper.py ]; then
+    if command -v python3 >/dev/null 2>&1; then
+        python3 scripts/pre-commit-gatekeeper.py --staged
+    elif command -v python >/dev/null 2>&1; then
+        python scripts/pre-commit-gatekeeper.py --staged
+    fi
+elif command -v npx >/dev/null 2>&1 && [ -f package.json ]; then
+    npx hallwright audit --staged
 else
-    echo "[-] Python not found; skipping Artisan pre-commit audit."
+    echo "[-] Notice: Hallwright audit skipped (neither 'hallwright' CLI nor local gatekeeper found)."
 fi
 """
 
@@ -44,7 +50,7 @@ fi
         if sys.platform != "win32":
             print(f"Notice: Could not set executable permission: {err}", file=sys.stderr)
 
-    print(f"✅ [ARTISAN HOOK]: Installed pre-commit hook into {hook_path}")
+    print(f"✅ [HALLWRIGHT HOOK]: Installed pre-commit hook into {hook_path}")
     return True
 
 if __name__ == "__main__":

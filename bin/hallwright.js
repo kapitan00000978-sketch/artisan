@@ -26,6 +26,20 @@ const command = (args[0] || 'status').toLowerCase();
 
 const packageRoot = path.resolve(__dirname, '..');
 
+function resolvePythonCommand() {
+  const candidates = process.platform === 'win32' ? ['python', 'py', 'python3'] : ['python3', 'python'];
+  for (const cmd of candidates) {
+    try {
+      const res = spawnSync(cmd, ['--version'], { stdio: 'ignore' });
+      if (res.status === 0) return cmd;
+    } catch (err) {
+      continue;
+    }
+  }
+  return process.platform === 'win32' ? 'python' : 'python3';
+}
+const PYTHON_CMD = resolvePythonCommand();
+
 function copyFileSafe(srcRel, dstRel, overwrite = true) {
   const src = path.join(packageRoot, srcRel);
   const dst = path.join(targetDir, dstRel);
@@ -91,7 +105,7 @@ if (command === 'init' || command === 'install') {
   if (fs.existsSync(gitDir)) {
     const hookScript = path.join(packageRoot, 'scripts', 'install_git_hook.py');
     if (fs.existsSync(hookScript)) {
-      spawnSync('python', [hookScript], { stdio: 'inherit' });
+      spawnSync(PYTHON_CMD, [hookScript], { stdio: 'inherit' });
     }
   }
 
@@ -104,7 +118,7 @@ if (command === 'init' || command === 'install') {
   const scriptPath = path.join(packageRoot, 'scripts', 'pre-commit-gatekeeper.py');
   if (fs.existsSync(scriptPath)) {
     const extraArgs = args.slice(1);
-    const res = spawnSync('python', [scriptPath, ...extraArgs], { stdio: 'inherit' });
+    const res = spawnSync(PYTHON_CMD, [scriptPath, ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
   } else {
     console.error(`[-] Gatekeeper script not found at ${scriptPath}`);
@@ -114,7 +128,7 @@ if (command === 'init' || command === 'install') {
   console.log(`🪝 [HALLWRIGHT HOOK] Installing Git pre-commit quality gate...`);
   const hookScript = path.join(packageRoot, 'scripts', 'install_git_hook.py');
   if (fs.existsSync(hookScript)) {
-    const res = spawnSync('python', [hookScript], { stdio: 'inherit' });
+    const res = spawnSync(PYTHON_CMD, [hookScript], { stdio: 'inherit' });
     process.exit(res.status || 0);
   } else {
     console.error(`[-] Hook installer not found at ${hookScript}`);
@@ -124,7 +138,7 @@ if (command === 'init' || command === 'install') {
   console.log(`🔌 [HALLWRIGHT MCP] Starting Model Context Protocol Server...`);
   const mcpScript = path.join(packageRoot, 'mcp', 'server.py');
   if (fs.existsSync(mcpScript)) {
-    spawnSync('python', [mcpScript], { stdio: 'inherit' });
+    spawnSync(PYTHON_CMD, [mcpScript], { stdio: 'inherit' });
   } else {
     console.error(`[-] MCP server not found at ${mcpScript}`);
     process.exit(1);
@@ -149,7 +163,7 @@ if (command === 'init' || command === 'install') {
   console.log(`👁️ [HALLWRIGHT WATCHDOG] Starting file sentinel...`);
   const scriptPath = path.join(packageRoot, 'scripts', 'watchdog.py');
   if (fs.existsSync(scriptPath)) {
-    spawnSync('python', [scriptPath, '--watch'], { stdio: 'inherit' });
+    spawnSync(PYTHON_CMD, [scriptPath, '--watch'], { stdio: 'inherit' });
   } else {
     console.error(`[-] Watchdog script not found at ${scriptPath}`);
     process.exit(1);
@@ -159,23 +173,23 @@ if (command === 'init' || command === 'install') {
   const fixScript = path.join(packageRoot, 'scripts', 'remediator.py');
   if (fs.existsSync(fixScript)) {
     const extraArgs = args.slice(1);
-    const res = spawnSync('python', [fixScript, ...extraArgs], { stdio: 'inherit' });
+    const res = spawnSync(PYTHON_CMD, [fixScript, ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
   } else {
     console.error(`[-] Remediator script not found at ${fixScript}`);
     process.exit(1);
   }
 } else if (command === 'memory') {
-  const memScript = fs.existsSync(path.join(packageRoot, 'hallwright_cli.py')) ? path.join(packageRoot, 'hallwright_cli.py') : path.join(packageRoot, 'artisan_cli.py');
+  const memScript = path.join(packageRoot, 'hallwright_cli.py');
   if (fs.existsSync(memScript)) {
     const extraArgs = args.slice(1);
-    const res = spawnSync('python', [memScript, 'memory', ...extraArgs], { stdio: 'inherit' });
+    const res = spawnSync(PYTHON_CMD, [memScript, 'memory', ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
   }
 } else if (['resume', 'checkpoint', 'lib', 'library', 'libraries', 'swarm', 'review', 'mutate', 'context', 'prompt', '3d', 'spatial', 'studio'].includes(command)) {
-  const cliScript = fs.existsSync(path.join(packageRoot, 'hallwright_cli.py')) ? path.join(packageRoot, 'hallwright_cli.py') : path.join(packageRoot, 'artisan_cli.py');
+  const cliScript = path.join(packageRoot, 'hallwright_cli.py');
   if (fs.existsSync(cliScript)) {
-    const res = spawnSync('python', [cliScript, command, ...args.slice(1)], { stdio: 'inherit' });
+    const res = spawnSync(PYTHON_CMD, [cliScript, command, ...args.slice(1)], { stdio: 'inherit' });
     process.exit(res.status || 0);
   } else {
     console.error(`[-] CLI engine not found at ${cliScript}`);
@@ -184,12 +198,12 @@ if (command === 'init' || command === 'install') {
 } else if (command === 'hud') {
   const hudScript = path.join(packageRoot, 'cli', 'dashboard.py');
   if (fs.existsSync(hudScript)) {
-    spawnSync('python', [hudScript], { stdio: 'inherit' });
+    spawnSync(PYTHON_CMD, [hudScript], { stdio: 'inherit' });
   }
 } else if (command === 'status') {
-  const statusScript = fs.existsSync(path.join(packageRoot, 'hallwright_cli.py')) ? path.join(packageRoot, 'hallwright_cli.py') : path.join(packageRoot, 'artisan_cli.py');
+  const statusScript = path.join(packageRoot, 'hallwright_cli.py');
   if (fs.existsSync(statusScript)) {
-    spawnSync('python', [statusScript, 'status'], { stdio: 'inherit' });
+    spawnSync(PYTHON_CMD, [statusScript, 'status'], { stdio: 'inherit' });
   } else {
     console.log(`🛡️ Hallwright Guardrail : ACTIVE (v2.0.0)`);
     console.log(`Mode                   : Pre-Commit Quality Guardrail`);

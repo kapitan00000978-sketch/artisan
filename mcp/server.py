@@ -378,6 +378,16 @@ TOOLS = [
     }
 ]
 
+# Generate canonical Hallwright tools alongside legacy Artisan tools for full discovery
+CANONICAL_HALLWRIGHT_TOOLS = []
+for _t in TOOLS:
+    _hw_t = dict(_t)
+    _hw_t["name"] = _t["name"].replace("artisan_", "hallwright_")
+    _hw_t["description"] = _t["description"].replace("Artisan", "Hallwright")
+    CANONICAL_HALLWRIGHT_TOOLS.append(_hw_t)
+
+ALL_MCP_TOOLS = CANONICAL_HALLWRIGHT_TOOLS + TOOLS
+
 
 def handle_resume_continuity(args):
     try:
@@ -631,8 +641,8 @@ def dispatch_request(req):
                     "tools": {}
                 },
                 "serverInfo": {
-                    "name": "artisan-mcp",
-                    "version": "1.0.0"
+                    "name": "hallwright-mcp",
+                    "version": "2.0.0"
                 }
             }
         }
@@ -642,13 +652,13 @@ def dispatch_request(req):
         return {
             "jsonrpc": "2.0",
             "id": msg_id,
-            "result": {"status": "ok", "protocol": "artisan-mcp-1.0"}
+            "result": {"status": "ok", "protocol": "hallwright-mcp-2.0"}
         }
     elif method == "tools/list":
         return {
             "jsonrpc": "2.0",
             "id": msg_id,
-            "result": {"tools": TOOLS}
+            "result": {"tools": ALL_MCP_TOOLS}
         }
     elif method == "tools/call":
         params = req.get("params", {})
@@ -666,7 +676,7 @@ def dispatch_request(req):
         args = params.get("arguments", {})
 
         norm_tool = (tool_name or "").replace("hallwright_", "artisan_")
-        tool_def = next((t for t in TOOLS if t["name"] in (tool_name, norm_tool)), None)
+        tool_def = next((t for t in ALL_MCP_TOOLS if t["name"] in (tool_name, norm_tool)), None)
         if not tool_def:
             return {
                 "jsonrpc": "2.0",

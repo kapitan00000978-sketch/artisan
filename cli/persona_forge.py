@@ -53,7 +53,7 @@ def create_persona(title, character_name=None, archetype=None, domain="general")
         ]
     }
 
-    persona_dir = os.path.join(".artisan", "personas")
+    persona_dir = os.path.join(".hallwright", "personas")
     os.makedirs(persona_dir, exist_ok=True)
     file_path = os.path.join(persona_dir, f"{persona_id}.json")
 

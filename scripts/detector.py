@@ -80,6 +80,27 @@ RULES = [
         "Potential SQL injection via raw string interpolation or concatenation. Use parameterized queries.",
         30
     ),
+    (
+        "DANGEROUS_COMMAND_INJECTION",
+        "DANGEROUS",
+        r"""(?:\b(?:subprocess\.(?:Popen|run|call|check_call|check_output))\s*\([^)]*?\bshell\s*=\s*True|\bos\.system\s*\(\s*(?:f["'][^"']*\{|["'][^"']*["']\s*\+|[a-zA-Z_]\w*))""",
+        "Dangerous dynamic shell execution or command injection risk detected ('shell=True' or dynamic 'os.system'). Use subprocess.run with argument sequence.",
+        30
+    ),
+    (
+        "DANGEROUS_DOM_XSS",
+        "DANGEROUS",
+        r"""(?i)(?:\bdangerouslySetInnerHTML\s*=\s*\{\s*\{?\s*__html\s*:|(?<![a-zA-Z0-9_])innerHTML\s*=\s*(?:`[^`]*\$\{[^}]+\}[^`]*`|["'][^"']*["']\s*\+\s*[a-zA-Z0-9_]|[a-zA-Z0-9_]\w*\s*\+\s*["']|(?!\s*["'`])(?!\s*null\b)(?!\s*undefined\b)[a-zA-Z_$][a-zA-Z0-9_$.]*\s*(?:;|$|\)|,)))""",
+        "Potential DOM Cross-Site Scripting (XSS) sink detected. Sanitize dynamic content or use textContent/safe templating.",
+        25
+    ),
+    (
+        "DANGEROUS_SSRF",
+        "DANGEROUS",
+        r"""(?i)\b(?:requests\.(?:get|post|put|delete|patch)|urllib\.request\.urlopen|axios\.(?:get|post|put|delete))\s*\(\s*(?:url|req\.query|req\.params|user_input|target_url|input_url)\b""",
+        "Potential Server-Side Request Forgery (SSRF) via unvalidated dynamic URL parameter. Validate URL against allowlist.",
+        25
+    ),
 
     # 3. Secrets & Sensitive Credentials (artisan-ignore)
     (
@@ -482,7 +503,7 @@ def scan_file(filepath: str, config: Optional[Dict[str, Any]] = None) -> Optiona
     if not os.path.exists(filepath):
         return None
     try:
-        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+        with open(filepath, "r", encoding="utf-8") as f:
             content = f.read()
         return scan_code(content, filename=filepath, config=config)
     except (OSError, UnicodeDecodeError):

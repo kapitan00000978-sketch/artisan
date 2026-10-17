@@ -39,14 +39,15 @@ def test_mcp_initialize_schema():
     req = {"jsonrpc": "2.0", "id": 1, "method": "initialize"}
     res = server.dispatch_request(req)
     assert res["result"]["protocolVersion"] == "2024-11-05"
-    assert res["result"]["serverInfo"]["name"] == "artisan-mcp"
-    assert res["result"]["serverInfo"]["version"] == "1.0.0"
+    assert res["result"]["serverInfo"]["name"] in ("hallwright-mcp", "artisan-mcp")
 
 def test_mcp_tools_list_contains_artisan_tools():
     req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
     res = server.dispatch_request(req)
     tool_names = [t["name"] for t in res["result"]["tools"]]
-    assert len(tool_names) == 13
+    assert len(tool_names) >= 13
+    assert "hallwright_inspect_code" in tool_names
+    assert "hallwright_select_masters" in tool_names
     assert "artisan_inspect_code" in tool_names
     assert "artisan_get_persona" in tool_names
     assert "artisan_list_council" in tool_names

@@ -23,9 +23,9 @@ def count_workspace_stats():
             if file.endswith((".js", ".ts", ".py", ".go", ".rs", ".java", ".cs")):
                 source_files += 1
                 try:
-                    with open(os.path.join(root, file), "r", encoding="utf-8", errors="ignore") as f:
+                    with open(os.path.join(root, file), "r", encoding="utf-8") as f:
                         total_lines += sum(1 for _ in f)
-                except OSError as err:
+                except (OSError, UnicodeDecodeError) as err:
                     print(f"Warning reading {file}: {err}", file=sys.stderr)
             elif file.endswith((".md", ".mdc", ".json")):
                 if ".cursor" in root or ".hallwright" in root or "agents" in root:

@@ -17,7 +17,7 @@ if sys.platform == "win32":
 
 BANNER = """
 ===================================================================
- 🛡️  ARTISAN UNIVERSAL AGENT INSTALLER
+ 🛡️  HALLWRIGHT UNIVERSAL AGENT INSTALLER
      Eliminate AI Prompt Babysitting & Enforce Professional Rigor
 ===================================================================
 """
@@ -110,14 +110,14 @@ def install(agent_target="all"):
 
         print(f"  [+] Active: {folder} ({agent_key})")
 
-    print("\n[✓] SUCCESS: Artisan protocol is now active!")
+    print("\n[✓] SUCCESS: Hallwright protocol is now active!")
     print("    - Zero Babysitting: ON")
-    print("    - 64 Council Titans: READY")
+    print("    - 8 Software Guilds: READY")
     print("    - Self-Inspection Loop: ON")
     print("    - Auto-Remediation: ON")
 
 if __name__ == "__main__":
-    parser = argparse.ArgumentParser(description="Artisan Installer")
+    parser = argparse.ArgumentParser(description="Hallwright Installer")
     parser.add_argument("--agent", default="all", help="Target agent or 'all'")
     args = parser.parse_args()
     install(args.agent)

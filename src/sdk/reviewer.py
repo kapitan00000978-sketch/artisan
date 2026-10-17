@@ -178,7 +178,7 @@ class AdversarialReviewer:
                                     "message": "Dangerous os.system() invocation detected.",
                                     "suggestion": "Replace with subprocess.run(['cmd', 'arg']) avoiding shell evaluation."
                                 })
-                        # subprocess.run(..., shell=True)
+                        # subprocess.run(..., shell=True)  # hallwright-ignore
                         elif isinstance(func, ast.Attribute) and func.attr in ("Popen", "run", "call", "check_call"):
                             for kw in node.keywords:
                                 if kw.arg == "shell" and isinstance(kw.value, ast.Constant) and kw.value.value is True:

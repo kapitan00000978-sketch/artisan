@@ -7,6 +7,7 @@ Empowered by The Council of Masters
 import sys
 import os
 import json
+import subprocess
 
 if sys.platform == "win32":
     sys.stdout.reconfigure(encoding="utf-8")
@@ -167,25 +168,27 @@ def main():
         elif choice == "4":
             name = input("Enter new profession title (e.g. 'Cloud Security Architect'): ").strip()
             if name:
-                os.system(f'python cli/persona_forge.py --create "{name}"')
+                subprocess.run([sys.executable, "cli/persona_forge.py", "--create", name])
             input("\nPress Enter to return...")
         elif choice == "5":
             target = input("Enter HTML target to critique (default: index.html): ").strip() or "index.html"
             elevate = input("Autonomously elevate to world-class? (y/N): ").strip().lower() == "y"
-            elev_flag = " --elevate" if elevate else ""
-            os.system(f"python scripts/artisan_studio.py {target}{elev_flag}")
+            cmd_args = [sys.executable, "scripts/artisan_studio.py", target]
+            if elevate:
+                cmd_args.append("--elevate")
+            subprocess.run(cmd_args)
             input("\nPress Enter to return...")
         elif choice == "6":
-            mem_path = os.path.join(".artisan", "memory.json")
+            mem_path = os.path.join(".hallwright", "memory.json")
             if os.path.exists(mem_path):
                 with open(mem_path, "r", encoding="utf-8") as f:
                     print(json.dumps(json.load(f), indent=2))
             input("\nPress Enter to return...")
         elif choice == "7":
-            os.system("python scripts/roi_tracker.py")
+            subprocess.run([sys.executable, "scripts/roi_tracker.py"])
             input("\nPress Enter to return...")
         elif choice == "0":
-            print("\nExiting Artisan Control Center. Stand tall, Master.\n")
+            print("\nExiting Hallwright Control Center. Stand tall, Master.\n")
             break
 
 if __name__ == "__main__":

@@ -236,3 +236,70 @@ def test_hw032_remediator_aborts_on_preexisting_syntax_error():
     finally:
         if os.path.exists(temp_path):
             os.remove(temp_path)
+
+
+# ---------------------------------------------------------
+# HW-033: Command injection detection rule
+# ---------------------------------------------------------
+def test_hw033_command_injection_rule_detected():
+    """Verify detector catches dangerous shell=True and dynamic os.system calls."""
+    code_shell_true = "import subprocess\nsubprocess.run(user_cmd, shell=True)\n"
+    res1 = scan_code(code_shell_true, filename="server.py")
+    rule_ids1 = [f["rule_id"] for f in res1["findings"]]
+    assert "DANGEROUS_COMMAND_INJECTION" in rule_ids1
+
+    code_dynamic_system = 'import os\nos.system(f"rm -rf {target}")\n'
+    res2 = scan_code(code_dynamic_system, filename="tasks.py")
+    rule_ids2 = [f["rule_id"] for f in res2["findings"]]
+    assert "DANGEROUS_COMMAND_INJECTION" in rule_ids2
+
+
+# ---------------------------------------------------------
+# HW-034: DOM XSS detection rule
+# ---------------------------------------------------------
+def test_hw034_dom_xss_rule_detected():
+    """Verify detector flags dangerous DOM XSS injection vectors."""
+    code_xss1 = "element.innerHTML = user_input;\n"
+    res1 = scan_code(code_xss1, filename="app.js")
+    rule_ids1 = [f["rule_id"] for f in res1["findings"]]
+    assert "DANGEROUS_DOM_XSS" in rule_ids1
+
+    code_jsx = "const Comp = () => <div dangerouslySetInnerHTML={{ __html: rawHtml }} />;\n"
+    res2 = scan_code(code_jsx, filename="Comp.tsx")
+    rule_ids2 = [f["rule_id"] for f in res2["findings"]]
+    assert "DANGEROUS_DOM_XSS" in rule_ids2
+
+
+# ---------------------------------------------------------
+# HW-035: SSRF detection rule
+# ---------------------------------------------------------
+def test_hw035_ssrf_rule_detected():
+    """Verify detector flags unvalidated dynamic URL parameters in HTTP clients."""
+    code_requests = "import requests\nresp = requests.get(url)\n"
+    res1 = scan_code(code_requests, filename="fetcher.py")
+    rule_ids1 = [f["rule_id"] for f in res1["findings"]]
+    assert "DANGEROUS_SSRF" in rule_ids1
+
+    code_axios = "const res = await axios.get(req.query.target);\n"
+    res2 = scan_code(code_axios, filename="proxy.ts")
+    rule_ids2 = [f["rule_id"] for f in res2["findings"]]
+    assert "DANGEROUS_SSRF" in rule_ids2
+
+
+# ---------------------------------------------------------
+# HW-036: Safe constructs are not false-positively flagged
+# ---------------------------------------------------------
+def test_hw036_safe_constructs_not_flagged():
+    """Verify safe subprocess list calls, static HTML, and fixed URLs pass with score 100."""
+    safe_code = (
+        'import subprocess\n'
+        'import requests\n'
+        'subprocess.run(["git", "status"], check=True)\n'
+        'requests.get("https://api.github.com/zen")\n'
+        'container.innerHTML = "";\n'
+        'container.innerHTML = "<span>static</span>";\n'
+    )
+    res = scan_code(safe_code, filename="safe.py")
+    assert res["status"] == "CERTIFIED"
+    assert res["score"] == 100
+    assert len(res["findings"]) == 0

@@ -1,7 +1,7 @@
 {
   "version": "2.0.0",
   "project": "Artisan Engineering Core",
-  "lastUpdated": "2026-10-17T16:15:02.564653+00:00",
+  "lastUpdated": "2026-10-17T17:14:02.446484+00:00",
   "userPreferences": [
     "Clean architecture, zero empty catch blocks, zero TODO comments in production",
     "Comprehensive test coverage across all domain mutations"
@@ -60,7 +60,7 @@
       "lesson": "Always enforce pagination limits.",
       "severity": "high",
       "recordedAt": "2026-10-15T15:08:39.779478+00:00",
-      "updatedAt": "2026-10-17T16:15:02.564653+00:00"
+      "updatedAt": "2026-10-17T17:14:02.446484+00:00"
     },
     {
       "id": "mis-0004",
@@ -69,7 +69,7 @@
       "lesson": "Always verify algorithm is HS256/RS256",
       "severity": "high",
       "recordedAt": "2026-10-15T18:30:24.182735+00:00",
-      "updatedAt": "2026-10-17T16:14:29.858270+00:00"
+      "updatedAt": "2026-10-17T17:13:27.367698+00:00"
     },
     {
       "id": "mis-0005",
@@ -122,6 +122,23 @@
       "lesson": "Rejected in pre-commit audit (.\\professions\\database_architect\\elevation_engine.py:133). Resolve Potential SQL injection via raw string interpolation or concatenation. Use parameterized queries. before committing.",
       "severity": "medium",
       "recordedAt": "2026-10-16T19:02:54.797113+00:00"
+    },
+    {
+      "id": "mis-0011",
+      "category": "dangerous",
+      "pattern": "Dangerous dynamic shell execution or command injection risk detected ('shell=True' or dynamic 'os.system'). Use subprocess.run with argument sequence.",
+      "lesson": "Rejected in pre-commit audit (.\\scratch\\test_cmd_ssrf_regex.py:12). Resolve Dangerous dynamic shell execution or command injection risk detected ('shell=True' or dynamic 'os.system'). Use subprocess.run with argument sequence. before committing.",
+      "severity": "medium",
+      "recordedAt": "2026-10-17T17:04:12.657842+00:00",
+      "updatedAt": "2026-10-17T17:04:12.846531+00:00"
+    },
+    {
+      "id": "mis-0012",
+      "category": "stub",
+      "pattern": "Empty catch block detected. Handle or log exceptions properly.",
+      "lesson": "Rejected in pre-commit audit (.\\bin\\hallwright.js:35). Resolve Empty catch block detected. Handle or log exceptions properly. before committing.",
+      "severity": "medium",
+      "recordedAt": "2026-10-17T17:12:45.130866+00:00"
     }
   ],
   "successes": [
