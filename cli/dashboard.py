@@ -88,7 +88,7 @@ def clear_screen():
 def render_dashboard():
     clear_screen()
     print("=" * 80)
-    print("  🛡️  ARTISAN CONTROL CENTER & AGENT HUD")
+    print("  🛡️  HALLWRIGHT CONTROL CENTER & AGENT HUD")
     print("      Empowered by The Council of Masters — Quality & Security Protocol")
     print("=" * 80)
     print(" [STATUS]           : PROTOCOL ACTIVE")
@@ -133,9 +133,10 @@ def render_dashboard():
     print("  [2] Run Live Watchdog Scanner")
     print("  [3] Inspect Council of Masters & Signature Mottos")
     print("  [4] Create Custom Domain Persona (Persona Forge)")
-    print("  [5] Artisan Studio (Visual Critique & World-Class Elevation)")
+    print("  [5] Hallwright Studio (Visual Critique & World-Class Elevation)")
     print("  [6] Inspect Persistent Memory Ledger")
     print("  [7] View ROI & Audit Report")
+    print("  [8] Run Autonomous Auto-Heal Pass (Zero Babysitting)")
     print("  [0] Exit")
     print("=" * 80)
 
@@ -156,12 +157,12 @@ def show_council_details():
 def main():
     while True:
         render_dashboard()
-        choice = input("\n👉 Select an action [0-7]: ").strip()
+        choice = input("\n👉 Select an action [0-8]: ").strip()
         if choice == "1":
-            os.system("python scripts/pre-commit-gatekeeper.py")
+            subprocess.run([sys.executable, "scripts/pre-commit-gatekeeper.py"])
             input("\nPress Enter to return...")
         elif choice == "2":
-            os.system("python scripts/watchdog.py")
+            subprocess.run([sys.executable, "scripts/watchdog.py", "--once"])
             input("\nPress Enter to return...")
         elif choice == "3":
             show_council_details()
@@ -186,6 +187,9 @@ def main():
             input("\nPress Enter to return...")
         elif choice == "7":
             subprocess.run([sys.executable, "scripts/roi_tracker.py"])
+            input("\nPress Enter to return...")
+        elif choice == "8":
+            subprocess.run([sys.executable, "scripts/remediator.py"])
             input("\nPress Enter to return...")
         elif choice == "0":
             print("\nExiting Hallwright Control Center. Stand tall, Master.\n")
