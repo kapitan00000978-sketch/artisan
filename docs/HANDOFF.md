@@ -88,6 +88,13 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Isolated 39 theoretical science profession modules and 39 science test files into `packs/science/` with dedicated documentation (`packs/science/README.md`), keeping the core software engineering guardrail lean and focused.
   - Verified 100% test pass rate across core test suite (`334 passed`) and pre-commit gatekeeper audit (`510 files scanned, Score: 100/100`).
 
+- **Step 9 Completed (Testing Infrastructure, Remediator Hallwright Brand & Documentation):**
+  - Updated `README.md` to reflect new security rules (`DANGEROUS_COMMAND_INJECTION`, `DANGEROUS_DOM_XSS`, `DANGEROUS_SSRF`), `.hallwright/` paths, and test metrics (334 core + 273 science pack).
+  - Modernized `scripts/remediator.py` with `hallwright` naming, `_hw_err`, and `# hallwright-ignore` pragmas.
+  - Configured `pyproject.toml` with `packs/science` in `pythonpath` and `extraPaths`, verifying that all 273 science pack unit tests run and pass cleanly via `pytest packs/science/tests/`.
+  - Verified studio unification (`scripts/hallwright_studio.py`) with zero broken imports across all professions.
+  - Pre-commit gatekeeper score verified at `100/100` across all 511 files in workspace.
+
 ### Remaining
 - None! All identified security gaps, platform bugs, CLI injections, and science ballast have been systematically eliminated and verified.
 
