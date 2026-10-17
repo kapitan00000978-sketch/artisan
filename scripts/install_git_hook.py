@@ -30,6 +30,13 @@ def vendor_gatekeeper(target_dir: str = ".") -> bool:
         dst_path = os.path.join(gate_dir, dst_name)
         if os.path.exists(src_path):
             shutil.copy2(src_path, dst_path)
+
+    # Vendor compiled Go standalone binary if available
+    root_dir = os.path.dirname(base_scripts)
+    for bin_candidate in ["hallwright.exe", "hallwright"]:
+        bin_path = os.path.join(root_dir, "bin", bin_candidate)
+        if os.path.exists(bin_path):
+            shutil.copy2(bin_path, os.path.join(gate_dir, bin_candidate))
     return True
 
 def install_hook(target_dir: str = ".", heal_by_default: bool = False, vendor_gate: bool = True):

@@ -98,16 +98,33 @@ def test_cmd_init_in_clean_directory():
             data = json.load(f)
             assert data["version"] == "2.0.0"
 
-        # Protocol and agent rule files copied
+        # Protocol and canonical agent rule files copied
+        assert os.path.exists(os.path.join(tmpdir, "AGENTS.md"))
+        assert os.path.exists(os.path.join(tmpdir, "CLAUDE.md"))
+        assert os.path.exists(os.path.join(tmpdir, ".cursorrules"))
+        assert os.path.exists(os.path.join(tmpdir, ".windsurfrules"))
+        assert os.path.exists(os.path.join(tmpdir, ".clinerules"))
+        assert os.path.exists(os.path.join(tmpdir, ".github", "copilot-instructions.md"))
+
+        # Root directory is clean (zero unnecessary markdown clutter by default)
+        assert not os.path.exists(os.path.join(tmpdir, "HERMES.md"))
+        assert not os.path.exists(os.path.join(tmpdir, "CODEX.md"))
+        assert not os.path.exists(os.path.join(tmpdir, "OPENCLAW.md"))
+        assert not os.path.exists(os.path.join(tmpdir, "OPENCODE.md"))
+        assert not os.path.exists(os.path.join(tmpdir, "PIE.md"))
+        assert not os.path.exists(os.path.join(tmpdir, "KIMI.md"))
+        assert not os.path.exists(os.path.join(tmpdir, "KILO.md"))
+
+
+def test_cmd_init_with_all_agents():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        args = argparse.Namespace(dir=tmpdir, no_hook=True, all_agents=True)
+        ret = artisan_cli.cmd_init(args)
+        assert ret == 0
         assert os.path.exists(os.path.join(tmpdir, "AGENTS.md"))
         assert os.path.exists(os.path.join(tmpdir, "HERMES.md"))
         assert os.path.exists(os.path.join(tmpdir, "CODEX.md"))
-        assert os.path.exists(os.path.join(tmpdir, "OPENCLAW.md"))
-        assert os.path.exists(os.path.join(tmpdir, "OPENCODE.md"))
-        assert os.path.exists(os.path.join(tmpdir, "PIE.md"))
-        assert os.path.exists(os.path.join(tmpdir, "CLAUDE.md"))
         assert os.path.exists(os.path.join(tmpdir, "KIMI.md"))
-        assert os.path.exists(os.path.join(tmpdir, "KILO.md"))
 
 
 def test_cmd_init_preserves_existing_files():

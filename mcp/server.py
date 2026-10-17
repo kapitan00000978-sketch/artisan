@@ -378,7 +378,7 @@ TOOLS = [
     }
 ]
 
-# Generate canonical Hallwright tools alongside legacy Artisan tools for full discovery
+# Canonical Hallwright tools (distilled 13 tools for zero bloat)
 CANONICAL_HALLWRIGHT_TOOLS = []
 for _t in TOOLS:
     _hw_t = dict(_t)
@@ -386,7 +386,8 @@ for _t in TOOLS:
     _hw_t["description"] = _t["description"].replace("Artisan", "Hallwright")
     CANONICAL_HALLWRIGHT_TOOLS.append(_hw_t)
 
-ALL_MCP_TOOLS = CANONICAL_HALLWRIGHT_TOOLS + TOOLS
+LEGACY_ARTISAN_TOOLS = TOOLS
+ALL_MCP_TOOLS = CANONICAL_HALLWRIGHT_TOOLS
 
 
 def handle_resume_continuity(args):
@@ -675,8 +676,9 @@ def dispatch_request(req):
         tool_name = params.get("name")
         args = params.get("arguments", {})
 
+        hw_name = (tool_name or "").replace("artisan_", "hallwright_")
         norm_tool = (tool_name or "").replace("hallwright_", "artisan_")
-        tool_def = next((t for t in ALL_MCP_TOOLS if t["name"] in (tool_name, norm_tool)), None)
+        tool_def = next((t for t in ALL_MCP_TOOLS if t["name"] == hw_name), None)
         if not tool_def:
             return {
                 "jsonrpc": "2.0",

@@ -41,26 +41,43 @@ def test_mcp_initialize_schema():
     assert res["result"]["protocolVersion"] == "2024-11-05"
     assert res["result"]["serverInfo"]["name"] in ("hallwright-mcp", "artisan-mcp")
 
-def test_mcp_tools_list_contains_artisan_tools():
+def test_mcp_tools_list_distilled_canonical_tools():
     req = {"jsonrpc": "2.0", "id": 2, "method": "tools/list"}
     res = server.dispatch_request(req)
     tool_names = [t["name"] for t in res["result"]["tools"]]
-    assert len(tool_names) >= 13
+    assert len(tool_names) == 13
     assert "hallwright_inspect_code" in tool_names
+    assert "hallwright_get_persona" in tool_names
+    assert "hallwright_list_council" in tool_names
+    assert "hallwright_recall_memory" in tool_names
     assert "hallwright_select_masters" in tool_names
-    assert "artisan_inspect_code" in tool_names
-    assert "artisan_get_persona" in tool_names
-    assert "artisan_list_council" in tool_names
-    assert "artisan_recall_memory" in tool_names
-    assert "artisan_select_masters" in tool_names
-    assert "artisan_get_lessons" in tool_names
-    assert "artisan_record_learning" in tool_names
-    assert "artisan_inject_prompt" in tool_names
-    assert "artisan_list_guilds" in tool_names
-    assert "artisan_resume_continuity" in tool_names
-    assert "artisan_save_checkpoint" in tool_names
-    assert "artisan_get_library" in tool_names
-    assert "artisan_review_code" in tool_names
+    assert "hallwright_get_lessons" in tool_names
+    assert "hallwright_record_learning" in tool_names
+    assert "hallwright_inject_prompt" in tool_names
+    assert "hallwright_list_guilds" in tool_names
+    assert "hallwright_resume_continuity" in tool_names
+    assert "hallwright_save_checkpoint" in tool_names
+    assert "hallwright_get_library" in tool_names
+    assert "hallwright_review_code" in tool_names
+    # Verify legacy artisan_* tools are NOT duplicated in tools/list
+    assert not any(t.startswith("artisan_") for t in tool_names)
+
+def test_mcp_canonical_hallwright_tools_dispatch():
+    # Direct invocation using canonical hallwright_ prefix
+    req = {
+        "jsonrpc": "2.0",
+        "id": 15,
+        "method": "tools/call",
+        "params": {
+            "name": "hallwright_inspect_code",
+            "arguments": {"code": "def valid(): return 42\n"}
+        }
+    }
+    res = server.dispatch_request(req)
+    assert "result" in res
+    content = json.loads(res["result"]["content"][0]["text"])
+    assert content["status"] == "CERTIFIED"
+    assert content["score"] == 100
 
 def test_mcp_list_guilds_via_dispatch():
     req = {

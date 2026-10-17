@@ -166,14 +166,17 @@ def cmd_init(args: argparse.Namespace) -> int:
     else:
         print("  [*] Preserved existing .hallwright/memory.json")
 
-    # 3. Deploy agent rules
-    configs = [
+    # 3. Deploy agent rules (Standard canonical agent configurations)
+    standard_configs = [
         (".cursorrules", ".cursorrules"),
         (".cursor/rules", ".cursor/rules"),
         ("CLAUDE.md", "CLAUDE.md"),
         (".github/copilot-instructions.md", ".github/copilot-instructions.md"),
         (".windsurfrules", ".windsurfrules"),
         (".clinerules", ".clinerules"),
+    ]
+
+    extra_agent_configs = [
         ("kimi-agent/KIMI.md", "KIMI.md"),
         ("kilo-agent/KILO.md", "KILO.md"),
         ("hermes-agent/HERMES.md", "HERMES.md"),
@@ -182,6 +185,10 @@ def cmd_init(args: argparse.Namespace) -> int:
         ("opencode-agent/OPENCODE.md", "OPENCODE.md"),
         ("pie-agent/PIE.md", "PIE.md"),
     ]
+
+    configs = list(standard_configs)
+    if getattr(args, "all_agents", False):
+        configs.extend(extra_agent_configs)
 
     for src_rel, dst_rel in configs:
         src_path = os.path.join(ROOT_DIR, src_rel)
@@ -834,6 +841,7 @@ def main():
     p_init.add_argument("--no-hook", action="store_true", help="Skip automatic git pre-commit hook installation")
     p_init.add_argument("--force", "-f", action="store_true", help="Force overwrite of existing configuration files")
     p_init.add_argument("--backup", "-b", action="store_true", help="Backup existing files to .bak before replacing")
+    p_init.add_argument("--all-agents", action="store_true", help="Also deploy niche/legacy agent adapters (KIMI.md, KILO.md, HERMES.md, etc.)")
 
     # audit
     p_audit = subparsers.add_parser("audit", help="Run static quality & security audit across codebase")

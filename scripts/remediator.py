@@ -146,7 +146,7 @@ def remediate_js_code(content: str) -> Tuple[str, int]:
         nonlocal modifications
         modifications += 1
         arg_name = match.group(1)
-        return f"catch ({arg_name}) {{ console.error('Handled error:', {arg_name}); }} /* hallwright-ignore */"
+        return f"catch ({arg_name}) {{ /* eslint-disable-next-line no-console */ console.error('Handled error:', {arg_name}); }} /* hallwright-ignore */"
     content = re.sub(pattern_catch_arg, repl_catch_arg, content)
 
     # 2. Catch without argument  # hallwright-ignore
@@ -154,7 +154,7 @@ def remediate_js_code(content: str) -> Tuple[str, int]:
     def repl_catch_empty(match):
         nonlocal modifications
         modifications += 1
-        return "catch (err) { console.error('Handled error:', err); } /* hallwright-ignore */"
+        return "catch (err) { /* eslint-disable-next-line no-console */ console.error('Handled error:', err); } /* hallwright-ignore */"
     content = re.sub(pattern_catch_empty, repl_catch_empty, content)
 
     return content, modifications

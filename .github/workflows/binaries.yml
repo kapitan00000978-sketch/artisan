@@ -1,0 +1,60 @@
+name: Build and Release Multi-Platform Binaries
+
+on:
+  push:
+    tags:
+      - 'v*'
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  build-binaries:
+    name: Build Go Gatekeeper (${{ matrix.goos }}/${{ matrix.goarch }})
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        include:
+          - goos: windows
+            goarch: amd64
+            output: hallwright-windows-amd64.exe
+          - goos: windows
+            goarch: arm64
+            output: hallwright-windows-arm64.exe
+          - goos: linux
+            goarch: amd64
+            output: hallwright-linux-amd64
+          - goos: linux
+            goarch: arm64
+            output: hallwright-linux-arm64
+          - goos: darwin
+            goarch: amd64
+            output: hallwright-darwin-amd64
+          - goos: darwin
+            goarch: arm64
+            output: hallwright-darwin-arm64
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Set up Go
+        uses: actions/setup-go@v5
+        with:
+          go-version: '1.22'
+          check-latest: true
+
+      - name: Build Binary
+        env:
+          GOOS: ${{ matrix.goos }}
+          GOARCH: ${{ matrix.goarch }}
+          CGO_ENABLED: '0'
+        run: |
+          mkdir -p bin
+          go build -trimpath -ldflags="-s -w" -o bin/${{ matrix.output }} ./cmd/hallwright
+
+      - name: Upload Binary Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.output }}
+          path: bin/${{ matrix.output }}

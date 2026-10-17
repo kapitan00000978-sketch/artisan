@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "artisan": {
+    "hallwright": {
       "command": "python",
       "args": ["./mcp/server.py"]
     }

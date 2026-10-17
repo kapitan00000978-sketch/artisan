@@ -15,4 +15,8 @@ Thumbs.db
 .hallwright/gate/
 *.egg-info/
 scratch/
+bin/hallwright-*
+bin/hallwright
+bin/hallwright.exe
+!bin/hallwright.js
 
