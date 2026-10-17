@@ -93,7 +93,8 @@ def scan_files(staged_only: bool = False, vibe_override: bool = False, heal: boo
 
             return False
     else:
-        print(f"✅ [HALLWRIGHT VERIFIED]: All code satisfied quality and security benchmarks. (Scanned {result['scanned_files']} files, Score: 100/100)")
+        baseline_msg = f" ({len(result['baseline_findings'])} baseline debt items tolerated)" if result.get("baseline_findings") else ""
+        print(f"✅ [HALLWRIGHT VERIFIED]: All code satisfied quality and security benchmarks.{baseline_msg} (Scanned {result['scanned_files']} files, Score: {result['score']}/100)")
         return True
 
 

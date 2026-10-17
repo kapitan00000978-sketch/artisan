@@ -224,7 +224,16 @@ def cmd_audit(args: argparse.Namespace) -> int:
     if args.vibe:
         cfg["mode"] = "vibe"
 
-    result = scan_project(".", staged_only=args.staged, config_override=cfg)
+    generate_baseline_flag = getattr(args, "generate_baseline", False)
+    if generate_baseline_flag:
+        from detector import generate_baseline
+        baseline_path = getattr(args, "baseline", None)
+        out_file = generate_baseline(".", output_path=baseline_path, config_override=cfg)
+        print(f"✅ [HALLWRIGHT BASELINE]: Generated technical debt baseline at: {out_file}")
+        return 0
+
+    baseline_path = getattr(args, "baseline", None)
+    result = scan_project(".", staged_only=args.staged, config_override=cfg, baseline_path=baseline_path)
     output_format = "sarif" if getattr(args, "sarif", False) else ("json" if args.json else getattr(args, "format", "text"))
 
     if output_format == "sarif":
@@ -239,6 +248,10 @@ def cmd_audit(args: argparse.Namespace) -> int:
     mode_str = " (⚡ Vibe Mode)" if result["mode"] == "vibe" else ""
     print(f"\n🛡️ [Artisan Audit] Scope: {scope}{mode_str} | Scanned: {result['scanned_files']} files")
     print(f"📊 Project Health Score: {result['score']}/100\n")
+
+    baseline_findings = result.get("baseline_findings", [])
+    if baseline_findings:
+        print(f"📋 Baseline technical debt: {len(baseline_findings)} existing item(s) permitted.")
 
     findings = result.get("findings", [])
     if findings:
@@ -829,6 +842,9 @@ def main():
     p_audit.add_argument("--json", "-j", action="store_true", help="Output audit results in JSON format")
     p_audit.add_argument("--sarif", action="store_true", help="Output audit results in OASIS SARIF v2.1.0 format")
     p_audit.add_argument("--format", choices=["text", "json", "sarif"], default="text", help="Output format (text, json, sarif)")
+    p_audit.add_argument("--baseline", help="Custom path to baseline.json file")
+    p_audit.add_argument("--generate-baseline", action="store_true", help="Generate .hallwright/baseline.json from current technical debt")
+
 
     # fix
     p_fix = subparsers.add_parser("fix", help="Auto-remediate silent catches and code defects")

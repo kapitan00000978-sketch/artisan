@@ -578,12 +578,97 @@ def get_staged_git_files() -> List[str]:
         return []
 
 
-def scan_project(base_dir: str = ".", staged_only: bool = False, config_override: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+DEFAULT_BASELINE_PATH = os.path.join(".hallwright", "baseline.json")
+
+
+def load_baseline(base_dir: str = ".", custom_path: Optional[str] = None) -> Optional[Dict[str, Any]]:
+    """Loads existing technical debt baseline from .hallwright/baseline.json or custom path."""
+    candidates = []
+    if custom_path:
+        candidates.append(custom_path)
+    candidates.append(os.path.join(base_dir, ".hallwright", "baseline.json"))
+    candidates.append(os.path.join(base_dir, "baseline.json"))
+
+    for p in candidates:
+        if os.path.isfile(p):
+            try:
+                with open(p, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, dict) and "flaws" in data:
+                        return data
+                    elif isinstance(data, list):
+                        return {"flaws": data}
+            except (OSError, json.JSONDecodeError):
+                continue
+    return None
+
+
+def is_flaw_in_baseline(flaw: Dict[str, Any], baseline_flaws: List[Dict[str, Any]]) -> bool:
+    """Matches a newly detected flaw against recorded baseline debt items."""
+    flaw_file = flaw.get("file", "").replace("\\", "/").lstrip("./")
+    flaw_rule = flaw.get("rule_id", "")
+    flaw_text = flaw.get("matched_text", "").strip()
+    flaw_line = int(flaw.get("line", 0))
+
+    for b in baseline_flaws:
+        b_file = b.get("file", "").replace("\\", "/").lstrip("./")
+        b_rule = b.get("rule_id", "")
+        if b_file == flaw_file and b_rule == flaw_rule:
+            b_text = b.get("matched_text", "").strip()
+            if b_text and flaw_text and (b_text == flaw_text or b_text in flaw_text or flaw_text in b_text):
+                return True
+            if abs(int(b.get("line", 0)) - flaw_line) <= 3:
+                return True
+    return False
+
+
+def generate_baseline(base_dir: str = ".", output_path: Optional[str] = None, config_override: Optional[Dict[str, Any]] = None) -> str:
+    """Audits workspace ignoring any existing baseline and generates a new .hallwright/baseline.json."""
+    from datetime import datetime, timezone
+
+    cfg = config_override or load_artisan_config(base_dir)
+    res = scan_project(base_dir=base_dir, staged_only=False, config_override=cfg, ignore_baseline=True)
+    all_flaws = res.get("findings", [])
+
+    clean_flaws = []
+    for f in all_flaws:
+        clean_flaws.append({
+            "file": f.get("file", "").replace("\\", "/").lstrip("./"),
+            "line": f.get("line", 0),
+            "rule_id": f.get("rule_id", ""),
+            "category": f.get("category", ""),
+            "matched_text": f.get("matched_text", "").strip(),
+            "message": f.get("message", "")
+        })
+
+    baseline_data = {
+        "version": "1.0.0",
+        "generated_at": datetime.now(timezone.utc).isoformat(),
+        "total_flaws": len(clean_flaws),
+        "flaws": clean_flaws
+    }
+
+    target = output_path or os.path.join(base_dir, ".hallwright", "baseline.json")
+    os.makedirs(os.path.dirname(os.path.abspath(target)), exist_ok=True)
+    with open(target, "w", encoding="utf-8") as f:
+        json.dump(baseline_data, f, indent=2)
+        f.write("\n")
+    return target
+
+
+def scan_project(
+    base_dir: str = ".",
+    staged_only: bool = False,
+    config_override: Optional[Dict[str, Any]] = None,
+    ignore_baseline: bool = False,
+    baseline_path: Optional[str] = None
+) -> Dict[str, Any]:
     """
     Scans project source files for stubs, secrets, and dangerous execution.
     If staged_only is True, only checks files staged for git commit.
     Uses file-weighted average scoring to avoid dropping a multi-file project to 0 on minor findings.
     Respects artisan.config.json for excluded paths and rule thresholds.
+    Filters legacy technical debt matching .hallwright/baseline.json so existing debt does not block commits.
     """
     cfg = config_override or load_artisan_config(base_dir)
     all_findings: List[Dict[str, Any]] = []
@@ -640,24 +725,45 @@ def scan_project(base_dir: str = ".", staged_only: bool = False, config_override
         gitleaks_findings = run_gitleaks(base_dir)
         all_findings.extend(gitleaks_findings)
 
-    # Calculate fair file-weighted average project score
-    if file_scores:
-        project_score = round(sum(file_scores) / len(file_scores))
+    # Filter findings through baseline if active
+    baseline_matched = []
+    active_findings = []
+    if not ignore_baseline:
+        baseline_data = load_baseline(base_dir, custom_path=baseline_path)
+        if baseline_data and "flaws" in baseline_data:
+            b_flaws = baseline_data["flaws"]
+            for f in all_findings:
+                if is_flaw_in_baseline(f, b_flaws):
+                    baseline_matched.append(f)
+                else:
+                    active_findings.append(f)
+        else:
+            active_findings = all_findings
     else:
-        project_score = 100
+        active_findings = all_findings
 
-    critical_findings = [f for f in all_findings if f.get("category") in ("SECRET", "DANGEROUS")]
-    warning_findings = [f for f in all_findings if f.get("category") in ("STUB", "AST")]
+    # Project score and pass/fail are evaluated against active_findings (new regressions)
+    critical_findings = [f for f in active_findings if f.get("category") in ("SECRET", "DANGEROUS")]
+    warning_findings = [f for f in active_findings if f.get("category") in ("STUB", "AST")]
 
     mode = cfg.get("mode", "strict").lower()
     threshold = cfg.get("threshold_score", 100)
+
+    # Calculate fair score: if baseline is present, project score reflects absence of new debt
+    if baseline_matched:
+        active_deductions = sum(f.get("deduction", 20) for f in active_findings)
+        project_score = max(0, 100 - active_deductions)
+    elif file_scores:
+        project_score = round(sum(file_scores) / len(file_scores))
+    else:
+        project_score = 100
 
     # In vibe mode, warnings are advisory and never block (always passed = True)
     if mode == "vibe":
         passed = True
     else:
         if threshold >= 100:
-            passed = (len(all_findings) == 0)
+            passed = (len(active_findings) == 0)
         else:
             passed = (project_score >= threshold and len(critical_findings) == 0)
 
@@ -665,12 +771,14 @@ def scan_project(base_dir: str = ".", staged_only: bool = False, config_override
         "passed": passed,
         "mode": mode,
         "scanned_files": scanned_count,
-        "findings": all_findings,
+        "findings": active_findings,
+        "baseline_findings": baseline_matched,
         "score": project_score,
         "metrics": {
             "critical_count": len(critical_findings),
             "warning_count": len(warning_findings),
-            "total_flaws": len(all_findings),
+            "total_flaws": len(active_findings),
+            "baseline_count": len(baseline_matched),
             "average_file_score": project_score
         }
     }
@@ -762,9 +870,20 @@ def main():
     parser.add_argument("--json", "-j", action="store_true", help="Output results in JSON format")
     parser.add_argument("--sarif", action="store_true", help="Output results in OASIS SARIF v2.1.0 format")
     parser.add_argument("--format", choices=["text", "json", "sarif"], default="text", help="Output format")
+    parser.add_argument("--baseline", help="Path to custom baseline.json file")
+    parser.add_argument("--generate-baseline", action="store_true", help="Generate .hallwright/baseline.json from current workspace debt")
 
     args = parser.parse_args()
     output_format = "sarif" if args.sarif else ("json" if args.json else args.format)
+
+    cfg = load_artisan_config(".")
+    if args.vibe:
+        cfg["mode"] = "vibe"
+
+    if args.generate_baseline:
+        out_path = generate_baseline(".", output_path=args.baseline, config_override=cfg)
+        print(f"✅ [HALLWRIGHT BASELINE]: Generated technical debt baseline at: {out_path}")
+        sys.exit(0)
 
     if args.file:
         res = scan_file(args.file)
@@ -781,11 +900,7 @@ def main():
                 print(f"  • {flaw}")
         sys.exit(0 if res["status"] == "CERTIFIED" else 1)
 
-    cfg = load_artisan_config(".")
-    if args.vibe:
-        cfg["mode"] = "vibe"
-
-    result = scan_project(".", staged_only=args.staged, config_override=cfg)
+    result = scan_project(".", staged_only=args.staged, config_override=cfg, baseline_path=args.baseline)
 
     if output_format == "sarif":
         print(json.dumps(to_sarif_v2(result), indent=2))
