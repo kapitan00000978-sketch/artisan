@@ -4,8 +4,7 @@
   "description": "Hallwright: A guardrail layer for AI coding agents: pre-commit gate, living project memory, and subagent/skill definitions.",
   "main": "bin/hallwright.js",
   "bin": {
-    "hallwright": "./bin/hallwright.js",
-    "artisan": "./bin/hallwright.js"
+    "hallwright": "./bin/hallwright.js"
   },
   "scripts": {
     "init": "node bin/hallwright.js init",

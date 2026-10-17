@@ -15,7 +15,7 @@ ROOT_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 if ROOT_DIR not in sys.path:
     sys.path.insert(0, ROOT_DIR)
 
-import artisan_cli
+import hallwright_cli as artisan_cli
 
 
 def test_detect_tech_stack_python():
@@ -92,7 +92,7 @@ def test_cmd_init_in_clean_directory():
         assert ret == 0
 
         # Memory ledger initialized
-        mem_file = os.path.join(tmpdir, ".artisan", "memory.json")
+        mem_file = os.path.join(tmpdir, ".hallwright", "memory.json")
         assert os.path.exists(mem_file)
         with open(mem_file, "r", encoding="utf-8") as f:
             data = json.load(f)
@@ -124,7 +124,7 @@ def test_cmd_doctor():
 
 def test_cmd_memory_list_and_record():
     with tempfile.TemporaryDirectory() as tmpdir:
-        mem_file = os.path.join(tmpdir, ".artisan", "memory.json")
+        mem_file = os.path.join(tmpdir, ".hallwright", "memory.json")
         os.makedirs(os.path.dirname(mem_file), exist_ok=True)
         with open(mem_file, "w", encoding="utf-8") as f:
             json.dump({

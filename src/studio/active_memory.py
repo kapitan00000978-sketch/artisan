@@ -18,7 +18,7 @@ class ActiveDecisionJournal:
     Ensures the agent learns from scar tissue: 'I made this mistake twice, I won't repeat it'.
     """
 
-    def __init__(self, journal_path: str = ".artisan/decision_journal.json"):
+    def __init__(self, journal_path: str = ".hallwright/decision_journal.json"):
         self.journal_path = journal_path
         self._ensure_journal_exists()
 

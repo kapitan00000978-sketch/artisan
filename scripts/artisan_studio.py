@@ -51,7 +51,7 @@ GENERIC_COPY_CLICHES = [
 ]
 
 
-def capture_visual_metrics(html_path: str, output_dir: str = ".artisan/screenshots") -> Dict[str, Any]:
+def capture_visual_metrics(html_path: str, output_dir: str = ".hallwright/screenshots") -> Dict[str, Any]:
     """
     Renders the target HTML file in headless Chromium via Playwright,
     extracts computed design metrics, and captures desktop & mobile screenshots.
@@ -466,7 +466,7 @@ def main():
     parser.add_argument("--loop", "-l", action="store_true", help="Execute complete autonomous feedback loop with Orchestrator, Blind Critic & Active Memory")
     parser.add_argument("--max-cycles", type=int, default=3, help="Maximum iteration budget for Orchestrator loop (default: 3)")
     parser.add_argument("--json", "-j", action="store_true", help="Output critique results as JSON")
-    parser.add_argument("--screenshots-dir", default=".artisan/screenshots", help="Directory to save visual captures")
+    parser.add_argument("--screenshots-dir", default=".hallwright/screenshots", help="Directory to save visual captures")
 
     args = parser.parse_args()
 

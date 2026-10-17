@@ -15,7 +15,7 @@ import logging
 from datetime import datetime, timezone, timedelta
 from typing import List, Dict, Any, Optional
 
-DEFAULT_SESSIONS_PATH = os.path.join(".artisan", "agent_sessions.json")
+DEFAULT_SESSIONS_PATH = os.path.join(".hallwright", "agent_sessions.json")
 DEFAULT_TIMEOUT_MINUTES = 15
 
 logger = logging.getLogger("artisan.agent_registry")

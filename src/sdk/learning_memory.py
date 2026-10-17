@@ -14,7 +14,7 @@ import tempfile
 from datetime import datetime, timezone
 from typing import List, Dict, Any, Optional
 
-DEFAULT_MEMORY_PATH = os.path.join(".artisan", "memory.json")
+DEFAULT_MEMORY_PATH = os.path.join(".hallwright", "memory.json")
 
 # Semantic domain synonym expansion mapping
 SYNONYM_MAP: Dict[str, List[str]] = {

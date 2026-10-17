@@ -28,12 +28,12 @@ def count_workspace_stats():
                 except OSError as err:
                     print(f"Warning reading {file}: {err}", file=sys.stderr)
             elif file.endswith((".md", ".mdc", ".json")):
-                if ".cursor" in root or ".artisan" in root or "agents" in root:
+                if ".cursor" in root or ".hallwright" in root or "agents" in root:
                     rule_files += 1
     return source_files, total_lines, rule_files
 
 def display_metrics():
-    metrics_path = os.path.join(".artisan", "metrics.json")
+    metrics_path = os.path.join(".hallwright", "metrics.json")
     if os.path.exists(metrics_path):
         with open(metrics_path, "r", encoding="utf-8") as f:
             data = json.load(f)

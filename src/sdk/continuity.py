@@ -43,7 +43,7 @@ class ContinuityManager:
 
     def __init__(self, workspace_root: str = ".", enabled: Optional[bool] = None):
         self.workspace_root = os.path.abspath(workspace_root)
-        self.artisan_dir = os.path.join(self.workspace_root, ".artisan")
+        self.artisan_dir = os.path.join(self.workspace_root, ".hallwright")
         self.checkpoint_file = os.path.join(self.artisan_dir, "checkpoints.json")
         self.handoff_file = os.path.join(self.artisan_dir, "agent_handoff.md")
 
@@ -58,8 +58,8 @@ class ContinuityManager:
                 self._enabled = self._check_config_enabled()
 
     def _check_config_enabled(self) -> bool:
-        """Check hallwright.config.json or artisan.config.json if continuity is explicitly disabled."""
-        for cfg_name in ["hallwright.config.json", "artisan.config.json"]:
+        """Check hallwright.config.json if continuity is explicitly disabled."""
+        for cfg_name in ["hallwright.config.json"]:
             config_path = os.path.join(self.workspace_root, cfg_name)
             if os.path.exists(config_path):
                 try:

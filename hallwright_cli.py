@@ -122,12 +122,12 @@ def cmd_init(args: argparse.Namespace) -> int:
             copy_safe(agents_src, os.path.join(target_dir, "AGENTS.md"))
             print("  [+] Installed core AGENTS.md protocol")
 
-    # 2. Initialize .artisan memory
-    mem_dir = os.path.join(target_dir, ".artisan")
+    # 2. Initialize .hallwright memory
+    mem_dir = os.path.join(target_dir, ".hallwright")
     os.makedirs(mem_dir, exist_ok=True)
     mem_file = os.path.join(mem_dir, "memory.json")
     if not os.path.exists(mem_file):
-        sample_mem = os.path.join(ROOT_DIR, ".artisan", "memory.json")
+        sample_mem = os.path.join(ROOT_DIR, ".hallwright", "memory.json")
         if os.path.exists(sample_mem) and is_external:
             shutil.copy2(sample_mem, mem_file)
         else:
@@ -139,9 +139,9 @@ def cmd_init(args: argparse.Namespace) -> int:
                     "conventions": [],
                     "recorded_scar_tissue": []
                 }, f, indent=2)
-        print("  [+] Initialized persistent project memory (.artisan/memory.json)")
+        print("  [+] Initialized persistent project memory (.hallwright/memory.json)")
     else:
-        print("  [*] Preserved existing .artisan/memory.json")
+        print("  [*] Preserved existing .hallwright/memory.json")
 
     # 3. Deploy agent rules
     configs = [
@@ -263,7 +263,7 @@ def cmd_fix(args: argparse.Namespace) -> int:
 def cmd_status(args: argparse.Namespace) -> int:
     """Displays workspace health, active guilds, memory status, and pre-commit gate info."""
     print(ASCII_BANNER)
-    mem_path = os.path.join(".artisan", "memory.json")
+    mem_path = os.path.join(".hallwright", "memory.json")
     lessons_count = 0
     conventions_count = 0
 
@@ -292,7 +292,7 @@ def cmd_status(args: argparse.Namespace) -> int:
 
 
 def cmd_memory(args: argparse.Namespace) -> int:
-    """Manages persistent learning memory (.artisan/memory.json)."""
+    """Manages persistent learning memory (.hallwright/memory.json)."""
     try:
         from learning_memory import LearningMemory
         mem = LearningMemory()
@@ -339,7 +339,7 @@ def cmd_doctor(args: argparse.Namespace) -> int:
     is_ci = os.environ.get("CI") == "true" or os.environ.get("GITHUB_ACTIONS") == "true"
     checks = [
         ("Core Protocol (AGENTS.md)", os.path.exists("AGENTS.md")),
-        ("Memory Ledger (.artisan/memory.json)", os.path.exists(os.path.join(".artisan", "memory.json"))),
+        ("Memory Ledger (.hallwright/memory.json)", os.path.exists(os.path.join(".hallwright", "memory.json"))),
         ("Cursor Rules (.cursorrules)", os.path.exists(".cursorrules")),
         ("Claude Code (CLAUDE.md)", os.path.exists("CLAUDE.md")),
         ("Copilot Instructions (.github/copilot-instructions.md)", os.path.exists(os.path.join(".github", "copilot-instructions.md"))),

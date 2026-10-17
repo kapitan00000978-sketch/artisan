@@ -64,8 +64,8 @@ if (command === 'init' || command === 'install') {
 
   // 1. Core protocol
   copyFileSafe('AGENTS.md', 'AGENTS.md');
-  copyFileSafe('.artisan/memory.json', '.artisan/memory.json', false);
-  copyFileSafe('.artisan/memory.md', '.artisan/memory.md', false);
+  copyFileSafe('.hallwright/memory.json', '.hallwright/memory.json', false);
+  copyFileSafe('.hallwright/memory.md', '.hallwright/memory.md', false);
 
   // 2. Cursor AI plugin rules
   copyFileSafe('.cursorrules', '.cursorrules');

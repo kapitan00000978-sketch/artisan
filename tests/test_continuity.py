@@ -97,7 +97,7 @@ def test_continuity_markdown_and_resumption_prompt(temp_workspace):
     )
 
     # Verify agent_handoff.md was created
-    handoff_path = os.path.join(temp_workspace, ".artisan", "agent_handoff.md")
+    handoff_path = os.path.join(temp_workspace, ".hallwright", "agent_handoff.md")
     assert os.path.exists(handoff_path)
     with open(handoff_path, "r", encoding="utf-8") as f:
         md = f.read()

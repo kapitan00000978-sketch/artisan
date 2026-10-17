@@ -16,7 +16,7 @@ from typing import Dict, List, Any, Optional
 
 logger = logging.getLogger("hallwright.memory.store")
 
-DEFAULT_DB_PATH = os.path.join(".artisan", "memory.db")
+DEFAULT_DB_PATH = os.path.join(".hallwright", "memory.db")
 
 
 class SqliteMemoryStore:
@@ -210,7 +210,7 @@ class SqliteMemoryStore:
     # Bidirectional JSON Synchronization
     # ---------------------------------------------------------
     def sync_from_json(self, json_path: str) -> int:
-        """Seeds SQLite database from an existing .artisan/memory.json file."""
+        """Seeds SQLite database from an existing .hallwright/memory.json file."""
         if not os.path.exists(json_path):
             return 0
         try:
