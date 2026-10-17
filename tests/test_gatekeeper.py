@@ -177,13 +177,29 @@ def test_scan_file_exists():
     assert res is not None
     assert "status" in res
 
-def test_git_hook_installer():
+def test_git_hook_installer(tmp_path):
     import importlib.util
     hook_script = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "install_git_hook.py"))
     spec = importlib.util.spec_from_file_location("install_git_hook", hook_script)
     mod = importlib.util.module_from_spec(spec)
     spec.loader.exec_module(mod)
-    assert mod.install_hook() is True
+
+    # Simulated repo with .git directory
+    git_dir = tmp_path / ".git"
+    git_dir.mkdir()
+    assert mod.install_hook(target_dir=str(tmp_path), vendor_gate=True) is True
+
+    # Verify gate files were vendored into .hallwright/gate
+    gate_dir = tmp_path / ".hallwright" / "gate"
+    assert (gate_dir / "detector.py").exists()
+    assert (gate_dir / "gatekeeper.py").exists()
+    assert (gate_dir / "remediator.py").exists()
+
+    # Verify pre-commit hook invokes vendored gatekeeper
+    hook_file = git_dir / "hooks" / "pre-commit"
+    assert hook_file.exists()
+    content = hook_file.read_text(encoding="utf-8")
+    assert ".hallwright/gate/gatekeeper.py" in content
 
 def test_scan_python_ast_eval():
     from detector import scan_python_ast

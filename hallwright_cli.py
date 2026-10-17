@@ -172,8 +172,10 @@ def cmd_init(args: argparse.Namespace) -> int:
         if os.path.isdir(git_dir):
             try:
                 from install_git_hook import install_hook
-                install_hook()
+                install_hook(target_dir=target_dir, vendor_gate=True)
             except Exception as e:
+                import logging
+                logging.warning(f"Pre-commit hook could not be auto-installed: {e}")  # hallwright-ignore
                 print(f"  [!] Note: Pre-commit hook could not be auto-installed: {e}")
 
     print("\n==================================================================")
