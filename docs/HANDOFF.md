@@ -67,13 +67,22 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Fixed destructive hallucination in `professions/database_architect/elevation_engine.py`: replaced hardcoded `users/orders` replacement with dynamic table extraction and contextual eager JOIN/IN generation.
   - Verified 100% test pass rate (`20/20 in test_mcp.py`, `7/7 in test_cassandra_database.py`, `22/22 in test_cli.py`) and gatekeeper score (`100/100`).
 
+- **Step 6 & 7 Completed (Package Distribution, PyPI Entrypoint & Decision Journal Pruning):**
+  - Updated `pyproject.toml` entrypoint from broken `artisan_cli:main` to `hallwright_cli:main`.
+  - Configured `[tool.setuptools]` with `py-modules = ["hallwright_cli"]` and multi-directory package discovery (`src*`, `professions*`, `scripts*`, `mcp*`).
+  - Successfully verified standalone terminal command execution (`hallwright status`, `hallwright memory`) via pip installation.
+  - Implemented rolling retention window (`MAX_RECORDS = 50`) in `src/studio/active_memory.py` to prevent runaway memory bloat.
+  - Pruned `.hallwright/decision_journal.json` from 1,136 accumulated records (549 KB) down to the 50 most recent records (23 KB, >95% size reduction).
+  - Added `*.egg-info/` to `.gitignore`.
+  - Verified 100% test pass rate across test suite and gatekeeper score (`100/100`).
+
 ### Remaining
-- **Step 6:** Package & distribution refinement.
-- **Step 7:** Bound and prune `.hallwright/decision_journal.json`.
+- None! All 6 core refactoring steps + decision journal pruning have been executed and verified with proof.
 
 ### Decisions
 - Single unified brand: **Hallwright**.
 - Active persistent state directory: `.hallwright/`.
 - Concurrency-safe primary memory engine: SQLite WAL (`.hallwright/memory.db`) with human-readable git-friendly JSON fallback (`.hallwright/memory.json`).
 - Core software craftsmanship centered on 8 professional software guilds (`references/<guild>.md`).
+- Bounded decision journal: 50-record rolling retention window.
 - Guardrail layer architecture strictly preserved; no autonomous model invocation inside the core guardrail layer.

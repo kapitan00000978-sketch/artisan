@@ -21,8 +21,14 @@ classifiers = [
 ]
 
 [project.scripts]
-hallwright = "artisan_cli:main"
-artisan = "artisan_cli:main"
+hallwright = "hallwright_cli:main"
+
+[tool.setuptools]
+py-modules = ["hallwright_cli"]
+
+[tool.setuptools.packages.find]
+where = ["."]
+include = ["src*", "professions*", "scripts*", "mcp*"]
 
 [project.optional-dependencies]
 dev = [

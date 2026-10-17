@@ -69,6 +69,11 @@ class ActiveDecisionJournal:
 
         journal["records"].append(entry)
 
+        # Enforce rolling retention limit to prevent unbounded journal file bloat
+        MAX_RECORDS = 50
+        if len(journal["records"]) > MAX_RECORDS:
+            journal["records"] = journal["records"][-MAX_RECORDS:]
+
         # Active constraint enforcement:
         # If an action has zero or negative delta in multiple runs, ban it
         action_outcomes: Dict[str, List[float]] = {}
