@@ -20,18 +20,44 @@ if sys.platform == "win32":
     sys.stderr.reconfigure(encoding="utf-8")
 
 
-def scan_files(staged_only: bool = False, vibe_override: bool = False):
+def scan_files(staged_only: bool = False, vibe_override: bool = False, heal: bool = False) -> bool:
     cfg = load_artisan_config(".")
     is_vibe = vibe_override or (cfg.get("mode", "strict").lower() == "vibe")
+    should_heal = heal or bool(cfg.get("auto_heal", False)) or ("--heal" in sys.argv)
     if is_vibe:
         cfg["mode"] = "vibe"
 
     scope = "staged changes" if staged_only else "workspace"
-    mode_str = " (⚡ Vibe Mode)" if is_vibe else ""
+    mode_str = " (⚡ Vibe Mode)" if is_vibe else (" (✨ Auto-Heal Active)" if should_heal else "")
     print(f"🛡️ [Hallwright Gatekeeper] Running pre-commit quality and security audit ({scope}){mode_str}...")
     result = scan_project(".", staged_only=staged_only, config_override=cfg)
     
     findings = result["findings"]
+
+    # Autonomous Self-Healing Pass
+    if findings and should_heal and not is_vibe:
+        print("\n🔧 [HALLWRIGHT AUTO-HEAL]: Attempting autonomous AST remediation...")
+        try:
+            from remediator import remediate_file
+            unique_files = list(dict.fromkeys(flaw['file'] for flaw in findings if flaw.get('file')))
+            total_repaired = 0
+            for fpath in unique_files:
+                repaired = remediate_file(fpath)
+                if repaired > 0:
+                    total_repaired += repaired
+                    if staged_only:
+                        import subprocess
+                        subprocess.run(["git", "add", fpath], check=False)
+            
+            if total_repaired > 0:
+                print(f"  ✨ Auto-repaired {total_repaired} defect(s) via AST remediation.")
+                # Re-scan after remediation
+                result = scan_project(".", staged_only=staged_only, config_override=cfg)
+                findings = result["findings"]
+        except Exception as heal_err:
+            import logging
+            logging.debug("Auto-heal pass encountered error: %s", heal_err)
+
     if findings:
         if is_vibe:
             print("\n⚡ [HALLWRIGHT VIBE MODE ACTIVE - ADVISORY NOTICES]:")
@@ -74,7 +100,8 @@ def scan_files(staged_only: bool = False, vibe_override: bool = False):
 if __name__ == "__main__":
     vibe = "--vibe" in sys.argv or "-v" in sys.argv
     staged = "--staged" in sys.argv or "-s" in sys.argv
-    passed = scan_files(staged_only=staged, vibe_override=vibe)
+    heal = "--heal" in sys.argv
+    passed = scan_files(staged_only=staged, vibe_override=vibe, heal=heal)
     if not passed:
         sys.exit(1)
 

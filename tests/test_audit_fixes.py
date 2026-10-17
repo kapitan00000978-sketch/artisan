@@ -14,6 +14,7 @@ Comprehensive test suite validating the permanent resolution of all 9 audit find
 import os
 import ast
 import tempfile
+import json
 import pytest
 from scripts.detector import scan_code, is_rule_enabled
 from scripts.remediator import remediate_python_code, remediate_file
@@ -303,3 +304,63 @@ def test_hw036_safe_constructs_not_flagged():
     assert res["status"] == "CERTIFIED"
     assert res["score"] == 100
     assert len(res["findings"]) == 0
+
+
+# ---------------------------------------------------------
+# HW-037: Custom rules engine via config
+# ---------------------------------------------------------
+def test_hw037_custom_rules_detection():
+    """Verify custom organizational rules are scanned with extension filters and deductions."""
+    custom_cfg = {
+        "rules": {},
+        "custom_rules": [
+            {
+                "id": "NO_PRINT_IN_PROD",
+                "pattern": r"\bprint\s*\(",
+                "category": "STYLE",
+                "message": "Do not leave print() statements in production code.",
+                "deduction": 15,
+                "extensions": [".py"]
+            }
+        ]
+    }
+    python_code = "def worker():\n    print('debugging')\n    return True\n"
+    res_py = scan_code(python_code, filename="service.py", config_override=custom_cfg)
+    assert res_py["status"] == "REJECTED"
+    assert any(f["rule_id"] == "NO_PRINT_IN_PROD" for f in res_py["findings"])
+    assert res_py["score"] == 85
+
+    # Should not trigger on JS file because extensions filter is ['.py']
+    js_code = "console.log('test'); print('not python');\n"
+    res_js = scan_code(js_code, filename="app.js", config_override=custom_cfg)
+    assert not any(f["rule_id"] == "NO_PRINT_IN_PROD" for f in res_js["findings"])
+
+
+# ---------------------------------------------------------
+# HW-038: Custom rules loaded from .hallwright/rules.json
+# ---------------------------------------------------------
+def test_hw038_custom_rules_from_file(tmp_path, monkeypatch):
+    """Verify load_artisan_config automatically discovers and merges .hallwright/rules.json."""
+    from detector import load_artisan_config
+    hw_dir = tmp_path / ".hallwright"
+    hw_dir.mkdir()
+    rules_file = hw_dir / "rules.json"
+    rules_file.write_text(
+        json.dumps({
+            "rules": [
+                {
+                    "id": "DISALLOW_MOMENT_JS",
+                    "pattern": r"from\s+['\"]moment['\"]|require\(['\"]moment['\"]\)",
+                    "category": "PERFORMANCE",
+                    "message": "Moment.js is banned. Use date-fns or native Temporal.",
+                    "deduction": 20
+                }
+            ]
+        }),
+        encoding="utf-8"
+    )
+
+    loaded = load_artisan_config(str(tmp_path))
+    assert "custom_rules" in loaded
+    assert any(r["id"] == "DISALLOW_MOMENT_JS" for r in loaded["custom_rules"])
+

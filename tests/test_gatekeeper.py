@@ -370,5 +370,28 @@ def test_graduated_multi_file_scoring(tmp_path):
     assert res["metrics"]["critical_count"] == 0
 
 
+def test_gatekeeper_auto_heal_pass(tmp_path, monkeypatch):
+    import importlib.util
+    gk_path = os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts", "pre-commit-gatekeeper.py"))
+    spec = importlib.util.spec_from_file_location("gatekeeper", gk_path)
+    gk = importlib.util.module_from_spec(spec)
+    spec.loader.exec_module(gk)
+
+    # Create a file with an empty exception block
+    test_file = tmp_path / "flawed_service.py"
+    test_file.write_text("def run():\n    try:\n        do_work()\n    except:\n        pass\n", encoding="utf-8")
+
+    monkeypatch.chdir(tmp_path)
+    # First: without heal, it fails
+    assert gk.scan_files(staged_only=False, vibe_override=False, heal=False) is False
+
+    # Second: with heal, it auto-repairs the file and passes
+    assert gk.scan_files(staged_only=False, vibe_override=False, heal=True) is True
+    repaired_code = test_file.read_text(encoding="utf-8")
+    assert "import logging" in repaired_code
+    assert "pass" not in repaired_code
+
+
+
 
 

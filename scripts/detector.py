@@ -289,16 +289,31 @@ def scan_python_ast(code: str, filename: str = "") -> List[Dict[str, Any]]:
 
 
 def load_artisan_config(base_dir: str = ".") -> Dict[str, Any]:
-    """Loads hallwright.config.json or artisan.config.json if present, returning configuration overrides."""
+    """Loads hallwright.config.json or artisan.config.json and .hallwright/rules.json, returning merged config."""
+    config: Dict[str, Any] = {}
     for cfg_name in ["hallwright.config.json", "artisan.config.json"]:
         config_path = os.path.join(base_dir, cfg_name)
         if os.path.exists(config_path):
             try:
                 with open(config_path, "r", encoding="utf-8") as f:
-                    return json.load(f)
+                    config = json.load(f)
+                    break
             except (OSError, json.JSONDecodeError):
                 continue
-    return {}
+
+    # Also look for .hallwright/rules.json for custom organizational rules
+    rules_json_path = os.path.join(base_dir, ".hallwright", "rules.json")
+    if os.path.exists(rules_json_path):
+        try:
+            with open(rules_json_path, "r", encoding="utf-8") as f:
+                rules_data = json.load(f)
+                custom_rules = rules_data.get("rules", rules_data if isinstance(rules_data, list) else [])
+                if custom_rules and isinstance(custom_rules, list):
+                    config.setdefault("custom_rules", []).extend(custom_rules)
+        except (OSError, json.JSONDecodeError):
+            pass
+
+    return config
 
 load_hallwright_config = load_artisan_config
 
@@ -351,14 +366,14 @@ def scan_multilingual_structural(code: str, filename: str = "") -> List[Dict[str
     return findings
 
 
-def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
+def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = None, config_override: Optional[Dict[str, Any]] = None) -> Dict[str, Any]:
     """
     Audits a string of source code against all Artisan rules.
     Respects inline 'artisan-ignore' markers and artisan.config.json toggles.
     Returns deterministic status, score, flaws, and detailed findings.
     """
     if config is None:
-        config = load_artisan_config(".")
+        config = config_override if config_override is not None else load_artisan_config(".")
 
     rules_cfg = config.get("rules", {})
     findings: List[Dict[str, Any]] = []
@@ -395,6 +410,44 @@ def scan_code(code: str, filename: str = "", config: Optional[Dict[str, Any]] = 
                     "message": message,
                     "deduction": deduction
                 })
+
+    # Custom organizational rules evaluation (.hallwright/rules.json or config)
+    custom_rules = config.get("custom_rules", [])
+    if custom_rules:
+        for crule in custom_rules:
+            c_id = crule.get("id", "CUSTOM_RULE")
+            c_pattern = crule.get("pattern", "")
+            if not c_pattern or not is_rule_enabled(c_id, rules_cfg):
+                continue
+            c_category = crule.get("category", "CUSTOM")
+            c_message = crule.get("message", f"Custom rule violation: {c_id}")
+            c_deduction = int(crule.get("deduction", 20))
+            c_exts = crule.get("extensions", [])
+
+            if c_exts and filename:
+                norm_f = filename.lower().replace("\\", "/")
+                if not any(norm_f.endswith(ext.lower()) for ext in c_exts):
+                    continue
+
+            try:
+                c_compiled = re.compile(c_pattern, re.IGNORECASE if crule.get("ignore_case", True) else 0)
+            except re.error:
+                continue
+
+            for line_idx, line in enumerate(lines, 1):
+                if is_ignored(line):
+                    continue
+                if c_compiled.search(line):
+                    findings.append({
+                        "rule_id": c_id,
+                        "category": c_category,
+                        "auditor": COUNCIL_AUDITORS.get(c_category, "Hallwright Custom Auditor"),
+                        "file": filename,
+                        "line": line_idx,
+                        "matched_text": line.strip()[:80],
+                        "message": c_message,
+                        "deduction": c_deduction
+                    })
 
     # Multi-line block comments scanner (/* ... */, """ ... """, <!-- ... -->)
     block_comment_pattern = re.compile(
