@@ -79,8 +79,8 @@ def detect_tech_stack(target_dir: str = ".") -> List[str]:
     return list(dict.fromkeys(stacks)) if stacks else ["Universal / Multi-Language"]
 
 
-def copy_safe(src: str, dst: str, preserve_existing: bool = False) -> bool:
-    """Safely copies a file or directory, optionally preserving existing destination files."""
+def copy_safe(src: str, dst: str, preserve_existing: bool = False, backup_existing: bool = False, force: bool = False) -> bool:
+    """Safely copies a file or directory, optionally preserving or backing up existing destination files."""
     if not os.path.exists(src):
         return False
     if os.path.abspath(src) == os.path.abspath(dst):
@@ -88,14 +88,22 @@ def copy_safe(src: str, dst: str, preserve_existing: bool = False) -> bool:
 
     if os.path.isdir(src):
         os.makedirs(dst, exist_ok=True)
+        any_copied = False
         for item in os.listdir(src):
             s = os.path.join(src, item)
             d = os.path.join(dst, item)
-            copy_safe(s, d, preserve_existing=preserve_existing)
-        return True
+            copied = copy_safe(s, d, preserve_existing=preserve_existing, backup_existing=backup_existing, force=force)
+            if copied:
+                any_copied = True
+        return any_copied
     else:
-        if preserve_existing and os.path.exists(dst):
-            return False
+        if os.path.exists(dst):
+            if backup_existing:
+                bak_path = dst + ".bak"
+                shutil.copy2(dst, bak_path)
+            elif preserve_existing and not force:
+                return False
+
         parent = os.path.dirname(dst)
         if parent:
             os.makedirs(parent, exist_ok=True)
@@ -106,8 +114,18 @@ def copy_safe(src: str, dst: str, preserve_existing: bool = False) -> bool:
 def cmd_init(args: argparse.Namespace) -> int:
     """Installs Artisan rules, configuration files, and git hooks into the current project."""
     print(ASCII_BANNER)
-    target_dir = os.path.abspath(args.dir or os.getcwd())
-    print(f"[*] Initializing Artisan in: {target_dir}")
+    target_dir = os.path.abspath(getattr(args, "dir", None) or os.getcwd())
+    force = getattr(args, "force", False)
+    backup = getattr(args, "backup", False)
+    preserve_by_default = not force
+
+    print(f"[*] Initializing Hallwright in: {target_dir}")
+    if force:
+        print("  [*] Mode: Force overwrite (--force)")
+    elif backup:
+        print("  [*] Mode: Backup existing files to .bak (--backup)")
+    else:
+        print("  [*] Mode: Safe initialization (preserving existing files)")
 
     # Detect tech stack
     detected = detect_tech_stack(target_dir)
@@ -119,8 +137,13 @@ def cmd_init(args: argparse.Namespace) -> int:
     if is_external:
         agents_src = os.path.join(ROOT_DIR, "AGENTS.md")
         if os.path.exists(agents_src):
-            copy_safe(agents_src, os.path.join(target_dir, "AGENTS.md"))
-            print("  [+] Installed core AGENTS.md protocol")
+            copied = copy_safe(agents_src, os.path.join(target_dir, "AGENTS.md"),
+                               preserve_existing=preserve_by_default, backup_existing=backup, force=force)
+            if copied:
+                bak_msg = " (backed up to .bak)" if backup and os.path.exists(os.path.join(target_dir, "AGENTS.md.bak")) else ""
+                print(f"  [+] Installed core AGENTS.md protocol{bak_msg}")
+            else:
+                print("  [*] Preserved existing: AGENTS.md")
 
     # 2. Initialize .hallwright memory
     mem_dir = os.path.join(target_dir, ".hallwright")
@@ -163,8 +186,12 @@ def cmd_init(args: argparse.Namespace) -> int:
     for src_rel, dst_rel in configs:
         src_path = os.path.join(ROOT_DIR, src_rel)
         dst_path = os.path.join(target_dir, dst_rel)
-        if copy_safe(src_path, dst_path, preserve_existing=False):
-            print(f"  [+] Configured: {dst_rel}")
+        copied = copy_safe(src_path, dst_path, preserve_existing=preserve_by_default, backup_existing=backup, force=force)
+        if copied:
+            bak_msg = " (backed up to .bak)" if backup and os.path.exists(dst_path + ".bak") else ""
+            print(f"  [+] Configured: {dst_rel}{bak_msg}")
+        else:
+            print(f"  [*] Preserved existing: {dst_rel}")
 
     # 4. Install Git Pre-Commit Hook automatically
     if not args.no_hook:
@@ -789,9 +816,11 @@ def main():
     subparsers = parser.add_subparsers(dest="subcommand", help="Hallwright command to execute")
 
     # init
-    p_init = subparsers.add_parser("init", help="Initialize Artisan protocol and agent configurations in the current project")
+    p_init = subparsers.add_parser("init", help="Initialize Hallwright protocol and agent configurations in the current project")
     p_init.add_argument("--dir", "-d", help="Target project directory (default: current directory)")
     p_init.add_argument("--no-hook", action="store_true", help="Skip automatic git pre-commit hook installation")
+    p_init.add_argument("--force", "-f", action="store_true", help="Force overwrite of existing configuration files")
+    p_init.add_argument("--backup", "-b", action="store_true", help="Backup existing files to .bak before replacing")
 
     # audit
     p_audit = subparsers.add_parser("audit", help="Run static quality & security audit across codebase")

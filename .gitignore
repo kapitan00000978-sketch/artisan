@@ -9,6 +9,7 @@ Thumbs.db
 .aider*
 .hallwright/screenshots/
 .hallwright/*.db*
+.hallwright/gate/
 *.egg-info/
 scratch/
 

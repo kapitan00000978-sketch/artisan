@@ -110,6 +110,62 @@ def test_cmd_init_in_clean_directory():
         assert os.path.exists(os.path.join(tmpdir, "KILO.md"))
 
 
+def test_cmd_init_preserves_existing_files():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        custom_agents = os.path.join(tmpdir, "AGENTS.md")
+        custom_claude = os.path.join(tmpdir, "CLAUDE.md")
+        with open(custom_agents, "w", encoding="utf-8") as f:
+            f.write("# MY CUSTOM AGENTS RULES")
+        with open(custom_claude, "w", encoding="utf-8") as f:
+            f.write("# MY CUSTOM CLAUDE RULES")
+
+        args = argparse.Namespace(dir=tmpdir, no_hook=True, force=False, backup=False)
+        ret = artisan_cli.cmd_init(args)
+        assert ret == 0
+
+        # Existing files must be preserved by default
+        with open(custom_agents, "r", encoding="utf-8") as f:
+            assert f.read() == "# MY CUSTOM AGENTS RULES"
+        with open(custom_claude, "r", encoding="utf-8") as f:
+            assert f.read() == "# MY CUSTOM CLAUDE RULES"
+        assert not os.path.exists(custom_agents + ".bak")
+
+
+def test_cmd_init_backup_creates_bak():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        custom_agents = os.path.join(tmpdir, "AGENTS.md")
+        with open(custom_agents, "w", encoding="utf-8") as f:
+            f.write("# MY PREVIOUS INSTRUCTIONS")
+
+        args = argparse.Namespace(dir=tmpdir, no_hook=True, force=False, backup=True)
+        ret = artisan_cli.cmd_init(args)
+        assert ret == 0
+
+        # .bak file must be created with original contents
+        assert os.path.exists(custom_agents + ".bak")
+        with open(custom_agents + ".bak", "r", encoding="utf-8") as f:
+            assert f.read() == "# MY PREVIOUS INSTRUCTIONS"
+        with open(custom_agents, "r", encoding="utf-8") as f:
+            assert "# MY PREVIOUS INSTRUCTIONS" not in f.read()
+
+
+def test_cmd_init_force_overwrites():
+    with tempfile.TemporaryDirectory() as tmpdir:
+        custom_agents = os.path.join(tmpdir, "AGENTS.md")
+        with open(custom_agents, "w", encoding="utf-8") as f:
+            f.write("# TO BE OVERWRITTEN")
+
+        args = argparse.Namespace(dir=tmpdir, no_hook=True, force=True, backup=False)
+        ret = artisan_cli.cmd_init(args)
+        assert ret == 0
+
+        with open(custom_agents, "r", encoding="utf-8") as f:
+            content = f.read()
+            assert "# TO BE OVERWRITTEN" not in content
+            assert "HALLWRIGHT" in content or "Artisan" in content or "AGENT" in content
+
+
+
 def test_cmd_status():
     args = argparse.Namespace()
     ret = artisan_cli.cmd_status(args)
