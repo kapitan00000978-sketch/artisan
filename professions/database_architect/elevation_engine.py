@@ -86,24 +86,29 @@ class DatabaseElevationEngine:
         }
 
     def _remediate_n_plus_one(self, content: str) -> str:
-        eager_query = (
-            "-- Refactored by Cassandra Thorne: Eager JOIN query replacing N+1 application loop\n"
-            "SELECT\n"
-            "    u.id AS user_id,\n"
-            "    u.email,\n"
-            "    o.id AS order_id,\n"
-            "    o.amount,\n"
-            "    o.status,\n"
-            "    o.created_at\n"
-            "FROM users u\n"
-            "INNER JOIN orders o ON o.user_id = u.id\n"
-            "WHERE u.is_active = true\n"
-            "ORDER BY o.created_at DESC\n"
-            "LIMIT 100;\n"
-        )
-        # Fix HW-011: Language-aware archiving (use # for Python to avoid SyntaxError)
         is_python = "def " in content or "import " in content or "for " in content
         comment_char = "# " if is_python else "-- "
+
+        # Context-aware table and variable extraction (avoids hallucinating users/orders)
+        tables = re.findall(r"\bFROM\s+([a-zA-Z0-9_]+)", content, re.IGNORECASE)
+        parents = re.findall(r"\bfor\s+([a-zA-Z0-9_]+)\s+in\s+([a-zA-Z0-9_]+)", content)
+
+        if parents and tables:
+            parent_var, parent_tbl = parents[0]
+            child_tbl = tables[0]
+            eager_query = (
+                f"{comment_char}Refactored: Eager JOIN query replacing N+1 application loop across {parent_tbl} and {child_tbl}\n"
+                f"SELECT {parent_tbl}.id AS {parent_var}_id, {child_tbl}.id AS {child_tbl}_id\n"
+                f"FROM {parent_tbl}\n"
+                f"INNER JOIN {child_tbl} ON {child_tbl}.{parent_var}_id = {parent_tbl}.id\n"
+                f"LIMIT 100;\n"
+            )
+        else:
+            eager_query = (
+                f"{comment_char}Refactored: Eager JOIN / Batch IN query replacing N+1 application loop\n"
+                f"-- SELECT parent.id, child.id FROM parent INNER JOIN child ON child.parent_id = parent.id LIMIT 100;\n"
+            )
+
         archived_block = "\n".join(f"{comment_char}{line}" for line in content.splitlines())
         return f"{eager_query}\n{comment_char}Original code archived to eliminate connection pool starvation:\n{archived_block}"
 

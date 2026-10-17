@@ -8,138 +8,93 @@ from typing import Dict, List, Any
 COUNCIL_GUILDS: Dict[str, Dict[str, Any]] = {
     "software_systems": {
         "id": "guild_01",
-        "name": "Software & Distributed Systems Guild",
+        "name": "Software Architecture & Modular Systems Guild",
         "lead": "software_architect",
-        "icon": "💻",
-        "description": "Enterprise backend architecture, databases, distributed consensus, formal compilers, and ultra-low-latency event loops.",
+        "icon": "🏛️",
+        "description": "Enterprise modular architecture, dependency injection, circuit breakers, and bounded domain contexts.",
         "members": [
             "software_architect",
-            "database_distributed_architect",
-            "systems_performance_engineer",
-            "distributed_consensus_architect",
             "compiler_type_architect",
-            "hft_event_loop_architect"
+            "distributed_consensus_architect"
         ]
     },
     "security_cryptography": {
         "id": "guild_02",
-        "name": "Cybersecurity, Zero-Trust & Cryptography Guild",
+        "name": "Cybersecurity & Zero-Trust Defense Guild",
         "lead": "cyber_security_auditor",
         "icon": "🛡️",
-        "description": "Defensive application security, threat modeling, zero-trust perimeter defense, post-quantum ML-KEM lattice cryptography, and zero-knowledge proofs.",
+        "description": "OWASP Top 10 mitigation, zero-trust perimeter, credential leakage defense, and timing-safe cryptography.",
         "members": [
             "cyber_security_auditor",
             "quantum_zkp_cryptographer"
         ]
     },
-    "design_multimedia": {
+    "systems_performance": {
         "id": "guild_03",
-        "name": "Design, Spatial 3D & Creative Multimedia Guild",
-        "lead": "principal_designer",
-        "icon": "🎨",
-        "description": "Design systems, spatial UI/UX ergonomics, 3D CGI PBR shaders, game engine physics, mobile 120Hz gesture pipelines, audio acoustics, and brand soul.",
+        "name": "Systems Performance & Low-Latency Guild",
+        "lead": "systems_performance_engineer",
+        "icon": "⚡",
+        "description": "Memory leak defense, non-blocking asynchronous event loops, CPU cache alignment, and sub-millisecond latency budgets.",
         "members": [
-            "principal_designer",
-            "spatial_3d_artist",
-            "game_systems_architect",
-            "mobile_systems_architect",
-            "brand_identity_director",
-            "interactive_sound_architect"
+            "systems_performance_engineer",
+            "hft_event_loop_architect"
         ]
     },
-    "business_capital_growth": {
+    "quality_testing": {
         "id": "guild_04",
-        "name": "Business, Capital, Growth & Legal Guild",
-        "lead": "startup_cfo_analyst",
-        "icon": "📈",
-        "description": "Startup fractional CFO unit economics, direct-response conversion copywriting, algorithmic Technical SEO growth, and commercial contract litigation defense.",
+        "name": "Quality Engineering & Testing Guild",
+        "lead": "artisan_tester",
+        "icon": "🧪",
+        "description": "Deterministic unit verification, mutation testing coverage, property testing, and regression defense.",
         "members": [
-            "startup_cfo_analyst",
-            "elite_copywriter",
-            "growth_seo_engineer",
+            "artisan_tester",
             "legal_contract_auditor"
         ]
     },
-    "ai_agentic_neural": {
+    "database_data": {
         "id": "guild_05",
-        "name": "AI, Autonomous Agents & Neural Systems Guild",
-        "lead": "ai_agentic_architect",
-        "icon": "🧠",
-        "description": "Deterministic autonomous multi-agent state machines, empirical ML Ops, invasive neural interfaces (BCI), photonic matrix acceleration, and spiking neuromorphic silicon.",
+        "name": "Database Architecture & Distributed Data Guild",
+        "lead": "database_architect",
+        "icon": "💾",
+        "description": "ACID transactions, non-blocking zero-downtime migrations, B-tree/BRIN index coverage, and N+1 query elimination.",
         "members": [
-            "ai_agentic_architect",
-            "data_scientist_ml",
-            "neural_interface_bci_architect",
-            "photonic_computing_architect",
-            "neuromorphic_spiking_silicon_architect"
+            "database_architect",
+            "data_scientist_ml"
         ]
     },
-    "hardware_silicon_sre": {
+    "devops_sre": {
         "id": "guild_06",
-        "name": "Hardware, Silicon, Embedded & Cloud SRE Guild",
+        "name": "DevOps, Cloud & Site Reliability Guild",
         "lead": "devops_cloud_architect",
-        "icon": "⚡",
-        "description": "Cloud SRE and immutable Kubernetes infrastructure, ASIC/FPGA RTL synthesis, bare-metal embedded firmware, real-time autonomous robotics, and High-NA EUV lithography.",
+        "icon": "🚀",
+        "description": "Immutable container infrastructure, automated CI/CD pipelines, zero-downtime rollouts, health probes, and self-healing.",
         "members": [
             "devops_cloud_architect",
-            "hardware_chip_architect",
-            "embedded_firmware_architect",
-            "robotics_embodied_ai_architect",
-            "extreme_ultraviolet_photolithography_architect"
+            "embedded_firmware_architect"
         ]
     },
-    "aerospace_propulsion_orbital": {
+    "api_dx_copywriting": {
         "id": "guild_07",
-        "name": "Aerospace, Propulsion & Celestial Dynamics Guild",
-        "lead": "aerospace_avionics_architect",
-        "icon": "🚀",
-        "description": "Fault-tolerant aerospace flight avionics (TMR), hypersonic scramjet aerothermodynamics, interplanetary astrodynamics, thermonuclear fusion rockets, space elevator tensegrity, and mega-constellation orbital safety.",
+        "name": "API Design, DX & Documentation Guild",
+        "lead": "conversion_copywriter",
+        "icon": "🔌",
+        "description": "REST/GraphQL API contracts, typed error models, clear documentation, and developer experience.",
         "members": [
-            "aerospace_avionics_architect",
-            "hypersonic_aerodynamics_architect",
-            "interplanetary_astrodynamics_architect",
-            "fusion_rocket_propulsion_architect",
-            "space_elevator_tensegrity_architect",
-            "magnetospheric_radiation_shielding_architect",
-            "rotating_detonation_wave_propulsion_architect",
-            "interstellar_ramjet_bussard_propulsion_architect",
-            "megaconstellation_orbital_collision_avoidance_architect",
-            "planetary_entry_descent_landing_aerothermodynamics_architect",
-            "closed_loop_ecological_life_support_architect"
+            "conversion_copywriter",
+            "elite_copywriter",
+            "technical_seo_engineer"
         ]
     },
-    "deep_quantum_nuclear_frontier": {
+    "frontend_ui_ux": {
         "id": "guild_08",
-        "name": "Deep Quantum, Nuclear & Frontier Physics Guild",
-        "lead": "quantum_hardware_architect",
-        "icon": "⚛️",
-        "description": "Transmon quantum computing, millikelvin cryogenics, topological spintronics, superfluid quantum hydrodynamics, nuclear criticality safety, tokamak fusion plasma, stellarator magnetics, terawatt pulsed power, and general relativistic astrophysics.",
+        "name": "Frontend Architecture & UI/UX Design Guild",
+        "lead": "ui_ux_designer",
+        "icon": "🎨",
+        "description": "Design systems, WCAG accessibility, Core Web Vitals, responsive viewports, and 60fps ergonomic interaction.",
         "members": [
-            "quantum_hardware_architect",
-            "cryogenic_superconducting_architect",
-            "topological_spintronics_architect",
-            "superfluid_hydrodynamics_architect",
-            "nuclear_criticality_architect",
-            "fusion_plasma_architect",
-            "stellarator_twisted_coil_fusion_architect",
-            "pulsed_power_terawatt_plasma_architect",
-            "particle_accelerator_architect",
-            "gravitational_wave_detector_architect",
-            "atomic_manipulation_architect",
-            "optical_metamaterial_architect",
-            "optical_lattice_clock_metrology_architect",
-            "deep_sea_subsea_architect",
-            "cryovolcanic_hydrothermal_ocean_explorer_architect",
-            "bioinformatics_genomics_architect",
-            "synthetic_biology_architect",
-            "paleogenomic_ancient_dna_reconstruction_architect",
-            "exoplanetary_transit_spectroscopy_architect",
-            "magnetohydrodynamic_power_architect",
-            "planetary_geodynamo_core_architect",
-            "extreme_ocean_rogue_wave_hydrodynamics_architect",
-            "relativistic_spacetime_geodesic_architect",
-            "event_horizon_general_relativistic_magnetohydrodynamics_architect",
-            "relativistic_heavy_ion_quark_gluon_plasma_hydrodynamics_architect"
+            "ui_ux_designer",
+            "principal_designer",
+            "mobile_systems_architect"
         ]
     }
 }
@@ -150,7 +105,7 @@ def get_guild_for_master(master_key: str) -> Dict[str, Any]:
     for guild_key, guild in COUNCIL_GUILDS.items():
         if master_key in guild["members"]:
             return {"guild_key": guild_key, **guild}
-    return {"guild_key": "general", "name": "General Guild", "members": [master_key]}
+    return {"guild_key": "science_archive", "name": "Scientific / Frontier Pack", "members": [master_key]}
 
 
 def list_guilds_summary() -> List[Dict[str, Any]]:

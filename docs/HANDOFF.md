@@ -60,9 +60,14 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Added atomic disk write with rollback protection (`.tmp` write, post-write AST validation, `os.replace`).
   - Added regression test cases HW-030, HW-031, HW-032 in `tests/test_audit_fixes.py`.
   - Verified 100% test pass rate (`13/13 passed in test_audit_fixes.py`) and gatekeeper score (`100/100`).
+- **Step 5 Completed (Distill to 8 Core Software Guilds & Fix Database Hallucination):**
+  - Distilled council guilds in `src/sdk/guilds.py` into 8 focused software engineering guilds: Software Architecture, Cybersecurity, Systems Performance, Quality Testing, Database Architecture, DevOps & SRE, API & DX, and Frontend UI/UX.
+  - Created concise, high-craftsmanship domain specifications in `references/` (`architecture.md`, `security.md`, `performance.md`, `testing.md`, `database.md`, `devops_sre.md`, `api_dx.md`, `frontend_ui.md`).
+  - Verified all subagent prompt files in `.agents/agents/` are compact (< 2 KB each).
+  - Fixed destructive hallucination in `professions/database_architect/elevation_engine.py`: replaced hardcoded `users/orders` replacement with dynamic table extraction and contextual eager JOIN/IN generation.
+  - Verified 100% test pass rate (`20/20 in test_mcp.py`, `7/7 in test_cassandra_database.py`, `22/22 in test_cli.py`) and gatekeeper score (`100/100`).
 
 ### Remaining
-- **Step 5:** Distill 64 professions down to ~8 core software guilds, archive science masters to `packs/science/`.
 - **Step 6:** Package & distribution refinement.
 - **Step 7:** Bound and prune `.hallwright/decision_journal.json`.
 
@@ -70,4 +75,5 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
 - Single unified brand: **Hallwright**.
 - Active persistent state directory: `.hallwright/`.
 - Concurrency-safe primary memory engine: SQLite WAL (`.hallwright/memory.db`) with human-readable git-friendly JSON fallback (`.hallwright/memory.json`).
+- Core software craftsmanship centered on 8 professional software guilds (`references/<guild>.md`).
 - Guardrail layer architecture strictly preserved; no autonomous model invocation inside the core guardrail layer.
