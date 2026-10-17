@@ -293,11 +293,42 @@ def cmd_status(args: argparse.Namespace) -> int:
     has_agents_md = os.path.exists("AGENTS.md")
     detected = detect_tech_stack(".")
 
+    # Load custom rules & auto-heal configuration
+    custom_rules_count = 0
+    auto_heal_flag = False
+    try:
+        from detector import load_artisan_config
+        cfg = load_artisan_config(".")
+        custom_rules_count = len(cfg.get("custom_rules", []))
+        auto_heal_flag = bool(cfg.get("auto_heal", False))
+    except Exception as _hw_err:
+        import logging
+        logging.warning(f'Handled error: {_hw_err}')  # hallwright-ignore
+
+    # Inspect cross-agent continuity checkpoint
+    continuity_summary = "Fresh (No active session)"
+    cont_path = os.path.join(".hallwright", "continuity.json")
+    if os.path.exists(cont_path):
+        try:
+            with open(cont_path, "r", encoding="utf-8") as f:
+                cdata = json.load(f)
+                agent_id = cdata.get("last_agent", "agent")
+                task_snippet = cdata.get("current_task", "work")[:35]
+                continuity_summary = f"{agent_id} -> '{task_snippet}'"
+        except Exception as _hw_err:
+            import logging
+            logging.warning(f'Handled error: {_hw_err}')  # hallwright-ignore
+
+    gate_extra = " [Auto-Heal: Active]" if auto_heal_flag else " [Auto-Heal: Ready via --heal]"
+    gate_status = f"INSTALLED (.git/hooks/pre-commit){gate_extra}" if has_gatekeeper else "NOT INSTALLED"
+
     print("📊 HALLWRIGHT STATUS REPORT (ARTISAN COMPLIANT):")
     print(f"  • Protocol Invariant    : Active ({'AGENTS.md loaded' if has_agents_md else 'Missing AGENTS.md'})")
-    print(f"  • Pre-Commit Quality Gate: {'INSTALLED (.git/hooks/pre-commit)' if has_gatekeeper else 'NOT INSTALLED'}")
+    print(f"  • Pre-Commit Quality Gate: {gate_status}")
     print(f"  • Detected Stack        : {', '.join(detected)}")
     print(f"  • Persistent Memory     : {lessons_count} lessons, {conventions_count} recorded conventions [{engine_name}]")
+    print(f"  • Custom Rule Engine    : {custom_rules_count} custom rule(s) active (.hallwright/rules.json)")
+    print(f"  • Cross-Agent Continuity: {continuity_summary}")
     print(f"  • Council Guilds Active : 8 Domain Guilds (64 Titans available)")
     print(f"  • Smart Context Engine  : Ready (85% token compression)\n")
     return 0
