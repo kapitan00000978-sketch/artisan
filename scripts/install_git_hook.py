@@ -22,7 +22,8 @@ def vendor_gatekeeper(target_dir: str = ".") -> bool:
     files_to_vendor = [
         ("detector.py", "detector.py"),
         ("remediator.py", "remediator.py"),
-        ("pre-commit-gatekeeper.py", "gatekeeper.py")
+        ("pre-commit-gatekeeper.py", "gatekeeper.py"),
+        ("detector.js", "gatekeeper.js")
     ]
     for src_name, dst_name in files_to_vendor:
         src_path = os.path.join(base_scripts, src_name)
@@ -46,8 +47,16 @@ def install_hook(target_dir: str = ".", heal_by_default: bool = False, vendor_ga
     hook_path = os.path.join(hooks_dir, "pre-commit")
     heal_flag = " --heal" if heal_by_default else ""
     hook_content = f"""#!/bin/sh
-# Hallwright Pre-Commit Quality & Security Gate
-if [ -f .hallwright/gate/gatekeeper.py ]; then
+# Hallwright Multi-Runtime Pre-Commit Quality & Security Gate
+# 1. Native Go Standalone Binary (fastest, zero-runtime dependency)
+if [ -f .hallwright/gate/hallwright ]; then
+    .hallwright/gate/hallwright -s
+    exit $?
+elif [ -f .hallwright/gate/hallwright.exe ]; then
+    .hallwright/gate/hallwright.exe -s
+    exit $?
+# 2. Vendored Python Gatekeeper (deep AST verification)
+elif [ -f .hallwright/gate/gatekeeper.py ] && (command -v python3 >/dev/null 2>&1 || command -v python >/dev/null 2>&1); then
     if command -v python3 >/dev/null 2>&1; then
         python3 .hallwright/gate/gatekeeper.py --staged{heal_flag}
         exit $?
@@ -55,6 +64,11 @@ if [ -f .hallwright/gate/gatekeeper.py ]; then
         python .hallwright/gate/gatekeeper.py --staged{heal_flag}
         exit $?
     fi
+# 3. Vendored Node.js Gatekeeper (pure JS, zero npm dependencies)
+elif [ -f .hallwright/gate/gatekeeper.js ] && command -v node >/dev/null 2>&1; then
+    node .hallwright/gate/gatekeeper.js --staged
+    exit $?
+# 4. Global CLI or npx fallback
 elif command -v hallwright >/dev/null 2>&1; then
     hallwright audit --staged{heal_flag}
     exit $?
@@ -70,7 +84,7 @@ elif command -v npx >/dev/null 2>&1 && [ -f package.json ]; then
     npx hallwright audit --staged{heal_flag}
     exit $?
 else
-    echo "[-] Notice: Hallwright audit skipped (neither vendored .hallwright/gate nor CLI found)."
+    echo "[-] Notice: Hallwright audit skipped (no compatible runtime found)."
 fi
 """
 

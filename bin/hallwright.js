@@ -36,7 +36,7 @@ function resolvePythonCommand() {
       continue;
     }
   }
-  return process.platform === 'win32' ? 'python' : 'python3';
+  return null;
 }
 const PYTHON_CMD = resolvePythonCommand();
 
@@ -115,13 +115,40 @@ if (command === 'init' || command === 'install') {
   console.log(`==================================================================\n`);
 } else if (command === 'audit' || command === 'gate') {
   console.log(`🔍 [HALLWRIGHT AUDIT] Running Quality & Security Scan...`);
-  const scriptPath = path.join(packageRoot, 'scripts', 'pre-commit-gatekeeper.py');
-  if (fs.existsSync(scriptPath)) {
+  const pythonScript = path.join(packageRoot, 'scripts', 'pre-commit-gatekeeper.py');
+  const jsScript = path.join(packageRoot, 'scripts', 'detector.js');
+  const useNode = args.includes('--node') || !PYTHON_CMD;
+
+  if (!useNode && PYTHON_CMD && fs.existsSync(pythonScript)) {
     const extraArgs = args.slice(1);
-    const res = spawnSync(PYTHON_CMD, [scriptPath, ...extraArgs], { stdio: 'inherit' });
+    const res = spawnSync(PYTHON_CMD, [pythonScript, ...extraArgs], { stdio: 'inherit' });
     process.exit(res.status || 0);
+  } else if (fs.existsSync(jsScript)) {
+    const extraArgs = args.slice(1).filter(a => a !== '--node');
+    const detector = require(jsScript);
+    const isStaged = extraArgs.includes('--staged') || extraArgs.includes('-s');
+    const isJson = extraArgs.includes('--json') || extraArgs.includes('-j');
+    const res = detector.scanProject('.', { stagedOnly: isStaged });
+    if (isJson) {
+      console.log(JSON.stringify(res, null, 2));
+    } else {
+      const scope = isStaged ? 'staged changes' : 'workspace';
+      console.log(`🛡️ [Hallwright JS Gatekeeper] Scope: ${scope} | Scanned: ${res.scanned_files} files`);
+      if (res.baseline_findings && res.baseline_findings.length > 0) {
+        console.log(`  📋 Baseline debt: ${res.baseline_findings.length} existing flaw(s) tolerated.`);
+      }
+      if (res.findings && res.findings.length > 0) {
+        console.log(`\n❌ [HALLWRIGHT REJECTED]: ${res.findings.length} defect(s) detected. Gate Score: ${res.score}/100`);
+        for (const f of res.findings.slice(0, 10)) {
+          console.log(`  • ${f.file}:${f.line} [${f.category}] -> ${f.message}`);
+        }
+      } else {
+        console.log(`✅ [HALLWRIGHT VERIFIED]: All code satisfied quality benchmarks. Score: ${res.score}/100`);
+      }
+    }
+    process.exit(res.passed ? 0 : 1);
   } else {
-    console.error(`[-] Gatekeeper script not found at ${scriptPath}`);
+    console.error(`[-] No compatible detector engine found.`);
     process.exit(1);
   }
 } else if (command === 'hook') {
