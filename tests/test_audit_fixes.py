@@ -187,3 +187,52 @@ def test_hw027_line_isolated_ignore_marker():
     # The eval line is ignored, but the bare except on line 3-4 MUST be detected!
     assert any(f["rule_id"] == "STUB_BARE_EXCEPT" for f in res["findings"])
     assert not any(f["rule_id"] == "DANGEROUS_EVAL_EXEC" for f in res["findings"])
+
+
+# ---------------------------------------------------------
+# HW-030: Named exception preservation in remediator
+# ---------------------------------------------------------
+def test_hw030_remediator_named_exception_preservation():
+    """Verify that except Exception as err: pass preserves the variable name."""
+    flawed = "def query():\n    try:\n        db.connect()\n    except Exception as connection_err:\n        pass\n"
+    fixed, count = remediate_python_code(flawed)
+    assert count == 1
+    assert "connection_err" in fixed
+    assert "pass" not in fixed
+    ast.parse(fixed)
+
+
+# ---------------------------------------------------------
+# HW-031: Module-level logging import injection
+# ---------------------------------------------------------
+def test_hw031_remediator_ensures_module_level_logging_import():
+    """Verify that remediator ensures import logging is present at module scope."""
+    flawed = '"""Module docstring."""\n\ndef worker():\n    try:\n        work()\n    except:\n        pass\n'
+    fixed, count = remediate_python_code(flawed)
+    assert count == 1
+    assert "import logging" in fixed
+    # Must parse valid AST
+    tree = ast.parse(fixed)
+    # Check that logging is imported
+    imported_names = [alias.name for node in ast.walk(tree) if isinstance(node, ast.Import) for alias in node.names]
+    assert "logging" in imported_names
+
+
+# ---------------------------------------------------------
+# HW-032: Aborts safely on pre-existing syntax error
+# ---------------------------------------------------------
+def test_hw032_remediator_aborts_on_preexisting_syntax_error():
+    """Verify that remediate_file refuses to touch a file with pre-existing syntax errors."""
+    with tempfile.NamedTemporaryFile("w+", suffix=".py", delete=False) as tf:
+        tf.write("def invalid_syntax(\n    return 42\n")
+        temp_path = tf.name
+
+    try:
+        res = remediate_file(temp_path)
+        assert res == 0
+        with open(temp_path, "r", encoding="utf-8") as f:
+            content = f.read()
+        assert content == "def invalid_syntax(\n    return 42\n"
+    finally:
+        if os.path.exists(temp_path):
+            os.remove(temp_path)

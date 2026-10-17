@@ -25,39 +25,115 @@ if sys.platform == "win32":
 EXCLUDED_DIRS = {".git", "node_modules", ".venv", "__pycache__", "tests"}
 EXCLUDED_FILES = set()
 
+def ensure_module_imported(content: str, module_name: str) -> str:
+    """Safely adds 'import <module_name>' at the top of the Python file if not already imported."""
+    import ast
+    try:
+        tree = ast.parse(content)
+    except SyntaxError:
+        return content
+
+    for node in ast.walk(tree):
+        if isinstance(node, ast.Import):
+            for alias in node.names:
+                if alias.name == module_name:
+                    return content
+        elif isinstance(node, ast.ImportFrom):
+            if node.module == module_name:
+                return content
+
+    lines = content.splitlines(keepends=True)
+    insert_idx = 0
+    while insert_idx < len(lines):
+        line = lines[insert_idx].strip()
+        if line.startswith("#!") or line.startswith("# -*-") or line.startswith("# coding:"):
+            insert_idx += 1
+        else:
+            break
+
+    if tree.body and isinstance(tree.body[0], ast.Expr) and isinstance(tree.body[0].value, ast.Constant) and isinstance(tree.body[0].value.value, str):
+        doc_end = tree.body[0].end_lineno
+        if doc_end is not None:
+            insert_idx = doc_end
+
+    for node in tree.body:
+        if isinstance(node, ast.ImportFrom) and node.module == "__future__":
+            if node.end_lineno is not None and node.end_lineno > insert_idx:
+                insert_idx = node.end_lineno
+
+    import_stmt = f"import {module_name}\n"
+    lines.insert(insert_idx, import_stmt)
+    return "".join(lines)
+
+
 def remediate_python_code(content: str) -> Tuple[str, int]:
-    """Auto-repairs silent exception suppression in Python source code."""
+    """Auto-repairs silent exception suppression in Python source code using AST verification."""
+    import ast
+    try:
+        tree = ast.parse(content)
+    except SyntaxError:
+        return content, 0
+
+    silent_handlers = []
+    for node in ast.walk(tree):
+        if isinstance(node, ast.ExceptHandler):
+            # Check if handler body only contains pass
+            if len(node.body) == 1 and isinstance(node.body[0], ast.Pass):
+                silent_handlers.append(node)
+
+    if not silent_handlers:
+        return content, 0
+
+    lines = content.splitlines(keepends=True)
+    # Sort handlers from bottom to top to preserve line numbering during replacements
+    silent_handlers.sort(key=lambda n: n.lineno, reverse=True)
     modifications = 0
 
-    # 1. Bare exception suppression  # hallwright-ignore
-    pattern_bare = r"(?m)^(\s*)except\s*:\s*pass\b"
-    def repl_bare(match):
-        nonlocal modifications
-        modifications += 1
-        indent = match.group(1)
-        sub_indent = indent + ("\t" if "\t" in indent else "    ")
-        return (
-            f"{indent}except Exception as _artisan_err:\n"
-            f"{sub_indent}import logging\n"
-            f"{sub_indent}logging.warning(f'Handled error: {{_artisan_err}}')  # artisan-ignore"
-        )
-    content = re.sub(pattern_bare, repl_bare, content)
+    # Detect indentation style (tabs vs spaces)
+    indent_unit = "    "
+    for line in lines:
+        if line.startswith("\t"):
+            indent_unit = "\t"
+            break
 
-    # 2. Specific exception suppression  # hallwright-ignore
-    pattern_exc = r"(?m)^(\s*)except\s+Exception\s*:\s*pass\b"
-    def repl_exc(match):
-        nonlocal modifications
-        modifications += 1
-        indent = match.group(1)
-        sub_indent = indent + ("\t" if "\t" in indent else "    ")
-        return (
-            f"{indent}except Exception as _artisan_err:\n"
-            f"{sub_indent}import logging\n"
-            f"{sub_indent}logging.warning(f'Handled error: {{_artisan_err}}')  # artisan-ignore"
-        )
-    content = re.sub(pattern_exc, repl_exc, content)
+    for node in silent_handlers:
+        except_idx = node.lineno - 1
+        pass_idx = node.body[0].lineno - 1
+        except_line = lines[except_idx]
+        indent_match = re.match(r"^(\s*)", except_line)
+        indent = indent_match.group(1) if indent_match else ""
+        sub_indent = indent + indent_unit
 
-    return content, modifications
+        var_name = node.name or "_artisan_err"
+
+        if except_idx == pass_idx:
+            # Same line: except: pass or except Exception: pass
+            lines[except_idx] = (
+                f"{indent}except Exception as {var_name}:\n"
+                f"{sub_indent}import logging\n"
+                f"{sub_indent}logging.warning(f'Handled error: {{{var_name}}}')  # artisan-ignore\n"
+            )
+        else:
+            # Multi-line: except line + pass line
+            if node.type is None or node.name is None:
+                lines[except_idx] = f"{indent}except Exception as {var_name}:\n"
+            lines[pass_idx] = (
+                f"{sub_indent}import logging\n"
+                f"{sub_indent}logging.warning(f'Handled error: {{{var_name}}}')  # artisan-ignore\n"
+            )
+        modifications += 1
+
+    new_content = "".join(lines)
+    # Ensure module-level logging import exists
+    new_content = ensure_module_imported(new_content, "logging")
+
+    # Strict AST validation before returning: rollback if syntax is broken
+    try:
+        ast.parse(new_content)
+    except SyntaxError:
+        return content, 0
+
+    return new_content, modifications
 
 
 def remediate_js_code(content: str) -> Tuple[str, int]:
@@ -85,7 +161,7 @@ def remediate_js_code(content: str) -> Tuple[str, int]:
 
 
 def remediate_file(filepath: str) -> int:
-    """Remediates an individual file on disk with strict decoding and AST verification."""
+    """Remediates an individual file on disk with strict decoding, AST verification, and atomic rollback."""
     if not os.path.exists(filepath):
         return 0
 
@@ -97,28 +173,45 @@ def remediate_file(filepath: str) -> int:
         print(f"  [-] Skipping unreadable/non-UTF8 file {filepath}: {read_err}", file=sys.stderr)
         return 0
 
+    # Guard: do not attempt to fix files with pre-existing syntax errors
+    if filepath.endswith(".py"):
+        import ast
+        try:
+            ast.parse(original, filename=filepath)
+        except SyntaxError as orig_syn:
+            print(f"  [!] Skipping {filepath}: pre-existing syntax error ({orig_syn})", file=sys.stderr)
+            return 0
+
     try:
         fixed = original
         changes = 0
 
         if filepath.endswith(".py"):
             fixed, changes = remediate_python_code(original)
-            # Verify Python AST syntax before writing to prevent IndentationError (HW-001)
-            if changes > 0:
-                import ast
-                try:
-                    ast.parse(fixed, filename=filepath)
-                except SyntaxError as syn_err:
-                    print(f"  [!] Remediation aborted for {filepath}: would produce syntax error ({syn_err})", file=sys.stderr)
-                    return 0
         elif filepath.endswith((".js", ".ts", ".jsx", ".tsx")):
             fixed, changes = remediate_js_code(original)
 
         if changes > 0 and fixed != original:
-            with open(filepath, "w", encoding="utf-8") as f:
-                f.write(fixed)
-            print(f"  [+] Repaired {filepath} ({changes} defect(s) resolved)")
-            return changes
+            # Atomic file replacement with rollback protection
+            temp_path = filepath + ".tmp"
+            try:
+                with open(temp_path, "w", encoding="utf-8") as f:
+                    f.write(fixed)
+                # Verify disk write before final replace
+                if filepath.endswith(".py"):
+                    import ast
+                    ast.parse(fixed, filename=temp_path)
+                os.replace(temp_path, filepath)
+                print(f"  [+] Repaired {filepath} ({changes} defect(s) resolved)")
+                return changes
+            except Exception as write_err:
+                if os.path.exists(temp_path):
+                    try:
+                        os.remove(temp_path)
+                    except OSError:
+                        pass
+                print(f"  [!] Remediation aborted for {filepath}: {write_err}", file=sys.stderr)
+                return 0
     except Exception as e:
         print(f"  [-] Error repairing {filepath}: {e}", file=sys.stderr)
 

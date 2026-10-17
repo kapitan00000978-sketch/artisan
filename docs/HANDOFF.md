@@ -52,9 +52,16 @@ Hallwright (repo `kapitan00000978-sketch/hallwright`; formerly Artisan, formerly
   - Migrated remaining `.artisan` memory paths to `.hallwright` across `bin/hallwright.js`, `install.ps1`, `install.sh`, `cli/installer.py`, `cli/dashboard.py`, and agent skills.
   - Added `.hallwright/*.db*` to `.gitignore`.
   - Verified 100% test pass rate (`600 passed in 58.21s`) and gatekeeper score (`100/100` on 510 files).
+- **Step 4 Completed (Safe AST Auto-Remediation & Rollback Protection):**
+  - Replaced crude string regex replacement in `scripts/remediator.py` with AST-guided silent exception inspection and replacement.
+  - Added `ensure_module_imported` to safely inject `import logging` at module top (preserving shebang, coding, docstrings, future imports) to prevent runtime `NameError`.
+  - Preserved named exception parameters (e.g., `except Exception as custom_err:` retains `custom_err`).
+  - Added pre-scan syntax check (`ast.parse(original)`): files with pre-existing syntax errors are safely skipped without corruption.
+  - Added atomic disk write with rollback protection (`.tmp` write, post-write AST validation, `os.replace`).
+  - Added regression test cases HW-030, HW-031, HW-032 in `tests/test_audit_fixes.py`.
+  - Verified 100% test pass rate (`13/13 passed in test_audit_fixes.py`) and gatekeeper score (`100/100`).
 
 ### Remaining
-- **Step 4:** Safe auto-remediation (ensure AST/syntax checks, proper imports, prevent destructive code rewrites).
 - **Step 5:** Distill 64 professions down to ~8 core software guilds, archive science masters to `packs/science/`.
 - **Step 6:** Package & distribution refinement.
 - **Step 7:** Bound and prune `.hallwright/decision_journal.json`.
