@@ -75,7 +75,7 @@ Hallwright is not an AI model or operating system. It sits between your develope
               ┌───────────────────┐         ┌───────────────────┐
               │  2. Project       │         │  3. Subagent &    │
               │     Memory        │         │     Skill Defs    │
-              │  (.artisan/)      │         │  (.agents/, MCP)  │
+              │  (.hallwright/)   │         │  (.agents/, MCP)  │
               └─────────┬─────────┘         └─────────┬─────────┘
                         │                             │
                         ▼                             ▼
@@ -92,8 +92,8 @@ Hallwright is not an AI model or operating system. It sits between your develope
 
 | Pillar | What It Does | Key Command |
 | :--- | :--- | :--- |
-| **1. Deterministic Gate** | Intercepts unfinished stubs (`pass`, `// TODO`), empty catches (`except: pass`), and secret leaks before commit. | `hallwright audit --staged` |
-| **2. Project Memory** | Records past bugs as persistent "scar tissue" (`.artisan/memory.json`) and provides cross-agent continuity handoffs (`.artisan/continuity.json`). | `hallwright memory` / `hallwright resume` |
+| **1. Deterministic Gate** | Intercepts unfinished stubs (`pass`, `// TODO`), empty catches (`except: pass`), command injections, DOM XSS, SSRF, and secret leaks before commit. | `hallwright audit --staged` |
+| **2. Project Memory** | Records past bugs as persistent "scar tissue" (`.hallwright/memory.json`, `.hallwright/memory.db`) and provides cross-agent continuity handoffs (`.hallwright/continuity.json`). | `hallwright memory` / `hallwright resume` |
 | **3. Subagents & Skills** | Provides 7 specialized role definitions and domain skills that your host assistant can adopt for complex tasks. | `hallwright swarm` / `hallwright context` |
 
 ---
@@ -101,12 +101,12 @@ Hallwright is not an AI model or operating system. It sits between your develope
 ## 🔍 How Each Pillar Works
 
 ### Pillar 1: Deterministic Pre-Commit Gate (`scripts/detector.py`)
-- **AST Semantic Analysis:** Scans Python, JavaScript, TypeScript, Go, and Rust files.
-- **Pattern Interception:** Catches unfinished stubs (`TODO`, `FIXME`, bare `pass`), silent error swallowers (`except: pass`, empty `catch {}`), dangerous dynamic code execution, and exposed API keys (`sk-...`, `ghp_...`).
-- **Auto-Fix (`hallwright fix`):** Refactors empty catches into structured logger statements and replaces empty stubs.
+- **AST & Semantic Analysis:** Scans Python, JavaScript, TypeScript, Go, Java, and C# files.
+- **Pattern Interception:** Catches unfinished stubs (`TODO`, `FIXME`, bare `pass`), silent error swallowers (`except: pass`, empty `catch {}`), dynamic command execution (`shell=True`, dynamic `os.system`), DOM XSS sinks (`innerHTML = user_input`, `dangerouslySetInnerHTML`), SSRF parameter risks (`requests.get(url)`), and exposed API keys (`sk-...`, `ghp_...`).
+- **Auto-Fix (`hallwright fix`):** Safely refactors empty catches into structured logger statements and replaces empty stubs with atomic rollback protection.
 
-### Pillar 2: Project Memory & Continuity (`.artisan/`)
-- **Living Scar Tissue (`.artisan/memory.json`):** When bugs are caught and fixed, lessons are recorded. When starting new tasks, `hallwright context` injects only the matching lessons (~6x context optimization: ~2K tokens vs ~12K full rubric dump).
+### Pillar 2: Project Memory & Continuity (`.hallwright/`)
+- **Living Scar Tissue (`.hallwright/memory.json`, SQLite WAL):** When bugs are caught and fixed, lessons are recorded. When starting new tasks, `hallwright context` injects only the matching lessons (~6x context optimization: ~2K tokens vs ~12K full rubric dump).
 - **Cross-Agent Continuity (`hallwright checkpoint` & `hallwright resume`):** Checkpoints task progress, active files, and blockers so that switching between Claude Code, Cursor, or Antigravity does not lose session context.
 - **Strictly Optional:** Disable anytime with `hallwright resume --no-continuity` or configuring `continuity.enabled: false`.
 
@@ -152,9 +152,9 @@ When generating targeted context via `hallwright context "<task>"`, the `SmartMa
 
 1. **Task Decomposition:** Analyzes the task description and target files using keyword and extension heuristics.
 2. **Role Selection:** Selects relevant sub-agent roles from the definitions above.
-3. **Memory Retrieval:** Queries `.artisan/memory.json` to attach historical lessons relevant to each role.
+3. **Memory Retrieval:** Queries `.hallwright/memory.json` to attach historical lessons relevant to each role.
 4. **Plan Generation:** Outputs a structured, ordered execution plan (e.g. Architect → Security → Tester → Critic) with clear directives.
-5. **Session Coordination:** In execution mode, registers session locks in `.artisan/agent_sessions.json` to prevent multi-agent file collisions.
+5. **Session Coordination:** In execution mode, registers session locks in `.hallwright/agent_sessions.json` to prevent multi-agent file collisions.
 6. **Execution by Host:** Your **host AI assistant** (Claude Code, Cursor, Antigravity) receives the plan and executes the steps.
 
 ```bash
@@ -178,7 +178,7 @@ Hallwright provides a reproducible verification harness evaluating deterministic
 | **Remediation Cycles** | Unbounded / Manual human triage | **Average `1.0` cycle auto-remediation** |
 
 > Controlled evaluation methodology and task fixtures: [`bench/BENCHMARK_REPORT.md`](./bench/BENCHMARK_REPORT.md).  
-> *Note: Hallwright's internal protocol and CLI test suite contains 600 passing unit, regression, and mutation tests.*
+> *Note: Hallwright's internal protocol and CLI test suite contains 334 passing unit, regression, and mutation tests (plus 39 specialized deep-tech science tests in `packs/science/`).*
 
 ---
 
