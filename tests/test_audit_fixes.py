@@ -29,7 +29,7 @@ def test_hw001_remediator_tab_indentation():
     fixed, count = remediate_python_code(tab_code)
     assert count == 1
     # Check that tab indentation was preserved
-    assert "\texcept Exception as _artisan_err:" in fixed
+    assert "\texcept Exception as _hw_err:" in fixed or "\texcept Exception as _artisan_err:" in fixed
     assert "\t\timport logging" in fixed
     assert "\t\tlogging.warning" in fixed
     # Verify AST can parse it without IndentationError or TabError

@@ -104,14 +104,14 @@ def remediate_python_code(content: str) -> Tuple[str, int]:
         indent = indent_match.group(1) if indent_match else ""
         sub_indent = indent + indent_unit
 
-        var_name = node.name or "_artisan_err"
+        var_name = node.name or "_hw_err"
 
         if except_idx == pass_idx:
             # Same line: except: pass or except Exception: pass
             lines[except_idx] = (
                 f"{indent}except Exception as {var_name}:\n"
                 f"{sub_indent}import logging\n"
-                f"{sub_indent}logging.warning(f'Handled error: {{{var_name}}}')  # artisan-ignore\n"
+                f"{sub_indent}logging.warning(f'Handled error: {{{var_name}}}')  # hallwright-ignore\n"
             )
         else:
             # Multi-line: except line + pass line
@@ -119,7 +119,7 @@ def remediate_python_code(content: str) -> Tuple[str, int]:
                 lines[except_idx] = f"{indent}except Exception as {var_name}:\n"
             lines[pass_idx] = (
                 f"{sub_indent}import logging\n"
-                f"{sub_indent}logging.warning(f'Handled error: {{{var_name}}}')  # artisan-ignore\n"
+                f"{sub_indent}logging.warning(f'Handled error: {{{var_name}}}')  # hallwright-ignore\n"
             )
         modifications += 1
 
@@ -146,7 +146,7 @@ def remediate_js_code(content: str) -> Tuple[str, int]:
         nonlocal modifications
         modifications += 1
         arg_name = match.group(1)
-        return f"catch ({arg_name}) {{ console.error('Handled error:', {arg_name}); }} /* artisan-ignore */"
+        return f"catch ({arg_name}) {{ console.error('Handled error:', {arg_name}); }} /* hallwright-ignore */"
     content = re.sub(pattern_catch_arg, repl_catch_arg, content)
 
     # 2. Catch without argument  # hallwright-ignore
@@ -154,7 +154,7 @@ def remediate_js_code(content: str) -> Tuple[str, int]:
     def repl_catch_empty(match):
         nonlocal modifications
         modifications += 1
-        return "catch (err) { console.error('Handled error:', err); } /* artisan-ignore */"
+        return "catch (err) { console.error('Handled error:', err); } /* hallwright-ignore */"
     content = re.sub(pattern_catch_empty, repl_catch_empty, content)
 
     return content, modifications
@@ -239,11 +239,11 @@ def remediate_workspace(base_dir: str = ".") -> int:
 
 
 def main():
-    parser = argparse.ArgumentParser(description="Artisan Autonomous Auto-Remediation (artisan fix)")
+    parser = argparse.ArgumentParser(description="Hallwright Autonomous Auto-Remediation (hallwright fix)")
     parser.add_argument("--file", "-f", help="Remediate a specific file")
     args = parser.parse_args()
 
-    print("🔧 [ARTISAN REMEDIATOR] Scanning and repairing automated defects...")
+    print("🔧 [HALLWRIGHT REMEDIATOR] Scanning and repairing automated defects...")
 
     if args.file:
         changes = remediate_file(args.file)
@@ -255,7 +255,7 @@ def main():
 
     total = remediate_workspace(".")
     if total > 0:
-        print(f"\n✅ [ARTISAN REMEDIATED]: Successfully resolved {total} defect(s) across workspace.")
+        print(f"\n✅ [HALLWRIGHT REMEDIATED]: Successfully resolved {total} defect(s) across workspace.")
         try:
             from learning_memory import LearningMemory
             mem = LearningMemory()
@@ -263,13 +263,13 @@ def main():
                 record_type="success",
                 category="code_remediation",
                 pattern=f"Auto-remediated {total} defects in workspace",
-                lesson="Artisan remediator transformed silent catches/stubs into structured logging."
+                lesson="Hallwright remediator transformed silent catches/stubs into structured logging."
             )
         except (ImportError, OSError, KeyError) as mem_err:
             import logging
             logging.debug("Learning memory recording skipped during fix: %s", mem_err)
     else:
-        print("✅ [ARTISAN CLEAN]: Zero auto-remediable defects found in workspace.")
+        print("✅ [HALLWRIGHT CLEAN]: Zero auto-remediable defects found in workspace.")
 
 if __name__ == "__main__":
     main()
