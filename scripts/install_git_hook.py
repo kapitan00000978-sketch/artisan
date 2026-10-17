@@ -50,19 +50,25 @@ def install_hook(target_dir: str = ".", heal_by_default: bool = False, vendor_ga
 if [ -f .hallwright/gate/gatekeeper.py ]; then
     if command -v python3 >/dev/null 2>&1; then
         python3 .hallwright/gate/gatekeeper.py --staged{heal_flag}
+        exit $?
     elif command -v python >/dev/null 2>&1; then
         python .hallwright/gate/gatekeeper.py --staged{heal_flag}
+        exit $?
     fi
 elif command -v hallwright >/dev/null 2>&1; then
     hallwright audit --staged{heal_flag}
+    exit $?
 elif [ -f scripts/pre-commit-gatekeeper.py ]; then
     if command -v python3 >/dev/null 2>&1; then
         python3 scripts/pre-commit-gatekeeper.py --staged{heal_flag}
+        exit $?
     elif command -v python >/dev/null 2>&1; then
         python scripts/pre-commit-gatekeeper.py --staged{heal_flag}
+        exit $?
     fi
 elif command -v npx >/dev/null 2>&1 && [ -f package.json ]; then
     npx hallwright audit --staged{heal_flag}
+    exit $?
 else
     echo "[-] Notice: Hallwright audit skipped (neither vendored .hallwright/gate nor CLI found)."
 fi
