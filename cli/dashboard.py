@@ -173,7 +173,7 @@ def main():
         elif choice == "5":
             target = input("Enter HTML target to critique (default: index.html): ").strip() or "index.html"
             elevate = input("Autonomously elevate to world-class? (y/N): ").strip().lower() == "y"
-            cmd_args = [sys.executable, "scripts/artisan_studio.py", target]
+            cmd_args = [sys.executable, "scripts/hallwright_studio.py", target]
             if elevate:
                 cmd_args.append("--elevate")
             subprocess.run(cmd_args)

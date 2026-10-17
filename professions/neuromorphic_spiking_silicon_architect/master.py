@@ -15,7 +15,7 @@ if workspace_root not in sys.path:
     sys.path.insert(0, workspace_root)
 
 try:
-    from scripts.active_decision_journal import ActiveDecisionJournal
+    from src.studio.active_memory import ActiveDecisionJournal
 except ImportError:
     ActiveDecisionJournal = None
 

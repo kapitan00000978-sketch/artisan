@@ -3,7 +3,7 @@ import sys
 import pytest
 
 sys.path.insert(0, os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "scripts")))
-from artisan_studio import capture_visual_metrics, run_studio_critique, elevate_html_to_world_class
+from hallwright_studio import capture_visual_metrics, run_studio_critique, elevate_html_to_world_class
 
 
 def test_studio_critique_on_beginner_site(tmp_path):
